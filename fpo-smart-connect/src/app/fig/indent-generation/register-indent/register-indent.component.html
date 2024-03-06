@@ -1,0 +1,147 @@
+<div class="container-fluid">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><strong style="color: blue;">Home</strong>/ Demand Generation/Register Demand
+        </li>
+    </ol>
+
+    <div class="mybox ">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Demand Generation</label>
+                </strong>
+            </span>
+        </div>
+        <br>
+        <div class="container row ">
+           <div class="col-md-12">
+            <form [formGroup]='figIndentSaleForm' (ngSubmit)='onSubmit()'>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 mb">
+                            <label>Select FPO</label>
+                            <select class="form-control" formControlName='fpo'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option [ngValue]="fpo" *ngFor='let fpo of fpos'>{{fpo.fpoName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Select Farmer</label>
+                            <select class="form-control" formControlName='farmer'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="Self">Self</option>
+                                <option [ngValue]="farmer" *ngFor='let farmer of farmers'>
+                                    {{farmer.farmerName}}({{farmer.farmerId}})</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Item Type</label>
+                            <select class="form-control" formControlName='itemType' (change)='getItemTypeData()'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="Seed">Seed</option>
+                                <option value="Fertilizer">Fertilizer</option>
+                                <option value="Insecticides">Insecticides</option>
+                                <option value="Custome Hiring">Custome Hiring</option>
+                                <option value="Farm Implement">Farm Implement</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.itemType=="Seed"'>
+                            <label>Year</label>
+                            <select class="form-control" formControlName='year'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="{{years}}">{{years}}</option>
+                                <option value="{{years-1}}">{{years-1}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.itemType=="Seed"'>
+                            <label>Season</label>
+                            <select class="form-control" formControlName='season'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="Crop">Rabi</option>
+                                <option value="Seed">Kharif</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.itemType=="Seed"'>
+                            <label>Crop Catagory</label>
+                            <select class="form-control" formControlName='cropCatagory'
+                                (change)='getCropAccToCatagory()'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="{{cat.cropCatagory}}" *ngFor='let cat of cropCatData'>
+                                    {{cat.cropCatagory}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.itemType=="Seed"'>
+                            <label>Crop</label>
+                            <select class="form-control" formControlName='crop' (change)='getAllVarieties()'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option [ngValue]="crop" *ngFor='let crop of crops'>{{crop.Crop_Name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.itemType=="Seed"'>
+                            <label>Variety</label>
+                            <select class="form-control" formControlName='variety'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option [ngValue]="variety" *ngFor='let variety of varieties'>{{variety.Variety_Name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.itemType=="Seed"'>
+                            <label>Class</label>
+                            <select class="form-control" formControlName='class'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="Certified">Certified</option>
+                                <option value="Foundation">Foundation</option>
+                                <option value="Breader">Breader</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 mb"
+                            *ngIf='figIndentSaleForm.value.itemType=="Fertilizer"'>
+                            <label>Technical Name</label>
+                            <select class="form-control" formControlName='technicalName' (change)='getFertBrand()'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="{{x._id.fertTypeId}}" *ngFor='let x of technicalName' >{{x._id.fertTypeName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb"
+                            *ngIf='figIndentSaleForm.value.itemType=="Insecticides"'>
+                            <label>Technical Name</label>
+                            <select class="form-control" formControlName='technicalName'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="{{x._id.technicalName}}" *ngFor='let x of technicalName'>{{x._id.technicalName}}</option>
+                            </select>
+                        </div>
+                        <!-- ||figIndentSaleForm.value.itemType=="Insecticides" -->
+                        <div class="col-md-3 mb"
+                            *ngIf='figIndentSaleForm.value.itemType=="Fertilizer"'>
+                            <label>Brand Name</label>
+                            <select class="form-control" formControlName='brandName'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="{{y._id.fertiliserName}}" *ngFor='let y of fertBrand'>{{y._id.fertiliserName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb"
+                            *ngIf='figIndentSaleForm.value.itemType=="Custome Hiring"||figIndentSaleForm.value.itemType=="Farm Implement"'>
+                            <label>Machine Type</label>
+                            <!-- <input type="number" class="form-control" formControlName='machineType'> -->
+                            <select class="form-control" formControlName='machineType'>
+                                <option selected [disabled]='true'>--Select--</option>
+                                <option value="y._id" *ngFor='let y of technicalName'>{{y._id}}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.itemType'>
+                            <label>Quantity(In Qtl)</label>
+                            <input type="number" class="form-control" formControlName='quantity'>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" [disabled]='figIndentSaleForm.invalid'>Submit</button>
+
+                </div>
+            </form>
+           </div>
+        </div>
+    </div>
+</div>

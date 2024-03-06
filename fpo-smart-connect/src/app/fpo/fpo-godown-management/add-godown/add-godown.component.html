@@ -1,0 +1,68 @@
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"> Relevant Consumer Groups</h1>
+        </div> -->
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <!-- <div class="card shadow mb-4"> -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-white"> Add godown</h6>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]='addGodownForm'>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Godown Name</label>
+                                <input type="text" class="form-control" formControlName='godownName' placeholder="Enter godown name">
+                            </div>
+                            <div class="col-md-6">
+                                <label>District</label>
+                                <select class="form-control" formControlName='districtCode'>
+                                    <option value="" disabled selected>--Select--</option>
+                                    <option *ngFor='let district of allDistricts' value="{{district.districtCode}}">
+                                        {{district.districtName}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12" style="float: right;">
+                                <button data-toggle="modal" data-target="#submit" class="btn btn-primary" style="margin: 1%;" [disabled]='!addGodownForm.valid'>Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="submit" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="ModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure to submit ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)='onSubmit()'>Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

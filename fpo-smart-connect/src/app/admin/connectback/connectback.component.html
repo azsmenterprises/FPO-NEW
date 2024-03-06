@@ -1,0 +1,165 @@
+<div class="container-fluid">
+    <div class="col-lg-12 mb-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-2">
+                <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">GRIEVANCE TABLE</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table border="1" align="center"
+                        class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                        <thead class="bg-light">
+                            <tr class="border-1">
+                                <td><b>Sl.</b></td>
+                                <td><b>Name</b></td>
+                                <td><b>Contact Number</b></td>
+                                <td><b>Email Id</b></td>
+                                <td><b>District</b></td>
+                                <td><b>Block</b></td>
+                                <td><b>Address Details</b></td>
+                                <td><b>Sender Identity</b></td>
+                                <td><b>To Whom</b></td>
+                                <td><b>Submitted Date</b></td>
+                                <td><b>Uploaded File</b></td>
+
+                                <!-- <td><b>View</b></td> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let details of getgrievanceData , index as i;">
+                                <td>{{i+1}}</td>
+                                <td>{{details.petitioner_name}}</td>
+                                <td>{{details.mobile_no}}</td>
+                                <td>{{details.email}}</td>
+                                <td>{{details.district}}</td>
+                                <td>{{details.block}}</td>
+                                <td>{{details.address}}</td>
+                                <td>{{details.sender_identity}}</td>
+                                <td>{{details.to_whom}}</td>
+                                <td>{{details.submitedOn}}</td>
+                                <td >Uploaded &nbsp;
+                                    <a href="{{details?.uploadUrl}}" download target="_blank"><i class="fa fa-eye"
+                                            aria-hidden="true"></i></a>
+                                <td *ngIf="details?.uploadUrl == false || details.uploadUrl == undefined">Not
+                                    uploaded</td>
+
+
+
+
+                                <!-- <td>
+                            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#editMenuModal"
+                                data-backdrop="static" data-keyboard="false" (click)="viewEditDetails(details)"><i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td> -->
+                                <!-- <td>
+                                    <button class="btn btn-outline-warning" data-toggle="modal"
+                                        data-target="#viewConnectModal" data-backdrop="static" data-keyboard="false"
+                                        (click)="viewDetails(details)"><i class="fa fa-eye"
+                                            aria-hidden="true"></i></button>
+                                </td> -->
+                                <!-- <td>
+                                    <button class="btn btn-outline-danger" (click)="deleteOldRow(details)"><i
+                                            class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <mat-paginator #paginatorRef [pageSizeOptions]="[10, 15,20]" [length]="pagelength"
+                showFirstLastButtons></mat-paginator> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="viewConnectModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel- modal-lg"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg"
+        style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">View Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Name</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.petitioner_name}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Contact Number</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.mobile_no}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Email Id</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.email}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>District</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.district}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Block</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.block}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Address Details</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.address}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Sender Identity</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.sender_identity}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>To Whom</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.to_whom}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Submitted Date</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.submitedOn}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Uploaded File</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.uploadUrl}}
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> -->
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Counter</title>
+</head>
+<body>
+    <center>
+    <div class="counter1" data-target="300000" style="font-weight: bold;">0 </div>No. of FPOs registered<br><br>
+    <div class="counter1" data-target="20000" style="font-weight: bold;">0</div>No. of FPOs registered<br><br>
+    <div class="counter1" data-target="1000" style="font-weight: bold;">0</div>No. of FPOs registered<br><br>
+    <div class="counter1" data-target="400" style="font-weight: bold;">0</div>No. of FPOs registered<br><br>
+        <script>
+            const counters = document.querySelectorAll('.counter1');//get all the counters
+            const speed = 1000; // The lower the faster
+            counters.forEach(counter1 => {
+                const updateCount = () => {
+                    const target = +counter1.getAttribute('data-target');
+                    const count = +counter1.innerText;
+                    // Lower inc to slow and higher to slow
+                    const inc = target / speed;
+                    // Check if target is reached
+                    if (count < target) {
+                        // Add inc to count and output in counter
+                        counter1.innerText = count + inc;
+                        // Call function every ms
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter1.innerText = target;
+                    }
+                };
+                updateCount();
+            });    
+        </script>
+    </center>
+</body>
+</html>

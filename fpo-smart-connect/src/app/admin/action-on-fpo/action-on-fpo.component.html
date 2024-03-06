@@ -1,0 +1,261 @@
+<!-- <div id="content"> -->
+    <div class="container-fluid">
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">FPO DETAILS </h1>
+
+        </div> -->
+        <div class="card">
+            <div class="mb-6">
+                <div class="card-header py-1">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="m-0 font-weight-bold text-white float-left">FPO DETAILS</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-primary float-right" style="margin-left: 10px; "
+                                (click)="downloadAllFpoDetails()"><i class="fa fa-save"></i>
+                                Download </button>
+                            <input class="float-right search-box form-control" style="width:250px" matInput
+                                (keyup)="applyFilter($event)" placeholder="Search" #input>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card-body table-card mat-elevation-z8" [hidden]='dataSource?.data.length!=0'>
+                    <div style="text-align: center;padding: 28px;">No Data</div>
+                </div>
+                <div class="card-body table-responsive table-card mat-elevation-z8"
+                    [hidden]='dataSource?.data.length==0'>
+                    <table class="table" mat-table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="slNo">
+                            <th mat-header-cell *matHeaderCellDef>Sl No. </th>
+                            <!-- <td mat-cell *matCellDef="let i=index"> {{i+1}} </td> -->
+
+                            <td mat-cell *matCellDef="let element; let i = index;">
+                                {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }}
+                            </td>
+
+                        </ng-container>
+                        <ng-container matColumnDef="fpoName">
+                            <th mat-header-cell *matHeaderCellDef>Name Of FPO</th>
+                            <td mat-cell *matCellDef="let element"> {{element.fpoName}} </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="fpoPhNo">
+                            <th mat-header-cell *matHeaderCellDef>Ph No.</th>
+                            <td mat-cell *matCellDef="let element"> {{element?.fpoContactNo}} </td>
+                        </ng-container> -->
+
+                        <ng-container matColumnDef="Distict">
+                            <th mat-header-cell *matHeaderCellDef> Distict </th>
+                            <td mat-cell *matCellDef="let element"> {{element?.district}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Block">
+                            <th mat-header-cell *matHeaderCellDef> Block </th>
+                            <td mat-cell *matCellDef="let element"> {{element?.block}} </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="fpoId">
+                            <th mat-header-cell *matHeaderCellDef>FPO Id</th>
+                            <td mat-cell *matCellDef="let element"> {{element?.fpoId}}</td>
+                        </ng-container> -->
+
+                        <ng-container matColumnDef="refNo">
+                            <th mat-header-cell *matHeaderCellDef>REF No</th>
+                            <td mat-cell *matCellDef="let element"> {{element?.refNo}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="updated on">
+                            <th mat-header-cell *matHeaderCellDef>Updated On</th>
+                            <td mat-cell *matCellDef="let element" style="white-space: nowrap;"> {{element?.updatedOn}}
+                            </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="approveDate">
+                            <th mat-header-cell *matHeaderCellDef>Approve Date</th>
+                            <td mat-cell *matCellDef="let element" style="white-space: nowrap;"> {{element?.approveDate | date:'dd-MM-yyyy'}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="applyDate">
+                            <th mat-header-cell *matHeaderCellDef>Apply Date</th>
+                            <td mat-cell *matCellDef="let element" style="white-space: nowrap;"> {{element?.applyDate | date:'dd-MM-yyyy'}}</td>
+                        </ng-container> -->
+
+
+
+                        <ng-container matColumnDef="viewDetails">
+                            <th mat-header-cell *matHeaderCellDef>View Details</th>
+                            <td mat-cell *matCellDef="let element" style="white-space: nowrap;"><button
+                                    class="btn btn-outline-secondary float-left" data-toggle="modal"
+                                    data-target="#viewMenuModal" data-backdrop="static" data-keyboard="false"
+                                    (click)="viewDetails(element)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="download">
+                            <th mat-header-cell *matHeaderCellDef>Download</th>
+                            <td mat-cell *matCellDef="let element" style="white-space: nowrap;"><button
+                                    class="btn btn-outline-secondary float-left" (click)="downloadDetail(element)"><i
+                                        class="fa fa-download" aria-hidden="true"></i></button></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="BlockUnblock">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+
+                            <td mat-cell *matCellDef="let element;let i = index">
+                                <button class="btn btn-primary" *ngIf='element.status=="Pending"'
+                                    [disabled]='element.blockStatus==true' mat-raised-button
+                                    (click)='approveFpo(element)'>Approve</button>
+
+                                <mat-slide-toggle class="example-margin" [color]="color"
+                                    [(ngModel)]="element.blockStatus"
+                                    (change)='blockUnblockFpo(element)'>
+                                    {{element.blockStatus==true?"Unblock":"Block"}}
+                                </mat-slide-toggle>
+
+                            </td>
+
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    </table>
+                    <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 15,20]" [length]="pagelength"
+                        showFirstLastButtons></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+
+
+<div class="modal fade" id="viewMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel- modal-lg"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg"
+        style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">View FPO Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>FPO Name</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.fpoName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Contact No</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.fpoContactNo}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>District</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.district}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Block</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.block}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>CIN No.</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.regNoOfFPO}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Village</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.village}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Ref No.</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.refNo}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>FPO Id</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.fpoId}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Apply Date</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.applyDate | date:'dd-MM-yyyy'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Approve Date</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.approveDate}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Updated On</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.updatedOn}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>CBBO Name</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.ngoName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>IA Name</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            :&nbsp;&nbsp;{{viewData.creationScheme}}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

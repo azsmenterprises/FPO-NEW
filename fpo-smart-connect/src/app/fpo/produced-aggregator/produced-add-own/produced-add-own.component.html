@@ -1,0 +1,147 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create Aggregation</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-6">
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Aggregation Details</h6>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]='producedSaleForm' (ngSubmit)='onSubmit()'>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <!-- <div class="col-md-3 mb">
+                                    <label>Select Farmer</label>
+                                    <select class="form-control" formControlName='farmer'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option value="Self">Self</option>
+                                        <option [ngValue]="farmer" *ngFor='let farmer of farmers'>
+                                            {{farmer.farmerName}}({{farmer.farmerId}})</option>
+                                    </select>
+                                </div> -->
+                                <div class="col-md-3 mb">
+                                    <label>Year</label>
+                                    <select class="form-control" formControlName='year'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option value="{{years}}">{{years}}</option>
+                                        <option value="{{years-1}}">{{years-1}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb">
+                                    <label>Season</label>
+                                    <select class="form-control" formControlName='season'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option value="Rabi">Rabi</option>
+                                        <option value="Kharif">Kharif</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb">
+                                    <label>Produce Type</label>
+                                    <select class="form-control" formControlName='type'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option value="Crop">Crop/Commodity</option>
+                                        <option value="Seed">Seed</option>
+                                    </select>
+                                </div>
+                               
+                               
+                               
+                             
+                                <div class="col-md-3 mb">
+                                    <label>Crop/Commodity Catagory</label>
+                                    <select class="form-control" formControlName='cropCatagory'
+                                        (change)='getCropAccToCatagory()'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option value="{{cat.cropCatagory}}" *ngFor='let cat of cropCatData'>
+                                            {{cat.cropCatagory}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb">
+                                    <label>Sub-Catagory</label>
+                                    <select class="form-control" formControlName='crop' (change)='getAllVarieties()'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option [ngValue]="crop" *ngFor='let crop of crops'>{{crop.Crop_Name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb">
+                                    <label>Variety</label>
+                                    <select class="form-control" formControlName='variety'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option [ngValue]="variety" *ngFor='let variety of varieties'>
+                                            {{variety.Variety_Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb" *ngIf='producedSaleForm.value.type=="Seed"'>
+                                    <label>Class</label>
+                                    <select class="form-control" formControlName='class'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option value="Certified">Certified</option>
+                                        <option value="Foundation">Foundation</option>
+                                        <option value="Breader">Breader</option>
+                                    </select>
+                                </div>
+                                
+
+                                <div class="col-md-3 mb" >
+                                    <label>Select Source</label>
+                                    <select class="form-control" formControlName="memtype" >
+                                        <option value="" disabled selected>--Select--</option>
+                                       
+                                        <option value="Others">Others</option>
+                                        <option value="Members">Members</option>
+                             
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb" *ngIf='producedSaleForm.value.memtype=="Others"'>
+                                    <label> Enter Name</label>
+                                    <input type="text" class="form-control" formControlName='farmer'>
+                                </div>
+                                <div class="col-md-3 mb" *ngIf='producedSaleForm.value.memtype=="Members"'>
+                                    <label>Select Farmer</label>
+                                    <select class="form-control" formControlName='farmer'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option [ngValue]="farmer" *ngFor='let farmer of farmers'>
+                                            {{farmer.farmerName}}({{farmer.farmerId}})</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb">
+                                    <label>Quantity(In Qtl)</label>
+                                    <input type="number" class="form-control" formControlName='quantity'>
+                                </div>
+                                <div class="col-md-3 mb">
+                                    <label>Sowing Date</label>
+                                    <input type='date' onkeydown="return false" class="form-control"
+                                        formControlName='sowingDate'>
+                                </div>
+                                <div class="col-md-3 mb">
+                                    <label>Harvesting Date</label>
+                                    <input type='date' onkeydown="return false" class="form-control"
+                                        formControlName='harvestingDate'>
+                                </div>
+                                <!-- <div class="col-md-3 mb" *ngIf='uploadPictureShow'>
+                                    <label>Upload pic of product</label>
+                                    <input type="file" class="form-control" formControlName='picOfProduct'>
+                                </div> -->
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary submitBtn"
+                                [disabled]='producedSaleForm.invalid'>Submit</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>

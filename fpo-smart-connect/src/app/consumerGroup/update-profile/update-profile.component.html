@@ -1,0 +1,197 @@
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-bottom: 0 !important;">
+            <h1 class="h3 mb-0 text-gray-800">Trader Profile Update</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-white"> Trader details</h6>
+                    </div>
+                    <div class="card-body table-card mat-elevation-z8">
+                        <form class="form-horizontal" [formGroup]='traderDetailsForm' >
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Mobile Number<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter Mobile Number' class='form-control' formControlName='cgMobNo' minlength="10" maxlength="10" pattern="^[7-9][0-9]{9}$">
+                                    <div *ngIf='traderDetailsForm.controls["cgMobNo"].invalid && traderDetailsForm.controls["cgMobNo"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["cgMobNo"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["cgMobNo"].errors?.pattern'>
+                                            *Invalid Mobile Number
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Email<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter email' class='form-control' formControlName='traderMail' pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                    <div *ngIf='traderDetailsForm.controls["traderMail"].invalid && traderDetailsForm.controls["traderMail"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["traderMail"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["traderMail"].errors?.pattern'>
+                                            *Email is not valid
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Mobile No<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" [maxlength]='10' matInput placeholder='Enter mobile no' class='form-control' formControlName='cgMobNo'>
+                                    <div *ngIf='traderDetailsForm.controls["cgMobNo"].invalid && traderDetailsForm.controls["cgMobNo"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["cgMobNo"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["cgMobNo"].errors?.minlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["cgMobNo"].errors?.maxlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["cgMobNo"].errors?.pattern'>
+                                            *Only numbers are allowed
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Alternate Mobile<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" [maxlength]="10" matInput placeholder='Enter alternate mobile no' class='form-control' formControlName='consumerAltmobno'>
+                                    <div *ngIf='traderDetailsForm.controls["consumerAltmobno"].invalid && traderDetailsForm.controls["consumerAltmobno"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["consumerAltmobno"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["consumerAltmobno"].errors?.minlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["consumerAltmobno"].errors?.maxlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["consumerAltmobno"].errors?.pattern'>
+                                            *Only numbers are allowed
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment"> State<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter State' class='form-control' formControlName='traderState'>
+                                    <div *ngIf='traderDetailsForm.controls["traderState"].invalid && traderDetailsForm.controls["traderState"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["traderState"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment"> District<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter plot no' class='form-control' formControlName='districtName'>
+                                    <div *ngIf='traderDetailsForm.controls["districtName"].invalid && traderDetailsForm.controls["districtName"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["districtName"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Block<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter Block' class='form-control' formControlName='Block'>
+                                    <div *ngIf='traderDetailsForm.controls["Block"].invalid && traderDetailsForm.controls["Block"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["Block"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">City/Village<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter city' class='form-control' formControlName='traderCity'>
+                                    <div *ngIf='traderDetailsForm.controls["traderCity"].invalid && traderDetailsForm.controls["traderCity"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["traderCity"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Address<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter landmark' class='form-control' formControlName='Address'>
+                                    <div *ngIf='traderDetailsForm.controls["Address"].invalid && traderDetailsForm.controls["Address"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["Address"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group col-md-6">
+                                    <label for="departmentdetail">District<b><sup>*</sup>:</b></label>
+                                    <select class="form-control" formControlName='districtName'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option [ngValue]='dist' *ngFor='let dist of allDists'>{{dist.districtName}}</option>
+                                    </select>
+                                    <div *ngIf='traderDetailsForm.controls["csDist"].invalid && traderDetailsForm.controls["csDist"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["csDist"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Pin code<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" [maxlength]='6' matInput placeholder='Enter pin code' class='form-control' formControlName='traderPin'>
+                                    <div *ngIf='traderDetailsForm.controls["traderPin"].invalid && traderDetailsForm.controls["traderPin"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["traderPin"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["traderPin"].errors?.maxlength'>
+                                            *Pin code should be of 6 digit
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["traderPin"].errors?.minlength'>
+                                            *Pin code should be of 6 digit
+                                        </div>
+                                        <div *ngIf='traderDetailsForm.controls["traderPin"].errors?.pattern'>
+                                            *Only numbers are allowed
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group col-md-6">
+                                    <label for="departmentdetail">Item Name<b><sup>*</sup>:</b></label>
+                                    <select class="form-control" formControlName='itemName'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option [ngValue]="item" >Crop
+                                        </option>
+                                    </select>
+                                    <div *ngIf='traderDetailsForm.controls["itemName"].invalid && traderDetailsForm.controls["itemName"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='traderDetailsForm.controls["itemName"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]='!traderDetailsForm.valid' (click)="updateTrader()">UPDATE</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

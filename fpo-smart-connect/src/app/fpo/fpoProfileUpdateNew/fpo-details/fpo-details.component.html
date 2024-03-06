@@ -1,0 +1,615 @@
+<div class="container-fluid">
+    <!-- <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><strong style="color: blue;">Home</strong>/ Profile Update/Basic Information
+        </li>
+    </ol> -->
+
+    <div class="mybox">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Incorporation Details
+                        <!-- of &nbsp;&nbsp;<strong>{{fpoData?.fpoName}}</strong></label> -->
+                    </label>
+                </strong>
+            </span>
+        </div>
+        <br>
+        <div class="bg-light">
+            <form [formGroup]="fpoDetails">
+                <!-- <div class="row">
+                <div class="col-md-12" style="padding-left: 0;">
+                    <mat-card class="mat-elevation-z2">
+                        <div class="row">
+                            <div class="col-md-3">
+                                District:<b>{{fpoAddressShow?.district}}</b>
+                            </div>
+                            <div class="col-md-4">
+                                Block:<b>{{fpoAddressShow?.block}}</b>
+                            </div>
+                            <div class="col-md-4">
+                                Gram Panchyat:<b>{{fpoAddressShow?.gramPanchayat}}</b>
+                            </div>
+                            <div class="col-md-4">
+                                Village:<b>{{fpoAddressShow?.village}}</b>
+                            </div>
+                        </div>
+                    </mat-card><br><br>
+                </div>
+            </div> -->
+                <div>
+                    <div class="row bg-light">
+                        <div class="row inner-box">
+                            <div class="col-md-6">FPO Name:&nbsp;&nbsp;<b class="nameColor">{{fpoData?.fpoName}}</b>
+                            </div>
+                            <div class="col-md-6 cin">CIN No:&nbsp;&nbsp;<b
+                                    class="cinColor">{{fpoData?.FPOData?.regNoOfFPO}}</b> </div>
+                        </div><br><br>
+                        <div class="col-md-12">
+                            Address:&nbsp;&nbsp;<b
+                                class="nameColor">{{fpoAddressShow?.village}},{{fpoAddressShow?.gramPanchayat}},{{fpoAddressShow?.block}},{{fpoAddressShow?.district}}</b>
+                        </div><br><br><br>
+                        <!-- <div class="col-md-3">
+                        District:<b>{{fpoAddressShow?.district}}</b>
+                    </div>
+                    <div class="col-md-4">
+                        Block:<b>{{fpoAddressShow?.block}}</b>
+                    </div>
+                    <div class="col-md-4">
+                        Grampanchyat:<b>{{fpoAddressShow?.gramPanchayat}}</b>
+                    </div>
+                    <div class="col-md-4">
+                        Village:<b>{{fpoAddressShow?.village}}</b>
+                    </div> -->
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Year of formation of FPO:</label><br>
+                                <input type="number" class="form-control" formControlName='yearOfFormation'>
+                                <mat-error
+                                    *ngIf='fpoDetails.controls.yearOfFormation.errors?.minLength||fpoDetails.controls.yearOfFormation.errors?.maxLength'>Year
+                                    should be of 4 digits
+                                </mat-error><br>
+                                <mat-error
+                                    *ngIf='fpoDetails.controls.yearOfFormation.errors?.max||fpoDetails.controls.yearOfFormation.errors?.min'>Year
+                                    is not valid</mat-error>
+                                <!-- <mat-error *ngIf='fpoDetails.controls.yearOfFormation.errors?.pattern'>Year is not validdd</mat-error> -->
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <div class="col-md-4" *ngIf='showRegistrationDetails'> -->
+                                <label>Date of registration of FPO<span class="asteric-mark">*</span> :</label><br>
+                                <input type="date" class="form-control" formControlName='dateOfReg'
+                                    (change)="dateCompare();" required>
+                            </div>
+
+
+
+                            <div class="col-md-4">
+                                <label>Act of Registration:</label><br>
+                                <select class="form-control" formControlName='fpoRegistrationStatus'  (change)='registrationDetails()'>
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Company Act">Company Act</option>
+                                    <option value="Cooperative Act">Cooperative Act</option>
+                                </select>
+                            </div>
+
+                            
+                            <!-- <div class="col-md-4">
+                                <div class="col-md-4" *ngIf='showRegistrationDetails'>
+                                <label>Select the form of registration of FPO :</label><br>
+
+                                <select name="" id="" class="form-control" formControlName='formOfRegistration'>
+                                    <option value="undefined">--Select--</option>
+                                    <option value="Company">Company</option>
+                                    <option value="Trust">Trust</option>
+                                    <option value="Society">Society</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div> -->
+
+                            <div class="col-md-4">
+                                <!-- <div class="col-md-4" *ngIf='showRegistrationDetails'> -->
+                                <label>Registration number:</label><br>
+                                <input type="text" class="form-control" formControlName='regNoOfFPO' minlength="21"
+                                    maxlength="21" pattern="[A-Z]{10}[0-9]{10}[A-Z]{1}"
+                                    oninput="this.value = this.value.toUpperCase()">
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <label>Vision of FPO:</label><br>
+                                <input type="text" class="form-control" formControlName='visionOfFPO' placeholder="Enter Vision of FPO">
+                                <mat-error *ngIf='fpoDetails.controls.visionOfFPO.errors?.pattern'>Please enter
+                                    alphabets
+                                    only.</mat-error>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!-- <div class="col-md-4" *ngIf='showRegistrationDetails'> -->
+                                <label>No. of village under FPO :</label><br>
+                                <!-- <input type="number" [min]="lowerLimit" [max]="upperLimit" [(ngModel)]="selectedNumber"> -->
+                                <input type="number" class="form-control" formControlName='noOfVillage' 
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                placeholder="Enter No. of village under FPO" maxlength="8" pattern="[0-9]{1,8}" (input)="onNoVillageInput($event)" numbersOnly required/>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Select villages :</label><br>
+                                <ng-multiselect-dropdown formControlName='selectedVillage' placeholder="select villages"
+                                    [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
+                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                                    (onDeSelect)="onItemDeSelect($event)">
+                                </ng-multiselect-dropdown>
+                            </div>
+                            <div class="col-md-3">
+                                <div>
+                                    <label for="dob">Upload Certificate of Incorporation/Registration</label>
+                                    <input type="file" class="form-control"
+                                        formControlName='uploadRegistrationCertificate' (change)="($event)" id="file"
+                                        accept="application/pdf">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+
+                                <div>
+                                    <div class="mt-4">
+                                        <a href="" download target="_blank" class="btn btn-primary" style="width:40px"
+                                            data-toggle="tooltip" title="View AOA document">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br><br>
+
+                    <div class="bg-light">
+                        <!-- <div class=""> -->
+                        <div class="col-md-3 officeHead">
+                            <p>Office Details:</p>
+                        </div><br>
+                        <div class="row col-md-12">
+                            <div class="col-md-4">
+                                <label><h5>FPO have a registered office ?</h5><span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName='separateOfcOfFPO'
+                                    (change)='separateOfficeSelect()'>
+                                    <option value="" disabled selected>--Select--</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <!-- <div class="row"> -->
+                            <div class="col-md-4  radioDiv" [hidden]='showSeparateOfcRadio' style="font-size: 0.9rem;">
+                                <label for="">
+                                    <h5>Office ownership type:</h5>
+                                </label>
+                                 <div class="radioButtonText">
+                                    Rented:<input type="radio" id='yes' name="fpoOfficeType" value='Rented'
+                                        formControlName='fpoOfficeType'>&nbsp;&nbsp;Owned:<input type="radio" id='no'
+                                        name="fpoOfficeType" value="Owned" formControlName='fpoOfficeType'>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                        </div><br>
+                        <!-- </div> -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Upload an image of the office with the name of the FPO in
+                                    background:</label><br>
+                                <div class="col-md-8">
+                                    <input type="file" accept="image/*" (change)='imageDetailsFetch($event.target)'
+                                        class="form-control">
+                                    <!-- formControlName='imageOfOffice' -->
+                                </div>
+                            </div>
+                            <div class="col-md-1 imageSpace zoom" *ngIf="showImage" (click)=show()>
+                                <img src="{{fetchedImage}}" alt="" data-toggle="tooltip"
+                                    title="Click to view in large size">
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <!-- <div class="col-md-3 officeHead"> -->
+                            <!-- <p>Storage Details:</p>
+                        </div><br> -->
+                            <!-- <div class="col-md-4">
+                            <label>Do you have storage facility ?</label>
+                            <select name="" id="" class="form-control" formControlName='storageFacility'
+                                (change)='separateStorageSelect()'>
+                                <option value="undefined" disabled selected>--Select--</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div> -->
+                            <!-- <div class="col-md-4 radioDiv" [hidden]='showSeparateStragRadio'>
+                           
+                            <div class="col-md-10" >
+                                <label>Provide Storage Capacity (MT):</label><br>
+                                <input type="text" class="form-control" formControlName='Capacity'>
+                            </div>
+                            
+                        </div> -->
+                            <!-- <div class="tableBox" [hidden]='showSeparateStragRadio'>
+                            <table class="table table-bordered table-striped myTable" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th>Storage/Warehouse Type</th>
+                                        <th>Please mention the commodity requiring the storage type</th>
+                                        <th>Ownership Type</th>
+                                        <th>If Rented specify</th>
+                                        <th>Storage/Warehouse Capacity(Qtls)</th>
+                                        <th>Storage/Warehouse Utilization per Day (Qtls)</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+    
+                                    </tr>
+                                </thead>
+                                <tbody>
+    
+                                    <tr *ngFor="let storageDetail of fpoData?.storageDetails;let i=index">
+                                     
+                                        <select name=""  class="form-control" #storageType  style="margin-top: 13px;" >
+                                        <option value="undefined" disabled selected>--Select--</option>
+                                        <option value="General godown"[selected]='storageDetail.storageType=="General godown"'>General godown</option>
+                                        <option value="Cold storage"[selected]='storageDetail.storageType=="Cold storage"'>Cold storage</option>
+                                        <option value="Packhouse"[selected]='storageDetail.storageType=="Packhouse"'>Packhouse</option>
+                                        <option value="Specialized commodity godown"[selected]='storageDetail.storageType=="Specialized commodity godown"'>Specialized commodity godown</option>
+        
+                                    </select>
+
+                                    <td><input type="text" class="form-control" #commodityType
+                                        value="{{storageDetail.commodityType}}">
+                                </td>
+                                      
+                                        <td>
+                                         
+                                            <select name="" class="form-control" #ownership>
+                                                <option value="undefined" disabled>--Select--</option>
+                                                <option value="Rented"
+                                                    [selected]='storageDetail.ownership=="Rented"'>
+                                                    Rented</option>
+                                                <option value="Own"
+                                                    [selected]='storageDetail.ownership=="Own"'>
+                                                    Own</option>
+                                                
+                    
+                                            </select>
+                                        </td>
+    
+                                        <td>
+                                         
+                                            <select name="" class="form-control" #rentType>
+                                                <option value="undefined" disabled>--Select--</option>
+                                                <option value="Private"
+                                                    [selected]='storageDetail.rentType=="Private"'>
+                                                    Private</option>
+                                                
+                                                <option value="Government"
+                                                    [selected]='storageDetail.rentType=="Government"'>
+                                                    Government</option>
+                    
+                                            </select>
+                                        </td>
+                                       
+                                        <td><input type="text" class="form-control" #storageCapacity
+                                                value="{{storageDetail.storageCapacity}}">
+                                        </td>
+                                        <td><input type="text" class="form-control" #storageUtility
+                                                value="{{storageDetail.storageUtility}}"></td>
+                                        
+                                        <td><button class="btn  updateButton" style="background-color: #54b754; color:white"
+                                                (click)="storageDetailUpdate(i,storageType.value,ownership.value,rentType.value,commodityType.value,storageCapacity.value,storageUtility.value)">Update</button>
+                                       
+                                               
+                                            </td>
+
+                                            <button class="btn btn-danger" style="float: right;" (click)='deleteField3(i)'
+                                            *ngIf='storageDetail.delete'>Delete</button>
+                                            <td>
+                                                <button class="btn btn-danger" style="float: right;" (click)='deleteRow1(storageDetail.index)'
+                                                *ngIf='!storageDetail.delete'>Delete</button>
+                                            </td>
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+                            <button *ngIf='fpoData?.storageDetail?.length>=0' class="btn btn-primary addMoreBtn pull-right" (click)='AddFields3()'>Add
+                            </button>
+                        </div> -->
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <br><br>
+
+                <div class="row bg-light">
+                    <div class="row">
+                        <h2>Incorporation Details-Institutional :</h2>
+                    </div><br>
+                    <div class="col-md-4">
+
+
+                        <label> FPO formed under Scheme/ project<span class="asteric-mark">*</span> :
+                        </label><br>
+                        <select name="" id="" class="form-control" formControlName='organisationHelpedToCreateSPO'
+                            (change)='nameOfScheme()'>
+                            <option value="undefined" disabled [selected]='true'>--Select--</option>
+                            <option value="Agriculture  Production Cluster (APC)"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="Agriculture  Production Cluster (APC)"'>
+                                Agriculture Production Cluster (APC)</option>
+                            <option value="Central Sector Scheme - Formation and Promotion of 10,000 FPOs "
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="Central Sector Scheme - Formation and Promotion of 10,000 FPOs "'>
+                                Central Sector Scheme - Formation and Promotion of 10,000 FPOs </option>
+                            <option value="Common Service Center (CSC)"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="Common Service Center (CSC)"'>
+                                Common Service Center (CSC)</option>
+                            <option value="MANDI Project"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="MANDI Project"'>MANDI
+                                Project
+                            </option>
+                            <option value="NABARD / Special Programme for Promotion of Millets - Odisha Millet Mission "
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NABARD / Special Programme for Promotion of Millets - Odisha Millet Mission "'>
+                                NABARD / Special Programme for Promotion of Millets - Odisha Millet Mission </option>
+                            <option value="NABARD PODF ID/support under MIDH"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NABARD PODF ID/support under MIDH"'>
+                                NABARD PODF ID/support under MIDH</option>
+                            <option value="NABARD PPIF SCHEME"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NABARD PPIF SCHEME"'>NABARD
+                                PPIF SCHEME</option>
+                            <option value="NABARD PRODUCE Fund"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NABARD PRODUCE Fund"'>
+                                NABARD
+                                PRODUCE Fund</option>
+                            <option value="NABARD Producer Oganization Development Fund (PODF)"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NABARD Producer Oganization Development Fund (PODF)"'>
+                                NABARD Producer Oganization Development Fund (PODF)</option>
+                            <option value="NABARD WADI"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NABARD WADI"'>NABARD WADI
+                            </option>
+                            <option value="National Demonstration Project - NFSM (Pulse Village program)"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="National Demonstration Project - NFSM (Pulse Village program)"'>
+                                National Demonstration Project - NFSM (Pulse Village program)</option>
+                            <option value="NRETP" [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NRETP"'>
+                                NRETP
+                            </option>
+                            <option value="NRLM" [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="NRLM"'>
+                                NRLM
+                            </option>
+                            <option value="OLM" [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="OLM"'>OLM
+                            </option>
+                            <option value="OMBADC"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="OMBADC"'>
+                                OMBADC</option>
+                            <option value="Paramparagat Krishi Vikas Yojana (PKVY)"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="Paramparagat Krishi Vikas Yojana (PKVY)"'>
+                                Paramparagat Krishi Vikas Yojana (PKVY)</option>
+                            <option value="RKVY" [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="RKVY"'>
+                                RKVY
+                            </option>
+                            <option value="support provided under MIDH"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="support provided under MIDH"'>
+                                support provided under MIDH</option>
+                            <option value="Vegetable Initiative for Urban Cluster (VIUC)"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="Vegetable Initiative for Urban Cluster (VIUC)"'>
+                                Vegetable Initiative for Urban Cluster (VIUC)</option>
+                            <option value="Under the Project Supported by Kari Kubei Stiftung Germany"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="Under the Project Supported by Kari Kubei Stiftung Germany"'>
+                                Under the Project Supported by Kari Kubei Stiftung Germany</option>
+                            <option value="CDPMLP"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="CDPMLP"'>
+                                CDPMLP
+                            </option>
+                            <option value="OPIICRA"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="OPIICRA"'>
+                                OPIICRA
+                            </option>
+                            <option value="Not aware"
+                                [selected]='fpoDetails.value.organisationHelpedToCreateSPO=="Not aware"'>Not aware
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Name of Implementing agency :</label><br>
+                        <select name="" id="" class="form-control" formControlName='creationScheme'
+                            (change)='promotedByNGOSelect()'>
+                            <option value="undefined" disabled [selected]='true'>--Select--</option>
+                            <option value="APC(DAFE, DPDW,BRLF, PRADAN)"> APC(DAFE, DPDW,BRLF, PRADAN)</option>
+                            <option value="NABARD"> NABARD</option>
+                            <option value="NAFED">
+                                NAFED</option>
+                            <option value="ORMAS">
+                                ORMAS</option>
+                            <option value="SFAC">SFAC
+                            </option>
+                            <option value="CSC">CSC
+                            </option>
+                            <option value="NCDC">NCDC
+                            </option>
+                            <option value="FDRVC">
+                                FDRVC</option>
+                            <option value="Directorate of Agriculture & Food Production">
+                                Directorate of Agriculture & Food Production</option>
+                            <option value="AFC">AFC
+                            </option>
+                            <option value="Mart Global">Mart Global
+                            </option>
+                            <option value="Not aware"> Not
+                                aware</option>
+                            <!-- <option value="APC(DAFE, DPDW,BRLF, PRADAN)"
+                            [selected]='fpoDetails.value.promotedByNGO=="yes"||fpoDetails.value.promotedByNGO=="Yes"'>
+                            APC(DAFE, DPDW,BRLF, PRADAN)</option>
+                        <option value="NABARD"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>
+                            NABARD</option>
+                        <option value="NAFED"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>
+                            NAFED</option>
+                        <option value="ORMAS"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>
+                            ORMAS</option>
+                        <option value="SFAC"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>SFAC
+                        </option>
+                        <option value="CSC"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>CSC
+                        </option>
+                        <option value="NCDC"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>NCDC
+                        </option>
+                        <option value="FDRVC"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>
+                            FDRVC</option>
+                        <option value="Directorate of Agriculture & Food Production"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>
+                            Directorate of Agriculture & Food Production</option>
+                        <option value="Not aware"
+                            [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'> Not
+                            aware</option> -->
+
+                        </select>
+
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label>Is the FPO Promoted by a NGO/ POPI/CBBO ?<span class="asteric-mark">*</span> </label>
+                        <select name="" id="" class="form-control" formControlName='promotedByNGO'
+                            (change)='promotedByNGOSelect()'>
+                            <option value="undefined" disabled [selected]='true'>--Select--</option>
+                            <option value="Yes"
+                                [selected]='fpoDetails.value.promotedByNGO=="yes"||fpoDetails.value.promotedByNGO=="Yes"'>
+                                Yes</option>
+                            <option value="No"
+                                [selected]='fpoDetails.value.promotedByNGO=="no"||fpoDetails.value.promotedByNGO=="No"'>
+                                No
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4" *ngIf='ngoDetailsShow'>
+                        <label>Mention the name of the NGO/ POPI/CBBO </label><br>
+                        <input type="text" class="form-control" formControlName='ngoName' minlength="1" maxlength="300"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            placeholder="Enter Mention the name of the NGO/ POPI/CBBO" required>
+                        <div *ngIf='fpoDetails.controls.ngoName.errors?.pattern' class="alerterr">
+                            * Invalid name
+                        </div>
+                    </div>
+
+                    <div class="col-md-4" *ngIf='ngoDetailsShow'>
+                        <label>Key contact details of the NGO/ POPI/CBBO </label><br>
+                        <input type="text" formControlName='keyPersonContactNo'
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            minlength="50" maxlength="50" class="form-control" pattern="[6-9]{1}[0-9]{9}" numbersOnly
+                            placeholder="Enter Key contact details of the NGO/ POPI/CBBO" required>
+                    </div>
+
+                    <div class="col-md-4" *ngIf='schemeDetailsShow'>
+                        <label>Baseline Survey Completed <span class="asteric-mark">*</span> :</label><br>
+                        <select name="" id="" class="form-control" formControlName="baselineSurvey">
+                            <option value="" disabled>--Select--</option>
+                            <option value="Yes"
+                                [selected]='fpoDetails.value.baselineSurvey=="yes"||fpoDetails.value.baselineSurvey=="Yes"'>
+                                Yes</option>
+                            <option value="No"
+                                [selected]='fpoDetails.value.baselineSurvey=="no"||fpoDetails.value.baselineSurvey=="No"'>
+                                No
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+            </form>
+            <div class="row bg-light">
+                <div class="form-group col-md-12">
+                    <button [disabled]='!fpoDetails.invalid' class="btn btn-success pull-right" mat-raised-button
+                        style="display: block;" data-dismiss="modal" data-toggle="modal" data-target="#update"><span
+                            style="text-align:center !important;"><strong>Update</strong></span></button>
+                    <!-- <div class="form-group col-md-12">
+                    <button type="button" style="display: block; margin-top: 20px;"
+                        class="btn btn-primary text-white float-right"
+                        (click)="addScheduleMeeting()"><strong>{{scheduleBtnVal}}</strong></button>
+                </div> -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- <div class="loader"> 
+          <div ng-show="loadingData" class="spinner-border text-info"></div>
+        </div> -->
+    <br>
+    <br>
+</div>
+
+
+<!-- ========================================================Update button Modal start =====================================================-->
+
+<div class="modal fade" id="update" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h3 class="modal-title" id="ModalLabel" style="color: white;">Update FPO profile data</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="deleteModal">
+                        <p>Are you sure to update ?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="fpoDetailsSubmit()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================Update button Modal end =====================================================-->
+
+
+
+<!-- ========================================================Img zoom Modal start =====================================================-->
+
+<div [style.display]="showModal ? 'block' : 'none'" class="modal" id="zoom" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" (click)='hide()'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel">Image preview</h2>
+            </div>
+            <div class="modal-body">
+                <img src="{{fetchedImage}}" id="imagepreview"
+                    style="width: auto; height: auto;max-width: 480px;max-height: 520px;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default closeBtn" data-dismiss="modal"
+                    (click)="hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ========================================================Img zoom Modal end =====================================================-->

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sathi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/x-icon" href="images/favicon.png">	
+		<link href="css/bootstrap.min.css" rel="stylesheet" >
+		<link href="css/owl.carousel.min.css" rel="stylesheet" >
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--Photo Gallery-->
+		<link rel="stylesheet" href="css/jquery.fancybox.min.css" media="screen">
+		<!--AOS Animation-->
+		<link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.1/dist/aos.css" />
+		<link href="css/style.css" rel="stylesheet" >
+		<style>
+/*form styles*/
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E;
+}
+
+#msform input, #msform textarea {
+    padding: 0px 8px 4px 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+#msform input:focus, #msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid skyblue;
+    outline-width: 0;
+}
+
+/*Blue Buttons*/
+#msform .action-button {
+    width: 100px;
+    background: skyblue;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue;
+}
+
+/*Previous Buttons*/
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+}
+
+/*Dropdown List Exp Date*/
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px;
+}
+
+select.list-dt:focus {
+    border-bottom: 2px solid skyblue;
+}
+
+/*The background card*/
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+/*FieldSet headings*/
+.fs-title {
+    font-size: 25px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+}
+
+#progressbar .active {
+    color: #000000;
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 25%;
+    float: left;
+    position: relative;
+}
+
+/*Icons in the ProgressBar*/
+#progressbar #account:before {
+    font-family: FontAwesome;
+    content: "\f023";
+}
+
+#progressbar #personal:before {
+    font-family: FontAwesome;
+    content: "\f007";
+}
+
+#progressbar #payment:before {
+    font-family: FontAwesome;
+    content: "\f09d";
+}
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c";
+}
+
+/*ProgressBar before any progress*/
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px;
+}
+
+/*ProgressBar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+}
+
+/*Color number of the step and the connector before it*/
+#progressbar li.active:before, #progressbar li.active:after {
+    background: skyblue;
+}
+
+/*Imaged Radio Buttons*/
+.radio-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.radio {
+    display:inline-block;
+    width: 204;
+    height: 104;
+    border-radius: 0;
+    background: lightblue;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor:pointer;
+    margin: 8px 2px; 
+}
+
+.radio:hover {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.radio.selected {
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/*Fit image in bootstrap div*/
+.fit-image{
+    width: 100%;
+    object-fit: cover;
+}
+		</style>
+	</head>
+	<body id="FontAccessibility">
+		<header>
+			<div class="top-1">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="top-wrapper">
+								<div class="logo">
+									<a href="index.html"><img src="images/logo.png"  alt="logo" title="logo"/></a>
+								</div>
+								<div class="top-1-right">
+									<div class="page-viewcontent">
+										<ul>
+											<li><a href="#maincontent" title="Skip to main content">Skip to main content</a></li>
+											<li><a href="#" title="Screen Reader Access">Screen Reader Access </a></li>
+											<li>
+												<div id="font-setting-buttons">
+													<div class="screen-reader">
+														<span class="decrease-me"><i class="glyphicon glyphicon-minus"></i>A-</span>
+														<span class="reset-me"><i class="glyphicon glyphicon-font"></i> A</span >
+														<span  class="increase-me"><i class="glyphicon glyphicon-plus"></i>A+</span>
+														<span class="change-me"><i class="fa fa-adjust" aria-hidden="true"></i></span>
+													</div>
+												</div>
+											</li>
+											<li title="Sitemap"><i class="fa fa-sitemap" aria-hidden="true"></i></li>
+											<li>
+												<div class="language">
+													<span style="max-width: 29px; display: inline-block;"><img src="images/hindi.png" alt="hindi" title="Hindi"/></span>
+													<span title="English">E</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="contact-section">
+										<div class="top-contact">
+											<ul>
+												<li>
+													<h5>Call Us</h5>
+													<h4><a href="tel:+91 920 554 0267">+91 920 554 0267</a></h4>												
+												</li>
+												<li>
+													<h5>Email</h5>
+													<h4><a href="mailto:info@sathi.gov.in">info@sathi.gov.in</a></h4>												
+												</li>
+											</ul>
+										</div>
+										<div class="logo-group">
+												<ul>
+													<li><img src="images/Azadikaamritmahotsav.png" alt="" title=""/></li>
+													<li><img src="images/AshokStamb.png" alt="" title=""/></li>
+												</ul>
+											</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="navsection">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="top-2-menu-con">
+								<nav class="navbar navbar-expand-sm   navbar-light">
+									<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+									  <span class="navbar-toggler-icon"></span>
+									</button>
+
+										<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+										  <ul class="navbar-nav">
+											<li class="nav-link"><a href="index.html">Home</a></li>
+											<li class="nav-item dropdown dmenu nav-link">
+												<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+												  About us
+												</a>
+												<ul class="dropdown-menu sm-menu">
+												  <li class="nav-item dropdown dmenu nav-link">
+													<a class="dropdown-item" href="#">About Sathi</a>
+													<ul class="dropdown-menu dropdown-submenu sm-menu">
+													  <li><a class="dropdown-item" href="#">About Sathi</a></li>
+													</ul>
+												  </li>
+												</ul>
+											</li>
+											<li class="nav-link"><a href="#">Programs & Services</a></li>
+											<li class="nav-link"><a href="#">Seed Certifying Agencies</a></li>
+											<li class="nav-link"><a href="#">Notifications</a></li>
+											<li class="nav-link"><a href="#">Publications</a></li>
+											<li class="nav-link"><a href="#">Contact Us</a></li>
+										   <!-- <li class="nav-item dropdown dmenu">
+											<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+											  Dropdown link
+											</a>
+											<div class="dropdown-menu sm-menu">
+											  <a class="dropdown-item" href="#">Link 1</a>
+											  <a class="dropdown-item" href="#">Link 2</a>
+											  <a class="dropdown-item" href="#">Link 3</a>
+											  <a class="dropdown-item" href="#">Link 4</a>
+											  <a class="dropdown-item" href="#">Link 5</a>
+											  <a class="dropdown-item" href="#">Link 6</a>
+											</div>
+										  </li>-->
+										  </ul>
+											 <div class="secondary-menu">
+												  <button data-toggle="dropdown" type="button">
+													<span></span>
+													<span></span>
+													<span></span>
+												  </button>
+												  <div class="dropdown-menu">
+													<div class="row">
+														<div class="col-md-3">
+															<ul>
+															  <li><a href="#">Home</a></li>
+															  <li><a href="#">About us</a></li>
+															</ul> 
+															
+														</div>
+														<div class="col-md-3">
+															<ul>
+															  <li><a href="#">Programs & Services</a></li>		
+															  <li><a href="#">Seed Certifying Agencies</a></li>
+															</ul>															
+														</div>
+														<div class="col-md-3">
+															
+															<ul>
+															   <li><a href="#">Notifications</a></li>
+															  <li><a href="#">Publications</a></li>
+															</ul> 	
+														</div>
+														<div class="col-md-3">
+															<ul>
+															  <li><a href="#">Contact Us</a></li>
+															</ul> 
+														</div>
+													</div>
+												  </div>
+											  </div>
+											<div class="top-search-box">
+												<form  href="javascript:void(0)" class="search-open">
+													<input type="search" placeholder="" value=""/>
+													<button><i class="fa fa-search" aria-hidden="true"></i></button>
+												</form>
+											</div>
+										</div>
+									</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="search-inline">
+					<a href="javascript:void(0)" class="search-close">
+						<i class="fa fa-times"></i>
+					</a>
+					<form>
+						<input type="text" class="form-control" placeholder="Search">
+						<button type="submit">
+							<i class="fa fa-search"></i>
+						</button>
+					</form>
+			</div>	
+		</header>
+		<div class="inner-page-banner">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Registration</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="announcement-section" id="maincontent">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="announcement-wrapper">
+							<h4><span>Announcement</span></h4>
+							<marquee><span>Lorem Ipsum is simply dummy text</span> <span>It is a long established fact that a reader will be distracted</span><span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span></marquee>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="registration-page">
+			<!-- MultiStep Form -->
+<div class="container">
+    <div class="row justify-content-center mt-0">
+        <div class="col-md-12">
+            <div class="registration-steps">
+                <h2>Seed Processing Plant & Seed Producing Agency Registration</h2>
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <div id="msform">
+          
+                            <!-- fieldsets -->
+                            <fieldset>
+                                <div class="registration-content-card">
+									<div class="registration-heading">
+										<h3>Pre-Requisites</h3>
+										<h4>Make ready the following informations and documents before filling the form.</h4>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<h4>For Application Of SPP Registration</h4>
+											<ul>
+												<li>Aadhaar Card/Pan Card/Voter Id</li>
+												<li>Details Of Machines and Equipments</li>
+												<li>Owner's Details As Mentioned In The Seed Dealer Licence</li>
+												<li>Seed Dealer Licence</li>
+												<li>District Industrial Center Certificate</li>
+												<li>Firm Nibandhan/Partsership Certificate (if applicable)</li>
+												<li>SGST Registration Certificate</li>
+												<li>SPP Map</li>
+												<li>Machine/Equipment Bill</li>
+											</ul>
+										</div>
+										<div class="col-md-6">
+											<h4>For Application Of SPA Registration</h4>
+											<ul>
+												<li>Aadhaar Card/Pan Card/Voter Id</li>
+												<li>Owner's Details As Mentioned In The Seed Dealer Licence</li>
+												<li>Seed Dealer Licence</li>
+												<li>District Industrial Center Certificate</li>
+												<li>Firm Nibandhan/Partsership Certificate (if applicable)</li>
+												<li>SGST Registration Certificate</li>
+												<li>SPA/SPP Agreement</li>
+												<li>Contract SPP Map</li>
+											</ul>	
+										</div>
+									</div>
+                                </div>
+                                <input type="button" name="next" class="next action-button" value="Next Step"/>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    Step-2
+                                </div>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next Step"/>
+                            </fieldset>
+                            <fieldset>
+                                Step-3
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="make_payment" class="next action-button" value="Confirm"/>
+                            </fieldset>
+                            <fieldset>
+                               Step-4
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</div>
+		<footer class="text-center">
+			<div class="footer-1">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-logos">
+								<li><img src="images/mygov-logo.png" alt="" title=""/></li>
+								<li><img src="images/makeinIndia.png" alt="" title=""/></li>
+								<li><img src="images/digital-India.png" alt="" title=""/></li>
+								<li><img src="images/datagov.png" alt="" title=""/></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-2">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2">
+							<img src="images/NIC.png" alt="" title=""/>
+						</div>
+						<div class="col-md-10">
+							<div class="content text-justify">
+								<p>This is the webportal of Department of Agriculture, developed with an objective to enable a single window access to information and services being provided by the various Government entities. This Portal is a Mission Mode Project under the State E-Governance Plan, Government of India. Designed and developed by NIC, Ministry of Electronics & Information Technology, Government of India.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-3">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul>
+								<li>© SATHI. All rights reserved </li>
+								<li><a href="#">Terms and Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Site Map</a></li>
+								<li><a href="#">Contact Us</a></li>
+								<li>Last Updated: Sep 03, 2020</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+			<!--JavaScript-->
+		<!--<script src="js/bootstrap.bundle.min.js" ></script>
+		<script src="js/popper.min.js"></script>-->
+		<!--Font Accessibility-->
+		<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+		<script src="js/jquery.font-accessibility.min.js"></script>
+		<!--<script src="js/jquery.min.js"></script>-->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<!--Photo Gallery-->
+		<script src="js/jquery.fancybox.min.js"></script>
+		<!--Recaptcha-->
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<!--AOS Animation-->
+		<script src="https://cdn.rawgit.com/michalsnik/aos/2.0.1/dist/aos.js"></script>
+		<script src="js/custom.js"></script>
+
+</html>

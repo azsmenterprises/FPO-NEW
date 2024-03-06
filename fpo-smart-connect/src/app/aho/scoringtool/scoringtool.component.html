@@ -1,0 +1,1207 @@
+<div id="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align:center">FPO Scoring & Grading Tool
+                    </h5>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]="scoringTool">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail4">Financial Year: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" formControlName='financialYear'>
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="2024-2025" enabled>2024-2025</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail4">Score status: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" formControlName="scoreStatus">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="evaluated">Evaluated</option>
+                                    <option value="notEvaluated">Not Evaluated</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail4"> Name of FPO: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" formControlName="fpo" (change)="getFpoYearWise()">
+                                    <option value="" disabled>--Select--</option>
+                                    <option [ngValue]="a" *ngFor="let a of getfpoListData">{{a.fpoName | uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Institutional
+                                    and Statutory compliances</h6>
+                            </div>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table border="1" align="center"
+                                class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                                <thead class="bg-light">
+                                    <tr class="border-1">
+                                        <th>
+                                            FPO Performance Scoring Sub-Parameters
+                                        </th>
+                                        <th>
+                                            Maximum Marks
+                                        </th>
+                                        <th>
+                                            Score generated from profile update
+                                        </th>
+                                        <th>
+                                            Supporting soft copy document
+                                        </th>
+                                        <th>
+                                            List of documents/particulars to be verified physically
+                                        </th>
+                                        <th>
+                                            Physical verification completed and score accepted
+                                        </th>
+                                        <th>
+                                            Reason or rejection
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Board meetings conducted and minimized each quarter</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.boardOfDirectorsMeetingCount}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avg. attendance in BoD meeting more than 70%</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.percentageOfBodMeetings}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AGM conducted and minimized each year</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.annualGeneralMeetingCount}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Attendance in last year AGM more than 30% or min 100(quorum)</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.percentageOfAnnualMeetings}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>No. of women shareholders more than orequal to 30%</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.femaleShareholder}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>No. of marginal and small holder farmers are more than 80%</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Does the FPO have a full time Qualified CEO</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Does the FPO have an accountant</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FPO has handholding support from any NGO/POPI/others</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Is the FPO connected with more than 80% no. of farmer Intrest Groups (FIGs)
+                                        </td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Registers for members, assest, fund and documents are maintained</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Does the FPO has an updated business plan</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FPC has a registered office</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total no of shareholder in the FPO</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>KYC of Board of Director available</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Paid up capital/Shared capital</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Annual Audit statement available for last two years</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>RoC filled for all previous years in time</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Income tax return filed for all previous years in time</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Whether share certificate issued to members (Y/N)</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>GST Number allotted</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>GST filling updated</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seed license taken</td>
+                                        <td style="text-align:center">4</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fertilizer license taken</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Insecticide license taken</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FSSAI License taken</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>HR Policy and accounting policy Documents available</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Accounting and MIS maintained through S/W</td>
+                                        <td style="text-align:center">2</td>
+                                        <td></td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><select class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option>No score generated-FPO profile not updated</option>
+                                                <option>Insufficient phycical proofs/documents</option>
+                                                <option>Correction in FPO profile needed</option>
+                                            </select></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-9">
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="button" class="btn btn-success">View Profile</button>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="button" class="btn btn-success">Call FPO</button>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="button" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- added by Arindam   2.1 -->
+
+
+
+<div id="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align:center">FPO Scoring & Grading Tool
+                    </h5>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]="scoringToolBusiness">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail4">Financial Year: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" formControlName='financialYearBusiness'>
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="2024-2025" enabled>2024-2025</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail4">Score status: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" formControlName="scoreStatusBusiness">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="evaluated">Evaluated</option>
+                                    <option value="notEvaluated">Not Evaluated</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail4"> Name of FPO: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" formControlName="fpoBusiness" (change)="getFpoYearWise()">
+                                    <option value="" disabled>--Select--</option>
+                                    <option [ngValue]="a" *ngFor="let a of getfpoListDataBusiness">{{a.fpoName |
+                                        uppercase}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Business and
+                                    Operations</h6>
+                            </div>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table border="1" align="center"
+                                class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                                <thead class="bg-light">
+                                    <tr class="border-1">
+                                        <th>
+                                            Sl No
+                                        </th>
+                                        <th>
+                                            FPO Performance Scoring Sub-Parameters
+                                        </th>
+                                        <th>
+                                            Maximum Marks
+                                        </th>
+                                        <th>
+                                            Score generated from profile update
+                                        </th>
+                                        <th>
+                                            Supporting soft copy document
+                                        </th>
+                                        <th>
+                                            List of documents/particulars to be verified physically
+                                        </th>
+                                        <th>
+                                            Physical verification completed and score accepted
+                                        </th>
+                                        <th>
+                                            Reason or rejection
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Does the FPC have a running input shop with license</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalrunningInputShopLisenceMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Input shop/Shop Act/other license </td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus1"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus1'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus1"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus1'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason1'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>No. of member farmers avail input service through FPO > 80%</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.inputValue}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Sales record/sales register/Transaction records</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus2"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus2'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus2"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus2'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason2'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>No. of crops available for sales</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.avlForSaleMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Sales records/register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus3"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus3'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus3"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus3'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason3'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>No. of crops are organically certified</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.finalorganicCertificateCountMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Organic certificate/register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus4"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus4'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus4"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus4'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason4'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>No. of crops exported to other states/country </td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.exportedToOtherCountryMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Sales records/ register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus5"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus5'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus5"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus5'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason5'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>No. of member farmers supply produces to be sold through FPO</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.ProduceAggregationValue}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Sales records/ register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus6"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus6'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus6"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus6'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason6'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>No. of non- shareholders associated with FPO more than 30% its members</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.finalresultOfnonProduceAggregation}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Sales records/ register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus7"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus7'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus7"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus7'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason7'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Procurement SoP and Marketing SoP maintained by FPO</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.finalRecordMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>SoP document</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus8"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus8'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus8"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus8'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason8'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Does FPO has/follow quality control infrastructures/equipment</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalqualityControl}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Physical verification on ground</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus9"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus9'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus9"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus9'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason9'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>Does the FPO has aggregation/collection centre</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalaggregationCenter}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>hysical verification on ground</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus10"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus10'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus10"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus10'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason10'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>No. of Buyers signed MoU for Output marketing </td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finaltieUpMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>MoU documents </td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus11"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus11'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus11"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus11'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason11'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>No. of repeat buyers of FPO in last two season </td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalRepeatCompanyMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Transaction records/ sales register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus12"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus12'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus12"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus12'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason12'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>Farmer payment vouchers and sales records maintained</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalpaymentRegisterMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Payment vouchers</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus13"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus13'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus13"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus13'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason13'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>FPO provide Insurance service to its members</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.insuranceServiceMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Insurance register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus14"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus14'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus14"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus14'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason14'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>FPO also engaged in Custom Hiring Centre business</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.costumHiringCenterMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td> CHC register</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus15"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus15'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus15"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus15'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason15'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>16</td>
+                                        <td>FPO engaged in digital business transactions more than 80%</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.transactionPercentageMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Accounts statement</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus16"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus16'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus16"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus16'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason16'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>17</td>
+                                        <td>FPO maintain sales MIS through tally or any other s/w</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.softwareLisenceMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Bill/ Licence</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus17"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus17'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus17"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus17'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason17'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>18</td>
+                                        <td>Annual Sales turnover > Rs. 1 Cr</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalturnoverMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Audited Balance sheet</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus18"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus18'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus18"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus18'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason18'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>19</td>
+                                        <td>Net profit Percentage >= 2%</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalprofitMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Audited P &L statement</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus19"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus19'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus19"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus19'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason19'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>20</td>
+                                        <td>Does FPC have a Processing Unit</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finalprocessingUnit}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Physical verification on ground</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus20"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus20'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus20"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus20'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason20'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>21</td>
+                                        <td>Does FPC have a Leased or own land for CFC</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.landAvailable}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Physical verification on ground</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus21"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus21'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus21"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus21'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason21'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>22</td>
+                                        <td>Does FPO engaged packing, branding of its own produces</td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.engagedPacking}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Physical verification on ground</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus22"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus22'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus22"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus22'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason22'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>23</td>
+                                        <td>Has the FPC possess experience of operating in trading platforms like NEML/NCDC/eNAM</td>
+                                        <td style="text-align:center">2</td>
+                                        <td style="text-align:center">{{this.eNamTrading}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Trading License</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus23"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus23'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus23"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus23'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason23'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>24</td>
+                                        <td>No. of companies tied up for input service </td>
+                                        <td style="text-align:center">4</td>
+                                        <td style="text-align:center">{{this.finaltieUpMark}}</td>
+                                        <td style="text-align:center"><i class="fa fa-eye"></i></td>
+                                        <td>Engagement Letter</td>
+                                        <td><input type="radio" id='Verified' name="varifiedBusinessStatus24"
+                                                value='Verified'
+                                                formControlName='varifiedBusinessStatus24'>&nbsp;&nbsp;:&nbsp;&nbsp;Verified<br><input
+                                                type="radio" id='notVerified' name="varifiedBusinessStatus24"
+                                                value="notVerified"
+                                                formControlName='varifiedBusinessStatus24'>&nbsp;&nbsp;:&nbsp;&nbsp;Not
+                                            Verified</td>
+                                        <td><select class="form-control" formControlName='businessRejectionOfreason23'>
+                                                <option value="" disabled>--Select--</option>
+                                                <option value="No score generated-FPO profile not updated">No score
+                                                    generated-FPO profile not updated</option>
+                                                <option value="nsufficient phycical proofs/documents">Insufficient
+                                                    phycical proofs/documents</option>
+                                                <option value="Correction in FPO profile needed">Correction in FPO
+                                                    profile needed</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align:center"><strong>Total</strong></td>
+                                        <td style="text-align:center"><strong>Total Value</strong></td>
+                                        <td style="text-align:center"><strong>{{this.businessSumMark}}</strong></td>
+                                        <td colspan="4"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-9">
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="button" class="btn btn-success">View Profile</button>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="button" class="btn btn-success">Call FPO</button>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="button" class="btn btn-success"
+                                    (click)="submitFinalData()">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

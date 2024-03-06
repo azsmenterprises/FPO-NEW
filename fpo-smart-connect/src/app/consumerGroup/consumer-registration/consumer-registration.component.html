@@ -1,0 +1,173 @@
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-bottom: 0 !important;">
+            <h1 class="h3 mb-0 text-gray-800">Consumer Registaration</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-white"> Consumer details</h6>
+                    </div>
+                    <div class="card-body table-card mat-elevation-z8">
+                        <form class="form-horizontal" [formGroup]='RegisterConsumerForm' (ngSubmit)='consumerRegisterSubmit()'>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Name<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter name' class='form-control' formControlName='consumerName'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerName"].invalid && RegisterConsumerForm.controls["consumerName"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerName"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Email<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter email' class='form-control' formControlName='consumerMail'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerMail"].invalid && RegisterConsumerForm.controls["consumerMail"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerMail"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerMail"].errors?.email'>
+                                            *Email is not valid
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Mobile No<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" [maxlength]='10' matInput placeholder='Enter mobile no' class='form-control' formControlName='consumerMobilenumber'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerMobilenumber"].invalid && RegisterConsumerForm.controls["consumerMobilenumber"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerMobilenumber"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerMobilenumber"].errors?.minlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerMobilenumber"].errors?.maxlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerMobilenumber"].errors?.pattern'>
+                                            *Only numbers are allowed
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Alternate Mobile<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" [maxlength]="10" matInput placeholder='Enter alternate mobile no' class='form-control' formControlName='consumerAltmobno'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerAltmobno"].invalid && RegisterConsumerForm.controls["consumerAltmobno"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerAltmobno"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerAltmobno"].errors?.minlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerAltmobno"].errors?.maxlength'>
+                                            *Mobile number should be of 10 digit
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerAltmobno"].errors?.pattern'>
+                                            *Only numbers are allowed
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Plot No<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter plot no' class='form-control' formControlName='consumerPlot'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerPlot"].invalid && RegisterConsumerForm.controls["consumerPlot"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerPlot"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">City<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter city' class='form-control' formControlName='consumerCity'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerCity"].invalid && RegisterConsumerForm.controls["consumerCity"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerCity"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Landmark<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" matInput placeholder='Enter landmark' class='form-control' formControlName='consumerLandmark'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerLandmark"].invalid && RegisterConsumerForm.controls["consumerLandmark"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerLandmark"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="departmentdetail">District<b><sup>*</sup>:</b></label>
+                                    <select class="form-control" formControlName='csDist'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option [ngValue]='dist' *ngFor='let dist of allDists'>{{dist.districtName}}</option>
+                                    </select>
+                                    <div *ngIf='RegisterConsumerForm.controls["csDist"].invalid && RegisterConsumerForm.controls["csDist"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["csDist"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Pin code<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" [maxlength]='6' matInput placeholder='Enter pin code' class='form-control' formControlName='consumerPin'>
+                                    <div *ngIf='RegisterConsumerForm.controls["consumerPin"].invalid && RegisterConsumerForm.controls["consumerPin"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerPin"].errors?.required'>
+                                            *Required
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerPin"].errors?.maxlength'>
+                                            *Pin code should be of 6 digit
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerPin"].errors?.minlength'>
+                                            *Pin code should be of 6 digit
+                                        </div>
+                                        <div *ngIf='RegisterConsumerForm.controls["consumerPin"].errors?.pattern'>
+                                            *Only numbers are allowed
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group col-md-6">
+                                    <label for="departmentdetail">Item Name<b><sup>*</sup>:</b></label>
+                                    <select class="form-control" formControlName='itemName'>
+                                        <option value="" disabled selected>--Select--</option>
+                                        <option [ngValue]="item" >Crop
+                                        </option>
+                                    </select>
+                                    <div *ngIf='RegisterConsumerForm.controls["itemName"].invalid && RegisterConsumerForm.controls["itemName"].touched'
+                                        style="color: red;">
+                                        <div *ngIf='RegisterConsumerForm.controls["itemName"].errors?.required'>
+                                            *Required
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]='!RegisterConsumerForm.valid'>SUBMIT</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

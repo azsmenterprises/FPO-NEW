@@ -1,0 +1,22 @@
+.dropdown i{
+    color: white;
+    font-size: x-large;
+    margin: 6px 0 0 15px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+li:hover {
+    background-color: black;
+    border-radius: 20px;
+    color: #52b35b;
+}
+
+.logout{
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+

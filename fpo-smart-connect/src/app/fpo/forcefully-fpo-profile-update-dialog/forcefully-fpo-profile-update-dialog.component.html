@@ -1,0 +1,72 @@
+<!-- <h1 mat-dialog-title>Hi</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button>No Thanks</button>
+  <button mat-button cdkFocusInitial>Ok</button>
+</div> -->
+<mat-toolbar>
+    <span>Update profile details</span>
+    <span class="fill-remaining-space"></span>
+    <span style="flex: 1 1 auto;"></span>
+    <button type="button" matTooltip="Logout" matTooltipPosition='above' mat-stroked-button class="btn-dialog-close" tabIndex="-1" (click)='logout()'>
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button disabled type="button" class="btn-dialog-close" matTooltip="Close" matTooltipPosition='above' mat-stroked-button (click)="dialogueClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div mat-dialog-content>
+    <mat-horizontal-stepper>
+
+        <mat-step label="Fpo details">
+          <app-fpo-details></app-fpo-details>
+          <div class="nxtPrevBtn">
+            <button mat-button matStepperNext mat-raised-button>Next</button>
+          </div>
+        </mat-step>
+      
+        <mat-step label="BODs">
+          <app-board-of-directors></app-board-of-directors>
+          <div class="nxtPrevBtn">
+            <button mat-button matStepperPrevious mat-raised-button>Back</button>
+            <button mat-button matStepperNext mat-raised-button>Next</button>
+          </div>
+        </mat-step>
+      
+        <mat-step label="Group details">
+            <app-group-details></app-group-details>
+            <div class="nxtPrevBtn">
+                <button mat-button matStepperPrevious mat-raised-button>Back</button>
+                <button mat-button matStepperNext mat-raised-button>Next</button>
+              </div>
+        </mat-step>
+        <mat-step label="Financial details">
+            <app-finalcial-and-ligal></app-finalcial-and-ligal>
+            <div class="nxtPrevBtn">
+                <button mat-button matStepperPrevious mat-raised-button>Back</button>
+                <button mat-button matStepperNext mat-raised-button>Next</button>
+              </div>
+        </mat-step>
+        <mat-step label="Business activity">
+            <app-business-activity></app-business-activity>
+            <div class="nxtPrevBtn">
+                <button mat-button matStepperPrevious mat-raised-button>Back</button>
+                <button mat-button matStepperNext mat-raised-button>Next</button>
+              </div>
+        </mat-step>
+        <mat-step label="Others">
+            <app-others></app-others>
+            <div class="nxtPrevBtn">
+                <button mat-button matStepperPrevious mat-raised-button>Back</button>
+              </div>
+        </mat-step>
+        
+      </mat-horizontal-stepper>
+</div>

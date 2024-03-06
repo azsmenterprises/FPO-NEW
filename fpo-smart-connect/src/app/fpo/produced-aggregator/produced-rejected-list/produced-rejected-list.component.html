@@ -1,0 +1,98 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Rejected Registered Produced</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-6">
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Search By</h6>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]='producedApproveForm'>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="year">Type <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="type">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="Crop">Crop</option>
+                                    <option value="Seed">Seed</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="year">Year <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="year">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="{{year}}">{{year}}</option>
+                                    <option value="{{year-1}}">{{year-1}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="year">Season <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="season">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="Rabi">Rabi</option>
+                                    <option value="Kharif">Kharif</option>
+                                    <option value="Zaid">Zaid</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button (click)="rejectedProducedList()" class="btn btn-primary"
+                                    [disabled]='producedApproveForm.invalid' style="margin-top: 15%;">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-lg-12 mb-6" *ngIf='figIndentList.length>0'>
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <!-- <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Indent Details</h6>
+                </div> -->
+                <div class="card-body">
+                    <div>
+                        <table border="1" align="center" class=" overflow-y: scroll;"
+                            class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                            <thead class="bg-light">
+                                <tr class="border-1">
+                                    <td>Sl.</td>
+                                    <td>FIG Name</td>
+                                    <td for="year">Category</td>
+                                    <td for="">Crop</td>
+                                    <td>Variety</td>
+                                    <td for="">Quantity</td>
+                                    <!-- <td>View</td> -->
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let x of figIndentList; index as i ">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ x.figName}}</td>
+                                    <td>{{ x.cropCatagory}}</td>
+                                    <td>{{ x.crop.Crop_Name}}</td>
+                                    <td>{{ x.variety.Variety_Name}}</td>
+                                    <td>{{x.quantity}}</td>
+                                    <!-- <td><button class="viewbtn">View Details</button></td> -->
+                                    <!-- <td><button class="aprvbtn" >Approve</button></td> -->
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

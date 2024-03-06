@@ -1,0 +1,125 @@
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"> Scheme Entry</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-white"> Schemes Details</h6>
+                    </div>
+                    <div class="card-body table-card mat-elevation-z8">
+                        <form class="form-horizontal" [formGroup]="schemeMasterForm">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="concernedDepartment">Concerned Department<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" class="form-control" id="concernedDepartment"
+                                        placeholder="Enter concerned department" formControlName='concernedDepartment'>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="departmentdetail">Department Detail <b><sup>*</sup>:</b></label>
+                                    <input type="text" class="form-control" id="departmentdetail"
+                                        placeholder="enter detail of your department"
+                                        formControlName='departmentdetail'>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                  
+                                    <label for="briefnote">brief note<b><sup>*</sup>:</b></label>
+                                    <input type="text" class="form-control" id="briefnote" placeholder=""
+                                        formControlName='briefnote'>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="beneficialtype">Beneficial Type<b><sup>*</sup>:</b></label>
+                                    <input type="text" class="form-control" id="beneficialtype" placeholder=""
+                                        formControlName='beneficialtype'>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="eligibilitycritiria">Eligibility Critiria<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" class="form-control" id="eligibilitycritiria" placeholder=""
+                                        formControlName='eligibilitycritiria'>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="schemename">Scheme Name<b><sup>*</sup>:</b></label>
+                                    <input type="text" class="form-control" id="schemename" placeholder=""
+                                        formControlName='schemename'>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="matchingequity">Matching Equity Grant Fund Scheme<b> <sup>*</sup> :</b>
+                                    </label>
+                                    <input type="text" class="form-control" id="matchingequity" placeholder=""
+                                        formControlName='matchingequity'>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="supportoffered">Support Offered<b><sup>*</sup>:</b></label>
+                                    <input type="text" class="form-control" id="supportoffered" placeholder=""
+                                        formControlName='supportoffered'>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="weblink">Web link<b> <sup>*</sup> :</b> </label>
+                                    <input type="text" class="form-control" id="weblink" placeholder=""
+                                        formControlName='weblink'>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="fname">Scheme image <span style="color: red;">*</span> :</label>
+                                    <input type="file" accept="image/jpg, image/jpeg,image/png,image/gif"
+                                        placeholder="Enter GSTIN No" formControlName="schemeimage" name="schemeimage"
+                                        (change)="schemeimage($event)" required>
+                                    <label for="" style="font-size: 10px;color:red">&nbsp;&nbsp; **File size should be
+                                        less than
+                                        5MB</label><br>
+                                    <span style="color:red;font-size: 15px; margin-left: 40px;"
+                                        *ngIf="showschemeimageError">
+                                        <span style="color: red;">{{schemeimageFileGood}}</span>
+                                    </span>
+                                    
+                                      
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="fname">pdf File <span style="color: red;">*</span> :</label>
+                                    <input type="file" accept="application/pdf"
+                                        placeholder="Enter GSTIN No" formControlName="pdfFile" name="pdfFile"
+                                        id="pdfFile" (change)="pdfFile($event)" required>
+                                    <label for="" style="font-size: 10px;color:red">&nbsp;&nbsp; **File size should be
+                                        less than
+                                        5MB</label><br>
+                                    <span style="color:red;font-size: 15px; margin-left: 40px;"
+                                        *ngIf="showpdfFileError">
+                                        <span style="color: red;">{{pdfFileGood}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                         
+                            <button type="submit" class="btn btn-warning" (click)="onsubmit()" [disabled]='!schemeMasterForm.valid'>SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

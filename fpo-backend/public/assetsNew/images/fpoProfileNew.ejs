@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="assets/js/angular.min.js"></script>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Department of Agriculture & Farmers' Empowerment</title>
+  <link rel="stylesheet" href="assetsNew/css/style.css">
+  <link rel="icon" href="assets/images/new-logo.jpg">
+
+</head>
+
+<body ng-app="myapp" ng-controller="ctrl">
+  <header>
+    <div class="top-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ps-0">
+            <div class="top-1-left">
+              <h4>ANNOUNCEMENT</h4>
+              <marquee behavior="" direction="" onmouseover="this.stop();" onmouseout="this.start();">
+                <a href="#"><span><img src="assetsNew/images/icons/new.png" alt=""></span>Odisha FPO conclave 2021 was
+                  organized
+                  on 18th Dec 2021 by Department
+                  of Agriculture & Farmers' Empowerment.
+                </a><a href="#"><span><img src="assetsNew/images/icons/new.png" alt=""></span>“State Level workshop on
+                  Formation
+                  and Promotion of FPOs”,
+                  on 21st July 2022, Organized by Department of Agriculture and Farmer’s Empowerment.
+                </a>
+              </marquee>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="top-1-right">
+              <div class="top-right-1">
+                <ul>
+                  <li>
+                    <a href="#"><i class="fa-solid fa-arrow-turn-down"></i></a>
+                  </li>
+                  <li>
+                    <div class="font-resizer">
+                      <a href="#"><i class="fa-solid fa-t"></i> <i class="fa-solid fa-t"></i></a>
+                    </div>
+                  </li>
+                  <li>
+                    <a class="site-map">
+                      <i class="fa-solid fa-sitemap"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <div class="font-size-changer">
+                      <a href="#">English<i class="fa-solid fa-sort-down"></i></a>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="/userLogin" class="top-login-btn">Login</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="top-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="logo-wrapper">
+              <div class="logo">
+                <a href="#"><img src="assetsNew/images/logo.png" alt="" title=""></a>
+              </div>
+              <div class="logo-2">
+                <a href="#"><img src="assetsNew/images/logo2.png" alt="" title="">
+                  <div class="logo-caption">
+                    <h5>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</h5>
+                    <h5>Department of Agriculture & Farmers' Empowerment</h5>
+                    <h6> Government of Odisha</h6>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="top-2-right">
+              <div class="cm-con">
+                <div class="logo2-text">
+                  <h4>Shri Naveen Patnaik</h4>
+                  <h6>Chief Minister of odisha</h6>
+                </div>
+                <figure><img src="assetsNew/images/cm.png" alt="Naveen Patnaik"></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="top-3">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="top-2-wrapper">
+            <div class="menu-con">
+              <nav id="navigation1" class="navigation">
+                <div class="nav-header">
+                  <div class="nav-toggle"></div>
+                </div>
+                <div class="nav-menus-wrapper">
+                  <ul class="nav-menu align-to-right">
+                    <li>
+                      <a href="https://fpoodisha.nic.in/new"><i class="fa-solid fa-house"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://fpoodisha.nic.in/new">HOME</a>
+                      <!-- <ul class="nav-dropdown">
+
+                        <li>
+                          <ul class="nav-dropdown">
+                            <li><a href="#" target="_blank">Link 1</a></li>
+                            <li><a href="#" target="_blank">Link 2</a></li>
+                            <li><a href="#" target="_blank">Link 3</a></li>
+                            <li><a href="#" target="_blank">Link 4</a></li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#">Menu Level 2</a>
+                          <ul class="nav-dropdown">
+                            <li>
+                              <a href="#">Menu Level 3</a>
+                              <ul class="nav-dropdown">
+                                <li><a href="#" target="_blank">Link 1</a></li>
+                                <li><a href="#" target="_blank">Link 2</a></li>
+                              </ul>
+                            </li>
+                            <li><a href="#" target="_blank">Link 1</a></li>
+                            <li><a href="#" target="_blank">Link 2</a></li>
+                          </ul>
+                        </li>
+                      </ul> -->
+                    <li>
+                      <a href="#">ABOUT PSFPO</a>
+                      <ul class="nav-dropdown">
+                        <li><a href="https://fpoodisha.nic.in/fpo1">PSFPO 1.0</a></li>
+                        <li><a href="https://fpoodisha.nic.in/fpo2">PSFPO 2.0</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">ENROLMENT</a>
+                      <ul class="nav-dropdown">
+                        <li><a href="#enrolment">FPO ENROLMENT</a></li>
+                        <li><a href="#enrolment">TRADER ENROLMENT</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">SEARCH</a>
+                      <ul class="nav-dropdown">
+                        <li><a href="https://fpoodisha.nic.in/fpofilterNew">FPO </a></li>
+                        <li><a href="https://fpoodisha.nic.in/fpofilterNew">TRADER </a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#scheme">SCHEMES</a>
+                    </li>
+                    <li>
+                      <a href="#">RESOURCES</a>
+                      <ul class="nav-dropdown">
+                        <li><a href="https://fpoodisha.nic.in/schemeGuidelinesNew">Scheme Guidelines </a></li>
+                        <li><a href="https://fpoodisha.nic.in/knowledgeMaterialNew">Knowledge Material </a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#" onclick="showPopup()">CENTER OF EXCELLENCE-OUAT</a>
+                    </li>
+                    <li>
+                      <a href="https://fpoodisha.nic.in/faqNew">FAQ</a>
+                    </li>
+                    <li>
+                      <a href="https://fpoodisha.nic.in/grievance">GRIEVANCE</a>
+                    </li>
+                    <li>
+                    <li>
+                      <a href="/userLogin">LOGIN</a>
+                    </li>
+
+                    <!-- <li>
+                      <a href="#">ABOUT</a>
+                      <ul class="nav-dropdown">
+                      
+                        <li>
+                          <ul class="nav-dropdown">
+                            <li><a href="#" target="_blank">Link 1</a></li>
+                            <li><a href="#" target="_blank">Link 2</a></li>
+                            <li><a href="#" target="_blank">Link 3</a></li>
+                            <li><a href="#" target="_blank">Link 4</a></li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#">Menu Level 2</a>
+                          <ul class="nav-dropdown">
+                            <li>
+                              <a href="#">Menu Level 3</a>
+                              <ul class="nav-dropdown">
+                                <li><a href="#" target="_blank">Link 1</a></li>
+                                <li><a href="#" target="_blank">Link 2</a></li>
+                              </ul>
+                            </li>
+                            <li><a href="#" target="_blank">Link 1</a></li>
+                            <li><a href="#" target="_blank">Link 2</a></li>
+                          </ul>
+                        </li> -->
+
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="popup-overlay"></div>
+    <div id="popup" class="pop-up">
+      <p>Coming soon......</p>
+      <button onclick="closePopup()">Close</button>
+    </div>
+
+  </header>
+  <section class="inner-page-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-breadcrumb">
+            <h3>Fpo</h3>
+            <ul>
+              <li><a href="https://fpoodisha.nic.in/new"><i class="fa-solid fa-house"></i></a></li>
+              <li><a href="https://fpoodisha.nic.in/new">Fpo</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="inner-page-profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="profile-work">
+            <table class="table table-striped" id="tableId">
+              <!-- <thead> -->
+              <th colspan="2" style="background-color: #04AA6D; font-size: 23px; ">{{fpoProfileData.fpoName}}</th>
+              <!-- </thead> -->
+              <tbody style="font-size: 15px;">
+                <tr>
+                  <td>Location</td>
+                  <td>{{fpoProfileData.address}}</td>
+                </tr>
+                <tr>
+                  <td>Farmers Involved</td>
+                  <td>{{fpoProfileData.FPOData.noOfFarmerMember}}</td>
+                </tr>
+                <tr>
+                  <td>Turnover</td>
+                  <td>RS.&nbsp;{{ fpoProfileData.totalBusinessDone.tbd1920 !== undefined &&
+                    fpoProfileData.totalBusinessDone.tbd1920 !== null ? fpoProfileData.totalBusinessDone.tbd1920 : 'NO
+                    DATA' }}</td>
+                </tr>
+                <tr>
+                  <td>Incorp. Year</td>
+                  <td>{{fpoProfileData.FPOData.dateOfReg}}</td>
+                </tr>
+                <tr>
+                  <td> Promoted By</td>
+
+                  <td>{{fpoProfileData.organisationHelpedToCreateSPO}}</td>
+                </tr>
+                <tr>
+                  <td>CIN</td>
+
+                  <td>{{fpoProfileData.FPOData.regNoOfFPO}}</td>
+                </tr>
+                <tr>
+                  <td>Office Address</td>
+
+                  <td>{{fpoProfileData.address}}</td>
+                </tr>
+
+                <tr>
+                  <td>Last BOD Meeting</td>
+
+                  <td>{{fpoProfileData.lastBodMeeting}}</td>
+                </tr>
+
+                <tr>
+                  <td>No. of BoD </td>
+
+                  <td>{{fpoProfileData.noOfBoardDirectors}}</td>
+                </tr>
+                <tr>
+                  <td>CEO</td>
+                  <td>{{fpoProfileData.ceoName[0].name}}</td>
+                </tr>
+                <!-- <tr>
+                                    <td>Contact Number</td>
+
+                                    <td>9348980687</td>
+                                </tr> -->
+                <tr>
+                  <td>Email ID</td>
+
+                  <td>{{fpoProfileData.FPOData.fpoMailId}}</td>
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+          <div class="export-btn">
+            <input class="btn btn-success" type="button" ng-click="exportToExcel()" value="Export to Excel">
+          </div>
+          <div class="profile-left-last">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="owl-carousel" id="profile_left_last_slide">
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                  <div class="district-box">
+                    <figure>
+                      <img src="assetsNew/images/icons/maize.webp" alt="">
+                    </figure>
+                    <div class="district-box-content">
+                      <h3>3900 Qtl </h3>
+                      <h4> Maize (Makka)</h4>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="socialBtns">
+
+                <ul class="info">
+
+                  <li><a data-bs-toggle="modal" data-bs-target="#CallMeBack"><span><i
+                          class="fa-solid fa-phone"></i></span>Call me back</a></li>
+                  <!-- <li><a href="#"><span><i class="fa fa-thumbs-up"
+                                                    aria-hidden="true"></i></span>Like</a></li>
+                                    <li><a href="#"><span><i class="fa fa-bullseye"
+                                                    aria-hidden="true"></i></span>Interested</a></li>
+                                    <li><a href="#"><i class="fa-solid fa-share-nodes"></i></a></li> -->
+
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="membership-card">
+                <div class="membership-card-ico">
+                  <img src="assetsNew/images/icons/Membership.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Membership</h5>
+                  <h3>{{fpoProfileData.FPOData.noOfFarmerMember}}</h3>
+                </div>
+              </div>
+              <div class="membership-card">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/Audited.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Audited Latest year turn- over (INR) sss</h5>
+                  <h6>FY 22-23:{{fpoProfileData.totalBusinessDone.tbd1819}}</h6>
+                  <h6>FY 21-22:{{fpoProfileData.totalBusinessDone.tbd1718}}</h6>
+                </div>
+              </div>
+
+              <div class="membership-card">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/Business.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Business Activity</h5>
+                  <!-- <h6>Collective Procurement of Inputs</h6>
+                  <h6> Primary processing</h6> -->
+                  <li>
+                    <p ng-repeat="x in fpoProfileData.businessActivities1920.businessActivities| limitTo:2"
+                      style="font-size: 14px;">
+                      {{x}}</p>
+                  </li>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-8">
+              <div class="chart-box-1">
+                <div class="container mt-5">
+                  <canvas id="myBarChart"></canvas>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="membership-card">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/WomenMember.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Women Member In BOD</h5>
+                  <h3>{{fpoProfileData.totalFemale}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="membership-card">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/Mobilized.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Credit Mobilized</h5>
+                  <h3>{{fpoProfileData.schemesAvailed.schemeAvailedAmount}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="membership-card" data-bs-toggle="modal" data-bs-target="#awardDetails">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/Awards.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Awards</h5>
+                  <h3>{{fpoProfileData.FPOAwardSize}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="membership-card" data-bs-toggle="modal" data-bs-target="#storageCapacity">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/Storage.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Storage Capacity(ft <sup>2</sup>)</h5>
+                  <h3>{{fpoProfileData.storageDetails[0].storageCapacity}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="membership-card" data-bs-toggle="modal" data-bs-target="#ProcessingCapacity">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/ProcessingCapacity.png" alt=""
+                    title="" /></div>
+                <div class="membership-card-content">
+                  <h5>Processing Capacity</h5>
+                  <h3>{{fpoProfileData.InfrastructureDetail[0].Capacity}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="membership-card">
+                <div class="membership-card-ico"><img src="assetsNew/images/icons/Linkage.png" alt="" title="" />
+                </div>
+                <div class="membership-card-content">
+                  <h5>Interest For Linkage</h5>
+                  <h3>NO DATA</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="footer-box-1">
+              <h4>Important Links</h4>
+              <ul>
+                <li><a href="https://agri.odisha.gov.in/">Department of Agriculture & Farmers' Empowerment</a></li>
+                <li> <a href="https://odihort.nic.in/">Directorate of Horticulture</a></li>
+                <li> <a href="https://osamb.odisha.gov.in/">Odisha State Agricultural Marketing Board</a></li>
+                <li> <a href="https://sugam.odisha.gov.in/website/home">Go Sugam - Government Of Odisha</a></li>
+                <li> <a href="https://safal.odisha.gov.in/website/home">SAFAL - Government Of Odisha </a></li>
+                <li> <a href="https://www.cooperation.gov.in/">Ministry of Cooperation</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="footer-box-1">
+              <h4>Quick Links</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li><a href="#"> ABOUT PSFPO</a></li>
+                    <li><a href="#"> ENROLMENT</a></li>
+                    <li><a href="#">SEARCH</a></li>
+                    <li><a href="#">SCHEMES</a></li>
+                    <!-- <li><a href="#">PGPORTAL</a></li>
+                      <li><a href="#"> Website Policies</a></li>
+                      <li><a href="#">Help</a></li>
+                      <li><a href="#">Contact Us </a></li> -->
+                  </ul>
+                </div>
+                <!-- <div class="col-md-6">
+                    <ul>
+                      <li><a href="#"> Terms and Conditions </a></li>
+                      <li><a href="#">Feedback</a></li>
+                      <li><a href="#">Web Information Manager</a></li>
+                      <li><a href="#">Visitor Analytics</a></li>
+                      <li><a href="#">FAQ</a></li>
+                      <li><a href="#">Disclaimer </a></li>
+                    </ul>
+                  </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="footer-address-wrapper">
+              <h4>Contact Info</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="footer-address">
+                    <li>
+                      <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                      <h6>Address</h6>
+                      <p> Directorate of Horticulture,
+                        <br>Department of Agriculture & Farmers' Empowerment,
+                        <br> Krushi Bhawan,Gopabandhu Marg
+                        <br>Near State Guest House,Bhubaneswar
+                      </p>
+                    </li>
+                    <li>
+                      <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                      <h6>Phone</h6>
+                      <p>0674-2391831,+91-9853901065</p>
+                    </li>
+                    <!-- <li>
+                        <div class="contact-icon"><i class="fa-solid fa-fax"></i></div>
+                        <h6>Fax</h6>
+                        <p>0361-2301099</p>
+                      </li> -->
+                    <li>
+                      <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+                      <h6>Email</h6>
+                      <p>supportdho.od@nic.in,PSFPO2.0@gamil.com</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <div class="footer-map">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.621423729931!2d85.82546287469474!3d20.27452961325695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7afa115f1ff%3A0x7ffe22b3bebac455!2sKrushi%20Bhavan!5e0!3m2!1sen!2sin!4v1704206584747!5m2!1sen!2sin"
+                      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Disclaimer:The information contained in this website is for general information purposes only and is
+              provided by Department of Agriculture & Farmers' Empowerment,Odisha. While we
+              endeavour to keep the information up to date and correct, we make no
+              representations or warranties of any kind, express or implied, about the completeness, accuracy,
+              reliability, suitability or availability with respect to the website or the information, products,
+              services, or related graphics contained on the website for any purpose. Any reliance you place on such
+              information is therefore strictly at your own risk</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Modal -->
+  <div class="modal fade district-details-modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="staticBackdropLabel">Pirshat Farmer Producer Company Limited</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3">
+              <figure>
+                <img src="images/nopic.png" alt="">
+              </figure>
+            </div>
+            <div class="col-md-9">
+              <div class="district-box-content">
+                <div class="district-box-content-wrapper">
+                  <h5>Location:<strong>Mayurbhanj</strong></h5>
+                  <h5>Farmers Involved: <strong>430</strong></h5>
+                  <h5>Turnover: <strong>R.S.</strong> </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Processing Infrastructure Detail-->
+
+  <div class="modal fade district-details-modal" id="storageCapacity" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="staticBackdropLabel">Storage Capacity</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+             
+                <tr style="background-color: #04AA6D;">
+                  <th style="color: white;">Storage Type</th>
+                  <th style="color: white;">Ownership</th>
+                  <th style="color: white;">Commodity Type</th>
+                  <th style="color: white;">Storage Capacity</th>
+                  <th style="color: white;">Storage Utility</th>
+                </tr>
+             
+             
+                <tr ng-repeat="x in fpoProfileData.storageDetails">
+                  <td>{{x.storageType}}</td>
+                  <td>{{x.ownership}}</td>
+                  <td>{{x.commodityType}}</td>
+                  <td>{{x.storageCapacity}}</td>
+                  <td>{{x.storageUtility}}</td>
+                </tr>
+             
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- award details modal -->
+
+
+  <div class="modal fade district-details-modal" id="awardDetails" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="staticBackdropLabel">Awards</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+            
+                <tr style="background-color: #04AA6D;">
+                  <th style="color: white;">Year</th>
+                  <th style="color: white;">Awarding Organization</th>
+                </tr>
+             
+              
+                <tr ng-repeat="x in fpoProfileData.FPOAward">
+                  <td>{{x.year}}</td>
+                  <td>{{x.awardedOrganisation}}</td>
+                </tr>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Processing Capacity -->
+
+  <div class="modal fade district-details-modal" id="ProcessingCapacity" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="staticBackdropLabel"> Processing Capacity</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+         
+                <tr style="background-color: #04AA6D;">
+                  <th style="color: white;">Machine Name</th>
+                  <th style="color: white;">Ownership</th>
+                  <th style="color: white;">Utility</th>
+                  <th style="color: white;">Capacity</th>
+                  <th style="color: white;">Age Of Machine</th>
+                  <th style="color: white;">Supplier No.</th>
+                </tr>
+          
+           
+                <tr ng-repeat="x in fpoProfileData.InfrastructureDetail">
+                  <td>{{x.machineName}}</td>
+                  <td>{{x.ownership}}</td>
+                  <td>{{x.utility}}</td>
+                  <td>{{x.Capacity}}</td>
+                  <td>{{x.Age}}</td>
+                  <td>{{x.contactSupplier}}</td>
+                </tr>
+         
+            </table>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!--Processing Capacity -->
+
+  <div class="modal fade district-details-modal" id="CallMeBack" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="staticBackdropLabel">Call Me Back</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <b>
+                  <h5>Contact Number : {{fpoProfileData.FPOData.fpoContactNo}}</h5>
+                </b>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-success" value="OK" data-bs-dismiss="modal"
+                  style="text-align: center;">OK</button>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+      class="fas fa-chevron-up"></i></a>
+  <script src="assetsNew/js/jquery.min.js"></script>
+  <script src="assetsNew/js/dist_chart.min.js"></script>
+  <script src="assetsNew/js/bootstrap.bundle.min.js"></script>
+  <script src="assetsNew/js/aos.js"></script>
+  <script src="assetsNew/js/owl.carousel.min.js"></script>
+  <script src="assetsNew/js/nav-menu.js"></script>
+  <script src="assetsNew/js/custom.js"></script>
+  <script src="assetsNew/js/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="icon" href="assets/images/new-logo.jpg">
+  <!-- <script src="/controller/landingPage.js"></script> -->
+  <!-- <script src="/controller/fpoProfile.js"></script> -->
+  <script src="/controller/fpoProfileNew.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+
+  <script>
+    var userId = "<%= userId %>";
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Sample data for the bar chart
+      var barChartData = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Data Set 1',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          data: [12, 19, 3, 5, 2, 6]
+        }]
+      };
+
+      // Get the canvas element
+      var ctx = document.getElementById('myBarChart').getContext('2d');
+
+      // Create the bar chart
+      var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              beginAtZero: true
+            },
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+  </script>
+  <script>
+    // Function to display the popup
+    function showPopup() {
+      document.getElementById('popup-overlay').style.display = 'block';
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    // Function to close the popup
+    function closePopup() {
+      document.getElementById('popup-overlay').style.display = 'none';
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script>
+
+
+  <!-- Bar Chart -->
+
+
+</body>
+
+</html>

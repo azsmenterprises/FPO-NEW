@@ -1,0 +1,87 @@
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-white">Stock for receipt</h6>
+                </div>
+                <div class="card-body table-card mat-elevation-z8" [hidden]='dataSource?.data.length!=0'>
+                    <div style="text-align: center;padding: 28px;">No receipts</div>
+                </div>
+                <div class="card-body table-card mat-elevation-z8" [hidden]='dataSource?.data.length==0'>
+                    <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+                        <ng-container matColumnDef="slNo">
+                            <th mat-header-cell *matHeaderCellDef>Sl No. </th>
+                            <!-- <td mat-cell *matCellDef="let i=index"> {{i+1}} </td> -->
+                            <td mat-cell *matCellDef="let element; let i = index;">
+                                {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }}
+                            </td>
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="fpoName">
+                            <th mat-header-cell *matHeaderCellDef> FPO </th>
+                            <td mat-cell *matCellDef="let element">{{element.destinationFpoName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Crop">
+                            <th mat-header-cell *matHeaderCellDef> Crop </th>
+                            <td mat-cell *matCellDef="let element"> {{element.cropName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Variety">
+                            <th mat-header-cell *matHeaderCellDef>Variety</th>
+                            <td mat-cell *matCellDef="let element"> {{element.varietyName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Quantity">
+                            <th mat-header-cell *matHeaderCellDef> Quantity(In Qntl) </th>
+                            <td mat-cell *matCellDef="let element">{{element.quantity}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="District">
+                            <th mat-header-cell *matHeaderCellDef> District </th>
+                            <td mat-cell *matCellDef="let element">{{element.destinationDistrictName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Godown">
+                            <th mat-header-cell *matHeaderCellDef> Godown </th>
+                            <td mat-cell *matCellDef="let element">{{element.destinationGodownName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell *matCellDef="let element"><button class="btn btn-primary" (click)='getIdToReceive(element._id)'>Receive</button></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    </table>
+                    <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 15,20]" [length]="pagelength"
+                        showFirstLastButtons></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<modal #confirmRegister>
+    <modal-header>
+        <h4>Confirmation</h4>
+    </modal-header>
+ 
+    <modal-content>
+        <h5>Are you sure to receive ?</h5>
+    </modal-content>
+ 
+    <modal-footer>
+        <button class="btn btn-primary" (click)='receiveStock()'>Transfer</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="closeModal()">close</button>
+    </modal-footer>
+</modal>

@@ -1,0 +1,667 @@
+<div class="col-lg-12 mb-6">
+    <div class="card shadow mb-4">
+        <div class="card-header py-2">
+            <h5 class="m-0 font-weight-bold text-primary">FPO WISE SUBMMITTED REPORT TABLE</h5>
+        </div>
+        <div class="card-body">
+            <div>
+                <div class="card-body table-card mat-elevation-z8">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <select class="form-control" type="search" name="text" [(ngModel)]="searchText1.year" placeholder="Search by year" required>
+                                    <option value="" selected disabled>Search by year</option>
+                                    <option>2020-2021</option>
+                                    <option>2021-2022</option>
+                                    <option>2022-2023</option>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-2">
+                                <input class="form-control" type="search" name="search" [(ngModel)]="searchText2.timeSlot" placeholder="Search by Target Time Slot">
+                              </div>
+                              <div class="form-group col-md-2">
+                                <input class="form-control" type="search" name="search" [(ngModel)]="searchText3.iaName" placeholder="Search by IA Name">
+                              </div>
+                              <div class="form-group col-md-2">
+                                <input class="form-control" type="search" name="search" [(ngModel)]="searchText4.fpo" placeholder="Search by FPO">
+                              </div>
+                              <div class="form-group col-md-3">
+                                <button class="btn btn-primary" (click)="exportAsXLSX()">Print Excel</button>
+                              </div>
+                        </div>
+                </div>
+                <table id="excel-table" border="1" align="center" class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                    <thead class="bg-light">
+                        <tr class="border-1">
+                            <td>Sl.</td>
+                            <td>Financial Year</td>
+                            <td>Target Time Slot</td>
+                            <td>IA Name</td>
+                            <td>FPO Name</td>
+                            <td>Mobile No</td>
+                            <td>Mail Id</td>
+                            <td>Date</td>
+                            <td>View</td>
+                            <td>Delete</td>
+                            <!-- <td>Edit</td> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let details of getAllData |filterBy:searchText1 | filterBy:searchText2 | filterBy:searchText3 |filterBy:searchText4 index as i;">
+                        <td>{{i+1}}</td>
+                        <td>{{details.year}}</td>
+                        <td>{{details.timeSlot}}</td>
+                        <td>{{details.iaName}}</td>
+                        <td>{{details.fpo}}</td>
+                        <td>{{details.MobileNo}}</td>
+                        <td>{{details.email}}</td>
+                        <td>{{details.insertionDate | date:'dd-MM-yyyy,HH:mm'}}</td>
+                        <td>
+                            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#viewMenuModal"
+                                data-backdrop="static" data-keyboard="false" (click)="viewDetails(details)"><i
+                                    class="fa fa-eye" aria-hidden="true"></i></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger" (click)="deleteRow(details)"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                        </td>
+                        <!-- <td>
+                            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#editMenuModal"
+                                data-backdrop="static" data-keyboard="false" (click)="viewEditDetails(details)"><i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td> -->
+                       
+                    </tr>
+                </tbody>
+                </table>
+                <div>
+                    <mat-paginator #paginatorRef [pageSizeOptions]="[10, 15,20]" [length]="pagelength"
+                    showFirstLastButtons></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="form-outline" style="width:300px">
+    <input class="float-right search-box form-control" matInput (keyup)="applyFilter($event)" placeholder="Search"
+      #input>
+  </div> -->
+<!-- 
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="getAllData"> -->
+  
+      <!-- Position Column -->
+      <!-- <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; let i = index;">  {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </td>
+      </ng-container> -->
+  
+      <!-- Name Column -->
+      <!-- <ng-container matColumnDef="financialYear">
+        <th mat-header-cell *matHeaderCellDef> Financial Year </th>
+        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+      </ng-container> -->
+  
+      <!-- Weight Column -->
+      <!-- <ng-container matColumnDef="iaName">
+        <th mat-header-cell *matHeaderCellDef> IA Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.iaName}} </td>
+      </ng-container> -->
+  
+      <!-- Symbol Column -->
+      <!-- <ng-container matColumnDef="fppoName">
+        <th mat-header-cell *matHeaderCellDef> FPO Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.fpo}} </td>
+      </ng-container>
+      <ng-container matColumnDef="mobilenumber">
+        <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.MobileNo}} </td>
+      </ng-container>
+      <ng-container matColumnDef="mailId">
+        <th mat-header-cell *matHeaderCellDef> Mail id </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.insertionDate}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 15,20]" [length]="pagelength"
+    showFirstLastButtons></mat-paginator>
+  </div>
+   -->
+
+
+
+<div class="modal fade" id="editMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">Update CBBO Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="updateForm">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4"><b>Financial Year <sup>*</sup> </b> </label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <select class="form-control" formControlName='year'>
+                                <option value="">--Select--</option>
+                                <option value="2023-2024">2023-2024</option>
+                                <option value="2024-2025">2024-2025</option>
+                                <option value="2025-2026">2025-2026</option>
+                                <option value="2026-2027">2026-2027</option>
+                                <option value="2027-2028">2027-2028</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">IA Name:</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='iaName'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState"> Select FPO :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='fpo'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState">Mobile No :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Sequence"
+                                formControlName='MobileNo'>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="updateList()">Update</button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="viewMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel- modal-lg"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">View CBBO Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="viewForm">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Financial Year</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.year}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Time Slot</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.timeSlot}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>IA Name</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.iaName}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>No of Farmer Mobilized as shareholders</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.NoOfFarmerMobilizedAsShareholders}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>FPO Name</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.fpo}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Share capital Mobilized in INR</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.ShareCapitalMobilizedInInr}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>CIN No</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.cin}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Mobile No</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.MobileNo}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Email Id</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.email}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>No of BOD</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.NoOfBod}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Date of Registration</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.dateofIncorporation}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Business Plan formulated</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.BusinessPlanFormulated}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Baseline study report submitted</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.BaselineStudyReportSubmitted}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>No. of MOUs signed/vendor registration</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.NoOfMouSignedVendorRegistration}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Registration on e-NAM or other e-platform</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.RegistrationOnEnam}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Annual Business Turnover in INR </label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.AnnualBusinessTurnoverinInr}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Have the FPO completed Statutory Audit</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.statutoryAudit}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Commencement of Business Filed with MCA</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.commencementOfBusinessfieldWithMca}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>AGM Conducted</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.AgmConducted}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Auditor Appointed</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.AuditorAppointed}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>CEO Appointed</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.CeoAppointed}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Accounted Appointed</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.AccountedAppointed}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Bank Account Opened</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.BankAccountOpened}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Minimum 1 women BOD</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.Min1WomenBod}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>GST licence applied</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.GstLicenceApplied}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Equity Grant availed</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.EquityGrantAvailed}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>FPO trading through e-NUM</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            :&nbsp;&nbsp;{{viewData.fpotradingThroughenum}}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>FPOs filled RoC </label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.fpoFilledroc}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>No of Farmers Mobilized</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            :&nbsp;&nbsp;{{viewData.NoOfFarmerMobilized}}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- ------------drafted data table--------------- -->
+
+
+
+
+
+<!-- <div class="col-lg-12 mb-6">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">CBBO WISE FPO WISE DRAFTED TABLE</h4>
+        </div>
+        <div class="card-body">
+            <div>
+                <div class="card-body table-card mat-elevation-z8">
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <select class="form-control" type="text" name="text" [(ngModel)]="searchText4.year" placeholder="Search by year" required>
+                                    <option value="" selected disabled>Search by year</option>
+                                    <option>2020-2021</option>
+                                    <option>2021-2022</option>
+                                    <option>2022-2023</option>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-3">
+                                <input class="form-control" type="search" name="search" [(ngModel)]="searchText5.iaName" placeholder="Search by IA Name">
+                              </div>
+                              <div class="form-group col-md-3">
+                                <input class="form-control" type="search" name="search" [(ngModel)]="searchText6.fpo" placeholder="Search by FPO">
+                              </div>
+                        </div>
+                </div>
+                <table border="1" align="center" class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                    <thead class="bg-light">
+                        <tr class="border-1">
+                            <td>Sl.</td>
+                            <td>Financial Year</td>
+                            <td>IA Name</td>
+                            <td>FPO Name</td>
+                            <td>Mobile No</td>
+                            <td>Mail Id</td>
+                            <td>Date</td>
+                            <td>Delete</td>
+                            <td>Edit</td>
+                            <td>View</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let details of getdraftData |filterBy:searchText4 | filterBy:searchText5 | filterBy:searchText6  index as i;">
+                        <td>{{i+1}}</td>
+                        <td>{{details.year}}</td>
+                        <td>{{details.iaName}}</td>
+                        <td>{{details.fpo}}</td>
+                        <td>{{details.MobileNo}}</td>
+                        <td>{{details.email}}</td>
+                        <td>{{details.insertionDate  | date:'dd-MM-yyyy,HH:mm'}}</td>
+                        <td>
+                            <button class="btn btn-outline-danger" (click)="deleteRow(details)"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#editMenuModal"
+                                data-backdrop="static" data-keyboard="false" (click)="viewEditDetails(details)"><i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#viewMenuModal"
+                                data-backdrop="static" data-keyboard="false" (click)="viewDetails(details)"><i
+                                    class="fa fa-eye" aria-hidden="true"></i></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-warning" data-toggle="modal"
+                                        data-target="#approveModal" data-backdrop="static" data-keyboard="false" (click)='publish(details)'>
+                        
+                                        Publish
+                                    </button>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div> -->
+
+
+
+
+
+<!-- <div class="modal fade" id="editMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">Update CBBO Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="updateForm">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4"><b>Financial Year <sup>*</sup> </b> </label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <select class="form-control" formControlName='year'>
+                                <option value="">--Select--</option>
+                                <option value="2020-2021">2020-2021</option>
+                                <option value="2021-2022">2021-2022</option>
+                                <option value="2022-2023">2022-2023</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">IA Name:</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='iaName'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState"> Select FPO :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='fpo'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState">Mobile No :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Sequence"
+                                formControlName='MobileNo'>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="updateList()">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<!-- 
+<div class="modal fade" id="viewMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel- modal-lg"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">View CBBO Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="viewForm">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4"><b>Financial Year <sup>*</sup> </b> </label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='year' readonly>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">IA Name:</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='iaName' readonly>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState"> Select FPO :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='fpo' readonly>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState">Mobile No :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Sequence"
+                                formControlName='MobileNo' readonly>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->

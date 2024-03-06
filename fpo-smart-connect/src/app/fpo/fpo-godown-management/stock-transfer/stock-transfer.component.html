@@ -1,0 +1,106 @@
+<div id="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-white">Stock transfer</h6>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]='stockTransferForm' (ngSubmit)='openRegisterConfirmationModal()'>
+                        <mat-horizontal-stepper>
+                            <mat-step label="Source details">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="">Godown</label>
+                                        <select class="form-control" formControlName='godownId' (change)='loadAllCropCat()'>
+                                            <option value="null" disabled selected>--Select--</option>
+                                            <option value="{{godown.godownId}}" *ngFor='let godown of allFpoGodowns'>{{godown.godownName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Crop Catagory</label>
+                                        <select class="form-control" formControlName='cropCatagory' (change)='loadAllCrop()'>
+                                            <option value="null" disabled selected>--Select--</option>
+                                            <option value="{{cat.cropCatagory}}" *ngFor='let cat of allCropCat'>{{cat.cropCatagory}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Crop</label>
+                                        <select class="form-control" formControlName='crop' (change)='loadAllVariety()'>
+                                            <option value="null">--Select--</option>
+                                            <option value="{{crop.Crop_Code}}" *ngFor='let crop of allcrops'>{{crop.Crop_Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Variety</label>
+                                        <select class="form-control" formControlName='variety' (change)='loadAvailableQuant()'>
+                                            <option value="null">--Select--</option>
+                                            <option value="{{variety.Variety_Code}}" *ngFor='let variety of allVarieties'>{{variety.Variety_Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Available Quantity(In Qntl)</label>
+                                        <input type="text" value="{{availableQuant}}" class="form-control" disabled>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Transfer Quantity(In Qntl)</label>
+                                        <input type="number" formControlName='quantity' placeholder="Enter Quantity" class="form-control">
+                                        <mat-error *ngIf='stockTransferForm.value.quantity>availableQuant || 0>stockTransferForm.value.quantity'>Quantity is not valid</mat-error>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary" mat-button matStepperNext
+                                            mat-raised-button>Next <i class="fa fa-arrow-right"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </mat-step>
+                            <mat-step label="Destination details">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="">District</label>
+                                        <select class="form-control" formControlName='destinationDistrictCode' (change)='loadDestGodown()'>
+                                            <option value="null" disabled selected>--Select--</option>
+                                            <option value="{{district.districtCode}}" *ngFor='let district of allDistricts'>{{district.districtName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Godown</label>
+                                        <select class="form-control" formControlName='destinationGodownId'>
+                                            <option value="null" disabled selected>--Select--</option>
+                                            <option value="{{godown.godownId}}" *ngFor='let godown of destGodowns'>{{godown.godownName}}</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary nxtPrevBtn" type="submit" [disabled]='stockTransferForm.invalid ||stockTransferForm.value.quantity>availableQuant || 0>stockTransferForm.value.quantity'>Submit</button>
+
+                                        <button type="button" class="btn btn-warning" mat-button matStepperPrevious
+                                            mat-raised-button>Back <i class="fa fa-arrow-left"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<modal #confirmRegister>
+    <modal-header>
+        <h4>Confirmation</h4>
+    </modal-header>
+ 
+    <modal-content>
+        <h5>Are you sure to transfer ?</h5>
+    </modal-content>
+ 
+    <modal-footer>
+        <button class="btn btn-primary" (click)='stockTransferSubmit()'>Transfer</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="closeModal()">close</button>
+    </modal-footer>
+</modal>

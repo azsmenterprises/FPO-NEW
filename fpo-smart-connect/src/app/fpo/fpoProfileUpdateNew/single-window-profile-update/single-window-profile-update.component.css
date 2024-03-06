@@ -1,0 +1,16 @@
+.nxtPrevBtn{
+    float: right;
+}
+
+.nxtPrevBtn matStepperPrevious{
+    margin-right: 13px;
+}
+.percentage{
+    float: right;
+    margin-right: 2%;
+    font-size: x-large;
+    font-weight: 600;
+}
+/* .asteric-mark{
+    color: #ff0000;
+  } */

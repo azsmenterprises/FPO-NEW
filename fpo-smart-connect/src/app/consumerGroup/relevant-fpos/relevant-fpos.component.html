@@ -1,0 +1,108 @@
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"> Relevant FPOs</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <!-- <div class="card shadow mb-4"> -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-white"> FPO details</h6>
+                </div>
+                <div class="card-body table-card mat-elevation-z8" [hidden]='dataSource?.data.length!=0'>
+                    <div style="text-align: center;padding: 28px;">No Data</div>
+                </div>
+                <div class="card-body table-card mat-elevation-z8" [hidden]='dataSource?.data.length==0'>
+                    <table class="table" mat-table [dataSource]="dataSource" matSort >
+                        <ng-container matColumnDef="slNo">
+                            <th mat-header-cell *matHeaderCellDef>Sl No. </th>
+                            <!-- <td mat-cell *matCellDef="let i=index"> {{i+1}} </td> -->
+
+                            <td mat-cell *matCellDef="let element; let i = index;">
+                                {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }}
+                            </td>
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="dist">
+                            <th mat-header-cell *matHeaderCellDef> District </th>
+                            <td mat-cell *matCellDef="let element">{{element.FPOData?.district}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fpoName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="csMail">
+                            <th mat-header-cell *matHeaderCellDef> Mail Id </th>
+                            <td mat-cell *matCellDef="let element"> {{element.FPOData?.fpoMailId}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="csMobNo">
+                            <th mat-header-cell *matHeaderCellDef> Mobile No. </th>
+                            <td mat-cell *matCellDef="let element">{{element.FPOData?.fpoContactNo}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="csCity">
+                            <th mat-header-cell *matHeaderCellDef> City </th>
+                            <td mat-cell *matCellDef="let element">{{element.FPOData?.block}} </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell *matCellDef="let element;let i = index">
+                                <button class="btn btn-primary" style="margin-right: 7px;" data-toggle="modal" 
+                                data-target="#approveConsumer" (click)='getCSIndexToApprove(i,"approve")'>Approve</button>
+                                <button class="btn btn-danger" data-toggle="modal" 
+                                data-target="#rejectModal" (click)='getCSIndexToApprove(i,"reject")'>Reject</button>
+                            </td>
+                        </ng-container> -->
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    </table>
+                    <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 15,20]" [length]="pagelength"
+                        showFirstLastButtons ></mat-paginator>
+
+                </div>
+
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="approveConsumer" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="ModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure to approve this consumer ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)='approveOrRejectConsumer()'>Approve</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+

@@ -1,0 +1,1195 @@
+<div class="container-fluid">
+    <!-- <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><strong style="color: blue;">Home</strong>/ Profile Update/Financial and
+            Legal</li>
+    </ol> -->
+
+    <div class="mybox">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Financial & Scheme Assistance Details</label>
+                </strong>
+            </span>
+        </div>
+        <br>
+        <div class="row bg-light">
+            <div class="fpoName bg-light row">
+                <u>Account Details</u>
+            </div>
+            <br>
+            <div class="bg-light">
+                <div class="" style="background-color: #e2eae8 !important;padding:2%">
+                    <form [formGroup]="accountDetails" (ngSubmit)="accountDetailsSubmit()">
+                        <div class="row">
+                            <div class="col-md-4 ">
+                                <label>Financial Year <span class="asteric-mark">*</span> :</label>
+                                <select class="form-control" formControlName='year'>
+                                    <option value="" selected>--Select--</option>
+                                    <option value="2020-2021">2020-2021</option>
+                                    <option value="2021-2022">2021-2022</option>
+                                    <option value="2022-2023">2022-2023</option>
+                                    <option value="2023-2024">2023-2024</option>
+                                    <option value="2024-2025">2024-2025</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">FPO owns Bank account<span class="asteric-mark">*</span>
+                                    ?</label>
+                                <select name="" class="form-control" formControlName='haveBankAccount'
+                                    (change)='bankAccSelect()'>
+                                    <option value="" selected disabled>--Select--</option>
+                                    <option value="yes" [selected]='accountDetails.value.haveBankAccount=="Yes"'>Yes
+                                    </option>
+                                    <option value="no" [selected]='accountDetails.value.haveBankAccount=="No"'>No
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" *ngIf='bankAccSelectShow'>
+                                <label for="">Bank Name</label>
+                                <select name="" class="form-control" formControlName='bankName'
+                                    (change)='fetchBranchName()'>
+                                    <option value="" disabled selected>--Select--</option>
+                                    <option *ngFor='let bank of allBankNames' value='{{bank._id}}'
+                                        [selected]="bank._id==accountDetails.value.bankName">{{bank._id}}</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-4" *ngIf='bankAccSelectShow'>
+                                <label for="">Branch Name</label>
+                                <select name="" class="form-control" formControlName='branchName'>
+                                    <option value="" disabled>--Select--</option>
+                                    <option *ngFor='let branch of branchName' value="{{branch._id}}"
+                                        [selected]="branch._id==accountDetails.value.branchName">{{branch._id}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" *ngIf='bankAccSelectShow'>
+                                <label for="">Account Number</label>
+                                <input type='number' class="form-control" formControlName='accountNo'
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                    placeholder="Enter Account Number Only" minlength="9" maxlength="18"
+                                    pattern="[0-9]{1,18}" (input)="onAccountNoInput($event)" numbersOnly required />
+
+                                <div *ngIf="accountDetails.controls.accountNo.errors?.pattern" class="alerterr">
+                                    * Invalid account no.
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngIf='bankAccSelectShow'>
+                                <label for="">PAN Number Of The FPO</label>
+                                <input type='text' class="form-control" formControlName='panNo' minlength="10"
+                                    maxlength="10" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                                    oninput="this.value = this.value.toUpperCase()" placeholder="Enter PAN Number">
+                                <div *ngIf="accountDetails.controls.panNo.errors?.pattern" class="alerterr">
+                                    * Invalid PAN no.
+                                </div>
+                            </div>
+
+                            <div class="col-md-4" *ngIf='bankAccSelectShow'>
+                                <label for="">TAN Number</label>
+                                <input type='text' class="form-control" formControlName='tanNo'
+                                    pattern="[A-Z]{4}[0-9]{5}[A-Z]{1}" minlength="10" maxlength="10"
+                                    oninput="this.value = this.value.toUpperCase()" placeholder="Enter TAN Number">
+                                <div *ngIf="accountDetails.controls.tanNo.errors?.pattern" class="alerterr">
+                                    * Invalid TAN no.
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngIf='bankAccSelectShow'>
+                                <label for="">Digital Transaction Percentage <b>(in %)<span
+                                            class="asteric-mark">*</span> </b></label>
+                                <div class="input-group">
+                                    <input type='number' class="form-control" formControlName='transactionPercentages'
+                                        min="1" max="100" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- <div class="col-md-4">
+                            <label for="">Do you have a trade license?</label>
+                            <select name="" class="form-control" formControlName='haveTradeLicence'
+                                (change)='haveLicenceSelect()'>
+                                <option value="undefined" disabled selected>--Select--</option>
+                                <option value="Yes" [selected]='accountDetails.value.haveTradeLicence=="Yes"'>Yes
+                                </option>
+                                <option value="No" [selected]='accountDetails.value.haveTradeLicence=="No"'>No
+                                </option>
+                            </select>
+                        </div> -->
+
+                            <!-- <div class="col-md-4" *ngIf='haveLicenceSelectShow'>
+                            <label for="">Please mention the trade license number</label>
+                            <input type='number' class="form-control" formControlName='tradeLicenceNo'>
+                        </div> -->
+
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-success float-right" mat-raised-button type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <br>
+
+        <!-- FIXME: Fix the file upload -->
+        <!-- <div class="bg-light row ">
+            <div class="fpoName row bg-light">
+                <u>Documents upload</u>
+            </div><br>
+            <div class="container-fluid row">
+                <div class="col-md-4">
+                    <label for="">Please click a photograph of the Registration certificate of FPO</label>
+                    <input type="file" accept="image/*" (change)='imageDetailsFetch($event.target)'
+                        class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="">Memorandum of Association</label>
+                    <input type="file" accept="image/*" (change)='imageDetailsFetch1($event.target)'
+                        class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="">Articles of Association</label>
+                    <input type="file" accept="image/*" (change)='imageDetailsFetch2($event.target)'
+                        class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="">Audited balance sheet 2019-20</label>
+                    <input type="file" accept="image/*" (change)='imageDetailsFetch3($event.target)'
+                        class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="">Audited balance sheet 2018-19</label>
+                    <input type="file" accept="image/*" (change)='imageDetailsFetch4($event.target)'
+                        class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="">Audited Balance sheet 2017-18</label>
+                    <input type="file" accept="image/*" (change)='imageDetailsFetch5($event.target)'
+                        class="form-control">
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <button class="btn btn-success pull-right" mat-raised-button
+                    (click)='finalUploadFiles()'>Update</button>
+            </div>
+        </div> -->
+        <br>
+
+        <!-- <div class="row">
+
+            <div class="bg-light ">
+                <div class="row bg-light">
+
+                    <div class="bg-light fpoName row">
+                        <u>Financial Year wise Turnover Data <span class="asteric-mark">*</span> :
+                        </u>
+                    </div><br>
+                    <div *ngIf='finYearWiseData?.length==0||!finYearWiseData' style="text-align: center;width: 100%;">
+                        <p>No Data</p>
+                    </div>
+                    <div *ngIf='finYearWiseData?.length>0'>
+                        <div class="col-md-12 tableBox" *ngFor='let finYearData of finYearWiseData;let i=index;'>
+                            <table class="table table-bordered table-striped myTable" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th>Financial year
+                                        </th>
+                                        <th>Turnover(In Lakhs)</th>
+                                        <th>Upload Audited Turnover Report (img/pdf)</th>
+                                        <th>FPO Manaement Cost</th>
+                                        <th>Other Costs</th>
+                                        <th>Income</th>
+                                        <th>Action</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="date" class="form-control" #finYear value="{{finYearData.finYear}}" >
+                                            <select name="" class="form-control" #finYear>
+                                                <option value="undefined" disabled>--Select--</option>
+                                                <option value="2022-2023" [selected]='finYearData.finYear=="2022-2023"'>
+                                                    2022-2023</option>
+                                                <option value="2023-2024" [selected]='finYearData.finYear=="2023-2024"'>
+                                                    2023-2024</option>
+                                                <option value="2024-2025" [selected]='finYearData.finYear=="2024-2025"'>
+                                                    2024-2025</option>
+                                                <option value="2025-2026" [selected]='finYearData.finYear=="2025-2026"'>
+                                                    2025-2026</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" class="form-control" #turnoverAmount
+                                                value="{{finYearData.turnoverAmount}}">
+                                        </td>
+                                        <td><input type="file" class="form-control" #fpoAudit type="file"
+                                                accept="image/*" (change)='imageDetailsFetch5($event.target)'
+                                                value="{{finYearData.fpoAudit}}">
+                                        </td>
+                                        <td><input type="number" class="form-control" #fpoManagementCost
+                                                value="{{finYearData.fpoManagementCost}}" disabled>
+                                        </td>
+                                        <td><input type="number" class="form-control" #otherCost
+                                                value="{{finYearData.otherCost}}" disabled></td>
+                                        <td><input type="number" class="form-control" #income
+                                                value="{{finYearData.income}}" disabled>
+                                        </td>
+                                        <td><button class="btn btn-success brdDirBtn"
+                                                (click)="finYearDetailsUpdate(finYearData._id,finYear.value,turnoverAmount.value,fpoAudit.value,fpoManagementCost.value)">Update</button>
+                                            <button class="btn btn-danger" style="float: right;"
+                                                (click)='deleteField2(i)' *ngIf='finYearData.delete'>Delete</button>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-danger" style="float: right;"
+                                                (click)='deleteRowfinYear(finYearData._id)'
+                                                *ngIf='!finYearData.delete'>Delete</button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <button class="btn btn-primary addMoreBtn pull-right" (click)='AddFieldsToFinYearData()'>Add
+                    </button>
+                </div>
+            </div>
+        </div> -->
+
+        <form [formGroup]="finyeardata">
+            <div class="row bg-light">
+                <div class="fpoName">
+                    Financial Year wise Turnover Data <span class="asteric-mark">*</span> :
+                </div>
+                <div class="row bg-light">
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>Financial Year <span class="asteric-mark">*</span></label>
+                        <select class="form-control" formControlName="finYear">
+                            <option value="" selected>--Select--</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label> Turnover (in INR)<span class="asteric-mark">*</span></label>
+                        <input type="number" class="form-control" formControlName="turnoverAmount"
+                            placeholder="Enter Turnover amount" maxlength="15" pattern="[0-9]{1,15}"
+                            (input)="onTurnoverAmount($event)" numbersOnly required />
+                        <!-- oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]{18}" numbersOnly required /> -->
+
+                    </div>
+                    <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>Profit %</label>
+                        <select class="form-control" formControlName="profit">
+                            <option value="" selected>--Select--</option>
+                            <option value="<0.5% -0"> <0.5% -0 </option>
+                            <option value="0.5-0.9% - 1">0.5-0.9% - 1</option>
+                            <option value="1-1.49% - 2">1-1.49% - 2</option>
+                            <option value="1.5-2 % - 3">1.5-2 % - 3</option>
+                            <option value=" >2 % - 4"> >2 % - 4</option>
+                        </select>
+                    </div> -->
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>Upload Audited Balance Sheet (Pdf/jpeg)<span class="asteric-mark">*</span></label>
+                        <input type="file" class="form-control" accept="application/pdf" (change)='pdfFileFetch($event)'
+                            formControlName='fpoAudit'>
+                    </div>
+                    <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>FPO Manaement Cost</label>
+                        <input type="number" class="form-control" formControlName="fpoManagementCost"
+                            placeholder="Enter FPO management cost" />
+                    </div> -->
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-primary text-white"
+                                (click)="AddFinYearData()"><strong>{{FinVal}}</strong></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-light">
+                    <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>Other Costs</label>
+                        <input type="number" class="form-control" formControlName="otherCost"
+                            placeholder="Enter Other cost" />
+                    </div>
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>Income</label>
+                        <input type="number" class="form-control" formControlName="income" placeholder="Entr Income" />
+                    </div> 
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <div class="mt-4">
+                            <button Button type="button" 
+                                class="btn btn-primary text-white"
+                                (click)="AddFinYearData()"><strong>{{FinVal}}</strong></button>
+                        </div>
+                    </div>-->
+
+                </div>
+                <div class="row bg-light" *ngIf='finYearWiseData?.length>0'>
+                    <table class="table table-bordered table-hover text-center">
+                        <tr class="border-1">
+                            <th scope="col">Financial Year</th>
+                            <th scope="col">Turnover(In Lakhs)</th>
+                            <!-- <th scope="col">Profit</th> -->
+                            <th scope="col">Audited Turnover Report</th>
+                            <!-- <th scope="col">FPO Manaement Cost</th>
+                            <th scope="col">Other Costs</th>
+                            <th scope="col">Income</th> -->
+                            <th scope="col" class="text-center">Edit</th>
+                            <th scope="col" class="text-center">Delete</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let x of finYearWiseData;index as i">
+
+                                <td>{{x.finYear}}</td>
+                                <td>{{x.turnoverAmount}}</td>
+                                <!-- <td>{{x.profit}}</td> -->
+                                <td *ngIf="x?.turnOverRepUploaded == true">Uploaded &nbsp;
+                                    <a href="{{x?.turnOverFilePath}}" download target="_blank"><i class="fa fa-eye"
+                                            aria-hidden="true"></i></a>
+                                <td *ngIf="x?.turnOverRepUploaded == false || x.turnOverRepUploaded == undefined">Not
+                                    uploaded</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-warning" (click)="editFinDetails(x)"><i
+                                            class="fa fa-pencil" aria-hidden="true"></i></button>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-danger text-white" (click)="deleteFinDetails(x)"><i
+                                            class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="row bg-light">
+                <div class="fpoName">
+                    Financial Year wise Profit & Loss Data <span class="asteric-mark">*</span> :
+                </div>
+                <div class="row bg-light">
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>Financial Year <span class="asteric-mark">*</span></label>
+                        <select class="form-control" formControlName="finYear1">
+                            <option value="" selected>--Select--</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label>Profit %<span class="asteric-mark">*</span></label>
+                        <select class="form-control" formControlName="profit">
+                            <option value="" selected>--Select--</option>
+                            <option value="0.5% -0"> 0.5% </option>
+                            <option value="0.5-0.9% ">0.5-0.9% </option>
+                            <option value="1-1.49% ">1-1.49% </option>
+                            <option value="1.5-2 % ">1.5-2 % </option>
+                            <option value=" >2 % "> >2 % </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label style="white-space: nowrap;">Upload Audited P & L Statement(pdf/jpeg)<span
+                                class="asteric-mark">*</span></label>
+                        <input type="file" class="form-control" accept="application/pdf"
+                            (change)='pdfFileFetch1($event)' formControlName='fpoAuditPL'>
+                    </div>
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-primary text-white"
+                                (click)="AddPLData()"><strong>{{PLVal}}</strong></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-light" *ngIf='finYearWiseData1?.length>0'>
+                    <table class="table table-bordered table-hover text-center">
+                        <tr class="border-1">
+                            <th scope="col">Financial Year</th>
+                            <th scope="col">Profit</th>
+                            <th scope="col">Audited P&L Report</th>
+                            <th scope="col" class="text-center">Edit</th>
+                            <th scope="col" class="text-center">Delete</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let x of finYearWiseData1;index as i">
+
+                                <td>{{x.finYear1}}</td>
+                                <td>{{x.profit}}</td>
+                                <td *ngIf="x?.turnOverRepUploaded1 == true">Uploaded &nbsp;
+                                    <a href="{{x?.turnOverFilePath1}}" download target="_blank"><i class="fa fa-eye"
+                                            aria-hidden="true"></i></a>
+                                <td *ngIf="x?.turnOverRepUploaded1 == false || x.turnOverRepUploaded1 == undefined">Not
+                                    uploaded</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-warning" (click)="editPLDetails(x)"><i
+                                            class="fa fa-pencil" aria-hidden="true"></i></button>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-danger text-white" (click)="deletePLDetails(x)"><i
+                                            class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+        </form>
+        <br><br>
+
+        <div class="row">
+            <div class="bg-light row">
+                <div class="bg-light fpoName ">
+                    <u>Schemes covered in <span class="asteric-mark">*</span>:</u>
+                </div>
+
+                <form [formGroup]="equityData">
+                    <div class="row bg-light">
+                        <div class="fpoName">
+                            Equity Guarantee Scheme <span class="asteric-mark">*</span> :
+                        </div>
+                        <div class="row bg-light">
+                            <div class="row bg-light">
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Equity Grant Availed <span class="asteric-mark">*</span></label>
+                                    <select class="form-control" formControlName="haveAvailedEquityGrant"
+                                        (change)="equityscheme()">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Status</label>
+                                    <select class="form-control" formControlName="status">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Applied">Applied</option>
+                                        <option value="Availed already">Availed already</option>
+                                        <option value="Yet to Apply">Yet to Apply</option>
+                                    </select>
+                                </div> -->
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='equityType'>
+                                    <label>Name of Granting Organization <span class="asteric-mark">*</span></label>
+                                    <input type="text" class="form-control" formControlName="nameOfOrg"
+                                        placeholder="Enter Name of Org" pattern="[^\d]*" required />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='equityType'>
+                                    <label>Year Of Equity Availed <span class="asteric-mark">*</span></label>
+                                    <select class="form-control" formControlName="YearOfEquity">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="2020-2021">2020-2021</option>
+                                        <option value="2021-2022">2021-2022</option>
+                                        <option value="2022-2023">2022-2023</option>
+                                        <option value="2023-2024">2023-2024</option>
+                                        <option value="2024-2025">2024-2025</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='equityType'>
+                                    <label>Amount of Equity Grant Availed <span class="asteric-mark">*</span></label>
+                                    <input type="number" class="form-control" formControlName="Amount"
+                                        placeholder="Enter Amount of equity grant" maxlength="9" pattern="[0-9]{1,9}"
+                                        (input)="NoAmountEquityGrant($event)" numbersOnly required />
+                                    <!-- oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]{18}" numbersOnly  
+                                        placeholder="Enter Amount of equity grant" /> -->
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='equityType'>
+                                    <label>Purpose Of Grant utilization <span class="asteric-mark">*</span></label>
+                                    <input type="text" class="form-control" formControlName="PurposeOfGrantutilization"
+                                        placeholder="Enter Purpose of Grant Utilization" />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='equityType'>
+                                    <div class="mt-4">
+                                        <button Button type="button" class="btn btn-primary text-white"
+                                            (click)="AddEquityData()"><strong>{{equityVal}}</strong></button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row bg-light" *ngIf="equityListDataArray.length >0">
+                            <table class="table table-bordered table-hover text-center">
+                                <tr class="border-1">
+                                    <th scope="col">Equity Grant availed</th>
+                                    <!-- <th scope="col">Status</th> -->
+                                    <th scope="col">Name of Granting Organization</th>
+                                    <th scope="col">Year Of Equity Availed</th>
+                                    <th scope="col">Amount Of equity Grant Availed</th>
+                                    <th scope="col">Purpose Of Grant utilization</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let x of equityListDataArray">
+                                        <td>{{x.haveAvailedEquityGrant}}</td>
+                                        <!-- <td>{{x.status}}</td> -->
+                                        <td>{{x.nameOfOrg}}</td>
+                                        <td>{{x.YearOfEquity}}</td>
+                                        <td>{{x.Amount}}</td>
+                                        <td>{{x.PurposeOfGrantutilization}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-warning" (click)="editEquityDetails(x)"><i
+                                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger text-white"
+                                                (click)="deleteEquityDetails(x)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+                <form [formGroup]="creditData">
+                    <div class="row bg-light">
+                        <div class="fpoName">
+                            Credit Guarantee Scheme <span class="asteric-mark">*</span>:
+                        </div>
+                        <div class="row bg-light" *ngIf="hideCreditScheme">
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Credit Guarantee Availed <span class="asteric-mark">*</span></label>
+                                <select class="form-control" formControlName="haveAvailedCreditGrant"
+                                    (change)="creditscheme()">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Status</label>
+                                <select class="form-control" formControlName="status">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Applied">Applied</option>
+                                    <option value="Availed already">Availed already</option>
+                                    <option value="Yet to Apply">Yet to Apply</option>
+                                </select>
+                            </div> -->
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='creditType'>
+                                <label>Name Of Scheme <span class="asteric-mark">*</span></label>
+                                <input type="text" class="form-control" formControlName="nameOfOrg"
+                                    placeholder="Enter Name of Scheme" required />
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='creditType'>
+                                <label>Year of Credit Guarantee Availed <span class="asteric-mark">*</span></label>
+                                <select class="form-control" formControlName="YearOfCreditavailed">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="2020-2021">2020-2021</option>
+                                    <option value="2021-2022">2021-2022</option>
+                                    <option value="2022-2023">2022-2023</option>
+                                    <option value="2023-2024">2023-2024</option>
+                                    <option value="2024-2025">2024-2025</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='creditType'>
+                                <label>Value Of Credit Covered <span class="asteric-mark">*</span></label>
+                                <input type="number" class="form-control" formControlName="Amount"
+                                    placeholder="Enter Value of Credit Covered" maxlength="9" pattern="[0-9]{1,9}"
+                                    (input)="NoValueCreditCovered($event)" numbersOnly required />
+                                <!-- minlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]{18}" numbersOnly  
+                               
+                                    placeholder="Enter Value of Credit Covered" /> -->
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='creditType'>
+                                <label>Name Of Faciliting Bank <span class="asteric-mark">*</span></label>
+                                <input type="text" class="form-control" formControlName="Bankname"
+                                    placeholder="Enter Name of Bank" />
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='creditType'>
+                                <div class="mt-4">
+                                    <button Button type="button" class="btn btn-primary text-white"
+                                        (click)="AddCreditData()"><strong>{{creditVal}}</strong></button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row bg-light" *ngIf="creditListDataArray.length >0">
+                            <table class="table table-bordered table-hover text-center">
+                                <tr class="border-1">
+                                    <th scope="col">Credit Grant Availed</th>
+                                    <!-- <th scope="col">Status</th> -->
+                                    <th scope="col">Name of Scheme</th>
+                                    <th scope="col">Year Of Credit Availed</th>
+                                    <th scope="col">Value of Credit Covered</th>
+                                    <th scope="col">Name of Bank</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let x of creditListDataArray">
+                                        <td>{{x.haveAvailedCreditGrant}}</td>
+                                        <!-- <td>{{x.status}}</td> -->
+                                        <td>{{x.nameOfOrg}}</td>
+                                        <td>{{x.YearOfCreditavailed}}</td>
+                                        <td>{{x.Amount}}</td>
+                                        <td>{{x.Bankname}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-warning" (click)="editCreditDetails(x)"><i
+                                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger text-white"
+                                                (click)="deleteCreditDetails(x)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+                <form [formGroup]="otherData">
+                    <div class="row bg-light">
+                        <div class="fpoName">
+                            Other Financial Aid <span class="asteric-mark">*</span>:
+                        </div>
+                        <div class="row bg-light">
+
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Other Financial Aid Availed <span class="asteric-mark">*</span></label>
+                                <select class="form-control" formControlName='financialAid' (change)="finAidType()">
+                                    <option value="" disabled selected>Select An Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 col-form-label" *ngIf='aidType'>
+                                <label> Type Of Financial Aid <span class="asteric-mark">*</span></label>
+                                <select class="form-control" formControlName="financialAidType">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Government scheme">Government Scheme</option>
+                                    <option value=" Other grant"> Other Grant</option>
+                                </select>
+                            </div>
+
+                            <!-- <div class="col-sm-2 col-md-3 col-form-label" *ngIf='aidType'>
+                                <label>Scheme Name</label>
+                                <input type="text" class="form-control" formControlName="schemeName"
+                                    placeholder="Enter Scheme" required />
+                            </div> -->
+                            <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Status</label>
+                                <select class="form-control" formControlName="status">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Applied">Applied</option>
+                                    <option value="Availed already">Availed already</option>
+                                    <option value="Yet to Apply">Yet to Apply</option>
+                                </select>
+                            </div> -->
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='aidType'>
+                                <label> Name Of Scheme/ Grant <span class="asteric-mark">*</span></label>
+                                <input type="text" class="form-control" formControlName="nameOfOrg"
+                                    placeholder="Enter Name of Organization" />
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='aidType'>
+                                <label>Amount Of Grant <span class="asteric-mark">*</span></label>
+                                <input type="number" class="form-control" formControlName="Amount"
+                                    placeholder="Enter Amount of Grant" maxlength="9" pattern="[0-9]{1,9}"
+                                    (input)="NoAmountOfGrant($event)" numbersOnly required />
+                                <!-- oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]{18}" numbersOnly  
+                                
+                                    placeholder="Enter Amount of Grant" /> -->
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf='aidType'>
+                                <label>Purpose of Financial Aid Utilization <span class="asteric-mark">*</span></label>
+                                <input type="text" class="form-control" formControlName="Purpose1"
+                                    placeholder="Enter Purpose" />
+                            </div>
+                            <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Other financial aid  availed</label>
+                                <select class="form-control" formControlName="financialAid  ">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div> -->
+
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <div class="mt-4">
+                                    <button Button type="button" class="btn btn-primary text-white"
+                                        (click)="AddOtherData()"><strong>{{otherVal}}</strong></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bg-light" *ngIf="otherListDataArray?.length >0">
+                            <table class="table table-bordered table-hover text-center">
+                                <tr class="border-1">
+                                    <th scope="col">Other financial Aid Availed</th>
+                                    <th scope="col">Type Of Financial Aid</th>
+                                    <!-- <th scope="col">Scheme Name</th> -->
+                                    <th scope="col">Name Of Organization</th>
+                                    <th scope="col">Amount Of Grant</th>
+                                    <th scope="col">Purpose</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let x of otherListDataArray">
+                                        <td>{{x.financialAid}}</td>
+                                        <td>{{x.financialAidType}}</td>
+                                        <!-- <td>{{x.schemeName}}</td> -->
+                                        <td>{{x.nameOfOrg}}</td>
+                                        <td>{{x.Amount}}</td>
+                                        <td>{{x.Purpose1}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-warning" (click)="editOtherDetails(x)"><i
+                                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger text-white"
+                                                (click)="deleteOtherDetails(x)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!-- <div class="row" style="background-color: #e2eae8 !important;padding:2%"> -->
+
+                <!-- <div class="row bg-light">
+                                <div class="row bg-light">
+                                    <div class="fpoName">
+                                        Equity Guarantee Scheme <span class="asteric-mark">*</span> :
+                                    </div>
+                                </div>
+                                <div *ngIf='fpoData?.equityGrant?.length==0' style="width: 100%;text-align: center;">
+                                    <p style="text-align: center;">No data</p>
+                                </div>
+                                <div class="tableBox" *ngIf='fpoData?.equityGrant?.length>0'>
+                                    <table class="table table-bordered table-striped myTable" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl. No</th>
+                                                <th>Equity Grant availed </th>
+                                                <th>Status</th>
+                                                <th>Name of Granting Organization</th>
+                                                <th> Year Of Equity Availed</th>
+                                                <th>Amount of equity grant availed</th>
+                                                <th>Purpose of Grant utilization</th>
+                                                <th>Action</th>
+                                                <th>Delete</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let scheme of fpoData?.equityGrant;let i=index;">
+                                                <td>{{i+1}}</td>
+                                                <td><select name="" id="" #haveAvailedEquityGrant class='form-control'>
+                                                        <option value="undefined">--Select--</option>
+                                                        <option value="yes"
+                                                            [selected]='scheme.haveAvailedEquityGrant=="yes"'>
+                                                            yes</option>
+                                                        <option value="no"
+                                                            [selected]='scheme.haveAvailedEquityGrant=="no"'>
+                                                            no
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="" id="" #status class='form-control'>
+                                                        <option value="undefined">--Select--</option>
+                                                        <option value="Applied" [selected]='scheme.status=="Applied"'>
+                                                            Applied</option>
+                                                        <option value=" Availed already"
+                                                            [selected]='scheme.status==" Availed already"'>
+                                                            Availed already
+                                                        </option>
+                                                        <option value="Yet to Apply"
+                                                            [selected]='scheme.status=="Yet to Apply"'>
+                                                            Yet to Apply
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td><input class='form-control' type="text" #nameOfOrg
+                                                        value="{{scheme.nameOfOrg}}">
+                                                </td>
+                                                <td>
+                                                    
+                                                    <select name="" id="" #YearOfEquity class='form-control'>
+                                                        <option value="undefined">--Select--</option>
+                                                        <option value="2021-2022"
+                                                            [selected]='scheme.YearOfEquity=="2021-2022"'>
+                                                            2021-2022</option>
+                                                        <option value="2022-2023"
+                                                            [selected]='scheme.YearOfEquity=="2022-2023"'>
+                                                            2022-2023
+                                                        </option>
+                                                        <option value="2023-2024"
+                                                            [selected]='scheme.YearOfEquity=="2023-2024"'>
+                                                            2023-2024
+                                                        </option>
+                                                    </select>
+                                                </td>
+
+                                                <td><input class='form-control' type="number" #Amount
+                                                        value="{{scheme.Amount}}">
+                                                </td>
+
+
+                                                <td>
+                                                    <input class='form-control' type="text" #PurposeOfGrantutilization
+                                                        value="{{scheme.PurposeOfGrantutilization}}">
+
+                                                </td>
+
+                                                <td><button class="btn btn-success brdDirBtn"
+                                                        (click)="equityGrantUpdate(i,haveAvailedEquityGrant.value,nameOfOrg.value,status.value,Amount.value,YearOfEquity.value,PurposeOfGrantutilization.value)">Update</button>
+
+
+                                                </td>
+                                                <td><button class="btn btn-danger" style="float: right;"
+                                                        (click)='deleteField1(i)' *ngIf='scheme.delete'>Delete</button>
+                                                    <button class="btn btn-danger" style="float: right;"
+                                                        (click)='deleteRowEquity(scheme.index)'
+                                                        *ngIf='!scheme.delete'>Delete</button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button *ngIf='fpoData?.equityGrant?.length>=0 && fpoData?.equityGrant?.length<3'
+                                    class="btn btn-primary addMoreBtn pull-right" (click)='AddFields1()'>Add
+                                </button>
+
+                            </div> -->
+
+                <!-- <div class="row bg-light">
+                                <div class="row bg-light">
+                                    <div class="fpoName">
+                                        Credit Guarantee Scheme
+                                    </div>
+                                </div>
+                                <div *ngIf='fpoData?.creditGrant?.length==0' style="width: 100%;text-align: center;">
+                                    <p style="text-align: center;">No data</p>
+                                </div>
+                                <div class="tableBox" *ngIf='fpoData?.creditGrant?.length>0'>
+                                    <table class="table table-bordered table-striped myTable" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl. No</th>
+                                                <th>Credit Guarantee availed</th>
+                                                <th>Status</th>
+                                                <th>Name of Scheme</th>
+                                                <th>Year of Credit Guarantee availed</th>
+                                                <th>Value of Credit Covered</th>
+                                                <th>Name of faciliting Bank</th>
+                                                <th>Action</th>
+                                                <th>delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cred of fpoData?.creditGrant;let i=index;">
+                                                <td>{{i+1}}</td>
+                                                <td><select name="" id="" #haveAvailedCreditGrant class='form-control'>
+                                                        <option value="undefined">--Select--</option>
+                                                        <option value="yes"
+                                                            [selected]='cred.haveAvailedCreditGrant=="yes"'>
+                                                            yes</option>
+                                                        <option value="no"
+                                                            [selected]='cred.haveAvailedCreditGrant=="no"'>
+                                                            no
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="" id="" #status class='form-control'>
+                                                        <option value="undefined">--Select--</option>
+                                                        <option value="Applied" [selected]='cred.status=="Applied"'>
+                                                            Applied</option>
+                                                        <option value=" Availed already"
+                                                            [selected]='cred.status==" Availed already"'>
+                                                            Availed already
+                                                        </option>
+                                                        <option value="Yet to Apply"
+                                                            [selected]='cred.status=="Yet to Apply"'>
+                                                            Yet to Apply
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td><input class='form-control' type="text" #nameOfOrg
+                                                        value="{{cred.nameOfOrg}}">
+                                                </td>
+                                                <td>
+                                                    <select name="" id="" #YearOfCreditavailed class='form-control'>
+                                                        <option value="undefined">--Select--</option>
+                                                        <option value="2021-2022"
+                                                            [selected]='cred.YearOfCreditavailed=="2021-2022"'>
+                                                            2021-2022</option>
+                                                        <option value="2022-2023"
+                                                            [selected]='cred.YearOfCreditavailed=="2022-2023"'>
+                                                            2022-2023
+                                                        </option>
+                                                        <option value="2023-2024"
+                                                            [selected]='cred.YearOfCreditavailed=="2023-2024"'>
+                                                            2023-2024
+                                                        </option>
+                                                    </select>
+                                                </td>
+
+                                                <td><input class='form-control' type="number" #Amount
+                                                        value="{{cred.Amount}}">
+                                                </td>
+
+
+                                                <td>
+                                                    <input class='form-control' type="text" #Bankname
+                                                        value="{{cred.Bankname}}">
+
+                                                </td>
+                                              
+
+                                                <td><button class="btn btn-success brdDirBtn"
+                                                        (click)="creditGuranteeUpdate(i,haveAvailedCreditGrant.value,nameOfOrg.value,status.value,Amount.value,YearOfCreditavailed.value,Bankname.value)">Update</button>
+
+
+                                                </td>
+
+                                                <td><button class="btn btn-danger" style="float: right;"
+                                                        (click)='deleteField3(i)' *ngIf='cred.delete'>Delete</button>
+                                                    <button class="btn btn-danger" style="float: right;"
+                                                        (click)='deleteRowCredit(cred.index)'
+                                                        *ngIf='!cred.delete'>Delete</button>
+                                                </td>
+                                            </tr>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button *ngIf='fpoData?.creditGrant?.length>=0 &&  fpoData?.creditGrant?.length<2'
+                                    class="btn btn-primary addMoreBtn pull-right" (click)='AddFields3()'>Add
+                                </button>
+
+                            </div> -->
+
+                <!-- <div class="row bg-light">
+                                <div class="row bg-light">
+                                    <div class="fpoName">
+                                        Other Scheme
+                                    </div>
+                                </div>
+                                <div *ngIf='fpoData?.otherScheme?.length==0' style="width: 100%;text-align: center;">
+                                    <p style="text-align: center;">No data</p>
+                                </div>
+                                <div class="tableBox" *ngIf='fpoData?.otherScheme?.length>0'>
+                                    <table class="table table-bordered table-striped myTable" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl. No</th>
+                                                <th>Scheme </th>
+                                                <th>Name of organisation</th>
+                                                <th>Status</th>
+                                                <th>Amount of grant</th>
+                                                <th> Purpose</th>
+                                                <th>Action</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let other of fpoData?.otherScheme;let i=index;">
+                                                <td>{{i+1}}</td>
+                                                <td><input class='form-control' type="text" #schemeName
+                                                        value={{other.schemeName}}>
+                                                </td>
+                                                <td><input class='form-control' type="text" #nameOfOrg
+                                                        value="{{other.nameOfOrg}}">
+                                                </td>
+
+                                                <td>
+                                                    <select name="" id="" #status class='form-control'>
+                                                        <option value="undefined">--Select--</option>
+                                                        <option value="Applied" [selected]='other.status=="Applied"'>
+                                                            Applied</option>
+                                                        <option value=" Availed already"
+                                                            [selected]='other.status==" Availed already"'>
+                                                            Availed already
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td><input class='form-control' type="number" #Amount
+                                                        value="{{other.Amount}}">
+                                                </td>
+
+                                                <td>
+                                                    <input class='form-control' type="text" #Purpose1
+                                                        value="{{other.Purpose1}}">
+                                                </td>
+
+
+                                                <td><button class="btn btn-success brdDirBtn"
+                                                        (click)="otherSchemeUpdate(i,schemeName.value,nameOfOrg.value,status.value,Amount.value,Purpose1.value)">Update</button>
+
+
+                                                </td>
+
+
+
+
+                                                <td><button class="btn btn-danger" style="float: right;"
+                                                        (click)='deleteField5(i)' *ngIf='other.delete'>Delete</button>
+                                                    <button class="btn btn-danger" style="float: right;"
+                                                        (click)='deleteRowOther(other.index)'
+                                                        *ngIf='!other.delete'>Delete</button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button *ngIf='fpoData?.otherScheme?.length>=0'
+                                    class="btn btn-primary addMoreBtn pull-right" (click)='AddFields5()'>Add
+                                </button>
+
+                            </div> -->
+
+                <!-- </div> -->
+
+
+                <div class="bg-light fpoName row">
+                    <u>Loan Availed <span class="asteric-mark">*</span></u>
+                </div>
+                <br>
+                <div class="bg-light">
+                    <div class="" style="background-color: #e2eae8 !important;padding:2%">
+                        <form [formGroup]="schemesAvailed">
+                            <div class="row">
+                                <div class="col-md-4 col-form-label">
+                                    <label for="">Term/ Working Capital Loan/ CC Limit Availed By FPO<span
+                                            class="asteric-mark">*</span> ?</label>
+                                    <select name="" class="form-control" formControlName='haveAvailedLoan'
+                                        (change)='showDiv4()'>
+                                        <option value="Yes" [selected]='accountDetails.value.haveAvailedLoan=="Yes"'>
+                                            Yes
+                                        </option>
+                                        <option value="No" [selected]='accountDetails.value.haveAvailedLoan=="No"'>No
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 " *ngIf='showDiv4Show'>
+                                    <label> Financial Year <span class="asteric-mark">*</span> :</label>
+                                    <select class="form-control" formControlName='year'>
+                                        <option value="" selected>--Select--</option>
+                                        <option value="2020-2021">2020-2021</option>
+                                        <option value="2021-2022">2021-2022</option>
+                                        <option value="2022-2023">2022-2023</option>
+                                        <option value="2023-2024">2023-2024</option>
+                                        <option value="2024-2025">2024-2025</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='showDiv4Show'>
+                                    <label> Upload Sanction Letter(Pdf only)<span class="asteric-mark">*</span></label>
+                                    <input type="file" class="form-control" accept="application/pdf"
+                                        (change)='sanctionPdf($event)' formControlName='fpoAudit'>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-form-label" *ngIf='showDiv4Show'>
+                                    <label for="">Source of Loan/Working Capital /CC Limit <span
+                                            class="asteric-mark">*</span></label>
+                                    <input type='text' class="form-control" formControlName='sourceOfLoan'>
+                                </div>
+                                <div class="col-md-4 col-form-label" *ngIf='showDiv4Show'>
+                                    <label for="">Amount of Loan/Working Capital /CC Limit (in INR). <span
+                                            class="asteric-mark">*</span></label>
+                                    <input type='number' class="form-control" formControlName='loanAmount'
+                                        placeholder="Enter Loan Amount of Loan/Working Capital Limit" maxlength="20"
+                                        pattern="[0-9]{1,20}" (input)="NoLoanAmountLimit($event)" numbersOnly
+                                        required />
+                                    <!-- oninput="this.value = this.value.replace(/[^0-9]/g, '');" pattern="[0-9]{18}" numbersOnly required> -->
+                                </div>
+                                <div class="col-md-4 col-form-label" *ngIf='showDiv4Show'>
+                                    <label for="">Status of Loan Account <span class="asteric-mark">*</span></label>
+                                    <select name="" class="form-control" formControlName='loanClosedStatus'
+                                        (change)='showDiv5()'>
+                                        <option value="Ongoing"
+                                            [selected]='accountDetails.value.loanClosedStatus=="Ongoing"'>
+                                            Ongoing
+                                        </option>
+                                        <option value="Closed"
+                                            [selected]='accountDetails.value.loanClosedStatus=="Closed"'>Closed
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-form-label" *ngIf='showDiv5Show'>
+                                    <label>Status of Closure <span class="asteric-mark">*</span> :</label>
+                                    <select class="form-control" formControlName='statusOfClosure'>
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Successfully closed">Successfully Closed</option>
+                                        <option value="Defaulted">Defaulted</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 col-form-label" *ngIf='showDiv4Show'>
+                                    <label for="">Has The FPO Missed Any EMI or Repayment Schedule? <span
+                                            class="asteric-mark">*</span></label>
+                                    <select name="" class="form-control" formControlName='haveMissedEMI'
+                                        (change)='showDiv6()'>
+                                        <option value="Yes" [selected]='accountDetails.value.haveMissedEMI=="Yes"'>
+                                            Yes
+                                        </option>
+                                        <option value="No" [selected]='accountDetails.value.haveMissedEMI=="No"'>No
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-form-label" *ngIf='showDiv6Show'>
+                                    <label for="">If yes,Mention The Reason For Missing EMI/Repayment
+                                        Schedule. <span class="asteric-mark">*</span></label>
+                                    <input type='text' class="form-control" formControlName='missingEMIReason'>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- <div class="container-fluid row subDiv" *ngFor='let finYearData of schemes;let i=index;'>
+                </div> -->
+
+
+                <div class="bg-light row">
+                    <div class="form-group col-md-12" style="width: 100%;float: right;">
+                        <button class="btn btn-success float-right" mat-raised-button (click)="schemesAvailedSubmit()"
+                            type="submit">Update</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

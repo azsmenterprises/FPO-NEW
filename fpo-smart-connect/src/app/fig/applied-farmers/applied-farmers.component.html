@@ -1,0 +1,117 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"> Applied Farmers</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-6">
+
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Farmer Details</h6>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <div style="text-align: center;">
+                        <p *ngIf='farmerRegData.length==0'>No Data</p>
+                    </div>
+                    
+                    <div class=' table-responsive' *ngIf='farmerRegData.length>0'>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="bg-light">
+                                <tr class="border-1">
+                                    <td>Sl.</td>
+                                    <td>Farmer Name</td>
+                                    <td>Farmer Id</td>
+                                    <td>Registration Date</td>
+                                    <td>District</td>
+                                    <td>Block</td>
+                                    <td>Village</td>
+                                    <td>Mobile No</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let x of farmerRegData ;index as i ">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ x.farmerName }}</td>
+                                <td>{{ x.farmerId }}</td>
+                                <td>{{x.regDate | date:"dd/MM/yyyy"}}</td>
+                                <td>{{x.fullFarmerData.address.district}}</td>
+                                <td>{{x.fullFarmerData.address.block}}</td>
+                                <td>{{x.fullFarmerData.address.village}}</td>
+                                <td>{{x.fullFarmerData.VCHMOBILENO}}</td>
+                                <td>
+
+                                    <button class="btn btn-outline-warning" data-toggle="modal"
+                                       (click)='getApproveDataForApprove(x)' *ngIf='x.status!="approved"' data-target="#approveModal" data-backdrop="static" data-keyboard="false">
+                                        Approve
+                                    </button> 
+                                    <button class="btn btn-outline-warning" *ngIf='x.status=="approved"' [disabled]='x.status=="approved"'><i class="fa fa-check" aria-hidden="true" style="color:green;margin-top: 0.1rem;"></i>
+                                        Approved
+                                    </button>
+                                    &nbsp;
+
+                                    <button class="btn btn-outline-primary" type="submit" data-toggle="modal"
+                                    (click)='getApproveDataForApprove(x)' *ngIf='x.forwardToFpoByFig!=true' data-target="#forwardToFpo" data-backdrop="static" data-keyboard="false">
+                                        Forward to FPO
+                                    </button>
+                                    <button class="btn btn-outline-warning" *ngIf='x.forwardToFpoByFig==true' [disabled]='x.forwardToFpoByFig==true'><i class="fa fa-check" aria-hidden="true" style="color:green;margin-top: 0.1rem;"></i>
+                                        Forward to FPO
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="approveModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="ModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure to approve this farmer ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)='approve()'>Approve</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="forwardToFpo" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="ModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure to forward the farmer enrollment to FPO ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)='forwardToFpo()'>Forward</button>
+            </div>
+        </div>
+    </div>
+</div>

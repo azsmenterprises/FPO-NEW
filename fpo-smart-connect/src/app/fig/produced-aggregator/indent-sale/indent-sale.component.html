@@ -1,0 +1,114 @@
+<div class="container-fluid">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><strong style="color: blue;">Home</strong>/ Produced Aggregator/Register Produced</li>
+    </ol>
+
+    <div class="mybox">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Register Produced</label>
+                </strong>
+            </span>
+        </div>
+        <br>
+        <div class="container row">
+            <form [formGroup]='figIndentSaleForm' (ngSubmit)='onSubmit()'>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 mb">
+                            <label>Select FPO</label>
+                            <select class="form-control" formControlName='fpo'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option [ngValue]="fpo" *ngFor='let fpo of fpos'>{{fpo.fpoName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Select Farmer</label>
+                            <select class="form-control" formControlName='farmer'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="addedByFIG">Self</option>
+                                <option [ngValue]="farmer" *ngFor='let farmer of farmers'>
+                                    {{farmer.farmerName}}({{farmer.farmerId}})</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Type</label>
+                            <select class="form-control" formControlName='type'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="Crop">Crop</option>
+                                <option value="Seed">Seed</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Year</label>
+                            <select class="form-control" formControlName='year'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="{{years}}">{{years}}</option>
+                                <option value="{{years-1}}">{{years-1}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Season</label>
+                            <select class="form-control" formControlName='season'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="Rabi">Rabi</option>
+                                <option value="Kharif">Kharif</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Crop Catagory</label>
+                            <select class="form-control" formControlName='cropCatagory'
+                                (change)='getCropAccToCatagory()'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="{{cat.cropCatagory}}" *ngFor='let cat of cropCatData'>
+                                    {{cat.cropCatagory}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Crop</label>
+                            <select class="form-control" formControlName='crop' (change)='getAllVarieties()'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option [ngValue]="crop" *ngFor='let crop of crops'>{{crop.Crop_Name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Variety</label>
+                            <select class="form-control" formControlName='variety'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option [ngValue]="variety" *ngFor='let variety of varieties'>{{variety.Variety_Name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='figIndentSaleForm.value.type=="Seed"'>
+                            <label>Class</label>
+                            <select class="form-control" formControlName='class'>
+                                <option value="" disabled selected>--Select--</option>
+                                <option value="Certified">Certified</option>
+                                <option value="Foundation">Foundation</option>
+                                <option value="Breader">Breader</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Quantity(In Qtl)</label>
+                            <input type="number" class="form-control" formControlName='quantity'>
+                        </div>
+                        <div class="col-md-3 mb">
+                            <label>Harvesting Date</label>
+                            <input type='date' onkeydown="return false" class="form-control"
+                                formControlName='harvestingDate' (change)='compareDate()'>
+                        </div>
+                        <div class="col-md-3 mb" *ngIf='uploadPictureShow'>
+                            <label>Upload pic of product</label>
+                            <input type="file" class="form-control" formControlName='picOfProduct'>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" [disabled]='figIndentSaleForm.invalid'>Submit</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+<!-- <h1 mat-dialog-title>Produced Sale </h1>
+
+<div mat-dialog-content >
+    <mat-form-field appearance="fill">
+        <table>
+            <thead>
+            <tr>
+                <td>Catagory</td>
+                <td>Crop</td>
+                <td>Variety</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{data.catagory}}</td>
+                <td>{{data.cropName}}</td>
+                <td>{{data.varietyName}}</td>
+            </tr>
+        </tbody>
+        </table>
+        <form [formGroup]="saleFormData">
+            <mat-label>Sale To</mat-label>
+            <input matInput formControlName='saleTo'>
+
+        </form>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)='dialogueClose()'>No Thanks</button>
+    <button mat-button cdkFocusInitial>Ok</button>
+</div> -->
+
+<mat-toolbar>
+    <span>Produced Sale</span>
+    <span class="fill-remaining-space"></span>
+    <span style="flex: 1 1 auto;"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="dialogueClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar><br>
+<mat-card class="mat-elevation-z5">
+    Available quantity: <b>{{data.quantity}}</b>&nbsp;Qtl
+    <!-- <span style="flex: 1 1 auto;"></span>
+    Crop:{{data.cropName}} -->
+</mat-card>
+<form [formGroup]="saleFormData" class="normal-form" (ngSubmit)='onSubmit()'>
+    <mat-grid-list cols="2" rowHeight="262px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden">
+                <mat-form-field>
+                    <input type="number" formControlName='saleQuantity' matInput placeholder="Sold quantity*">
+
+                    <mat-error>Enter quantity less than available quantity</mat-error>
+                    <mat-error *ngIf="saleFormData.controls['saleQuantity'].errors?.required">This field is mandatory.
+                    </mat-error>
+                </mat-form-field>
+                 
+                <mat-form-field  *ngIf="!showTraders">
+                    <!-- <input formControlName='saleTo' matInput placeholder="Sale To"> -->
+                       
+                        <mat-select class="form-control" formControlName='saleTo'matInput placeholder="Sold to*"  (selectionChange)="saleToOpt($event.value)">
+                          <mat-option *ngFor="let data of dataSource" [value]="data.traderName">{{data.traderName}}</mat-option>
+                        
+                          <mat-option value="others">Others</mat-option>
+                        </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="showTraders" >
+                    <input type="text" formControlName='saleTo' matInput placeholder="Enter Name*">
+
+                    <mat-error>Enter Sale To</mat-error>
+                    <mat-error *ngIf="saleFormData.controls['saleTo'].errors?.required">This field is mandatory.
+                    </mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field formControlName="others1" *ngIf="selectedValue=='others'">
+                    <input type="text" class="form-control"  matInput>
+                    <mat-error>This field is mandatory</mat-error>
+                </mat-form-field> -->
+                <mat-form-field>
+                    <input type="text" #input formControlName='mobileNo' matInput placeholder="Mobile No.">
+                    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    <!-- <mat-error >{{getErrorMessage()}}</mat-error> -->
+                    <mat-error *ngIf="saleFormData.controls['mobileNo'].errors?.required">This field is mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="saleFormData.controls['mobileNo'].errors?.maxlength">10 numbers allowed
+                    </mat-error>
+                    <mat-error *ngIf="saleFormData.controls['mobileNo'].errors?.minlength">10 numbers allowed
+                    </mat-error>
+                    <mat-error *ngIf="saleFormData.controls['mobileNo'].errors?.pattern">Only numbers are allowed
+                    </mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field>
+            <input formControlName="mobile" matInput placeholder="Mobile*">
+            <mat-error *ngIf="service.form.controls['mobile'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="service.form.controls['mobile'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
+          </mat-form-field> -->
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <!-- <div class="add-bottom-padding">
+            <mat-radio-group >
+              <mat-radio-button value="1">Male</mat-radio-button>
+              <mat-radio-button value="2">Female</mat-radio-button>
+              <mat-radio-button value="3">Other</mat-radio-button>
+            </mat-radio-group>
+          </div> -->
+                <mat-form-field>
+                    <input type="text" formControlName='amountCollected' matInput placeholder="Sales Value(INR)">
+                    <mat-error *ngIf='saleFormData.controls["amountCollected"].errors?.pattern'>Only numbers are allowed</mat-error>
+                    <mat-error *ngIf='saleFormData.controls["amountCollected"].errors?.required'>This field is mandatory.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" formControlName='saleDate' placeholder="Sale Date"
+                        readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker disabled="false"></mat-datepicker>
+                </mat-form-field>
+                <!-- <div class="add-bottom-padding">
+                    <mat-checkbox formControlName="isPermanent">Permanent Employee</mat-checkbox>
+                </div> -->
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]='saleFormData.invalid'>Submit</button>
+                    <button type="button" mat-raised-button color="warn" (click)="onClear()">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

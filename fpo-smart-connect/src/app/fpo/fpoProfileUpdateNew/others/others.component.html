@@ -1,0 +1,446 @@
+<div class="container-fluid">
+
+    <div class="mybox">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Others Details</label>
+                </strong>
+            </span>
+        </div>
+        <div class="bg-light row">
+            <div class="mybox col-md-12">
+
+                <form [formGroup]="recordForm">
+                    <div class="row">
+                        <div class="col-sm-3 col-md-4 col-form-label">
+                            <h1>Record Management <span class="asteric-mark">*</span>:</h1>
+                        </div><br><br><br>
+                        <div class="row ">
+                            
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Type of Record<span class="asteric-mark">*</span>:</label>
+                                    <select class="form-control" formControlName="recordType"  (change)="recordStatus()">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Register">Register</option>
+                                        <option value="Document">Document</option>
+                                        <option value="SoftwareLicense">Software License</option>
+                                        <option value="ReceiptBook">Receipt Book</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label"  *ngIf='show'>
+                                    <label>Register<span class="asteric-mark">*</span>:</label>
+                                    <select class="form-control" formControlName="doc">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="sales register">Sales Register</option>
+                                        <option value="Purchase register">Purchase Register</option>
+                                        <option value="Stock register">Stock Register</option>
+                                        <option value=" Assets register"> Assets Register</option>    
+                                        <option value="Meeting & attendance register">Meeting & Attendance Register</option>
+                                        <option value="Member application file/ membership register Books of account">Member Application File/ Membership Register</option>
+                                        <option value=" Books of Account"> Books of Account</option>
+
+                                    </select>
+                            </div>
+                                <div class="col-sm-2 col-md-3 col-form-label"  *ngIf='show1'>
+                                    <label>Document<span class="asteric-mark">*</span>:</label>
+                                    <select class="form-control" formControlName="doc" >
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Procurement SoP">Procurement SoP</option>
+                                        <option value="HR Policy">HR Policy</option>
+                                        <option value="Marketing SoP">Marketing SoP</option>
+                                        <option value="MoA">MoA</option>
+                                        <option value="AoA">AoA</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='show2'>
+                                    <label>Software License<span class="asteric-mark">*</span>:</label>
+                                    <select class="form-control" formControlName="doc"  >
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Tally">Tally</option>
+                                        <option value="MIS">MIS</option>
+                                        <option value="other accounting S/w">Other Accounting S/w</option>
+                                        <option value="Other software">Other Software</option>
+                                    </select>
+                            </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf='show3'>
+                                    <label>Receipt Book<span class="asteric-mark">*</span>:</label>
+                                    <select class="form-control" formControlName="doc"  >
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Cash book">Cash Book</option>
+                                        <option value="Payment Voucher">Payment Voucher</option>
+                                        <option value="Other receipt book">Other Receipt Book</option>
+                                    </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label"  *ngIf='show'>
+                                <label> Upload Register(Pdf Only)<span class="asteric-mark">*</span>:</label>
+                                <input type="file" class="form-control" accept="application/pdf" (change)='uploadReceipt($event)'
+                                    formControlName='receiptUpload'>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label"  *ngIf='show1'>
+                                <label> Upload Document(Pdf Only)<span class="asteric-mark">*</span>:</label>
+                                <input type="file" class="form-control" accept="application/pdf" (change)='uploadReceipt($event)'
+                                    formControlName='receiptUpload'>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label"  *ngIf='show2'>
+                                <label> Upload Software License(Pdf Only)<span class="asteric-mark">*</span>:</label>
+                                <input type="file" class="form-control" accept="application/pdf" (change)='uploadReceipt($event)'
+                                    formControlName='receiptUpload'>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label"  *ngIf='show3'>
+                                <label> Upload Receipt Book(Pdf Only)<span class="asteric-mark">*</span>:</label>
+                                <input type="file" class="form-control" accept="application/pdf" (change)='uploadReceipt($event)'
+                                    formControlName='receiptUpload'>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <div class="mt-4">
+                                    <button Button type="button" class="btn btn-primary text-white"
+                                        (click)="AddRecordData()"><strong>{{recordBtnVal}}</strong></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row bg-light" *ngIf="records?.length >0">
+                        <table class="table table-bordered table-hover text-center">
+                            <tr class="border-1">
+                                <th scope="col">Type of Record</th>
+                                <th scope="col">Doc</th>
+                                <th scope="col">Uploaded Doc</th>
+
+                                <th scope="col" class="text-center">Edit</th>
+                                <th scope="col" class="text-center">Delete</th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let x of records">
+                                    <td>{{x.recordType}}</td>
+                                    <td>{{x.doc}}</td>
+                                    <td>{{x.receiptUpload}}</td>
+
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-warning" (click)="editRecordDetails(x)"><i
+                                                class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-danger text-white"
+                                            (click)="deleteRecordDetails(x)"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+        <br>
+        <div class="bg-light row">
+            <div class="mybox col-md-12">
+                <form [formGroup]="trainingDetailsForm">
+                    <div class="row">
+                        <div class="fpoName">
+                            Capacity Building Activities :
+                        </div><br><br><br>
+                        <div class="row ">
+                            <div class="row ">
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Training/Exposure Visit:</label>
+                                    <select class="form-control" formControlName="trainingOrExposureVisit">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Training">Training</option>
+                                        <option value="Exposure Visit">Exposure Visit</option>
+                                        <option value="Industry emersion program">Industry Emersion Program</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Date of Training:</label>
+                                    <!-- <input type="date" [min]="minDate |date : 'dd-MM-yyyy'" class="form-control"
+                                        formControlName="year" /> -->
+                                    <input type="date" class="form-control" formControlName="year" />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Purpose of Training:</label>
+                                    <input type="text" class="form-control" formControlName="trainingPurpose"
+                                        placeholder="Enter training purpose" minlength="1" maxlength="300"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Location of Training:</label>
+                                    <input type="text" class="form-control" formControlName="location"
+                                        placeholder="Enter training location" />
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-4 col-md-3 col-form-label">
+                                    <label>No Of Male Attendees:</label>
+                                    <input type="number" class="form-control" formControlName="maleAttendeesNo"
+                                    class="form-control"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                    placeholder="Enter no. of male attendees" maxlength="9" pattern="[0-9]{1,9}" (input)="onNoMaleInput($event)" numbersOnly required/>
+                                    
+                                        
+                                </div>
+                                <div class="col-sm-4 col-md-3 col-form-label">
+                                    <label>No Of Female Attendees:</label>
+                                    <input type="number" class="form-control" formControlName="femaleAttendeesNo"
+                                    minlength="1" maxlength="10" class="form-control"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                    placeholder="Enter no. of female attendees" maxlength="9" pattern="[0-9]{1,9}" (input)="onNoaFemaleInput($event)" numbersOnly required/>
+                                    
+                                       
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Organised By:</label>
+                                    <input type="text" class="form-control" formControlName="organisedBy"
+                                        placeholder="Enter Purpose of Grant Utilization" minlength="1" maxlength="300"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <div class="mt-4">
+                                        <button Button type="button" class="btn btn-primary text-white"
+                                            (click)="addTraingDetails()"><strong>{{trainingBtnVal}}</strong></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bg-light" *ngIf="trainingDataList?.length >0">
+                            <table class="table table-bordered table-hover text-center">
+                                <tr class="border-1">
+                                    <th scope="col">Training/Exposure Visit</th>
+                                    <th scope="col">Date of Training</th>
+                                    <th scope="col">Purpose of Training</th>
+                                    <th scope="col">Location of Training</th>
+                                    <th scope="col">No Of Male Attendees</th>
+                                    <th scope="col">No Of Female Attendees</th>
+                                    <th scope="col">Organised By</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let x of trainingDataList">
+                                        <td>{{x.trainingOrExposureVisit}}</td>
+                                        <td>{{x.year | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{x.trainingPurpose}}</td>
+                                        <td>{{x.location}}</td>
+                                        <td>{{x.maleAttendeesNo}}</td>
+                                        <td>{{x.femaleAttendeesNo}}</td>
+                                        <td>{{x.organisedBy}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-warning" (click)="editTrainingDetails(x)"><i
+                                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger text-white"
+                                                (click)="deleteTrainingDetails(x)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- <div style="width: 100%; text-align: center;" *ngIf='trainingDatas?.length==0||!trainingDatas'>
+                    <p>No Data</p>
+                </div>
+                <div class="tableBox" *ngIf='trainingDatas?.length>0'>
+                    <table class="table table-striped myTable" id="myTable">
+                        <thead>
+                            <tr>
+                                <td>Training/Exposure visit</td>
+                                <td>Date of Training</td>
+                                <td>Purpose of training</td>
+                                <td>Location of Training</td>
+                                <td>No. of male attendees</td>
+                                <td>No. of female attendees</td>
+                                <td>Organised by</td>
+                                <td>Action</td>
+                                <td>Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let trainingData of trainingDatas;let i=index;">
+                                <td>
+                                        <select #trainingOrExposureVisit class="form-control">
+                                            <option value="Training" [selected]='trainingData.trainingOrExposureVisit=="Training"'>Training</option>
+                                            <option value="Exposure Visit" [selected]='trainingData.trainingOrExposureVisit=="Exposure Visit"'>Exposure Visit</option>
+                                            <option value="Industry emersion program" [selected]='trainingData.trainingOrExposureVisit=="Industry emersion program"'>
+                                                Industry emersion program
+                                            </option>
+                                        </select>
+                                </td>
+                                <td><input type='date' class="form-control" #year value="{{trainingData.year}}"></td>
+                                <td><input type="text" class="form-control" #trainingPurpose
+                                        value="{{trainingData.trainingPurpose}}">
+                                </td>
+                                <td><input type="text" class="form-control" #location value="{{trainingData.location}}">
+                                </td>
+                                <td><input type="text" class="form-control" #maleAttendeesNo
+                                        value="{{trainingData.maleAttendeesNo}}"></td>
+                                <td><input type="text" class="form-control" #femaleAttendeesNo
+                                        value="{{trainingData.femaleAttendeesNo}}">
+                                </td>
+                                <td><input type="text" class="form-control" #organisedBy
+                                        value="{{trainingData.organisedBy}}"></td>
+                                <td><button class="btn btn-success brdDirBtn"
+                                        (click)="trainingDataUpdate(trainingData._id,trainingOrExposureVisit.value,year.value,trainingPurpose.value,location.value,maleAttendeesNo.value,femaleAttendeesNo.value,organisedBy.value)">Update</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" style="float: right;" (click)='deleteField1(i)' *ngIf='trainingData.delete'>Delete</button>
+                                    <button class="btn btn-danger" style="float: right;" (click)='deleteTrainingRow(trainingData._id)'
+                                    *ngIf='!trainingData.delete' >Delete</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <button  class="btn btn-primary addMoreBtn pull-right" (click)='AddFields1()'>Add
+                </button> -->
+
+            </div>
+        </div>
+        <br><br>
+
+        <div class="bg-light row">
+            <div class="mybox col-md-12">
+
+                <form [formGroup]="rewardForm">
+                    <div class="row">
+                        <div class="fpoName">
+                            Reward/ Recognition :
+                        </div><br><br><br>
+                        <div class="row ">
+                            <div class="row ">
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Type of Reward/Recognition:</label>
+                                    <select class="form-control" formControlName="type">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Reward">Reward</option>
+                                        <option value="Award">Award</option>
+                                        <option value="Felicitation">Felicitation
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Received in Year:</label><br>
+                                    <input type="number" class="form-control" formControlName='year' 
+                                    oninput="this.value = this.value.replace(/[^0-4]/g, '');"
+                                    placeholder="Enter year" maxlength="4" pattern="[0-4]{1,4}" (input)="onReceivedYear($event)" numbersOnly required/>
+                                    
+                                    <div class="alerterr"
+                                        *ngIf='rewardForm.controls.year.errors?.minLength||rewardForm.controls.year.errors?.maxLength'>
+                                        Year should be of 4 digits
+                                    </div>
+                                    <div class="alerterr"
+                                        *ngIf='rewardForm.controls.year.errors?.max||rewardForm.controls.year.errors?.min'>
+                                        Year is not valid
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Rewarding Organization:</label>
+                                    <input type="text" class="form-control" formControlName="awardedOrganisation"
+                                        placeholder="Enter Rewarding Organization" minlength="1" maxlength="300"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <div class="mt-4">
+                                        <button Button type="button" class="btn btn-primary text-white"
+                                            (click)="addAwardDetails()"><strong>{{rewardBtnVal}}</strong></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bg-light" *ngIf="awards?.length >0">
+                            <table class="table table-bordered table-hover text-center">
+                                <tr class="border-1">
+                                    <th scope="col">Reward/Recognition</th>
+                                    <th scope="col">Received in Year</th>
+                                    <th scope="col">Rewarding Organization</th>
+
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let x of awards">
+                                        <td>{{x.type}}</td>
+                                        <td>{{x.year}}</td>
+                                        <td>{{x.awardedOrganisation}}</td>
+
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-warning" (click)="editAwardDetails(x)"><i
+                                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger text-white"
+                                                (click)="deleteAwardDetails(x)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                <!-- <div class="row subBox">
+                    <div class="row fpoName">
+                        Reward/Recognition :
+                    </div>
+                </div>
+                <div style="width: 100%; text-align: center;" *ngIf='awards?.length==0||!awards'>
+                    <p>No Data</p>
+                </div>
+                <div class="tableBox" *ngIf='awards?.length>0'>
+                    <table class="table table-striped myTable" id="myTable">
+                        <thead>
+                            <tr>
+                                <td>Type of Reward/Recognition</td>
+                                <td>Received in year</td>
+                                <td>Rewarding/Recognition</td>
+                                <td>Action</td>
+                                <td>Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let award of awards;let i=index;">
+                                <td>
+                                    <select #type class="form-control">
+                                        <option value="Reward"[selected]='award.type=="Reward"'>Reward</option>
+                                        <option value="Award" [selected]='award.type=="Award"'>Award</option>
+                                        <option value="Felicitation" [selected]='award.type=="Felicitation"'>Felicitation
+                                        </option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control" #year value="{{award.year}}"></td>
+                                <td><input type="text" class="form-control" #awardedOrganisation
+                                        value="{{award.awardedOrganisation}}"></td>
+                                <td><button class="btn btn-success brdDirBtn"
+                                        (click)="awardUpdate(i,type.value,year.value,awardedOrganisation.value)">Update</button>
+                                </td>
+                                <td>
+                                <button class="btn btn-danger" style="float: right;" (click)='deleteField2(i)' *ngIf='award.delete'>Delete</button>
+                                    <button class="btn btn-danger" style="float: right;" (click)='deleteRowAward(award.i)'
+                                    *ngIf='!award.delete'>Delete</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <button  class="btn btn-primary addMoreBtn pull-right" (click)='AddFields2()'>Add
+                </button> -->
+
+            </div>
+        </div> <br><br>
+
+    </div>
+
+</div>
+

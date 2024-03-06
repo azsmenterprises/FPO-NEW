@@ -1,0 +1,97 @@
+<div id="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align:center">SET FPO REGISTRATION TARGETS_CBBO</h5>
+                </div><br>
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary">CBBO wise FPO registration target</h5>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]="targetCbboForm">
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="inputEmail4">FINANCIAL YEAR: </label>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <select class="form-control" formControlName="year" (change)="getcbboList()">
+                                <option value="" selected disabled>--Select--</option>
+                                <option value="2023-2024" enabled>2023-2024</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputEmail4"> CBBO: </label>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <select class="form-control" formControlName="cbboName" (change)="fpoList()">
+                                <option value="" disabled>--Select--</option>
+                                <!-- <option *ngFor="let x of getcbboListData"  value="{{x.cbboCode}}:{{x.cbboName}}">{{x.cbboName}}</option> -->
+                                <option *ngFor="let cbboName of getcbboListData" value="{{cbboName}}">{{cbboName.cbboName}}</option>
+                            </select>
+                        </div>
+                        </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-2">
+                            <label for="inputEmail4"> FPO REGISTRATION TARGETS: </label>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="number" class="form-control" id="inputEmail4" formControlName='targets' minlength="1" maxlength="4"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputEmail4"> ACHIEVEMENTS: </label>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" id="inputEmail4" formControlName='achievements' readonly>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <button type="submit" class="btn btn-primary" (click)="cbboTarget()" >ADD</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="col-lg-12 mb-6">
+        <div class="card shadow mb-4">
+            <!-- <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary">IA-CBBO MAPPING TABLE</h4>
+            </div> -->
+            <div class="card-body">
+                <div>
+                    <table border="1" align="center" class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                        <thead class="bg-light">
+                            <tr class="border-1">
+                                <th>Financial Year</th>
+                                <th>CBBO</th>
+                                <th>Fpo Registration Targets</th>
+                                <th>Achievements</th>  
+                                <!-- <th>Edit</th>   -->
+                                <th>Delete</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let data of showcbboTargetData">
+                            <td>{{data.year}}</td>
+                            <td>{{data.cbboName}}</td>
+                            <td>{{data.targets}}</td>
+                            <td>{{data.achievements}}</td>
+                            <!-- <td ><button class="btn btn-outline-danger float-left" (click)="editCbboTarget(data)"><i
+                                class="fa fa-pencil" aria-hidden="true"></i></button></td> -->
+                            <td ><button class="btn btn-outline-danger float-left" (click)="deleteCbboTarget(data)"><i
+                                class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

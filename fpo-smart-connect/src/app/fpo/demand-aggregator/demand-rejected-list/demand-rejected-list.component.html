@@ -1,0 +1,141 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Rejected List of Registered Demand</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-6">
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Search By</h6>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]='demandRejectForm'>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="year">Type <b><sup>*</sup>:</b></label>
+                                <select class="form-control" formControlName='type'>
+                                    <option value="" disabled selected>--Select--</option>
+                                    <option value="Seed">Seed</option>
+                                    <option value="Fertilizer">Fertilizer</option>
+                                    <option value="Insecticides">Insecticides</option>
+                                    <option value="Custome Hiring">Custome Hiring</option>
+                                    <option value="Farm Implement">Farm Implement</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="year">Year <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="year">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="{{year}}">{{year}}</option>
+                                    <option value="{{year-1}}">{{year-1}}</option>
+                                </select>
+                            </div>
+                            <!-- <div class="form-group col-md-3">
+                                <label for="year">Season <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="season">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="Rabi">Rabi</option>
+                                    <option value="Kharif">Kharif</option>
+                                    <option value="Zaid">Zaid</option>
+                                </select>
+                            </div> -->
+                            <div class="form-group col-md-3">
+                                <button (click)="rejectedDemand()" class="btn btn-primary"
+                                    [disabled]='demandRejectForm.invalid' style="margin-top: 15%;">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-lg-12 mb-6" *ngIf='figIndentList && showTable=="Seed"'>
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <!-- <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Indent Details</h6>
+                </div> -->
+                <div class="card-body">
+                    <div style="text-align: center;" *ngIf=' figIndentList.length==0'>
+                        <p>No Data</p>
+                    </div>
+                    <div *ngIf=' figIndentList.length!=0'>
+                        <table border="1" align="center" class=" overflow-y: scroll;"
+                            class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                            <thead class="bg-light">
+                                <tr class="border-1">
+                                    <td>Sl.</td>
+                                    <td>FIG Name</td>
+                                    <td for="year">Category</td>
+                                    <td for="">Crop</td>
+                                    <td>Variety</td>
+                                    <td for="">Quantity</td>
+                                    <!-- <td>View</td> -->
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let x of figIndentList; index as i ">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ x.figName}}</td>
+                                    <td>{{ x.cropCatagory}}</td>
+                                    <td>{{ x.crop.Crop_Name}}</td>
+                                    <td>{{ x.variety.Variety_Name}}</td>
+                                    <td>{{x.quantity}}</td>
+                                    <!-- <td><button class="viewbtn">View Details</button></td> -->
+                                    <!-- <td><button class="aprvbtn" >Approve</button></td> -->
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 mb-6" *ngIf='figIndentList && showTable!="Seed"'>
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <!-- <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Indent Details</h6>
+                </div> -->
+                <div class="card-body">
+                    <div style="text-align: center;" *ngIf=' figIndentList.length==0'>
+                        <p>No Data</p>
+                    </div>
+                    <div *ngIf=' figIndentList.length!=0'>
+                        <table>
+                            <thead class="bg-light">
+                                <tr class="border-1">
+                                    <td>Sl.</td>
+                                    <td>FIG Name</td>
+                                    <td for="year">Item Type</td>
+                                    <td for="">Technical Name</td>
+                                    <td for="year">Brand Name</td>
+                                    <td for="">Quantity</td>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let x of figIndentList; index as i ">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ x.figName}}</td>
+                                <td>{{ x.itemType}}</td>
+                                <td>{{ x.technicalName}}</td>
+                                <td>{{ x.brandName}}</td>
+                                <td>{{x.quantity}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

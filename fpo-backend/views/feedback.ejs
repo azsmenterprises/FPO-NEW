@@ -1,0 +1,470 @@
+
+
+   <%- include('./commons/header.ejs') -%>
+
+
+   <!--/.nav-wrapper-->
+   <div class="card">
+      <div class="container">
+         <div class="signup-content">
+            <div class="row">
+               <div class="col-md-10" style="background: aliceblue">
+                  <form method="POST" id="signup-form20" class="signup-form" name="feedbackForm"
+                     onsubmit="return validateForm()" novalidate
+                     class="ng-pristine ng-invalid ng-invalid-required ng-valid-email">
+
+
+                     <div class="row ">
+                        <div class="col-md-2">
+                           <input type="radio" id="feedback" name="feedback" value="Feedback" ng-model="feedback"
+                              selected>
+                             <label for="feedback">Feedback</label>
+                        </div>
+                        <div class="col-md-2">
+                           <input type="radio" id="feedback" name="greivance" value="Greivance" ng-model="feedback">
+                             <label for="greivance">Greivance</label>
+                        </div>
+                        <div class="col-md-2">
+                           <input type="radio" id="feedback" name="query" value="Query" ng-model="feedback">
+                             <label for="query">Query</label>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <label for="mobNo" style="font-size: inherit;">Mobile No:</label>
+                           <input type="number" class="form-control" name="mobNo" pattern="[7-9]{1}[0-9]{9}"
+                              ng-model="mobNo" ng-required="true">
+                           <div class="has-error" ng-show="feedbackForm.$submitted || feedbackForm.mobNo.$touched"
+                              style="color: red;">
+                              <span ng-show="feedbackForm.mobNo.$error.required">This is a required</span>
+
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <label for="exampleInputEmail1" style="font-size: inherit;">Email address:</label>
+                           <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                              placeholder="name@example.com" ng-model="email" ng-required="true">
+
+                        </div>
+                     </div>
+                     <div class="row" style="margin-left: 21px;">
+
+                        <label for="Textarea">Enter Your {{feedback}}:</label>
+                        <textarea class="form-control" id="Textarea" rows="10" style="margin-top: 10px;"
+                           ng-model="content"></textarea>
+                        </textarea>
+                     </div>
+                     <button type="button" class="btn btn-success float-right"
+                        ng-click='feedbackForm.$valid &&feedBackFormSubmit();'>Submit</button>
+                     <div ng-if='feedbackFormSubmitStatus' style="text-align: center;color: green;">
+                        <p> Your {{feedbackType}} is Submitted successfully</p>
+                     </div>
+
+                  </form>
+               </div>
+               <div class="col-md-2">
+                  <img src="assets\images\feedbackcartoon.jpeg" alt="hgkhk" style="height:400px">
+               </div>
+
+               <br>
+
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+
+   <%- include('./commons/footer.ejs') -%>
+   <script src="assets/js/jquery-2.1.1.min.js"></script>
+   <script src="assets/js/jquery-accessibleMegaMenu.js"></script>
+   <script src="assets/js/framework.js"></script>
+   <script src="assets/js/jquery.flexslider.js"></script>
+   <script src="assets/js/font-size.js"></script>
+   <script src="assets/js/swithcer.js"></script>
+   <script src="theme/js/ma5gallery.js"></script>
+   <script src="assets/js/megamenu.js"></script>
+   <script src="theme/js/easyResponsiveTabs.js"></script>
+   <script src="theme/js/custom.js"></script>
+
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
+   <script src="assets/js/script.js"></script>
+
+   <script src="https://d3js.org/d3.v4.min.js"></script>
+   <script src="https://d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+   <!-- <script src="./StateWiseDistrictData.js"></script> -->
+   <script src="./odishaDistData.js"></script>
+   <script src="d3-tip.js"></script>
+   <!-- <select id='stateList' onchange="onSelectState()"> -->
+   <script>
+      // let stateList = data[0].features.map(d => d.properties.State_Name);
+      // stateList = [...new Set(stateList)];
+      // let stateOptions = `<option selected value='All State'>All State</option>`;
+      // stateList.forEach(d => {
+      //     stateOptions = stateOptions + `<option>${d}</option>`;
+      // });
+      // d3.select("#stateList")
+      //     .html(stateOptions);
+      var format = d3.format(",");
+      // ==========================================State map code start========================================
+      fetchStateWiseFPO()
+      // Fetch all state wise fpo count
+      function fetchStateWiseFPO() {
+         var xhttp = new XMLHttpRequest();
+         var myobj, i = "";
+         var x = ''
+         var y = ''
+         xhttp.onreadystatechange = function () {
+            // ////////console.log(123, JSON.parse(this.responseText));
+            if (this.readyState == 4 && this.status == 200) {
+               stateWiseFpoData = JSON.parse(this.responseText);
+               // for (i in stateWiseFpoData) {
+               //    x += `<tr><td>${i._id}</td><td>${i.fpoName}</td><td>${i.fpoAddress}</td><td>${i.fpoMobileNo}</td></tr>`;
+               // }
+               // // x += '</a>';
+               // document.getElementById("stateWiseFpoData").innerHTML = x;
+            }
+         };
+         xhttp.open("GET", "http://localhost:3000/landRoute/getStateWiseFPO");
+         xhttp.send();
+      }
+      var distName
+      function getFpoDataAccState() {
+         // ////////console.log(8555, distName);
+         var xhttp = new XMLHttpRequest();
+         var myobj, i = "";
+         var x = ''
+         var y = ''
+         xhttp.onreadystatechange = function () {
+            // ////////console.log(123, JSON.parse(this.responseText));
+            if (this.readyState == 4 && this.status == 200) {
+               stateWiseFpoDetails = JSON.parse(this.responseText);
+               // ////////console.log(6565, stateWiseFpoDetails);
+               for (let i = 0; i < stateWiseFpoDetails.length; i++) {
+                  // ////////console.log(9090, stateWiseFpoDetails[i]);
+                  x += `<tr><td>${stateWiseFpoDetails[i].fpoId}</td><td>${stateWiseFpoDetails[i].FPOData.village},${stateWiseFpoDetails[i].FPOData.district}</td><td>${stateWiseFpoDetails[i].FPOData.fpoContactNo}</td><td><i class="fa fa-map-marker" aria-hidden="true" style='font-size: x-large;margin-left: 21%;color: red;'></i></td></tr>`;
+               }
+               // x += '</a>';
+               document.getElementById("stateWiseFpoDetailsOnClick").innerHTML = x;
+            }
+         };
+         xhttp.open("GET", "http://localhost:3000/landRoute/getStateWiseFPOData/" + distName);
+         xhttp.send();
+      }
+      // Set tooltips
+      var tip = d3.tip()
+         .attr('class', 'd3-tip')
+         .offset([-10, 0])
+         .html(function (d) {
+            distName = d.properties.Dist_Name
+            count = 0
+            for (let i = 0; i < stateWiseFpoData.length; i++) {
+               if (d.properties.Dist_Name == stateWiseFpoData[i]._id) {
+                  fpoCount = 0
+                  fpoCount = stateWiseFpoData[i].fpoCount
+               } else {
+                  count++
+               }
+            }
+            if (count == stateWiseFpoData.length) {
+               fpoCount = 0
+            }
+            return "<strong>District: </strong><span class='details'>" + d.properties.Dist_Name + "<br></span>" + "<strong>Total FPOs: </strong><span class='details'>" + (fpoCount) + "</span>";
+         })
+      // ==========================================State map code end========================================
+      var margin = { top: 20, right: 0, bottom: 0, left: 0 },
+         width = 330 - margin.left - margin.right,
+         height = 420 - margin.top - margin.bottom;
+      var color = d3.scaleThreshold()
+         .domain([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120])
+         .range(d3.schemeSet3);
+      var svg = d3.select("#addMap")
+         .append("svg")
+         .attr("width", width + (margin.right + margin.left))
+         .attr("height", height + (margin.top + margin.bottom))
+         .append('g')
+         .attr('class', 'map');
+      let preparedData = odishaData;
+      var projection = d3.geoMercator()
+         .fitExtent([[10, 10], [width, height]], preparedData);
+      var path = d3.geoPath().projection(projection);
+      svg.call(tip);
+      const mainG = svg.append("g")
+         .attr("transform", `translate(${margin.left},${margin.top})`)
+         .attr("class", "states");
+      ready(null, preparedData);
+      function ready(error, data, population) {
+         mainG.selectAll("path")
+            .data(data.features)
+            .enter().append("path")
+            .attr("d", path)
+            .style("fill", d => {
+               return color(Math.floor(Math.random() * 100))
+            })
+            .style('stroke', 'white')
+            .style('stroke-width', 0.3)
+            .style("opacity", 0.8)
+            .on('mouseover', function (d) {
+               tip.show(d);
+               d3.select(this)
+                  .style("opacity", 1)
+                  .style("stroke", "white")
+                  .style("stroke-width", 3);
+            })
+            .on('mouseout', function (d) {
+               tip.hide(d);
+               d3.select(this)
+                  .style("opacity", 0.8)
+                  .style("stroke", "white")
+                  .style("stroke-width", 0.3);
+            });
+      }
+      function onSelectState() {
+         // let preparedData = data[0].features.filter(d => d.properties.State_Name == d3.select("#stateList").node().value);
+         // preparedData = {
+         //     type: "FeatureCollection",
+         //     crs: { type: "name", properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+         //     features: preparedData
+         // }
+         let preparedData = odishaData;
+         if (d3.select("#stateList").node().value == 'All State') {
+            preparedData = data[0];
+         }
+         var projectionData = d3.geoMercator().fitExtent([[10, 10], [width, height]], preparedData);
+         var pathData = d3.geoPath().projection(projectionData);
+         const allPaths = mainG
+            .selectAll("path")
+            .data(preparedData.features);
+         allPaths.enter()
+            .append('path')
+            .merge(allPaths)
+            .style("fill", d => {
+               return color(Math.floor(Math.random() * 100))
+            })
+            .style('stroke', 'white')
+            .style('stroke-width', 0.3)
+            .style("opacity", 0.8)
+            .on('mouseover', function (d) {
+               tip.show(d);
+               d3.select(this)
+                  .style("opacity", 1)
+                  .style("stroke", "white")
+                  .style("stroke-width", 3);
+            })
+            .on('mouseout', function (d) {
+               tip.hide(d);
+               d3.select(this)
+                  .style("opacity", 0.8)
+                  .style("stroke", "white")
+                  .style("stroke-width", 0.3);
+            })
+            .transition()
+            .duration(1000)
+            .attr("d", pathData)
+         allPaths.exit().remove();
+      }
+      // onSelectState();
+      //   ===========================================Count Css ======================================
+      const counters = document.querySelectorAll('.counter');//get all the counters
+      const speed = 400; // The lower the faster
+      counters.forEach(counter => {
+         const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            // Lower inc to slow and higher to slow
+            const inc = ~~(target / speed);
+            // Check if target is reached
+            if (count < target) {
+               // Add inc to count and output in counter
+               counter.innerText = count + inc;
+               // Call function every ms
+               setTimeout(updateCount, 1);
+            } else {
+               counter.innerText = target;
+            }
+         };
+         updateCount();
+      });
+   </script>
+   <script>
+      var loader = document.getElementById("loaderDiv");
+      loader.style.display = "block";
+      // fpo update function
+      function updates() {
+         var xhttp = new XMLHttpRequest();
+         var myobj, i = "";
+         var x = ""
+         var y = ''
+         xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+               loader.style.display = "none";//when it gets data from db loader will be off
+               myobj = JSON.parse(this.responseText);
+               for (i in myobj) {
+                  y += myobj[i].link;
+                  // x += `<li><div class="date"><span>${new Date(myobj[i].fromDAte).getDate()}</span><em>${new Date(myobj[i].fromDAte).getMonth()} ${new Date(myobj[i].fromDAte).getFullYear()}</em></div><div class="list-content" ><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li><br><br><br>`;
+                  // ${myobj[i].url} PUT IN IMG TAG
+                  x += `<li style="max-height: 100px;"><div class="date" style= "font-color:green;"><img style= "border-radius:5px; height:65px; width:80px;" src="theme/images/fpoUpdatesImg.jpeg"></div> <span  style="font-weight:bold;color:green;font-size: 14px;"><em>${new Date(myobj[i].fromDAte).getDate()}</em> / <em>${new Date(myobj[i].fromDAte).getMonth()}<em> / </em>${new Date(myobj[i].fromDAte).getFullYear()}</em></span> <em><div class="list-content"><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></em></li><br><br>`;
+               }
+               document.getElementById("fpoUpdate").innerHTML = x;
+            }
+         };
+         xhttp.open("GET", "http://localhost:3000/landRoute/titleEdit");
+         xhttp.send();
+      }
+      updates();
+      //fpo media function
+      // function media() {
+      //    var xhttp = new XMLHttpRequest();
+      //    var myobj, i = "";
+      //    var x = ""
+      //    var y = ''
+      //    xhttp.onreadystatechange = function () {
+      //       if (this.readyState == 4 && this.status == 200) {
+      //          // loader.style.display = "none";//when it gets data from db loader will be off
+      //          myobj1 = JSON.parse(this.responseText);
+      //          ////////console.log(myobj1);
+      //          for (i in myobj1) {
+      //             y += myobj1[i].link;
+      //             // x += `<li><div class="date"><span>${new Date(myobj[i].fromDAte).getDate()}</span><em>${new Date(myobj[i].fromDAte).getMonth()} ${new Date(myobj[i].fromDAte).getFullYear()}</em></div><div class="list-content" ><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li><br><br><br>`;
+      //             // x += `<li style="max-height: 100px;"><div class="date" style= "font-color:green font-weight: 15px;"><img style= "border-radius:5px; height:65px; width:80px;" src="${myobj1[i].url}"></div> <span  style="font-weight:bold;color:green"><em>${new Date(myobj1[i].fromdate).getDate()}</em> / <em>${new Date(myobj[i].fromdate).getMonth()}<em> / </em>${new Date(myobj[i].fromdate).getFullYear()}</em></span> <em><div class="list-content"><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></em></li><br><br>`;
+      //             x += `<li class="active">
+      //                      <a href="#i" data-toggle="tab">
+      //                         <div class="post-thumbnail">
+      //                            <img class="img-responsive" src="assets/images/img1.jpg" alt="post-thumbnail"/>
+      //                         </div>
+      //                         <h3>India's 10,000 farmers-collective plan may fail without funding reforms. </h3>
+      //                         <h2>Upload date</h2>
+      //                      </a>
+      //                      <hr>
+      //                   </li>`;
+      //          }
+      //          document.getElementById("fpomedia").innerHTML = x;
+      //       }
+      //    };
+      //    xhttp.open("GET", "http://localhost:3001/media");
+      //    xhttp.send();
+      // }
+      // media();
+      // circular notification
+      function tenderList() {
+         var xhttp = new XMLHttpRequest();
+         var myobj, i = "";
+         var x = ''
+         var y = ''
+         xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+               myobj = JSON.parse(this.responseText);
+               for (i in myobj) {
+                  // y +='<>'+ myobj[i].pageId +"</>";
+                  y += myobj[i].link;
+                  // x += '<li>' + '<div class="date"><span>03</span><em>10 2020</em></div>' + ' <div class="list-content" >' + myobj[i].text + '</div>' + "</li>";
+                  x += `<li><div class="date"><span>${new Date(myobj[i].fromDAte).getDate()}</span><em>${new Date(myobj[i].fromDAte).getMonth()} ${new Date(myobj[i].fromDAte).getFullYear()}</em></div><div class="list-content" ><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+                  // x += `<li><div class="date"><img src="${myobj[i].url}"></div><div class="list-content" ><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+               }
+               // x += '</li>';
+               document.getElementById("tenderData").innerHTML = x;
+               // document.getElementById("tenderData").href = y;
+            }
+         };
+         xhttp.open("GET", "http://localhost:3000/landRoute/titleEdit1");
+         xhttp.send();
+      }
+      tenderList();
+      //refDoc
+      function refDoc() {
+         var xhttp = new XMLHttpRequest();
+         var myobj, i = "";
+         var x = ""
+         var y = ""
+         xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+               myobj = JSON.parse(this.responseText);
+               for (i in myobj) {
+                  y += myobj[i].link;
+                  // x += '<li>' + '<div class="list-content">' + myobj[i].text + '</div>' + '</li>';
+                  x += `<li><div class="list-content"><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+                  // ////////console.log(x)
+               }
+               // x += '</a>';
+               document.getElementById("refDoc").innerHTML = x;
+               // document.getElementById("refDoc").href = y;
+            }
+         };
+         xhttp.open("GET", "http://localhost:3000/landRoute/titleEdit2");
+         xhttp.send();
+      }
+      refDoc();
+      // agriServices
+      function agriServices() {
+         var xhttp = new XMLHttpRequest();
+         var myobj, i = "";
+         var x = ' '
+         var y = ''
+         xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+               myobj = JSON.parse(this.responseText);
+               for (i in myobj) {
+                  y += myobj[i].link;
+                  // x += '<li>' + '<div class="list-content"></div>' + myobj[i].text + '</li>';
+                  x += `<li><div class="list-content"><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+               }
+               // x += '</li>';
+               document.getElementById("agriServices").innerHTML = x;
+               // document.getElementById("agriServices").href = y;
+            }
+         };
+         xhttp.open("GET", " https://fpoodisha.nic.in/landRoute/titleEdit3");
+         xhttp.send();
+      }
+      agriServices();
+   </script>
+
+   <!-- fpo media script tag -->
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+   <script src="./script.js"></script>
+   <script>
+      $('.play-icon').click(function () {
+         var video = '<iframe allowfullscreen src="' + $(this).attr('data-video') + '"></iframe>';
+         $(this).replaceWith(video);
+      });
+      $('.play-icon').mousemove(function (e) {
+         var parentOffset = $(this).offset();
+         var relX = e.pageX - parentOffset.left;
+         var relY = e.pageY - parentOffset.top;
+         $(".play-button").css({ left: relX, top: relY });
+      });
+      $('.play-icon').mouseout(function () {
+         $(".play-button").css({ left: '50%', top: '50%' });
+      });
+   </script>
+
+   <!-- ======================================particle js start========================================== -->
+
+   <script src="assets/js/particles.js-master/particles.js"></script>
+   <script src="assets/js/particles.js-master/demo/js/app.js"></script>
+
+   <!-- ======================================particle js end========================================== -->
+
+   <!-- ======================================Fetch Districts,block,gp,village start==================================== -->
+   <script src="/controller/feedback.js"></script>
+
+   <!-- <script src="controller/topbarmenu.js"></script> -->
+
+   <!-- ======================================Fetch Districts,block,gp,village end==================================== -->
+
+
+   <!-- ============================AOS Animation==================================== -->
+   <script>
+      var id = "<%= id %>";
+   </script>
+
+</body>
+
+
+<!-- Mirrored from uxdt.nic.in/wp-content/uploads/templates/template5/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2021 11:45:34 GMT -->
+
+<script src="assets/js/main.js"></script>
+<!--for map heading effect-->
+
+</html>

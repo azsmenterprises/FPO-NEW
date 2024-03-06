@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>FPO ODISHA</title>
+	<!-- <link rel="icon" href="assets/img/new-logo.jpg"> -->
+	<link rel="icon" href="../img/new-logo.jpg">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="assets/images/new-logo.jpg">
+	<link href="assets27/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets27/css/owl.carousel.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets27/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--Photo Gallery-->
+	<link rel="stylesheet" href="assets27/css/jquery.fancybox.min.css" media="screen">
+	<!--AOS Animation-->
+	<link rel="stylesheet" href="assets27/css/aos.css" />
+	<link href="assets27/css/style.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+		integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<!-- <body id="FontAccessibility"> -->
+
+<body ng-app="myapp" ng-controller="ctrl" id="FontAccessibility">
+	<div class="right-box" style="width: 100%;">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="heading-1" style="text-align: center;">Performance Progress</h2>
+					<div class="filter-1 row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-3">
+									<label>PERFORMANCE PROGRESS</label>
+									<select class="form-control" ng-change="onChangeProgess()"
+										ng-model="performanceAuthority">
+										<option value="governance">Governance & Compliance</option>
+										<option value="business">Business Activities</option>
+										<option value="finance">Access to Finance</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<label>FINANCIAL YEAR</label>
+									<select class="form-control" ng-change="showYear()" ng-model="selectyear">
+										<!-- <option value="ALL">Cumulative till date</option> -->
+										<option value="2022-2023">2022-2023</option>
+										<option value="2021-2022">2021-2022</option>
+										<option value="2020-2021">2020-2021</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<label>TYPE OF FPO</label>
+									<select class="form-control" ng-change="showTypes()" ng-model="selectTypes">
+										<option value="3month">
+											< 3Month </option>
+										<option value="11month">3-11Month</option>
+										<option value="1year">1year&above</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<label>TARGET TIMESLOT</label>
+									<select class="form-control" ng-change="showSlots()" ng-model="selectSlots">
+										<option value="April-Sept">April-Sept</option>
+										<option value="Oct-March">Oct-March</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label>AGENCY</label>
+									<select class="form-control" ng-change="showAgency()" ng-model="selectAgency">
+										<option value="ALL">ALL</option>
+										<option value="FDRVC">FDRVC</option>
+										<option value="NABARD">NABARD</option>
+										<option value="NAFED">NAFED</option>
+										<option value="SFAC">SFAC</option>
+										<option value="NCDC">NCDC</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<br>
+					<div ng-If="visible ">
+						<div class="row">
+							<div class="col-md-12">
+								<h2 class="heading-1" style="text-align: center;">{{chartHeader}}</h2>
+							</div>
+							<div class="col-md-12">
+
+								<div class="filter-result">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-3">
+													<div class="r-box">
+														<label>FINANCIAL YEAR</label>
+														<input type="text" class="form-control" value={{yearstatus}}
+															disabled />
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="r-box">
+														<label>TYPE OF FPO</label>
+														<input type="text" class="form-control" value={{typesstatus}}
+															disabled />
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="r-box">
+														<label>TARGET TIMESLOT</label>
+														<input type="text" class="form-control" value={{slotstatus}}
+															disabled />
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="r-box">
+														<label>AGENCY</label>
+														<input type="text" class="form-control" value={{agencystatus}}
+															disabled />
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-4">
+													<div class="chat-box-1">
+														<h4>NABARD</h4>
+														<div class="gauge1"></div>
+														<div class="">
+															<ul class="chart-info row clr">
+																<div class="col-md-4 clr1">
+																	<li>Good</li>
+																</div>
+																<div class="col-md-4 clr2">
+																	<li>Average</li>
+																</div>
+																<div class="col-md-4 clr3">
+																	<li>Poor</li>
+																</div>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="chat-box-1">
+														<h4>NAFED</h4>
+														<div class="gauge2"></div>
+														<div class="">
+															<ul class="chart-info row clr">
+																<div class="col-md-4 clr1">
+																	<li>Good</li>
+																</div>
+																<div class="col-md-4 clr2">
+																	<li>Average</li>
+																</div>
+																<div class="col-md-4 clr3">
+																	<li>Poor</li>
+																</div>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="chat-box-1">
+														<h4>NCDC</h4>
+														<div class="gauge3"></div>
+														<div class="">
+															<ul class="chart-info row clr">
+																<div class="col-md-4 clr1">
+																	<li>Good</li>
+																</div>
+																<div class="col-md-4 clr2">
+																	<li>Average</li>
+																</div>
+																<div class="col-md-4 clr3">
+																	<li>Poor</li>
+																</div>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="chat-box-1">
+														<h4>SFAC</h4>
+														<div class="gauge4"></div>
+														<div class="">
+															<ul class="chart-info row clr">
+																<div class="col-md-4 clr1">
+																	<li>Good</li>
+																</div>
+																<div class="col-md-4 clr2">
+																	<li>Average</li>
+																</div>
+																<div class="col-md-4 clr3">
+																	<li>Poor</li>
+																</div>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="chat-box-1">
+														<h4>FDRVC</h4>
+														<div class="gauge"></div>
+														<div class="">
+															<ul class="chart-info row clr">
+																<div class="col-md-4 clr1">
+																	<li>Good</li>
+																</div>
+																<div class="col-md-4 clr2">
+																	<li>Average</li>
+																</div>
+																<div class="col-md-4 clr3">
+																	<li>Poor</li>
+																</div>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="chat-box-1">
+														<ul class="chart-info" style="text-align: center;">
+															<!-- <li>Good</li>
+															<li>Average</li>
+															<li>Poor</li> -->
+														</ul><br>
+													</div>
+												</div>
+											</div>
+											<svg width="0" height="0" version="1.1" class="gradient-mask"
+												xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient id="gradientGauge">
+														<stop class="color-red" offset="10%" />
+														<stop class="color-yellow" offset="50%" />
+														<stop class="color-green" offset="100%" />
+													</linearGradient>
+												</defs>
+												<defs>
+													<linearGradient id="gradientGauge1">
+														<stop class="color-red" offset="10%" />
+														<stop class="color-yellow" offset="50%" />
+														<stop class="color-green" offset="100%" />
+													</linearGradient>
+												</defs>
+												<defs>
+													<linearGradient id="gradientGauge2">
+														<stop class="color-red" offset="10%" />
+														<stop class="color-yellow" offset="50%" />
+														<stop class="color-green" offset="100%" />
+													</linearGradient>
+												</defs>
+												<defs>
+													<linearGradient id="gradientGauge3">
+														<stop class="color-red" offset="10%" />
+														<stop class="color-yellow" offset="50%" />
+														<stop class="color-green" offset="100%" />
+													</linearGradient>
+												</defs>
+												<defs>
+													<linearGradient id="gradientGauge4">
+														<stop class="color-red" offset="10%" />
+														<stop class="color-yellow" offset="50%" />
+														<stop class="color-green" offset="100%" />
+													</linearGradient>
+												</defs>
+											</svg>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-If="invisible">
+						<div ng-If="showTable">
+							<div class="row" ng-show="selectAgency =='FDRVC'">
+								<div class="col-md-12">
+									<h2 class="heading-1" style="text-align: center;">{{chartHeader}}</h2>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="chat-box-1">
+												<h4>FDRVC</h4>
+												<div class="gauge"></div>
+												<div class="row">
+													<ul class="chart-info row clr">
+														<div class="col-md-3 clr1">
+															<li>Good</li>
+														</div>
+														<div class="col-md-4 clr2">
+															<li>Average</li>
+														</div>
+														<div class="col-md-3 clr3">
+															<li>Poor</li>
+														</div>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='governance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average no. of shareholders mobilized</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td>{{x.presentstatusofAvgshareholdermobilized}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed CEOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedceo + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedceo +"%"}}</td>
+															<td>{{x.percentageOffpoappointedceo + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed Accountants</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedaccountant + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedaccountant +"%"}}</td>
+															<td>{{x.percentageOffpoappointedaccountant + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs Appointed Auditors</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedauditor + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedauditor +"%"}}</td>
+															<td>{{x.percentageOffpoappointedauditor + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs obtained Commencement of Business</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedcommencementofbusiness
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedcommencementofbusiness
+																+"%"}}</td>
+															<td>{{x.percentageOffpoobtainedcommencementofbusiness +
+																"%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS obtained GST license</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedgstlicense + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedgstlicense +"%"}}</td>
+															<td>{{x.percentageOffpoobtainedgstlicense + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS completed Statutory Audit</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedstatutoryaudit + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedstatutoryaudit +"%"}}
+															</td>
+															<td>{{x.percentageOffpocompletedstatutoryaudit + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS completed AGM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedagm + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedagm +"%"}}</td>
+															<td>{{x.percentageOffpocompletedagm + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS filed RoC</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpofilledroc + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpofilledroc +"%"}}</td>
+															<td>{{x.percentageOffpofilledroc + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='business'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOs having average turnover of 50 Lakh and above
+															</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunavgturnoverOf50
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecavgturnoverOf50
+																+"%"}}</td>
+															<td>{{x.avgturnoverOf50 + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Signed MoU/Contract/Vendor registration</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunsignedmouRegistration + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecsignedmouRegistration +"%"}}</td>
+															<td>{{x.signedmouRegistration + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Registered on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunregisteredOnenum
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecregisteredOnenum
+																+"%"}}</td>
+															<td>{{x.registeredOnenum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs trading through on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjuntradingthroughEnum + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldectradingthroughEnum +"%"}}</td>
+															<td>{{x.tradingthroughEnum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs having updated 3-5 years Businessplan</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunhavingBusinessplan + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldechavingBusinessplan +"%"}}</td>
+															<td>{{x.havingBusinessplan + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='finance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average share capital amount for FPOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunaveragesharecapitalAmount}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecaveragesharecapitalAmount}}</td>
+															<td>{{x.averagesharecapitalAmount}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs availed equity grant</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunequitygrantavailed + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecequitygrantavailed +"%"}}</td>
+															<td>{{x.equitygrantavailed + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Received loan from banks and Financial
+																Institutions</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunloanfrombank +
+																"%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecloanfrombank
+																+"%"}}</td>
+															<td>{{x.loanfrombank + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+									</div>
+									<svg width="0" height="0" version="1.1" class="gradient-mask"
+										xmlns="http://www.w3.org/2000/svg">
+										<defs>
+											<linearGradient id="gradientGauge">
+												<stop class="color-red" offset="10%" />
+												<stop class="color-yellow" offset="50%" />
+												<stop class="color-green" offset="100%" />
+											</linearGradient>
+										</defs>
+									</svg>
+								</div>
+							</div>
+							<div class="row" ng-show="selectAgency =='NABARD'">
+								<div class="col-md-12">
+									<h2 class="heading-1" style="text-align: center;">{{chartHeader}}</h2>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="chat-box-1">
+												<h4>NABARD</h4>
+												<div class="gauge1"></div>
+												<div class="">
+													<ul class="chart-info row ">
+														<div class="col-md-3 clr1">
+															<li>Good</li>
+														</div>
+														<div class="col-md-4 clr2">
+															<li>Average</li>
+														</div>
+														<div class="col-md-3 clr3">
+															<li>Poor</li>
+														</div>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='governance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average no. of shareholders mobilized</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td>{{x.presentstatusofAvgshareholdermobilized}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed CEOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedceo + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedceo +"%"}}</td>
+															<td>{{x.percentageOffpoappointedceo + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed Accountants</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedaccountant + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedaccountant +"%"}}</td>
+															<td>{{x.percentageOffpoappointedaccountant + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs Appointed Auditors</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedauditor + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedauditor +"%"}}</td>
+															<td>{{x.percentageOffpoappointedauditor + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs obtained Commencement of Business</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedcommencementofbusiness
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedcommencementofbusiness
+																+"%"}}</td>
+															<td>{{x.percentageOffpoobtainedcommencementofbusiness +
+																"%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS obtained GST license</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedgstlicense + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedgstlicense +"%"}}</td>
+															<td>{{x.percentageOffpoobtainedgstlicense + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS completed Statutory Audit</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedstatutoryaudit + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedstatutoryaudit +"%"}}
+															</td>
+															<td>{{x.percentageOffpocompletedstatutoryaudit + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS completed AGM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedagm + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedagm +"%"}}</td>
+															<td>{{x.percentageOffpocompletedagm + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS filed RoC</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpofilledroc + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpofilledroc +"%"}}</td>
+															<td>{{x.percentageOffpofilledroc + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='business'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOs having average turnover of 50 Lakh and above
+															</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunavgturnoverOf50
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecavgturnoverOf50
+																+"%"}}</td>
+															<td>{{x.avgturnoverOf50 + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Signed MoU/Contract/Vendor registration</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunsignedmouRegistration + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecsignedmouRegistration +"%"}}</td>
+															<td>{{x.signedmouRegistration + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Registered on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunregisteredOnenum
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecregisteredOnenum
+																+"%"}}</td>
+															<td>{{x.registeredOnenum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs trading through on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjuntradingthroughEnum + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldectradingthroughEnum +"%"}}</td>
+															<td>{{x.tradingthroughEnum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs having updated 3-5 years Businessplan</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunhavingBusinessplan + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldechavingBusinessplan +"%"}}</td>
+															<td>{{x.havingBusinessplan + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='finance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average share capital amount for FPOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunaveragesharecapitalAmount}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecaveragesharecapitalAmount}}</td>
+															<td>{{x.averagesharecapitalAmount}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs availed equity grant</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunequitygrantavailed + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecequitygrantavailed +"%"}}</td>
+															<td>{{x.equitygrantavailed + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Received loan from banks and Financial
+																Institutions</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunloanfrombank +
+																"%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecloanfrombank
+																+"%"}}</td>
+															<td>{{x.loanfrombank + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+									</div>
+									<svg width="0" height="0" version="1.1" class="gradient-mask"
+										xmlns="http://www.w3.org/2000/svg">
+										<defs>
+											<linearGradient id="gradientGauge1">
+												<stop class="color-red" offset="10%" />
+												<stop class="color-yellow" offset="50%" />
+												<stop class="color-green" offset="100%" />
+											</linearGradient>
+										</defs>
+									</svg>
+								</div>
+							</div>
+							<div class="row" ng-show="selectAgency =='NAFED'">
+								<div class="col-md-12">
+									<h2 class="heading-1" style="text-align: center;">{{chartHeader}}</h2>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="chat-box-1">
+												<h4>NAFED</h4>
+												<div class="gauge2"></div>
+												<div class="">
+													<ul class="chart-info row clr">
+														<div class="col-md-3 clr1">
+															<li>Good</li>
+														</div>
+														<div class="col-md-4 clr2">
+															<li>Average</li>
+														</div>
+														<div class="col-md-3 clr3">
+															<li>Poor</li>
+														</div>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='governance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average no. of shareholders mobilized</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td>{{x.presentstatusofAvgshareholdermobilized}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed CEOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedceo + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedceo +"%"}}</td>
+															<td>{{x.percentageOffpoappointedceo + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed Accountants</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedaccountant + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedaccountant +"%"}}</td>
+															<td>{{x.percentageOffpoappointedaccountant + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs Appointed Auditors</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedauditor + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedauditor +"%"}}</td>
+															<td>{{x.percentageOffpoappointedauditor + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs obtained Commencement of Business</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedcommencementofbusiness
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedcommencementofbusiness
+																+"%"}}</td>
+															<td>{{x.percentageOffpoobtainedcommencementofbusiness +
+																"%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS obtained GST license</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedgstlicense + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedgstlicense +"%"}}</td>
+															<td>{{x.percentageOffpoobtainedgstlicense + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS completed Statutory Audit</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedstatutoryaudit + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedstatutoryaudit +"%"}}
+															</td>
+															<td>{{x.percentageOffpocompletedstatutoryaudit + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS completed AGM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedagm + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedagm +"%"}}</td>
+															<td>{{x.percentageOffpocompletedagm + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS filed RoC</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpofilledroc + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpofilledroc +"%"}}</td>
+															<td>{{x.percentageOffpofilledroc + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='business'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOs having average turnover of 50 Lakh and above
+															</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunavgturnoverOf50
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecavgturnoverOf50
+																+"%"}}</td>
+															<td>{{x.avgturnoverOf50 + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Signed MoU/Contract/Vendor registration</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunsignedmouRegistration + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecsignedmouRegistration +"%"}}</td>
+															<td>{{x.signedmouRegistration + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Registered on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunregisteredOnenum
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecregisteredOnenum
+																+"%"}}</td>
+															<td>{{x.registeredOnenum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs trading through on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjuntradingthroughEnum + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldectradingthroughEnum +"%"}}</td>
+															<td>{{x.tradingthroughEnum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs having updated 3-5 years Businessplan</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunhavingBusinessplan + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldechavingBusinessplan +"%"}}</td>
+															<td>{{x.havingBusinessplan + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='finance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average share capital amount for FPOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunaveragesharecapitalAmount}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecaveragesharecapitalAmount}}</td>
+															<td>{{x.averagesharecapitalAmount}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs availed equity grant</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunequitygrantavailed + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecequitygrantavailed +"%"}}</td>
+															<td>{{x.equitygrantavailed + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Received loan from banks and Financial
+																Institutions</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunloanfrombank +
+																"%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecloanfrombank
+																+"%"}}</td>
+															<td>{{x.loanfrombank + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+									</div>
+									<svg width="0" height="0" version="1.1" class="gradient-mask"
+										xmlns="http://www.w3.org/2000/svg">
+										<defs>
+											<linearGradient id="gradientGauge2">
+												<stop class="color-red" offset="10%" />
+												<stop class="color-yellow" offset="50%" />
+												<stop class="color-green" offset="100%" />
+											</linearGradient>
+										</defs>
+									</svg>
+								</div>
+							</div>
+							<div class="row" ng-show="selectAgency =='NCDC'">
+								<div class="col-md-12">
+									<h2 class="heading-1" style="text-align: center;">{{chartHeader}}</h2>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="chat-box-1">
+												<h4>NCDC</h4>
+												<div class="gauge3"></div>
+												<div class="">
+													<ul class="chart-info row clr">
+														<div class="col-md-3 clr1">
+															<li>Good</li>
+														</div>
+														<div class="col-md-4 clr2">
+															<li>Average</li>
+														</div>
+														<div class="col-md-3 clr3">
+															<li>Poor</li>
+														</div>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='governance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average no. of shareholders mobilized</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpresentstatusofAvgshareholdermobilized}}
+															</td>
+															<td>{{x.presentstatusofAvgshareholdermobilized}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed CEOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedceo + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedceo +"%"}}</td>
+															<td>{{x.percentageOffpoappointedceo + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Appointed Accountants</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedaccountant + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedaccountant +"%"}}</td>
+															<td>{{x.percentageOffpoappointedaccountant + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs Appointed Auditors</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoappointedauditor + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoappointedauditor +"%"}}</td>
+															<td>{{x.percentageOffpoappointedauditor + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs obtained Commencement of Business</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedcommencementofbusiness
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedcommencementofbusiness
+																+"%"}}</td>
+															<td>{{x.percentageOffpoobtainedcommencementofbusiness +
+																"%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS obtained GST license</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpoobtainedgstlicense + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpoobtainedgstlicense +"%"}}</td>
+															<td>{{x.percentageOffpoobtainedgstlicense + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS completed Statutory Audit</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedstatutoryaudit + "%"}}
+															</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedstatutoryaudit +"%"}}
+															</td>
+															<td>{{x.percentageOffpocompletedstatutoryaudit + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOS completed AGM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpocompletedagm + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpocompletedagm +"%"}}</td>
+															<td>{{x.percentageOffpocompletedagm + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOS filed RoC</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunpercentageOffpofilledroc + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecpercentageOffpofilledroc +"%"}}</td>
+															<td>{{x.percentageOffpofilledroc + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='business'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOs having average turnover of 50 Lakh and above
+															</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunavgturnoverOf50
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecavgturnoverOf50
+																+"%"}}</td>
+															<td>{{x.avgturnoverOf50 + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Signed MoU/Contract/Vendor registration</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunsignedmouRegistration + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecsignedmouRegistration +"%"}}</td>
+															<td>{{x.signedmouRegistration + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Registered on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunregisteredOnenum
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecregisteredOnenum
+																+"%"}}</td>
+															<td>{{x.registeredOnenum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs trading through on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjuntradingthroughEnum + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldectradingthroughEnum +"%"}}</td>
+															<td>{{x.tradingthroughEnum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs having updated 3-5 years Businessplan</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunhavingBusinessplan + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldechavingBusinessplan +"%"}}</td>
+															<td>{{x.havingBusinessplan + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='finance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average share capital amount for FPOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunaveragesharecapitalAmount}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecaveragesharecapitalAmount}}</td>
+															<td>{{x.averagesharecapitalAmount}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs availed equity grant</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunequitygrantavailed + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecequitygrantavailed +"%"}}</td>
+															<td>{{x.equitygrantavailed + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Received loan from banks and Financial
+																Institutions</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunloanfrombank +
+																"%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecloanfrombank
+																+"%"}}</td>
+															<td>{{x.loanfrombank + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+									</div>
+									<svg width="0" height="0" version="1.1" class="gradient-mask"
+										xmlns="http://www.w3.org/2000/svg">
+										<defs>
+											<linearGradient id="gradientGauge3">
+												<stop class="color-red" offset="10%" />
+												<stop class="color-yellow" offset="50%" />
+												<stop class="color-green" offset="100%" />
+											</linearGradient>
+										</defs>
+									</svg>
+								</div>
+							</div>
+							<div class="row" ng-show="selectAgency =='SFAC'">
+								<div class="col-md-12">
+									<h2 class="heading-1" style="text-align: center;">{{chartHeader}}</h2>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="chat-box-1">
+												<h4>SFAC</h4>
+												<div class="gauge4"></div>
+												<div class="">
+													<ul class="chart-info row clr">
+														<div class="col-md-3 clr1">
+															<li>Good</li>
+														</div>
+														<div class="col-md-4 clr2">
+															<li>Average</li>
+														</div>
+														<div class="col-md-3 clr3">
+															<li>Poor</li>
+														</div>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='governance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tr ng-repeat="x in getdashboarddataByYear">
+														<td>Average no. of shareholders mobilized</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpresentstatusofAvgshareholdermobilized}}
+														</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpresentstatusofAvgshareholdermobilized}}</td>
+														<td>{{x.presentstatusofAvgshareholdermobilized}}</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear">
+														<td>% of FPOs Appointed CEOs</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpoappointedceo + "%"}}</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpoappointedceo +"%"}}</td>
+														<td>{{x.percentageOffpoappointedceo + "%"}}</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear">
+														<td>% of FPOs Appointed Accountants</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpoappointedaccountant + "%"}}</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpoappointedaccountant +"%"}}</td>
+														<td>{{x.percentageOffpoappointedaccountant + "%"}}</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear"
+														ng-hide="x.typesOffpo == '3month'">
+														<td>% of FPOs Appointed Auditors</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpoappointedauditor + "%"}}</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpoappointedauditor +"%"}}</td>
+														<td>{{x.percentageOffpoappointedauditor + "%"}}</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear"
+														ng-hide="x.typesOffpo == '3month'">
+														<td>% of FPOs obtained Commencement of Business</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpoobtainedcommencementofbusiness +
+															"%"}}</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpoobtainedcommencementofbusiness
+															+"%"}}</td>
+														<td>{{x.percentageOffpoobtainedcommencementofbusiness + "%"}}
+														</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear"
+														ng-hide="x.typesOffpo == '3month'">
+														<td>% of FPOS obtained GST license</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpoobtainedgstlicense + "%"}}</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpoobtainedgstlicense +"%"}}</td>
+														<td>{{x.percentageOffpoobtainedgstlicense + "%"}}</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear"
+														ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+														<td>% of FPOS completed Statutory Audit</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpocompletedstatutoryaudit + "%"}}
+														</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpocompletedstatutoryaudit +"%"}}</td>
+														<td>{{x.percentageOffpocompletedstatutoryaudit + "%"}}</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear"
+														ng-hide="x.typesOffpo == '3month'">
+														<td>% of FPOS completed AGM</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpocompletedagm + "%"}}</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpocompletedagm +"%"}}</td>
+														<td>{{x.percentageOffpocompletedagm + "%"}}</td>
+													</tr>
+													<tr ng-repeat="x in getdashboarddataByYear"
+														ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+														<td>% of FPOS filed RoC</td>
+														<td ng-if="selectSlots=='April-Sept'"
+															[attr.rowspan]="'April-Sept'">
+															{{x.janjunpercentageOffpofilledroc + "%"}}</td>
+														<td ng-if="selectSlots=='Oct-March'"
+															[attr.rowspan]="'Oct-March'">
+															{{x.juldecpercentageOffpofilledroc +"%"}}</td>
+														<td>{{x.percentageOffpofilledroc + "%"}}</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='business'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+															<td>% of FPOs having average turnover of 50 Lakh and above
+															</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunavgturnoverOf50
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecavgturnoverOf50
+																+"%"}}</td>
+															<td>{{x.avgturnoverOf50 + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Signed MoU/Contract/Vendor registration</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunsignedmouRegistration + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecsignedmouRegistration +"%"}}</td>
+															<td>{{x.signedmouRegistration + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Registered on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunregisteredOnenum
+																+ "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecregisteredOnenum
+																+"%"}}</td>
+															<td>{{x.registeredOnenum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear"
+															ng-hide="x.typesOffpo == '3month'">
+															<td>% of FPOs trading through on e-NAM</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjuntradingthroughEnum + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldectradingthroughEnum +"%"}}</td>
+															<td>{{x.tradingthroughEnum + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs having updated 3-5 years Businessplan</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunhavingBusinessplan + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldechavingBusinessplan +"%"}}</td>
+															<td>{{x.havingBusinessplan + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-9" ng-show="performanceAuthority =='finance'">
+											<div class="right-tablr table-responsive">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Indicator</th>
+															<th scope="col">Target</th>
+															<th scope="col">Achievment</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>Average share capital amount for FPOs</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunaveragesharecapitalAmount}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecaveragesharecapitalAmount}}</td>
+															<td>{{x.averagesharecapitalAmount}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs availed equity grant</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">
+																{{x.janjunequitygrantavailed + "%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">
+																{{x.juldecequitygrantavailed + "%"}}</td>
+															<td>{{x.equitygrantavailed + "%"}}</td>
+														</tr>
+														<tr ng-repeat="x in getdashboarddataByYear">
+															<td>% of FPOs Received loan from banks and Financial
+																Institutions</td>
+															<td ng-if="selectSlots=='April-Sept'"
+																[attr.rowspan]="'April-Sept'">{{x.janjunloanfrombank +
+																"%"}}</td>
+															<td ng-if="selectSlots=='Oct-March'"
+																[attr.rowspan]="'Oct-March'">{{x.juldecloanfrombank +
+																"%"}}</td>
+															<td>{{x.loanfrombank + "%"}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									<svg width="0" height="0" version="1.1" class="gradient-mask"
+										xmlns="http://www.w3.org/2000/svg">
+										<defs>
+											<linearGradient id="gradientGauge4">
+												<stop class="color-red" offset="10%" />
+												<stop class="color-yellow" offset="50%" />
+												<stop class="color-green" offset="100%" />
+											</linearGradient>
+										</defs>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12" ng-If="notFound">
+						<h2 class="heading-1" style="text-align: center;"> No Data Available</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--Font Accessibility-->
+	<script src="assets27/js/jquery-2.2.1.min.js"></script>
+	<script src="assets27/js/jquery.font-accessibility.min.js"></script>
+	<!--<script src="js/jquery.min.js"></script>-->
+	<script src="assets27/js/bootstrap.min.js"></script>
+	<script src="assets27/js/owl.carousel.min.js"></script>
+	<!--Meter Chart Start-->
+	<script src='assets27/js/dx.all.js'></script>
+	<!--AOS Animation-->
+	<script src="assets27/js/aos.js"></script>
+	<!-- <script src="assets27/js/custom.js"></script> -->
+
+	<!--Maping-->
+	<script src="/controller/dashboard.js"></script>
+
+</body>
+
+</html>

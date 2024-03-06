@@ -1,0 +1,209 @@
+<div id="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-white">Godown Sale</h6>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]='stockSaleForm' (ngSubmit)='openRegisterConfirmationModal()'>
+                        <mat-horizontal-stepper>
+                            <mat-step label="Source details">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="">Godown</label>
+                                        <select class="form-control" formControlName='godownId'
+                                            (change)='loadAllCropCat()'>
+                                            <option value="null" disabled selected>--Select--</option>
+                                            <option value="{{godown.godownId}}" *ngFor='let godown of allFpoGodowns'>
+                                                {{godown.godownName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Crop Catagory/Commodities</label>
+                                        <select class="form-control" formControlName='cropCatagory'
+                                            (change)='loadAllCrop()'>
+                                            <option value="null" disabled selected>--Select--</option>
+                                            <option value="{{cat.cropCatagory}}" *ngFor='let cat of allCropCat'>
+                                                {{cat.cropCatagory}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Crop/Commodities</label>
+                                        <select class="form-control" formControlName='crop' (change)='loadAllVariety()'>
+                                            <option value="null">--Select--</option>
+                                            <option value="{{crop.Crop_Code}}" *ngFor='let crop of allcrops'>
+                                                {{crop.Crop_Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Variety</label>
+                                        <select class="form-control" formControlName='variety'
+                                            (change)='loadAvailableQuant()'>
+                                            <option value="null">--Select--</option>
+                                            <option value="{{variety.Variety_Code}}"
+                                                *ngFor='let variety of allVarieties'>{{variety.Variety_Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Available Quantity(In Qntl)</label>
+                                        <input type="text" value="{{availableQuant}}" class="form-control" disabled>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Transfer Quantity(In Qntl)</label>
+                                        <input type="number" formControlName='quantity' placeholder="Enter Quantity"
+                                            class="form-control">
+                                        <mat-error
+                                            *ngIf='stockSaleForm.value.quantity>availableQuant || 0>stockSaleForm.value.quantity'>
+                                            Quantity is not valid</mat-error>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary" mat-button matStepperNext
+                                            mat-raised-button>Next <i class="fa fa-arrow-right"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </mat-step>
+                            <mat-step label="Destination details">
+                                <br>
+                                <mat-accordion>
+                                    <!-- hideToggle -->
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <h5>Have a trader id ?</h5>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for="">Trader Id</label>
+                                                <select class="form-control"  placeholder="Enter trader id" formControlName='saleTo'   (change)="assignTrader()">
+                                                    <option value="" disabled selected>--Select--</option>
+                                                    <option *ngFor='let data of allTrader' value="{{data.refNo}}"  >
+                                                        {{data.traderName}} ({{data.refNo}})</option>
+                                                </select>
+                                            </div>                                           
+                                            <div class="col-md-3">
+                                                <button id='search' class="btn btn-primary" style="margin-top: 13%;float: left;">Search</button>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel><br>
+                                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                        (closed)="panelOpenState = false">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                               <h5> Don't have trader id ?</h5>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for="">District</label>
+                                                <!-- (change)='loadDestBlock()' -->
+                                                <select class="form-control" formControlName='destinationDistrictCode'>
+                                                    <option value="null" disabled selected>--Select--</option>
+                                                    <!-- <option *ngFor='let data of allTrader' value="{{data.refNo}}"> -->
+                                                       <!-- </option> -->
+                                                    <option value="{{district.districtCode}}" *ngFor='let district of allDistricts'>{{district.districtName}}
+                                                    </option>
+                                                </select>                                                 
+                                               
+                                            </div>
+
+                                            <!-- <div class="col-md-3">
+                                            <label for="">Block</label>
+                                            <select class="form-control" formControlName='destinationBlockCode' (change)='loadDestGP()'>
+                                                <option value="null" disabled selected>--Select--</option>
+                                                <option value="{{blocks.blockCode}}" *ngFor='let blocks of allBlocks'>{{blocks.blockName}}</option>
+                                            </select>
+                                        </div>
+    
+                                        <div class="col-md-3">
+                                            <label for="">Gram Panchyat</label>
+                                            <select class="form-control" formControlName='destinationGPCode' (change)='loadDestVillage()'>
+                                                <option value="null" disabled selected>--Select--</option>
+                                                <option value="{{gp.gpCode}}" *ngFor='let gp of allGPs'>{{gp.gpName}}</option>
+                                            </select>
+                                        </div>
+    
+                                        <div class="col-md-3">
+                                            <label for="">Village</label>
+                                            <select class="form-control" formControlName='destinationVillageCode'>
+                                                <option value="null" disabled selected>--Select--</option>
+                                                <option value="{{village.villageCode}}" *ngFor='let village of allVillages'>{{village.villageName}}</option>
+                                            </select>
+                                        </div> -->
+
+                                            <div class="col-md-3">
+                                                <label for="">Name</label>
+                                                <input type="text" placeholder="Enter name" class="form-control"
+                                                    formControlName='saleTo'>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label for="">Mobile No</label>
+                                                <input type="number" placeholder="Enter mobile no" class="form-control"
+                                                    formControlName='mobileNo'>
+                                                <mat-error *ngIf='stockSaleForm.controls.mobileNo?.errors?.pattern'>
+                                                    *Mobile number is not valid</mat-error>
+                                                <mat-error *ngIf='stockSaleForm.controls.mobileNo?.errors?.minLength'>
+                                                    *Minimum length should be 10</mat-error>
+                                                <mat-error *ngIf='stockSaleForm.controls.mobileNo?.errors?.maxLength'>
+                                                    *Maximum length should be 10</mat-error>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label for="">Email Id</label>
+                                                <input type="text" placeholder="Enter email id" class="form-control"
+                                                    formControlName='emailId'>
+                                                <mat-error *ngIf='stockSaleForm.controls.emailId?.errors?.email'>*Email
+                                                    is not valid</mat-error>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="">PAN No</label>
+                                                <input type="text" placeholder="Enter pan number" class="form-control"
+                                                    formControlName='panNo'>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <button class="btn btn-primary nxtPrevBtn" type="submit"
+                                                    [disabled]='stockSaleForm.invalid ||stockSaleForm.value.quantity>availableQuant || 0>stockSaleForm.value.quantity'>Submit</button>
+
+                                                <button type="button" class="btn btn-warning" mat-button
+                                                    matStepperPrevious mat-raised-button>Back <i
+                                                        class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+
+
+                            </mat-step>
+                        </mat-horizontal-stepper>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<modal #confirmRegister>
+    <modal-header>
+        <h4>Confirmation</h4>
+    </modal-header>
+
+    <modal-content>
+        <h5>Are you sure you want to sell ?</h5>
+        <!-- <h5>Are you sure to sale to  {{stockSaleForm.saleTo}} ?</h5> -->
+
+        <!-- <h5>{{stockSaleForm.crop}}</h5>
+        <h5>{{stockSaleForm.value.variety}}</h5>
+        <h5>{{stockSaleForm.value.quantity}}</h5> -->
+    </modal-content>
+
+    <modal-footer>
+        <button class="btn btn-primary" (click)='godownSaleDataSubmit()'>Sale</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="closeModal()">close</button>
+    </modal-footer>
+</modal>

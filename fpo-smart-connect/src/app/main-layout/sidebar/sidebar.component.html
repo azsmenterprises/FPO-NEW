@@ -1,0 +1,313 @@
+<nav class="side-navbar">
+    <div class="side-navbar-wrapper">
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+            <!-- <div class="sidenav-header-inner text-center"><img [src]='profileImage' alt="person"
+            class="img-fluid rounded-circle"> -->
+            <div class="sidenav-header-inner text-center"><img src="../../../../assets/img/dommyUser.png" alt="person"
+                    class="img-fluid rounded-circle">
+                <h5 class="h5" style="max-width: 190px;">{{ userName}}</h5><span><strong>{{ userRole | uppercase
+                        }}</strong></span>
+            </div>
+            <div class="sidenav-header-logo"><a class="brand-small text-center"> <b class="text-primary">{{ userName
+                        }}</b></a></div>
+        </div>
+        <div class="main-menu">
+            <h4 class="sidenav-heading"> Main </h4>
+            <!-- ============================  FPO ========================================= -->
+            <ul id="side-main-menu" class="side-menu list-unstyled" *ngIf="userRole === 'FPO'">
+
+                <li routerLinkActive="active" routerLink='dashboard'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>Dashboard</a></li>
+                <li routerLinkActive="active" routerLink='update-profile-data'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>Profile Update</a></li>
+
+                <li><a href="#MembersCornerDropDown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-users"
+                            aria-hidden="true"></i>Members Corner</a>
+                    <ul id="MembersCornerDropDown" class="collapse list-unstyled ">
+                        <li routerLink='/fpo/add' routerLinkActive="active"><a>Register New Member</a></li>
+                        <li routerLink='/fpo/approve-farmer' routerLinkActive="active"><a>Approve farmer</a></li>
+                        <li routerLink='/fpo/edit' routerLinkActive="active"><a>Members Profile</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#ProducedAggregatorDropDown" aria-expanded="false" data-toggle="collapse"><i
+                            class="fa fa-shopping-basket" aria-hidden="true"></i>Produce aggregator</a>
+                    <ul id="ProducedAggregatorDropDown" class="collapse list-unstyled ">
+                        <li routerLink='/fpo/produced/add-own' routerLinkActive="active"><a>Create Aggregation</a>
+                        </li>
+                        <li routerLink='/fpo/produced/approved-list' routerLinkActive="active"><a>Aggregation Action
+                                Record</a></li>
+                        <li routerLink='/fpo/produced/sold-products' routerLinkActive="active"><a>Sales Record </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li><a href="#DemandAggregatorDropDown" aria-expanded="false" data-toggle="collapse"><i
+                            class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Demand Aggregator</a>
+                    <ul id="DemandAggregatorDropDown" class="collapse list-unstyled ">
+                        <li routerLink='/fpo/demand/add-by-own' routerLinkActive="active"><a>Demand Aggregation</a>
+                        </li>
+                        <li routerLink='/fpo/demand/demand-list' routerLinkActive="active"><a>Demand List</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#godownManagementDropDown" aria-expanded="false" data-toggle="collapse"><i
+                            class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Stock Management</a>
+                    <ul id="godownManagementDropDown" class="collapse list-unstyled ">
+                        <li routerLink='/fpo/godown-magangement/add-godown' routerLinkActive="active"><a>Add
+                                godown</a>
+                        </li>
+                        <li routerLink='/fpo/godown-magangement/stock-transfer' routerLinkActive="active"><a>Stock
+                                transfer</a></li>
+                        <li routerLink='/fpo/godown-magangement/transit-status' routerLinkActive="active"><a>Transit
+                                status</a></li>
+                        <li routerLink='/fpo/godown-magangement/stock-for-receipt' routerLinkActive="active">
+                            <a>Stock
+                                for receipt</a>
+                        </li>
+                        <li routerLink='/fpo/godown-magangement/stocks-report' routerLinkActive="active"><a>Stock
+                                report</a></li>
+                        <li routerLink='/fpo/godown-magangement/stock-sale' routerLinkActive="active"><a>Sale</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li routerLinkActive="active" routerLink='/fpo/relevantConsumerGroup'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>Relevant Consumer Groups</a></li>
+                <li routerLinkActive="active" routerLink='/fpo/relevantTrader'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>Relevant Traders</a></li>
+
+                <li><a href="#ExternalServicesDropDown" aria-expanded="false" data-toggle="collapse"><i
+                            class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>External Services</a>
+                    <ul id="ExternalServicesDropDown" class="collapse list-unstyled ">
+                        <li routerLink='/fpo/link-with-eLicensing' routerLinkActive="active"><a>e-Licensing</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- =========  ADMIN ========= -->
+            <ul id="side-main-menu" class="side-menu list-unstyled" *ngIf="userRole === 'Admin'">
+                <li routerLinkActive="active" routerLink='dashboard'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>DASHBOARD</a></li>
+                <li routerLinkActive="active">
+                    <a href="#dashboardDropDown" aria-expanded="false" data-toggle="collapse"><i
+                            class="fa fa-bar-chart"></i>
+                        DETAIL REPORTS
+                    </a>
+                    <ul id="dashboardDropDown" class="collapse list-unstyled " routerLinkActive="active">
+                        <li routerLinkActive="active">
+                            <a href="#dashboard1" aria-expanded="false" data-toggle="collapse"><i
+                                    class="fa fa-bar-chart"></i>
+                                Overall Scenario:10,000 CSS
+                            </a>
+                            <ul id="dashboard1" class="collapse list-unstyled " routerLinkActive="active">
+                                <li routerLinkActive="active">
+                                    <a routerLink="targetvsachievement">
+                                        <span><i class="fa fa-bar-chart"></i>FPO registration-Target vs
+                                            Achievement</span> </a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="annualturnover">
+                                        <span><i class="fa fa-bar-chart"></i>Average Annual Turnover</span>
+                                    </a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="shareholder">
+                                        <span><i class="fa fa-bar-chart"></i>Shareholder Mobilized</span>
+                                    </a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="sharecapital">
+                                        <span><i class="fa fa-bar-chart"></i>Share Capitall Mobilized</span>
+                                    </a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="equitygrant">
+                                        <span><i class="fa fa-bar-chart"></i>Equitygrant Availed</span>
+                                    </a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="womeninboard">
+                                        <span><i class="fa fa-bar-chart"></i>Participation of Woman in Board</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a aria-expanded="false"><i class="fa fa-bar-chart"></i>
+                                <span class="" (click)="open_dashboard()">Performance Progress</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li routerLinkActive="active" routerLink='actionOnFpo'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>ACTION ON FPO</a></li>
+                <li routerLinkActive="active" routerLink='notification'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>NOTIFCATION</a></li>
+                <li routerLinkActive="active" routerLink='iacbbomapping'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>IA-CBBO MAPPING</a></li>
+                <li routerLinkActive="active" routerLink='iacbbofpomapping'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>IA-CBBO-FPO MAPPING</a></li>
+                <li routerLinkActive="active" routerLink='backlogentry'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>BACKLOG DATA ENTRY</a></li>
+                <li routerLinkActive="active" routerLink='backlogtable'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>BACKLOG DETAILS</a></li>
+                <li routerLinkActive="active" routerLink='connectback'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>GRIEVANCE DETAILS</a></li>
+                <!-- <li routerLinkActive="active" routerLink='/admin'><a>Dashboard</a></li>
+                     <li routerLinkActive="active" routerLink='/admin/fpo-update'><a>Update Info</a></li>
+                     <li routerLinkActive="active" routerLink='/admin/applied-fig'><a>Applied FIG</a></li>
+                     <li routerLinkActive="active" routerLink='/admin/scheme-entry'><a>Scheme Entry</a></li> -->
+            </ul>
+
+            <!-- =========  CBBO ========= -->
+
+            <ul id="side-main-menu" class="side-menu list-unstyled" *ngIf="userRole === 'Cbbo'">
+                <li routerLinkActive="active" routerLink='dashboard'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>DASHBOARD</a></li>
+                <li routerLinkActive="active" routerLink='targetachievement'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>FPO REGISTRATION TARGET</a></li>
+                <li routerLinkActive="active" routerLink='manycbbo'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>FPO KEY DETAILS</a></li>
+                <li routerLinkActive="active" routerLink='mis'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>FPO MIS</a></li>
+                <li routerLinkActive="active" routerLink='draftlist'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>FPO DRAFT LIST</a></li>
+                <li routerLinkActive="active" routerLink='missingreport'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>REPORT MISSING FPO</a></li>
+            </ul>
+
+            <!-- =========  IA ========= -->
+
+
+
+            <!-- =========  TRADER ========= -->
+
+            <ul id="side-main-menu" class="side-menu list-unstyled"
+                *ngIf="userRole === 'Trader' || userRole === 'consumerGroup'">
+                <li routerLinkActive="active" routerLink='dashboard'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>Dashboard</a></li>
+                <li *ngIf='userRole=="consumerGroup"' routerLinkActive="active" routerLink='consumerRegistration'><a
+                        style="cursor: pointer;"><i class="fa fa-address-card-o" aria-hidden="true"></i>Consumer
+                        Registration</a></li>
+                <li *ngIf='userRole=="consumerGroup"' routerLinkActive="active" routerLink='approveConsumers'><a
+                        style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>Approve Consumers</a>
+                </li>
+                <li *ngIf='userRole=="consumerGroup"' routerLinkActive="active" routerLink='approvedConsumers'><a
+                        style="cursor: pointer;"><i class="fa fa-check-circle-o" aria-hidden="true"></i>Approved
+                        Consumers</a></li>
+                <li routerLinkActive="active" routerLink='addProduct'><a style="cursor: pointer;"><i
+                            class="fa fa-shopping-bag" aria-hidden="true"></i>Add Commodity</a></li>
+                <li *ngIf='userRole=="consumerGroup"' routerLinkActive="active" routerLink='addedProducts'><a
+                        style="cursor: pointer;"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Commodities
+                        Added</a></li>
+                <li *ngIf='userRole=="consumerGroup"' routerLinkActive="active" routerLink='relevantFPOs'><a
+                        style="cursor: pointer;"><i class="fa fa-users" aria-hidden="true"></i>Relevant FPOs</a></li>
+                <li *ngIf='userRole=="Trader"' routerLinkActive="active" routerLink='updateProfile'><a
+                        style="cursor: pointer;"><i class="fa fa-users" aria-hidden="true"></i>Update Profile</a></li>
+            </ul>
+
+
+
+
+            <!-- ============ADH================= -->
+            <ul id="side-main-menu" class="side-menu list-unstyled" *ngIf="userRole === 'ADH'">
+                <li routerLinkActive="active" routerLink='dashboard'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>DASHBOARD</a></li>
+            </ul>
+
+            <!-- ============ADH================= -->
+            <!-- ================AHO=================== -->
+            <ul class="side-main-menu side-menu list-unstyled" *ngIf="userRole === 'AHO'">
+                <li routerLinkActive="active" routerLink='dashboard'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>Menu</a></li>
+                <li routerLinkActive="active">
+                    <a href="#dashboard1" aria-expanded="false" data-toggle="collapse"><i class="fa fa-bar-chart"></i>
+                        DASHBOARD
+                    </a>
+                    <ul id="dashboard1" class="collapse list-unstyled " routerLinkActive="active">
+                        <li routerLinkActive="active">
+                            <a routerLink="scoringtool">
+                                <span><i class="fa fa-cogs"></i> FPO Score & Grade Summary</span> </a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="fpoprogress">
+                                <span><i class="fa fa-bar-chart"></i>Support to FPO-Progress Update</span>
+                            </a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="fpomis">
+                                <span><i class="fa fa-bar-chart"></i>FPO MIS</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li routerLinkActive="active">
+                    <a href="#dashboard2" aria-expanded="false" data-toggle="collapse"><i class="fa fa-bar-chart"></i>
+                        ALLOCATION
+                    </a>
+                    <ul id="dashboard2" class="collapse list-unstyled " routerLinkActive="active">
+                        <li routerLinkActive="active">
+                            <a routerLink="allocationgrading">
+                                <span><i class="fa fa-cogs"></i> Allocate FPO Scoring &
+                                    Grading</span> </a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="schemecomponent">
+                                <span><i class="fa fa-bar-chart"></i>Allocate Scheme Component &
+                                    Activities</span>
+                            </a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="reportcomponent">
+                                <span><i class="fa fa-bar-chart"></i> Report Scheme Component &
+                                    Activities</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
+            <!-- ================AHO=================== -->
+
+
+            <ul id="side-main-menu" class="side-menu list-unstyled" *ngIf="userRole === 'ia'">
+                <li routerLinkActive="active" routerLink='dashboard'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>DASHBOARD</a></li>
+                <li routerLinkActive="active">
+                    <a aria-expanded="false"><i class="fa fa-bar-chart"></i>
+                        <span class="" (click)="open_dashboardIA()">PERFORMANCE PROGRESS</span>
+                    </a>
+                </li>
+                <!-- <li routerLinkActive="active">
+                        <a aria-expanded="false"><i class="fa fa-bar-chart"></i>
+                            <span class="" (click)="open_dashboardCBBO()">PERFORMANCE PROGRESS OF CBBO</span>
+                        </a>
+                    </li> -->
+                <li><a href="#TargetAllocationDropDown" aria-expanded="false" data-toggle="collapse"><i
+                            class="fa fa-users" aria-hidden="true"></i>TARGET ALLOCATION</a>
+                    <ul id="TargetAllocationDropDown" class="collapse list-unstyled ">
+                        <li routerLink='/ia/set-fpo-targets' routerLinkActive="active"><a><i
+                                    class="fa fa-bar-chart"></i>Fpo Registration Targets/IA</a></li>
+                        <li routerLink='/ia/set-fpo-cbbo-targets' routerLinkActive="active"><a><i
+                                    class="fa fa-bar-chart"></i>Fpo Registration Targets/CBBO</a></li>
+
+                        <li routerLink='/ia/set-operational-targets' routerLinkActive="active"><a><i
+                                    class="fa fa-bar-chart"></i>FPO Operational Targets</a></li>
+
+                    </ul>
+                </li>
+
+                <li routerLinkActive="active" routerLink='table'><a style="cursor: pointer;"><i
+                            class="fa fa-bar-chart"></i>CBBO WISE FPO MIS</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>

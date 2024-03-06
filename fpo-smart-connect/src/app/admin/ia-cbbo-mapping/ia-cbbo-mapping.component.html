@@ -1,0 +1,73 @@
+<div id="content">
+    <div class="container-fluid">
+        <div class="col-lg-12 mb-6">
+            <div class="card-header py-2">
+                <h5 class="m-0 font-weight-bold text-primary">Implementing Agency (IA) - CBBO MAPPING</h5>
+            </div>
+            <div class="card-body table-card mat-elevation-z8">
+                <form [formGroup]="mappingForm">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4"> SELECT IMPLEMENTING AGENCY (IA) : </label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <select class="form-control" formControlName='iaName' (change)="changeIA();">
+                                <option value="" disabled>--Select--</option>
+                                <option value="{{x.iaName}}" *ngFor="let x of getIaData">{{x.iaName}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4"> CBBO : </label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <select class="form-control" formControlName='selectedCbboName'>
+                                <option value="" disabled>--Select--</option>
+                                <option *ngFor="let y of getmappedData" value="{{y.cbboCode}}:{{y.cbboName}}">
+                                    {{y.cbboName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button type="submit" class="btn btn-primary" (click)="submit()">ADD</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="col-lg-12 mb-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary">IA-CBBO MAPPING TABLE</h5>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <table border="1" align="center"
+                            class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                            <thead class="bg-light">
+                                <tr class="border-1">
+                                    <td>Sl.No.</td>
+                                    <td>Implementing Agency (IA)</td>
+                                    <td>CBBO</td>
+                                    <td>Delete</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let map of IaCbbodata;index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{map.iaName}}</td>
+                                    <td>{{map.cbboName}}</td>
+                                    <td><button class="btn btn-outline-danger float-left" (click)="deleteRow(map)"><i
+                                                class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

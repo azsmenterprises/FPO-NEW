@@ -1,0 +1,359 @@
+.mybox {
+    border: solid #40c886;
+    border-radius: 10px;
+    background-color: ghostwhite;
+    margin-bottom: 3em;
+  }
+  
+  .mybox-header {
+    background-color: #40c886;
+    /* background-color: cadetblue; */
+    height: 35px;
+    text-align: center;
+    font: initial;
+    /* color: black; */
+    color: white;
+  }
+  .col-md-5 label{
+    font-weight: 500;
+  }
+  .quesHead p{
+    text-align: center;
+    font-size: larger;
+  }
+  .otpDiv{
+    text-align: right;
+  }
+  .otpSubDiv{
+    display: inline-flex;
+    width: 100%;
+  }
+  .otpSubDiv .col-md-7{
+    font-size: x-large;
+  }
+  .otpSubDiv .col-md-7 .otpInput{
+    font-size: large;
+  }
+  .sendOtpBtn{
+    text-align: left;
+  }
+  
+  .editDltBtn{
+    margin-right: 0px; 
+       margin-left: 0px; 
+       margin-bottom: 0px;
+  }
+  
+  .clickHead p{
+    text-align: center;
+    font-size: larger;
+  }
+  
+  .mybox-header label {
+    margin-top: 5px;
+    font-size: 22px;
+  }
+  
+  .mybox-inner-header {
+    background-color: cadetblue;
+    /* background-color: #0a5a5d; */
+    height: 33px;
+    text-align: center;
+    font: initial;
+    color: black;
+    /* color: white; */
+  }
+  .additionalFld{
+    height: 100px;
+  }
+  .additionalFld button{
+    margin-top: 15%;
+    margin-left: 26%;
+  }
+  
+  .mybox-inner-header label {
+    margin-top: 5px;
+    font-size: 17px;
+  }
+  
+  .mybox-inner-header .input-group-prepend {
+    height: 30px;
+  }
+  
+  .mybox-inner-header input {
+    height: 30px;
+  }
+  
+  .deleteModal{
+    text-align: center;
+      width: 100%;
+      font-size: larger;
+      font-weight: 500;
+  }
+  .deleteheader{
+    background-color: #ef3c25 !important;
+  }
+  .deleteBtn{
+    background-color: #e45441;
+  }
+  
+  .round {
+    border-radius: 20px !important;
+  }
+  
+  .mybox-inner-header h5 {
+    text-align: center;
+    margin-top: 5px;
+    font: inherit;
+    font-size: 17px;
+  }
+  .cropVarietyTable{
+    outline: 3px solid lightseagreen;
+  }
+  
+  .plus {
+    --t:2px;   /* Thickness */
+    --l:40px;  /* size of the symbol */
+    --s:10px;  /* space around the symbol */
+    --c1:#fff; /* Plus color*/
+    --c2:#000; /* background color*/
+    margin-top: 14px;
+  
+    display:inline-block;
+    width:var(--l);
+    height:var(--l);
+    padding:var(--s);
+    box-sizing:border-box; /*Remove this if you don't want space to be included in the size*/
+    
+    background:
+      linear-gradient(var(--c1),var(--c1)) content-box,
+      linear-gradient(var(--c1),var(--c1)) content-box,
+      var(--c2);
+    background-position:center;
+    background-size: 100% var(--t),var(--t) 100%;
+    background-repeat:no-repeat;
+  }
+  
+  .radius {
+    border-radius:50%;
+  }
+  
+  .closeButton p svg{
+    cursor: pointer;
+  }
+
+  .modal-open {
+    overflow: hidden;
+  }
+  
+  .modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 0.5rem;
+    pointer-events: none;
+  }
+  
+  .modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: translate(0, -50px);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .modal.fade .modal-dialog {
+      transition: none;
+    }
+  }
+  
+  .modal.show .modal-dialog {
+    transform: none;
+  }
+  
+  .modal.modal-static .modal-dialog {
+    transform: scale(1.02);
+  }
+  
+  .modal-dialog-scrollable {
+    display: flex;
+    max-height: calc(100% - 1rem);
+  }
+  
+  .modal-dialog-scrollable .modal-content {
+    max-height: calc(100vh - 1rem);
+    overflow: hidden;
+  }
+  
+  .modal-dialog-scrollable .modal-header,
+  .modal-dialog-scrollable .modal-footer {
+    flex-shrink: 0;
+  }
+  
+  .modal-dialog-scrollable .modal-body {
+    overflow-y: auto;
+  }
+  
+  .modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+  }
+  
+  .modal-dialog-centered::before {
+    display: block;
+    height: calc(100vh - 1rem);
+    height: -webkit-min-content;
+    height: -moz-min-content;
+    height: min-content;
+    content: "";
+  }
+  
+  .modal-dialog-centered.modal-dialog-scrollable {
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+    max-height: none;
+  }
+  
+  .modal-dialog-centered.modal-dialog-scrollable::before {
+    content: none;
+  }
+  
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+  }
+  
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+  }
+  
+  .modal-backdrop.fade {
+    opacity: 0;
+  }
+  
+  .modal-backdrop.show {
+    opacity: 0.5;
+  }
+  
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #e3e6f0;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+  }
+  
+  .modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+  }
+  
+  .modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+  
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+  }
+  
+  .modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.75rem;
+    border-top: 1px solid #e3e6f0;
+    border-bottom-right-radius: calc(0.3rem - 1px);
+    border-bottom-left-radius: calc(0.3rem - 1px);
+  }
+  
+  .modal-footer > * {
+    margin: 0.25rem;
+  }
+  
+  .modal-scrollbar-measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll;
+  }
+  h5, .h5 {
+    font-size: 1.25rem;
+  }
+  
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 500px;
+      margin: 1.75rem auto;
+    }
+    .modal-dialog-scrollable {
+      max-height: calc(100% - 3.5rem);
+    }
+    .modal-dialog-scrollable .modal-content {
+      max-height: calc(100vh - 3.5rem);
+    }
+    .modal-dialog-centered {
+      min-height: calc(100% - 3.5rem);
+    }
+    .modal-dialog-centered::before {
+      height: calc(100vh - 3.5rem);
+      height: -webkit-min-content;
+      height: -moz-min-content;
+      height: min-content;
+    }
+    .modal-sm {
+      max-width: 300px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .modal-lg,
+    .modal-xl {
+      max-width: 800px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .modal-xl {
+      max-width: 1140px;
+    }
+  }

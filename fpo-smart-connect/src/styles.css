@@ -1,0 +1,21 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.asteric-mark {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.alerterr {
+  color: red;
+  font-size: small;
+  padding-left: 3%;
+
+}

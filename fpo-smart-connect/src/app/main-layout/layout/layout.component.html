@@ -1,0 +1,11 @@
+<div style="display: flex;">
+<app-sidebar *ngIf="viewSideBar" id="mySidebar"></app-sidebar>
+<div class="page" id="main">
+    <!-- <app-sidebar *ngIf="viewSideBar" [ngStyle]="{'width':width+'px'}" id="mySidebar"></app-sidebar>
+    <div class="page" [ngStyle]="{'width':pageWidth+'px'}" id="main"> -->
+    <app-header (menuButtonClickEvent)="toggleSideBar()"></app-header>
+    <router-outlet></router-outlet>
+    <br><br><br>
+    <app-footer></app-footer>
+</div>
+</div>

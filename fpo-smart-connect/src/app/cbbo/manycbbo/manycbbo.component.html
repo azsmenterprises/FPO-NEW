@@ -1,0 +1,428 @@
+<div id="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary">FPO KEY DETAILS</h5>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]="addForm">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Financial Year : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <select class="form-control" formControlName='year'>
+                                    <option value="">--Select--</option>
+                                <option value="2023-2024">2023-2024</option>
+                                <option value="2024-2025">2024-2025</option>
+                                <option value="2025-2026">2025-2026</option>
+                                <option value="2026-2027">2026-2027</option>
+                                <option value="2027-2028">2027-2028</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Reporting Time Slot : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <select class="form-control" formControlName='timeSlot' (change)="monthWiseFpo()">
+                                    <option  value="" disabled>--Select--</option>
+                                    <!-- <option *ngIf="show1" value="April-September">April-September</option>
+                                    <option *ngIf="show2" value="October-March">October-March</option> -->
+                                    <!-- <option *ngIf="show1" value="April">April</option>
+                                    <option *ngIf="show2" value="May">May</option>
+                                    <option *ngIf="show3" value="June">June</option>
+                                    <option *ngIf="show4" value="July">July</option>
+                                    <option *ngIf="show5" value="August">August</option>
+                                    <option *ngIf="show6" value="September">September</option>
+                                    <option *ngIf="show7" value="October">October</option>
+                                    <option *ngIf="show8" value="November">November</option>
+                                    <option *ngIf="show9" value="December">December</option>
+                                    <option *ngIf="show10" value="January">January</option>
+                                    <option *ngIf="show11" value="February">February</option>
+                                    <option *ngIf="show12" value="March">March</option> -->
+                                    <option *ngIf="show1" value="{{currentMonth}}">{{currentMonth}}</option>
+                                    <option *ngIf="show2" value="{{previousMonth}}">{{previousMonth}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Select IA Name : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <select class="form-control" formControlName='iaName'>
+                                    <option value="" disabled>--Select--</option>
+                                    <option [ngValue]="x" *ngFor="let x of getIaData">{{x.iaName}}</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Select FPO : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <select class="form-control" formControlName='fpo' (change)="getDetails()">
+                                    <option value="" disabled>--Select--</option>
+                                    <option [ngValue]="y" *ngFor="let y of getFpoData">{{y.fpoName | uppercase}}</option>
+                                    <option value="other">FPO NOT IN THE LIST</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-header py-2" style="background-color:rgb(77, 107, 56);">
+                            <h6 class="m-0 font-weight-bold text-primary">1.Key FPO details to be verified by CBBO :</h6>
+                        </div><br>
+                        <div class="card-header py-2">
+                            <h6 class="m-0 font-weight-bold text-primary">FPO profile update - Incorporation details :</h6>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> CIN No. / Registration No. : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4" formControlName='cin'
+                                    minlength="21" maxlength="21" oninput="this.value = this.value.toUpperCase()"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Email ID : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4" formControlName='email'>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Mobile Number : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4" formControlName='MobileNo'>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Date of incorporation/registration: </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4" formControlName='dateofIncorporation'>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Baseline study report submitted : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="BaselineStudyReportSubmitted" value='Yes'
+                                        formControlName='BaselineStudyReportSubmitted'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="BaselineStudyReportSubmitted" value="No"
+                                        formControlName='BaselineStudyReportSubmitted'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-header py-2">
+                            <h6 class="m-0 font-weight-bold text-primary">FPO profile update - Management details :</h6>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Number of Board of Directors(BOD) : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="" formControlName='NoOfBod'>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Minimum 1 women Board of Director(BOD) : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="Min1WomenBod" value='yes'
+                                        formControlName='Min1WomenBod'>&nbsp;&nbsp;No:&nbsp;&nbsp;
+                                    <input type="radio" id='no' name="Min1WomenBod" value="no"
+                                        formControlName='Min1WomenBod'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> CEO Appointed : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="CeoAppointed" value='yes'
+                                        formControlName='CeoAppointed'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input type="radio"
+                                        id='no' name="CeoAppointed" value="no" formControlName='CeoAppointed'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Accounted Appointed : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="AccountedAppointed" value='yes'
+                                        formControlName='AccountedAppointed'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="AccountedAppointed" value="no"
+                                        formControlName='AccountedAppointed'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-header py-2">
+                            <h6 class="m-0 font-weight-bold text-primary">FPO profile update - Membership and Shareholder details :</h6>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> No of Farmers Mobilized : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4"
+                                    formControlName='NoOfFarmerMobilized'>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> No of Farmer Mobilized as shareholders: </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="number" class="form-control" id="inputEmail4"
+                                    formControlName='NoOfFarmerMobilizedAsShareholders'>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Share capital Mobilized in INR: </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="number" class="form-control" id="inputEmail4"
+                                    formControlName='ShareCapitalMobilizedInInr'>
+                            </div>
+                        </div>
+                        <div class="card-header py-2">
+                            <h6 class="m-0 font-weight-bold text-primary">FPO profile update - Financial details :</h6>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Bank Account Opened : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="BankAccountOpened" value='yes'
+                                        formControlName='BankAccountOpened'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="BankAccountOpened" value="no"
+                                        formControlName='BankAccountOpened'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Latest Annual Business Turnover in INR : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4"
+                                    formControlName='AnnualBusinessTurnoverinInr'>
+                            </div>
+                            <div class="form-group col-md-2" *ngIf="showTurnOverReportBtn">
+                                <a href="{{turnOverFilePath}}" download target="_blank" class="btn btn-info float-left"
+                                 data-toggle = "tooltip" title = "View turnover report"><i class="fa fa-eye"
+                                    aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Equity Grant availed : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="EquityGrantAvailed" value='yes'
+                                        formControlName='EquityGrantAvailed'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="EquityGrantAvailed" value="no"
+                                        formControlName='EquityGrantAvailed'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> FPOs received loan from bank : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="receivedloanFrombank" value='Yes'
+                                        formControlName='receivedloanFrombank'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="receivedloanFrombank" value="No"
+                                        formControlName='receivedloanFrombank'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-header py-2">
+                            <h6 class="m-0 font-weight-bold text-primary">FPO profile update - Business Activity details :</h6>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">Business Plan formulated : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="BusinessPlanFormulated"
+                                        value='Yes'
+                                        formControlName='BusinessPlanFormulated'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="BusinessPlanFormulated" value="No"
+                                        formControlName='BusinessPlanFormulated'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">No. of year for which Business Plan Formulated: </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4"
+                                    formControlName='BusinessPlanFormulatedforYear'>
+                            </div>
+                            <div class="form-group col-md-2" *ngIf="showbBusinesPlanReportBtn">
+                                <a href="{{businessFilePath}}" download target="_blank" class="btn btn-info float-left"
+                                 data-toggle = "tooltip" title = "View business plan report"><i class="fa fa-eye"
+                                    aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">FPO completed Statutory Audit : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="statutoryAudit" value='Yes'
+                                        formControlName='statutoryAudit'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input type="radio"
+                                        id='no' name="statutoryAudit" value="No" formControlName='statutoryAudit'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">FPO Registered on e-NAM or other e-Portal : </label>
+                            </div>
+                            <!-- <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="inputEmail4" maxlength="10"
+                                    formControlName='RegistrationOnEnam'>
+                            </div> -->
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="RegistrationOnEnam"
+                                        value='Yes'
+                                        formControlName='RegistrationOnEnam'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="RegistrationOnEnam" value="No"
+                                        formControlName='RegistrationOnEnam'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> FPO trading through e-NAM : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="fpotradingThroughenum"
+                                        value='Yes'
+                                        formControlName='fpotradingThroughenum'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="fpotradingThroughenum" value="No"
+                                        formControlName='fpotradingThroughenum'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> FPOs filed RoC : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="fpoFilledroc" value='Yes'
+                                        formControlName='fpoFilledroc'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input type="radio"
+                                        id='no' name="fpoFilledroc" value="No" formControlName='fpoFilledroc'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> FPO availed GST licence : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="GstLicenceApplied" value='yes'
+                                        formControlName='GstLicenceApplied'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="GstLicenceApplied" value="no"
+                                        formControlName='GstLicenceApplied'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-header py-2" style="background-color:rgb(77, 107, 56);">
+                            <h6 class="m-0 font-weight-bold text-primary">2.Key FPO details to be updated by CBBO :</h6>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Commencement of Business Filed with MCA : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes'
+                                        name="commencementOfBusinessfieldWithMca" value='yes'
+                                        formControlName='commencementOfBusinessfieldWithMca'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="commencementOfBusinessfieldWithMca" value="no"
+                                        formControlName='commencementOfBusinessfieldWithMca'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> AGM Conducted : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="AgmConducted" value='yes'
+                                        formControlName='AgmConducted'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input type="radio"
+                                        id='no' name="AgmConducted" value="no" formControlName='AgmConducted'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4"> Auditor Appointed : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="radioButtonText">
+                                    Yes:&nbsp;&nbsp;<input type="radio" id='yes' name="AuditorAppointed" value='yes'
+                                        formControlName='AuditorAppointed'>&nbsp;&nbsp;No:&nbsp;&nbsp;<input
+                                        type="radio" id='no' name="AuditorAppointed" value="no"
+                                        formControlName='AuditorAppointed'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail4">No. of MOUs signed/vendor registration done : </label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="number" class="form-control" id="inputEmail4"
+                                    formControlName='NoOfMouSignedVendorRegistration' minlength="1"
+                                    maxlength="5"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary" (click)="draft()">SAVE AS
+                                DRAFT</button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-success" [disabled]="!addForm.valid" (click)="publish()">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2568 @@
+<div class="container-fluid">
+    <!-- <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><strong style="color: blue;">Home</strong>/ Profile Update/Business Activity
+        </li>
+    </ol> -->
+
+    <div class="mybox">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Business Activities</label>
+                </strong>
+            </span>
+        </div>
+        <br>
+
+        <div class=" row bg-light">
+            <form [formGroup]="form">
+                <!-- <div class=" row"> -->
+                <div class="col-md-12 ">
+                    <label class="fpoName"><b><u>Primary business activities <span class="asteric-mark">*</span> :
+                            </u></b> </label>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch11' value='Input sales'
+                            (change)="onCheckboxChange($event)">Input sales
+                    </div>
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch12' value='Seed production and Supply'
+                            (change)="onCheckboxChange($event)"> Seed production and Supply
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 checkbox" style="left: -11px;">
+                            <input type="checkbox" [checked]='checkBoxPatch15' value='Produce aggregation and Marketing'
+                                (change)="onCheckboxChange($event)">Produce aggregation and Marketing
+                        </div>
+                        <div class="col-md-6 checkbox">
+                            <input type="checkbox" [checked]='checkBoxPatch13' value='Storage & logistics services'
+                                (change)="onCheckboxChange($event)"> Storage & logistics services
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch16' value='Custom hiring Center'
+                            (change)="onCheckboxChange($event)"> Custom Hiring Center
+                    </div>
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch19' value='Financial services'
+                            (change)="onCheckboxChange($event)">Financial services
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch18' value='Insurance services'
+                            (change)="onCheckboxChange($event)"> Insurance services
+                    </div>
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch14' value='Processing and value addition'
+                            (change)="onCheckboxChange($event)"> Processing and value addition
+                        <div class="col-md-6 checkbox" style="margin: 2px;" [hidden]='showTypeProcessing'>
+                            <input type="checkbox" [checked]='checkBoxPatch21' value='Primary processing'
+                                (change)="onCheckboxChange($event)"> Primary processing
+                        </div>
+                        <div class="col-md-6 checkbox" style="margin: 2px;" [hidden]='showTypeProcessing'>
+                            <input type="checkbox" [checked]='checkBoxPatch22' value='Secondary processing'
+                                (change)="onCheckboxChange($event)"> Secondary processing
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch18' value='Ecological Farming'
+                            (change)="onCheckboxChange($event)"> Ecological Farming
+                    </div>
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch19' value='Eco/Rural tourism'
+                            (change)="onCheckboxChange($event)">Eco/Rural tourism
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 checkbox">
+                        <input type="checkbox" [checked]='checkBoxPatch20' value='Others'
+                            (change)="onCheckboxChange($event)">
+                        Others
+                    </div>
+                    <div class="col-md-6 ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                        <form [formGroup]="businessData">
+                            <div class="row bg-light">
+                                <div class="fpoName">
+                                    <b>Business Activity Details of FPO</b><span class="asteric-mark">*</span> :
+                                </div>
+                                <div class="row bg-light">
+                                    <div class="col-sm-2 col-md-3 col-form-label">
+                                        <label>Year <span class="asteric-mark">*</span> </label>
+                                        <select class="form-control" formControlName="Year">
+                                            <option value="" selected>--Select--</option>
+                                            <option value="2019-2020">2019-2020</option>
+                                            <option value="2020-2021">2020-2021</option>
+                                            <option value="2021-2022">2021-2022</option>
+                                            <option value="2022-2023">2022-2023</option>
+                                            <option value="2023-2024">2023-2024</option>
+                                            <!-- <option value="2024-2025">2024-2025</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2 col-md-3 col-form-label">
+                                        <label>List of primary business activities <span class="asteric-mark">*</span>
+                                        </label>
+                                        <select class="form-control" formControlName="priBusinessActivity">
+                                            <option value="" selected>--Select--</option>
+                                            <option value="Input sales">Input sales</option>
+                                            <option value="Produce aggregation and Marketing">Produce aggregation and
+                                                Marketing</option>
+                                            <option value="improving production technology">improving production
+                                                technology
+                                            </option>
+                                            <option value="Eco/Rural tourism">Eco/Rural tourism</option>
+                                            <option value="Seed production and Supply">Seed production and Supply
+                                            </option>
+                                            <option value="Storage & logistics services">Storage & logistics services
+                                            </option>
+                                            <option value="Custom hiring Center">Custom hiring Center</option>
+                                            <option value="Ecological Farming">Ecological Farming</option>
+                                            <option value="Primary Processing">Primary Processing</option>
+                                            <option value="Secondary Processing">Secondary Processing</option>
+                                            <option value="Financial services">Financial services</option>
+                                            <option value="Insurance services">Insurance services</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2 col-md-3 col-form-label">
+                                        <label>No. of member farmers purchasing/ selling/ engaged <span
+                                                class="asteric-mark">*</span> :</label>
+                                        <input type="number" class="form-control" formControlName="pruchasSellEngage"
+                                            placeholder="Enter No. of farmer" maxlength="10" pattern="[0-9]{1,10}"
+                                            (input)="NoMemberFarmers($event)" numbersOnly required />
+                                        <!-- [min]="lowerrLimit" [max]="upperrLimit" [(ngModel)]="selecttNumber" (ngModelChange)="onNumberPurchaseChange($event)"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" -->
+
+                                    </div>
+                                    <div class="col-sm-2 col-md-3 col-form-label">
+                                        <label>No. of non-member farmers purchasing/selling/engaged <span
+                                                class="asteric-mark">*</span> :</label>
+                                        <input type="number" class="form-control" formControlName="nonPruchasSellEngage"
+                                            maxlength="10" placeholder="Enter no. of non farmer" maxlength="10"
+                                            pattern="[0-9]{1,10}" (input)="NoNonMemberFarmers($event)" numbersOnly
+                                            required />
+                                        <!-- [min]="lowerrLim" [max]="upperrLim" [(ngModel)]="selectNumb" (ngModelChange)="onNumberNonFarmChange($event)"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                            placeholder="Enter no. of non farmer" (input)="checkPurchaseSell()" /> -->
+                                    </div>
+                                    <div class="col-sm-2 col-md-3 col-form-label">
+                                        <label>Value of Transaction (In INR)<span class="asteric-mark">*</span> </label>
+                                        <input type="number" class="form-control" formControlName="amount"
+                                            placeholder="Enter Value of Transaction" maxlength="10"
+                                            pattern="[0-9]{1,10}" (input)="NoOfTransaction($event)" numbersOnly
+                                            required />
+                                        <!-- [min]="lowerLim" [max]="upperLim" [(ngModel)]="selectedNumb" (ngModelChange)="onValueTransChange($event)"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                            placeholder="Enter Transaction Amount" [disabled]="purchaseKey" /> -->
+                                    </div>
+                                    <div class="col-sm-2 col-md-3 col-form-label">
+                                        <div class="mt-4">
+                                            <button Button type="button" class="btn btn-primary text-white"
+                                                (click)="AddPrimaryBusinessDetails()"><strong>{{BusinessVal}}</strong></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row bg-light" *ngIf="primaryBusinessListArray?.length >0">
+                                    <table class="table table-bordered table-hover text-center">
+                                        <tr class="border-1">
+                                            <th scope="col">Year</th>
+                                            <th scope="col">Primary business activities</th>
+                                            <th scope="col">No. of member farmers purchasing/selling/engaged</th>
+                                            <th scope="col">No. of member non farmers purchasing/selling/engaged</th>
+                                            <th scope="col">Value of Transaction (In INR)</th>
+                                            <th scope="col" class="text-center">Edit</th>
+                                            <th scope="col" class="text-center">Delete</th>
+                                        </tr>
+                                        <tbody>
+                                            <tr *ngFor="let x of primaryBusinessListArray">
+                                                <td>{{x.Year}}</td>
+                                                <td>{{x.priBusinessActivity}}</td>
+                                                <td>{{x.pruchasSellEngage}}</td>
+                                                <td>{{x.nonPruchasSellEngage}}</td>
+                                                <td>{{x.amount}}</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-warning"
+                                                        (click)="editPrimaryBusinessDetails(x)"><i class="fa fa-pencil"
+                                                            aria-hidden="true"></i></button>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger text-white"
+                                                        (click)="deletePrimaryBusinessDetails(x)"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="row bg-light">
+                        <div class="row fpoName">
+                            <b><u>Business Activity Details of FPO :</u></b>
+                        </div>
+                        <div class="tableBox">
+                            <table class="table table-bordered table-striped myTable" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <td>Year </td>
+                                        <td>List of primary business activities </td>
+                                        <td>Commodity/ Crop
+                                        </td>
+                                        <td>Quantity Sold(in Qtls)</td>
+                                        <td>Value of Transaction (In INR)</td>
+
+                                        <td>Action</td>
+                                        <td>Delete</td>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let pb of fpoData?.primaryBusinessDetails;let i=index">
+
+                                        <td>
+
+                                            <select name="" class="form-control" #Year>
+                                                <option value="undefined" disabled>--Select--</option>
+                                                <option value="2022-2023" [selected]='pb.Year=="2022-2023"'>
+                                                    2022-2023</option>
+                                                <option value="2023-2024" [selected]='pb.Year=="2023-2024"'>
+                                                    2023-2024</option>
+                                                <option value="2024-2025" [selected]='pb.Year=="2024-2025"'>
+                                                    2023-2024</option>
+                                                <option value="2025-2026" [selected]='pb.Year=="2025-2026"'>
+                                                    2023-2024</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="" class="form-control" #priBusinessActivity>
+                                                <option value="" disabled selected>--Select--</option>
+                                                <option value="Collective Procurement of Inputs"
+                                                    [selected]='pb.priBusinessActivity=="Collective Procurement of Inputs"'>
+                                                    Collective Procurement of Inputs
+                                                </option>
+                                                <option value="Produce aggregation and Marketing"
+                                                    [selected]='pb.priBusinessActivity=="Produce aggregation and Marketing"'>
+                                                    Produce aggregation and Marketing</option>
+                                                <option value="improving production technology"
+                                                    [selected]='pb.priBusinessActivity=="improving production technology"'>
+                                                    improving production technology</option>
+                                                <option value="Eco/Rural tourism"
+                                                    [selected]='pb.priBusinessActivity=="Eco/Rural tourism"'>Eco/Rural
+                                                    tourism
+                                                </option>
+                                                <option value="Seed production and Supply"
+                                                    [selected]='pb.priBusinessActivity=="Seed production and Supply"'>
+                                                    Seed production and Supply
+                                                </option>
+                                                <option value="Storage" [selected]='pb.priBusinessActivity=="Storage"'>
+                                                    Storage
+                                                </option>
+                                                <option value="Common Hiring Centre"
+                                                    [selected]='pb.priBusinessActivity=="Common Hiring Centre"'>Common
+                                                    Hiring Centre
+                                                </option>
+                                                <option value="Ecological Farming"
+                                                    [selected]='pb.priBusinessActivity=="Ecological Farming"'>Ecological
+                                                    Farming
+                                                </option>
+                                                <option value="Other" [selected]='pb.priBusinessActivity=="Other"'>Other
+                                                </option>
+                                                <option value="Primary Processing"
+                                                    [selected]='pb.priBusinessActivity=="Primary Processing"'>Primary
+                                                    Processing
+                                                </option>
+                                                <option value="Secondary Processing"
+                                                    [selected]='pb.priBusinessActivity=="Secondary Processing"'>
+                                                    Secondary Processing
+                                                </option>
+                                            </select>
+
+                                        </td>
+                                        <td> <select class="form-control" #cropCategory>
+                                                <option value="" disabled selected>--Select--</option>
+                                                <option value="{{cat.cropCatagory}}" *ngFor='let cat of cropCatData'
+                                                    [selected]='cat == pb.cropCategory'>
+                                                    {{cat.cropCatagory}}</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" class="form-control" #quantitySold
+                                                value="{{pb.quantitySold}}">
+                                        </td>
+                                        <td><input type="number" class="form-control" #amount value="{{pb.amount}}">
+                                        </td>
+                                        <td><button class="btn  updateButton"
+                                                style="background-color: #54b754; color:white"
+                                                (click)="primaryBusinessDetailsUpdate(i,Year.value,priBusinessActivity.value,cropCategory.value,quantitySold.value,amount.value)">Update</button>
+
+                                        </td>
+                                        <button class="btn btn-danger" style=" margin-top: 12px;"
+                                            (click)='deleteField7(i)' *ngIf='pb.delete'>X</button>
+
+                                        <td>
+                                            <button class="btn btn-danger" style="float: right;" (click)='deleteRow7(i)'
+                                                *ngIf='!pb.delete'>Delete</button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <button *ngIf='fpoData?.primaryBusinessDetails?.length>=0'
+                            class="btn btn-primary addMoreBtn pull-right" (click)='AddFields7()'>Add
+                        </button>
+                    </div> -->
+
+
+
+                    <div class="tableBox">
+                        <div class="subBox">
+                            <div class="row marLeft" *ngIf='fpoData'>
+                                <div class="row fpoName">
+                                    <b><u>Business Readiness of FPO :
+                                        </u></b><br><br>
+                                </div><br><br>
+                                <div class="row bg-light">
+                                    <form [formGroup]="businessForm">
+                                        <div class="row">
+                                            <div class="row fpoName">
+                                                <b>Business Plan <span class="asteric-mark">*</span>:
+                                                </b>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Financial Year <span class="asteric-mark">*</span>
+                                                </label>
+                                                <select name="" class="form-control" formControlName='businessPlanYear'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                    <option value="2022-2023">2022-2023</option>
+                                                    <option value="2023-2024">2023-2024</option>
+                                                    <!-- <option value="2021-2022">2021-2022</option> -->
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Business plan ready <span class="asteric-mark">*</span> ?
+                                                </label>
+                                                <select name="" class="form-control"
+                                                    formControlName='businessPlanFor2021' (change)="businessPlan()">
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.businessPlanFor2021=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="existBusinessPlan">
+                                                <label for="dob">Upload Business Plan (Pdf file only)<span
+                                                        class="asteric-mark">*</span>:</label>
+                                                <input type="file" class="form-control"
+                                                    formControlName="uploadBusinessPlan"
+                                                    (change)="pdfFileFetch1($event)" id="file"
+                                                    accept="application/pdf">
+                                            </div>
+                                            <!-- <div class="col-sm-2 col-md-1 col-form-label" *ngIf="existBusinessPlan">
+                                                <div class="mt-4">
+                                                     <a href="{{businessFilePath}}" download target="_blank"
+                                                        disabled="businessReortBtn" class="btn btn-primary"
+                                                        style="width:40px" data-toggle="tooltip"
+                                                        title="View business plan"> -->
+                                            <!-- <strong>View</strong> -->
+                                            <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                                            <!-- </a> 
+                                                </div>
+                                            </div> -->
+                                            <div class="col-sm-1 col-md-2 col-form-label" *ngIf="existBusinessPlan">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="AddBusinessPlanDetails()"><strong>{{BusinessPlanVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row bg-light" *ngIf="existBusinessPlan">
+                                            <div class="row bg-light" *ngIf='businessPlanData?.length>0'>
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">Financial Year</th>
+                                                        <th scope="col">Business plan ready</th>
+                                                        <th scope="col">Uploaded Business Plan</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of businessPlanData">
+
+                                                            <td>{{x.businessPlanYear}}</td>
+                                                            <td>{{x.businessPlanFor2021}}</td>
+                                                            <!-- <td>{{x.uploadBusinessPlan}}</td> -->
+                                                            <td>Uploaded &nbsp;
+                                                                <a href="{{x?.uploadBusinessPlan}}"
+                                                                    target="_blank"><i class="fa fa-eye"
+                                                                        aria-hidden="true"></i></a>
+                                                            </td>
+                                                            <td *ngIf="x?.uploadBusinessPlan == false || x.uploadBusinessPlan == undefined">Not
+                                                                uploaded</td>
+                                                            <td *ngIf="x?.uploadBusinessPlan == true">Uploaded &nbsp;
+
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editBusinessDetails(x)"><i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteBusinessDetails(x)"><i
+                                                                        class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+
+                                <div class="row bg-light">
+                                    <form [formGroup]="kycform">
+                                        <div class="row">
+                                            <div class="row fpoName">
+                                                <b>KYC Update <span class="asteric-mark">*</span> :
+                                                </b>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Financial Year <span class="asteric-mark">*</span>
+                                                </label>
+                                                <select name="" class="form-control" formControlName='kycYear2021'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                    <option value="2022-2023">2022-2023</option>
+                                                    <option value="2023-2024">2023-2024</option>
+                                                    <!-- <option value="2021-2022">2021-2022</option> -->
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>KYC Updated <span class="asteric-mark">*</span> ?
+                                                </label>
+                                                <select name="" class="form-control" formControlName='kycData'
+                                                    (change)="updateKyc()">
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.businessPlanFor2021=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="kycUpload">
+                                                <label for="dob">Upload DIR 3(Pdf file only)<span
+                                                        class="asteric-mark">*</span> :</label>
+                                                <input type="file" class="form-control" formControlName='kycUpload'
+                                                    (change)="businessPlanFileFetch($event)" id="file"
+                                                    accept="application/pdf">
+                                            </div>
+                                            <div class="col-sm-1 col-md-2 col-form-label" *ngIf="kycUpload">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="AddKycDetails()"><strong>{{kycVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row bg-light" *ngIf="kycUpload">
+                                            <div class="row bg-light" *ngIf='KYCbusinessPlanData?.length>0'>
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">Financial Year</th>
+                                                        <th scope="col">KYC Updated</th>
+                                                        <th scope="col">Upload Documents</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of KYCbusinessPlanData">
+
+                                                            <td>{{x.kycYear2021}}</td>
+                                                            <td>{{x.kycData}}</td>
+                                                            <td>{{x.kycUpload}}</td>
+
+                                                            <td *ngIf="x?.kycUpload == true">Uploaded &nbsp;
+
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editKycDetails(x)"><i class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteKycDetails(x)"><i class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="row bg-light">
+                                    <form [formGroup]="Auditform">
+                                        <div class="row">
+                                            <div class="row fpoName">
+                                                <b>Annual Audit <span class="asteric-mark">*</span> :
+                                                </b>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Financial Year<span class="asteric-mark">*</span>
+                                                </label>
+                                                <select name="" class="form-control" formControlName='auditYear'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                    <option value="2022-2023">2022-2023</option>
+                                                    <option value="2023-2024">2023-2024</option>
+                                                    <!-- <option value="2021-2022">2021-2022</option> -->
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Annual audit done<span class="asteric-mark">*</span> ?
+                                                </label>
+                                                <select name="" class="form-control" formControlName='annualAuditDone'
+                                                    (change)="auditDone()">
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.businessPlanFor2021=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="auditUpload">
+                                                <label for="dob">Upload Annual audit statement(Pdf file only)<span
+                                                        class="asteric-mark">*</span> :</label>
+                                                <input type="file" class="form-control" formControlName='auditUpload'
+                                                    (change)="businessPlanFileFetch($event)" id="file"
+                                                    accept="application/pdf">
+                                            </div>
+                                            <!-- <div class="col-sm-2 col-md-1 col-form-label" *ngIf="annualAudit">
+                                            <div class="mt-4">
+                                                <a href="{{businessFilePath}}" download target="_blank"
+                                                    disabled="businessReortBtn" class="btn btn-primary"
+                                                    style="width:40px" data-toggle="tooltip" title="View business plan">
+                                                    <strong>View</strong> 
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div> -->
+                                            <div class="col-sm-1 col-md-2 col-form-label" *ngIf="auditUpload">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="AddAnnualAuditDetails()"><strong>{{AuditVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row bg-light" *ngIf="auditUpload">
+                                            <div class="row bg-light" *ngIf='AnnualAuditDetails?.length>0'>
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">Financial Year</th>
+                                                        <th scope="col">Annual audit done</th>
+                                                        <th scope="col">Upload Annual audit statement</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of AnnualAuditDetails">
+
+                                                            <td>{{x.auditYear}}</td>
+                                                            <td>{{x.annualAuditDone}}</td>
+                                                            <td>{{x.auditUpload}}</td>
+
+                                                            <td *ngIf="x?.auditUpload == true">Uploaded &nbsp;
+
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editAnnualAuditDetails(x)"><i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteAnnualAuditDetails(x)"><i
+                                                                        class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="row bg-light">
+                                    <form [formGroup]="Itrform">
+                                        <div class="row">
+                                            <div class="row fpoName">
+                                                <b>ITR Filling <span class="asteric-mark">*</span> :
+                                                </b>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Financial Year<span class="asteric-mark">*</span>
+                                                </label>
+                                                <select name="" class="form-control" formControlName='itrYear'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                    <option value="2022-2023">2022-2023</option>
+                                                    <option value="2023-2024">2023-2024</option>
+                                                    <!-- <option value="2021-2022">2021-2022</option> -->
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>ITR filling done<span class="asteric-mark">*</span> ?
+                                                </label>
+                                                <select name="" class="form-control" formControlName='itrFillingDone'
+                                                    (change)="itrFilling()">
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.businessPlanFor2021=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="itrUpload">
+                                                <label for="dob">Upload ITR aclnowledgement(Pdf file only)<span
+                                                        class="asteric-mark">*</span> :</label>
+                                                <input type="file" class="form-control" formControlName='itrUpload'
+                                                    (change)="businessPlanFileFetch($event)" id="file"
+                                                    accept="application/pdf">
+                                            </div>
+
+                                            <div class="col-sm-1 col-md-2 col-form-label" *ngIf="itrUpload">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="AddItrDetails()"><strong>{{ItrVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row bg-light" *ngIf="itrUpload">
+                                            <div class="row bg-light" *ngIf='ITRbusinessPlanData?.length>0'>
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">Financial Year</th>
+                                                        <th scope="col">ITR filling done</th>
+                                                        <th scope="col">Upload ITR aclnowledgemen</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of ITRbusinessPlanData">
+
+                                                            <td>{{x.itrYear}}</td>
+                                                            <td>{{x.itrFillingDone}}</td>
+                                                            <td>{{x.itrUpload}}</td>
+
+                                                            <td *ngIf="x?.itrUpload == true">Uploaded &nbsp;
+
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editItrDetails(x)"><i class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteItrDetails(x)"><i class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+
+                                <div class="row bg-light">
+                                    <form [formGroup]="RoCform">
+                                        <div class="row">
+                                            <div class="row fpoName">
+                                                <b>RoC Filling <span class="asteric-mark">*</span> :
+                                                </b>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Financial Year<span class="asteric-mark">*</span>
+                                                </label>
+                                                <select name="" class="form-control" formControlName='RoCYear'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                    <option value="2022-2023">2022-2023</option>
+                                                    <option value="2023-2024">2023-2024</option>
+                                                    <!-- <option value="2021-2022">2021-2022</option> -->
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>RoC filling done<span class="asteric-mark">*</span> ?
+                                                </label>
+
+                                                <select class="form-control" formControlName='RoCFillingDone'
+                                                    (change)="RoCFilling()">
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="fillingRoC">
+                                                <label for="dob">Upload RoC Filling Documents(Pdf file only)<span
+                                                        class="asteric-mark">*</span> :</label>
+                                                <input type="file" class="form-control" formControlName='uploadRoC'
+                                                    (change)="businessPlanFileFetch($event)" id="file"
+                                                    accept="application/pdf">
+                                            </div>
+
+                                            <div class="col-sm-1 col-md-2 col-form-label" *ngIf="fillingRoC">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="AddRoCDetails()"><strong>{{RoCVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row bg-light" *ngIf="fillingRoC">
+                                            <div class="row bg-light" *ngIf='ROCbusinessPlanData?.length>0'>
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">Financial Year</th>
+                                                        <th scope="col">RoC filling done</th>
+                                                        <th scope="col">Upload RoC Filling Documents</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of ROCbusinessPlanData">
+
+                                                            <td>{{x.RoCYear}}</td>
+                                                            <td>{{x.RoCFillingDone}}</td>
+                                                            <td>{{x.uploadRoC}}</td>
+
+                                                            <td *ngIf="x?.uploadRoC == true">Uploaded &nbsp;
+
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editRoCDetails(x)"><i class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteRoCDetails(x)"><i class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="row bg-light">
+                                    <form [formGroup]="eNamform">
+                                        <div class="row">
+                                            <div class="row fpoName">
+                                                <b>Trading on e-NAM:
+                                                </b>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Financial Year<span class="asteric-mark">*</span>
+                                                </label>
+                                                <select name="" class="form-control" formControlName='eNamYear'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                    <option value="2022-2023">2022-2023</option>
+                                                    <option value="2023-2024">2023-2024</option>
+                                                    <!-- <option value="2021-2022">2021-2022</option> -->
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label for="dob">Is the FPO registered on e-NAM :</label>
+                                                <select class="form-control" formControlName='eNamRegister'
+                                                    (change)="eNam()">
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="eNamRegisterr">
+                                                <label>FPO trading through e-NAM<span class="asteric-mark">*</span> ?
+                                                </label>
+
+                                                <select class="form-control" formControlName='eNamTrading'>
+
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-sm-1 col-md-2 col-form-label" *ngIf="eNamRegisterr">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="AddeNamDetails()"><strong>{{eNamVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row bg-light">
+                                            <div class="row bg-light" *ngIf='ENAMtradingData?.length>0'>
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">Financial Year</th>
+                                                        <th scope="col">Is the FPO registered on e-NAM</th>
+                                                        <th scope="col">FPO trading through e-NAM</th>
+
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of ENAMtradingData">
+
+                                                            <td>{{x.eNamYear}}</td>
+                                                            <td>{{x.eNamRegister}}</td>
+                                                            <td>{{x.eNamTrading}}</td>
+
+
+                                                            <!-- <td *ngIf="x?.eNamRegister == true">Uploaded &nbsp; -->
+
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editeNamDetails(x)"><i class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteeNamDetails(x)"><i
+                                                                        class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+
+
+
+                                <div class="row bg-light">
+                                    <form [formGroup]="Tieupsform">
+                                        <div class="row">
+                                            <div class="row fpoName">
+                                                <b>Tie-ups & MoUs <span class="asteric-mark">*</span> :
+                                                </b>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Financial Year <span class="asteric-mark">*</span>
+                                                </label>
+                                                <select name="" class="form-control" formControlName='TieupYear'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                    <option value="2022-2023">2022-2023</option>
+                                                    <option value="2023-2024">2023-2024</option>
+                                                    <!-- <option value="2021-2022">2021-2022</option> -->
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Tie-up/MoUs done<span class="asteric-mark">*</span> ?
+                                                </label>
+                                                <select name="" class="form-control" formControlName='Tieupdone'
+                                                    (change)="tieUpsMou()">
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.businessPlanFor2021=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="TieupAssociation">
+                                                <label>Type Of Association <span class="asteric-mark">*</span> :</label>
+                                                <select name="" class="form-control" formControlName='TieupAssociation'>
+                                                    <option value="" disabled>--Select--</option>
+                                                    <option value="Tie-up">Tie-up</option>
+                                                    <option value="MoUs">MoUs</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="TieupAssociation">
+                                                <label>Name of Company <span class="asteric-mark">*</span> :</label>
+                                                <input type="text" class="form-control" formControlName="TieupCompany"
+                                                    placeholder="Enter Name of Company" />
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="TieupAssociation">
+                                                <label>No. of transaction <span class="asteric-mark">*</span> :</label>
+                                                <input type="number" class="form-control"
+                                                    formControlName="TieupTransaction"
+                                                    placeholder="Enter No of Transaction" maxlength="10"
+                                                    pattern="[0-9]{1,10}" (input)="NoTransactionValue($event)"
+                                                    numbersOnly required />
+                                                <!-- [min]="lowLim" [max]="upLim" [(ngModel)]="selectNum" (ngModelChange)="onNumberTransaction($event)"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                    placeholder="Enter No of Transaction" /> -->
+                                            </div>
+                                            <div class="col-sm-1 col-md-2 col-form-label" *ngIf="TieupAssociation">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="AddTieupsDetails()"><strong>{{TieupsVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row bg-light" *ngIf="TieupAssociation">
+                                            <div class="row bg-light" *ngIf='TieupMouPlanData?.length>0'>
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">Financial Year</th>
+                                                        <th scope="col">Tie-up/MoUs done</th>
+                                                        <th scope="col">Type Of Association </th>
+                                                        <th scope="col">Name of Company </th>
+                                                        <th scope="col">No. of transaction </th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of TieupMouPlanData">
+
+                                                            <td>{{x.TieupYear}}</td>
+                                                            <td>{{x.Tieupdone}}</td>
+                                                            <td>{{x.TieupAssociation}}</td>
+                                                            <td>{{x.TieupCompany}}</td>
+                                                            <td>{{x.TieupTransaction}}</td>
+
+
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editTieupsDetails(x)"><i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteTieupsDetails(x)"><i
+                                                                        class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="row bg-light">
+                                        <div class="row">
+                                            <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Is Latest Statutory Audit completed for FPO <span
+                                                        class="asteric-mark">*</span> ? </label>
+                                                <select name="" class="form-control" formControlName='statutoryAudit'>
+                                                    <option value="" disabled>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.statutoryAudit=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div> -->
+                                            <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Is Latest RoC filling completed for the FPO <span
+                                                        class="asteric-mark">*</span> ? </label>
+                                                <select name="" class="form-control" formControlName='fpofilledRoc'>
+                                                    <option value="" disabled>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.fpofilledRoc=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div> -->
+
+                                            <!-- <div class="col-sm-2 col-md-4 col-form-label" *ngIf="existBusinessPlan">
+                                                <label>No. of year for which Business Plan formulated <span
+                                                        class="asteric-mark">*</span> :</label>
+                                                <select name="" class="form-control" formControlName='haveYearPlan'>
+                                                    <option value="" disabled>--Select--</option>
+                                                    <option value="1year"
+                                                        [selected]='fpoData?.businessActivities1920?.haveYearPlan=="1year"'>
+                                                        For
+                                                        1
+                                                        Year</option>
+                                                    <option value="1-3year"
+                                                        [selected]='fpoData?.businessActivities1920?.haveYearPlan=="1-3year"'>
+                                                        For
+                                                        1-3 Year</option>
+                                                    <option value="3-5year"
+                                                        [selected]='fpoData?.businessActivities1920?.haveYearPlan=="3-5year"'>
+                                                        For
+                                                        3-5 Year</option>
+                                                </select>
+
+                                            </div> -->
+
+                                            <!-- <div class="row"> -->
+
+                                            <!-- <div class="col-sm-2 col-md-3 col-form-label" *ngIf="existBusinessPlan">
+                                                <label for="dob">Upload Business Plan (Pdf file only):</label>
+                                                <input type="file" class="form-control"
+                                                    (change)="businessPlanFileFetch($event)" id="file"
+                                                    accept="application/pdf">
+                                            </div> -->
+                                            <!-- <div class="col-sm-2 col-md-1 col-form-label" *ngIf="existBusinessPlan">
+                                                <div class="mt-4">
+                                                    <a href="{{businessFilePath}}" download target="_blank"
+                                                        disabled="businessReortBtn" class="btn btn-primary"
+                                                        style="width:40px" data-toggle="tooltip"
+                                                        title="View business plan">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- </div> -->
+
+                                            <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                                <label>Is the FPO registered on e-NAM or other e-platform <span
+                                                        class="asteric-mark">*</span> ?</label>
+                                                <select name="" class="form-control" formControlName='registrationEnum'
+                                                    (change)='registrationDetails()'>
+                                                    <option value="" disabled>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.registrationEnum=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select>
+
+                                            </div> -->
+
+                                            <!-- <div class="col-sm-2 col-md-3 col-form-label"
+                                                *ngIf='showRegistrationDetails'>
+                                                <label>FPO trading through e-NAM <span class="asteric-mark">*</span>
+                                                    ?
+                                                </label>
+                                                <select name="" class="form-control"
+                                                    formControlName='tradingThroughenum'>
+                                                    <option value="" disabled>--Select--</option>
+                                                    <option value="Yes"
+                                                        [selected]='fpoData?.businessActivities1920?.tradingThroughenum=="Yes"'>
+                                                        Yes
+                                                    </option>
+                                                    <option value="No">No</option>
+                                                </select><br>
+
+                                            </div> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div style="width: 100%;float: right;">
+                                    <button class="btn btn-success pull-right" mat-raised-button
+                                        (click)="businessActivityUpdate()">Update</button>
+                                </div><br> -->
+
+                                <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                                    <form [formGroup]="licenseData">
+                                        <div class="row bg-light">
+                                            <div class="fpoName"><b><u>
+                                                        GST Details <span class="asteric-mark">*</span> :</u></b>
+                                            </div><br><br>
+                                            <div class="row">
+                                                <!-- <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>License type</label>
+                                                    <select class="form-control" formControlName="licenseType">
+                                                        <option value="" selected>--Select--</option>
+                                                        <option value="Seed">Seed</option>
+                                                        <option value="Fertiliser">Fertiliser</option>
+                                                        <option value="GST">GST</option>
+                                                        <option value="Udyog">Udyog/Adhar</option>
+                                                        <option value="Export">Export</option>
+                                                        <option value="FSSAI">FSSAI</option>
+                                                        <option value="HARP">HARP</option>
+                                                        <option value="APMC trade licence">APMC trade licence</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                </div> -->
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>GST License Number</label>
+                                                    <input type="text" class="form-control" formControlName="LicenseNum"
+                                                        placeholder="Enter License Number" pattern="[a-zA-Z0-9 ]+"
+                                                        title="Only letters, numbers, and spaces are allowed" />
+
+                                                </div>
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>Date of License Issue</label>
+                                                    <input type="date" class="form-control"
+                                                        formControlName="dateOfIssue" />
+                                                </div>
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>GST filling updated <span class="asteric-mark">*</span>
+                                                        :</label>
+                                                    <select name="" class="form-control" formControlName='gstFilling'>
+                                                        <option value="" disabled>--Select--</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>Last date of GST update</label>
+                                                    <input type="date" class="form-control"
+                                                        formControlName="dateOfRenewal" />
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-sm-3 col-md-12 col-form-label">
+                                                    <div class="mt-4">
+                                                        <button Button type="button"
+                                                            class="btn btn-primary text-white float-right"
+                                                            (click)="AddLicenseData()"><strong>{{licVal}}</strong></button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row bg-light" *ngIf="licenseListArray?.length >0">
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">GST License Number</th>
+                                                        <th scope="col">Date of License Issue</th>
+                                                        <th scope="col">GST filling</th>
+                                                        <th scope="col">Last Date of GST Update</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of licenseListArray">
+                                                            <td>{{x.LicenseNum}}</td>
+                                                            <td>{{x.dateOfIssue}}</td>
+                                                            <td>{{x.gstFilling}}</td>
+                                                            <td>{{x.dateOfRenewal}}</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editLicenseDetails(x)"><i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteLicenseDetails(x)"><i
+                                                                        class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div><br>
+                                    </form>
+                                    <form [formGroup]="otherData">
+
+                                        <div class="row bg-light">
+                                            <div class="fpoName"><b><u>
+                                                        Other License/ Certificate details </u><span
+                                                        class="asteric-mark">*</span>
+                                                    :</b>
+                                            </div><br><br>
+                                            <div class="row">
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>License/Certificate type<span class="asteric-mark">*</span>
+                                                    </label>
+                                                    <select class="form-control" formControlName="licenseType">
+                                                        <option value="" selected>--Select--</option>
+                                                        <option value="Seed">Seed</option>
+                                                        <option value="Fertiliser">Fertiliser</option>
+                                                        <option value="GST">GST</option>
+                                                        <option value="Udyog">Udyog/Adhar</option>
+                                                        <option value="Export">Export</option>
+                                                        <option value="FSSAI">FSSAI</option>
+                                                        <option value="HARP">HARP</option>
+                                                        <option value="Organic Certificate">Organic Certificate</option>
+                                                        <option value="e-NAM trading license">e-NAM trading license
+                                                        </option>
+                                                        <option value="NEL trading license">NEL trading license</option>
+                                                        <option value="NCDEX trading license">NCDEX trading license
+                                                        </option>
+                                                        <option value="APMC trade licence">APMC trade licence</option>
+                                                        <option value="GeM portal">GeM portal</option>
+                                                        <option value="Shop Act licence">Shop Act licence</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>License/Certificate Number<span class="asteric-mark">*</span>
+                                                    </label>
+                                                    <input type="text" class="form-control" formControlName="LicenseNum"
+                                                        placeholder="Enter License/Certificate Number"
+                                                        pattern="[a-zA-Z0-9 ]+"
+                                                        title="Only letters, numbers, and spaces are allowed" />
+                                                </div>
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>Date of License Issue<span class="asteric-mark">*</span>
+                                                    </label>
+                                                    <input type="date" class="form-control"
+                                                        formControlName="dateOfIssue" />
+                                                </div>
+                                                <div class="col-sm-2 col-md-3 col-form-label">
+                                                    <label>Due Date of License Renewal<span
+                                                            class="asteric-mark">*</span> </label>
+                                                    <input type="date" class="form-control"
+                                                        formControlName="dateOfRenewal" />
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-sm-3 col-md-12 col-form-label">
+                                                    <div class="mt-4">
+                                                        <button Button type="button"
+                                                            class="btn btn-primary text-white float-right"
+                                                            (click)="AddOtherLicenseData()"><strong>{{otrVal}}</strong></button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row bg-light" *ngIf="otherlicenseListArray?.length >0">
+                                                <table class="table table-bordered table-hover text-center">
+                                                    <tr class="border-1">
+                                                        <th scope="col">License type</th>
+                                                        <th scope="col">License/Certificate Number</th>
+                                                        <th scope="col">Date of License Issue</th>
+                                                        <th scope="col">Due Date of License Renewal</th>
+                                                        <th scope="col" class="text-center">Edit</th>
+                                                        <th scope="col" class="text-center">Delete</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of otherlicenseListArray">
+                                                            <td>{{x.licenseType}}</td>
+                                                            <td>{{x.LicenseNum}}</td>
+                                                            <td>{{x.dateOfIssue}}</td>
+                                                            <td>{{x.dateOfRenewal}}</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-warning"
+                                                                    (click)="editOtherLicenseDetails(x)"><i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-sm btn-danger text-white"
+                                                                    (click)="deleteOtherLicenseDetails(x)"><i
+                                                                        class="fa fa-trash"
+                                                                        aria-hidden="true"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <u> <b>FPO License Details <span class="asteric-mark">*</span> :<br></b> </u> <br>
+
+
+                                    <div class="tableBox">
+                                        <table class="table table-bordered table-striped myTable" id="myTable">
+                                            <thead>
+                                                <tr>
+                                                    <td>License type </td>
+                                                    <td>License Number</td>
+                                                    <td>Date of License Issue </td>
+                                                    <td>Due Date of License Renewal </td>
+
+
+                                                    <td>Update</td>
+                                                    <td>Delete</td>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr *ngFor="let Lictype of fpoData?.License;let i=index">
+
+                                                    <td> <select name="" class="form-control" #licenseType>
+                                                            <option value="" disabled selected>--Select--</option>
+                                                            <option value="Seed"
+                                                                [selected]='fpoData?.License?.licenseType=="Seed"'>Seed
+                                                            </option>
+                                                            <option value="Fertiliser"
+                                                                [selected]='fpoData?.License?.licenseType=="Fertiliser"'>
+                                                                Fertiliser</option>
+                                                            <option value="GST"
+                                                                [selected]='fpoData?.License?.licenseType=="GST"'>GST
+                                                            </option>
+                                                            <option value="Udyog"
+                                                                [selected]='fpoData?.License?.licenseType=="Udyog/Adhar"'>
+                                                                Udyog/Adhar
+                                                            </option>
+                                                            <option value="Export"
+                                                                [selected]='fpoData.License?.licenseType=="Export"'>
+                                                                Export
+                                                            </option>
+                                                            <option value="FSSAI"
+                                                                [selected]='fpoData?.License?.licenseType=="FSSAI"'>
+                                                                FSSAI
+                                                            </option>
+                                                            <option value="HARP"
+                                                                [selected]='fpoData?.License?.licenseType=="HARP"'>HARP
+                                                            </option>
+                                                            <option value="APMC trade licence"
+                                                                [selected]='fpoData?.License?.licenseType=="APMC trade licence"'>
+                                                                APMC trade licence
+                                                            </option>
+                                                            <option value="Other"
+                                                                [selected]='fpoData?.License?.licenseType=="Other"'>
+                                                                Other
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                    <td><input type="text" class="form-control" #LicenseNum
+                                                            value="{{Lictype.LicenseNum}}" minlength="15" maxlength="15"
+                                                            pattern="[A-Z]{7}[0-9]{7}[A-Z]{1}"
+                                                            oninput="this.value = this.value.toUpperCase()">
+                                                    </td>
+                                                    <td><input type="date" class="form-control" #dateOfIssue
+                                                            value="{{Lictype.dateOfIssue}}">
+                                                    <td><input type="date" class="form-control" #dateOfRenewal
+                                                            value="{{Lictype.dateOfRenewal}}">
+                                                    <td><button class="btn  updateButton"
+                                                            style="background-color: #54b754; color:white"
+                                                            (click)="LicenseDetailsUpdate(i,licenseType.value,LicenseNum.value,dateOfIssue.value,dateOfRenewal.value)">Update</button>
+
+                                                    </td>
+
+                                                    <button class="btn btn-danger" style=" margin-top: 12px;"
+                                                        (click)='deleteField4(i)' *ngIf='Lictype.delete'>X</button>
+
+
+                                                    <td>
+                                                        <button class="btn btn-danger" style="float: right;"
+                                                            (click)='deleteLicRow(i)'
+                                                            *ngIf='!Lictype.delete'>Delete</button>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <button *ngIf='fpoData?.License?.length>=0'
+                                            class="btn btn-primary addMoreBtn pull-right" (click)='AddFields4()'>Add
+                                        </button>
+                                    </div>
+
+                                </div> -->
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <br><br>
+        <!-- ============= Details of Commodities/Crops ================ -->
+        <div class="bg-light row">
+            <div class=" col-md-12">
+                <form [formGroup]="cropsForm">
+                    <div class="row">
+                        <div class="fpoName"><b><u>
+                                    Details of Commodities/Crops <span class="asteric-mark">*</span> :
+                                </u></b>
+                        </div><br><br>
+                        <div class="row ">
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label> Financial Year <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="year">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="{{years}}">{{years}}</option>
+                                    <option value="{{years-1}}">{{years-1}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Season <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="season">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="Rabi">Rabi</option>
+                                    <option value="Kharif">Kharif
+                                    </option>
+                                    <option value="Zaid">Zaid</option>
+                                    <option value="Others">Others
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Produce Type <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="cropType">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Crop">Crop/Commodity</option>
+                                    <option value="Seed">Seed</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Crop/Commodity Catagory <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="cropCatagory"
+                                    (change)='getCropAccToCatagory()'>
+                                    <option value="" disabled selected>--Select--</option>
+                                    <option value="{{cat.cropCatagory}}" *ngFor='let cat of cropCatData'>
+                                        {{cat.cropCatagory}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Sub-Catagory <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="cropName" (change)='loadVariety()'>
+                                    <option value="" disabled selected>--Select--</option>
+                                    <option value="{{crop.Crop_Name}}" *ngFor='let crop of cropTypes'>
+                                        {{crop.Crop_Name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Variety <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="variety">
+                                    <option value="" disabled selected>--Select--</option>
+                                    <option value="{{variety.Variety_Name}}" *ngFor='let variety of varietyData'>
+                                        {{variety.Variety_Name}}</option>
+                                </select>
+
+                            </div>
+                            <div class="col-sm-4 col-md-3 col-form-label">
+                                <label>Area of production(In acres) <span class="asteric-mark">*</span> </label>
+                                <input type="number" class="form-control" formControlName="productionArea"
+                                    placeholder="Enter production area" maxlength="10" pattern="[0-9]{1,10}"
+                                    (input)="NoProductionArea($event)" numbersOnly required />
+                                <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    minlength="1" maxlength="8" class="form-control"
+                                [min]="lowerLimi" [max]="upperLimi" [(ngModel)]="selectedNumbe" (ngModelChange)="onNumberArea($event)"
+                                   /> -->
+                            </div>
+                            <div class="col-sm-4 col-md-3 col-form-label">
+                                <label>Production volume(in qtls.) <span class="asteric-mark">*</span> </label>
+                                <input type="number" class="form-control" formControlName="quantity"
+                                    placeholder="Enter production volume" maxlength="10" pattern="[0-9]{1,10}"
+                                    (input)="NoProductionVolume($event)" numbersOnly required />
+                                <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    minlength="1" maxlength="8" class="form-control"
+                                    [min]="lowLimi" [max]="upLimi" [(ngModel)]="selectNumbe" (ngModelChange)="onNumberProduction($event)" /> -->
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Sowing Date <span class="asteric-mark">*</span> </label>
+                                <input type="date" class="form-control" formControlName="Sowing" />
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Harvesting Date <span class="asteric-mark">*</span> </label>
+                                <input type="date" class="form-control" formControlName="Harvesting" />
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Sales Value(INR) <span class="asteric-mark">*</span> </label>
+                                <input type="number" class="form-control" formControlName="transctionAmount"
+                                    placeholder="Enter Sales Value" maxlength="10" pattern="[0-9]{1,10}"
+                                    (input)="NoSalesValue($event)" numbersOnly required />
+                                <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                                    [min]="loweLimi" [max]="uppeLimi" [(ngModel)]="selecttNumbe" (ngModelChange)="onNumbersaleValue($event)"/> -->
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label">
+                                <label>Status of sales <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="saleStatus">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Ready for sale">Ready for sale</option>
+                                    <option value="Sold in domestic market">Sold in domestic market</option>
+                                    <option value="Exported to other state">Exported to other state/International market </option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2 col-md-12 col-form-label">
+                                    <div class="mt-4">
+                                        <button Button type="button" class="btn btn-primary text-white float-right"
+                                            (click)="addCropListDetails()"><strong>{{cropsBtnVal}}</strong></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row bg-light col-md-12 col-sm-12 table-responsive" *ngIf="cropListArray?.length >0">
+                        <table class="table table-bordered table-hover text-center">
+                            <tr class="border-1">
+                                <th scope="col">Year</th>
+                                <th scope="col">Season</th>
+                                <th scope="col">Product Type</th>
+                                <th scope="col">Crop/Commodity Catagory</th>
+                                <th scope="col">Subcatagory</th>
+                                <th scope="col">Variety</th>
+                                <th scope="col">Area of production(In acres)</th>
+                                <th scope="col">Production volume(in qtls.)</th>
+                                <th scope="col">Sowing Date</th>
+                                <th scope="col">Harvesting Date</th>
+                                <th scope="col">Production Value(in Rs.)</th>
+                                <th scope="col">Status of sale</th>
+                                <th scope="col" class="text-center">Edit</th>
+                                <th scope="col" class="text-center">Delete</th>
+
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let x of cropListArray">
+                                    <td>{{x.year}}</td>
+                                    <td>{{x.season}}</td>
+                                    <td>{{x.cropType}}</td>
+                                    <td>{{x.cropCatagory}}</td>
+                                    <td>{{x.cropName}}</td>
+                                    <td>{{x.variety}}</td>
+                                    <td>{{x.productionArea}}</td>
+                                    <td>{{x.quantity}}</td>
+                                    <td>{{x.Sowing | date:'dd-MM-yyyy'}}</td>
+                                    <td>{{x.Harvesting | date:'dd-MM-yyyy'}}</td>
+                                    <td>{{x.transctionAmount}}</td>
+                                    <td>{{x.saleStatus}}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-warning" (click)="editCropListDetails(x)"><i
+                                                class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-danger text-white"
+                                            (click)="deleteCropListDetails(x)"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <!-- ============================= -->
+
+        <!-- <div class="bg-light row">
+            <div class="row subBox">
+                <div class="row fpoName">
+
+                    <b><u> Details of Commodities/Crops
+                        </u></b>
+
+                </div>
+            </div>
+            <div *ngIf='cropData?.length==0||!cropData' style="width: 100%;text-align: center;">
+                <p>No Data</p>
+            </div>
+            <div class="tableBox" *ngIf='cropData?.length>0'>
+                <table class="table table-striped myTable" id="myTable">
+                    <thead>
+                        <tr>
+                            <td>Year</td>
+                            <td>Season</td>
+                            <td>Product Type</td>
+                            <td>Crop/Commodity Catagory</td>
+                            <td>Subcatagory</td>
+                            <td>Variety</td>
+                            <td>Area of production(In acres)</td>
+                            <td>Production volume(in qtls.)</td>
+                            <td>Sowing Date</td>
+                            <td>Harvesting Date</td>
+                            <td>Production Value(in Rs.)</td>
+                            <td>Action</td>
+                            <td>Delete</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cropDetail of cropData;let i=index">
+                            <td>{{cropDetail.year}}</td>
+                            <td>{{cropDetail.season}}</td>
+                            <td>{{cropDetail.cropType}}</td>
+                            <td>{{cropDetail.cropCatagory}}</td>
+                            <td>{{cropDetail.cropName}}</td>
+                            <td>{{cropDetail.variety}}</td>
+                            <td>{{cropDetail.productionArea}}</td>
+                            <td>{{cropDetail.quantity}}</td>
+                            <td>{{cropDetail.Sowing}}</td>
+                            <td>{{cropDetail.Harvesting}}</td>
+
+                            <td>{{cropDetail.transctionAmount}}</td>
+
+                            <td><button class="btn pull-right updateButton" data-toggle="modal"
+                                    data-target="#updateCrop" mat-raised-button
+                                    (click)='passCropDataToModal(i,cropDetail)'>Edit</button>
+                                <button class="btn btn-danger" style="float: right;" (click)='deleteField1(i)'
+                                    *ngIf='cropDetail.delete'>Delete</button>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-danger" style="float: right;"
+                                    (click)='deleteRow3(cropDetail._id)'>Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-primary addMoreBtn pull-right" (click)='AddFields1()' data-toggle="modal"
+                data-target="#updateCrop">Add
+            </button>
+        </div> -->
+
+
+        <br><br>
+        <div class="bg-light row">
+            <div class="col-md-12">
+                <div class="fpoName"> <b><u>Secondary Business Activities</u></b></div> <br>
+            </div>
+            <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <span><label for="">FPO engaged in other secondary business?:</label></span><br>
+                        <select name="" class="form-control" [(ngModel)]="secondaryBusinessActiv"
+                            (change)='secondaryBusinessShow()'>
+                            <option value="" selected>--Select--</option>
+                            <option value="Yes" [selected]='secondaryBusinessActiv == "Yes"'>Yes
+                            </option>
+                            <option value="No" [selected]='secondaryBusinessActiv == "No"'>
+                                No</option>
+                        </select>
+                    </div><br><br>
+                </div>
+                <div class="col-md-12" *ngIf="secBusinessShow">
+                    <form [formGroup]="secondaryBusinessForm">
+                        <div class="row bg-light">
+                            <div class="row ">
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <span><label>Financial Year</label></span>
+                                    <select class="form-control" formControlName="businessActivity">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="2021-2022"> 2021-2022</option>
+                                        <option value="2022-2023"> 2022-2023</option>
+                                        <option value="2023-2024"> 2023-2024</option>
+                                        <option value="2024-2025"> 2024-2025</option>
+                                        <option value="2025-2026"> 2025-2026</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <span> <label>Type of secondary business activities</label></span>
+                                    <input type="text" class="form-control" formControlName="productName"
+                                        placeholder="Enter business activities" minlength="1" maxlength="300"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <span> <label>Commodity/ Crop/ Services</label></span>
+                                    <input type="text" class="form-control" formControlName="businessDetails"
+                                        placeholder="Enter Commodity/Crop/Services" minlength="1" maxlength="300"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                </div>
+                                <div class="col-sm-4 col-md-3 col-form-label">
+                                    <label>Quantity Sold(in Qtls)</label>
+                                    <input type="number" class="form-control" formControlName="quantitySold"
+                                        placeholder="Enter Quantity Sold" maxlength="10" pattern="[0-9]{1,10}"
+                                        (input)="NoQuantitySold($event)" numbersOnly required />
+                                    <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        minlength="1" maxlength="8" class="form-control"
+
+                                        [min]="lowerLimitng" [max]="upperLimitng" [(ngModel)]="selectedNumberng" (ngModelChange)="onNumberQuantitySold($event)" /> -->
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-4 col-md-3 col-form-label">
+                                    <label>Value of Transaction (In INR)</label>
+                                    <input type="number" class="form-control" formControlName="amount"
+                                        placeholder="Enter transaction value" maxlength="10" pattern="[0-9]{1,10}"
+                                        (input)="NoTransValue($event)" numbersOnly required />
+                                    <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        minlength="1" maxlength="8" class="form-control" 
+                                        [min]="lowLimitng" [max]="upLimitng" [(ngModel)]="selectNumng" (ngModelChange)="onValueTransaction($event)"/> -->
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <div class="mt-4">
+                                        <button Button type="button" class="btn btn-primary text-white"
+                                            (click)="addSecBusinessDetails()"><strong>{{secbusinessBtnVal}}</strong></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bg-light" *ngIf="fpoData?.secondaryBusinessDetails?.length >0">
+                            <table class="table table-bordered table-hover text-center">
+                                <tr class="border-1">
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Type of secondary business activities</th>
+                                    <th scope="col">Commodity/ Crop/ Services</th>
+                                    <th scope="col">Quantity Sold(in Qtls)</th>
+                                    <th scope="col">Value of Transaction (In INR)</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let x of fpoData?.secondaryBusinessDetails">
+                                        <td>{{x.businessActivity}}</td>
+                                        <td>{{x.productName}}</td>
+                                        <td>{{x.businessDetails}}</td>
+                                        <td>{{x.quantitySold}}</td>
+                                        <td>{{x.amount}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-warning"
+                                                (click)="editSecBusinessDetails(x)"><i class="fa fa-pencil"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger text-white"
+                                                (click)="deleteSecBusinessDetails(x)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bg-light row">
+            <div class="col-md-12">
+                <div class="fpoName"> <b><u>Access to infrastructure & other facilities</u></b></div> <br>
+            </div>
+            <div class="col-md-12">
+                <div class="fpoName"><b>Storage :</b></div>
+            </div>
+            <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label>FPO have access to storage facility ?</label>
+                        <select name="" class="form-control" [(ngModel)]="StorageFacility"
+                            (change)="separateStorageSelect()">
+                            <option value="" selected>--Select--</option>
+                            <option value="Yes" [selected]='StorageFacility=="Yes"'>Yes</option>
+                            <option value="No" [selected]='StorageFacility=="No"'>No</option>
+                        </select>
+                    </div><br><br>
+                </div>
+                <div class="col-md-12" *ngIf="showSeparateStragRadio">
+                    <form [formGroup]="storageDetailsForm">
+                        <div class="row bg-light">
+                            <div class="row ">
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Storage/Warehouse Type</label>
+                                    <select class="form-control" formControlName="storageType">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="General godown">General godown</option>
+                                        <option value="Cold storage"> Cold storage </option>
+                                        <option value="Packhouse">Packhouse</option>
+                                        <option value="Specialized commodity godown"> Specialized commodity godown
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Commodity storage type</label>
+                                    <input type="text" class="form-control" formControlName="commodityType"
+                                        placeholder="Enter commodity storage type" minlength="1" maxlength="300"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <label>Ownership Type</label>
+                                    <select class="form-control" formControlName="ownership" (change)="ownerTypes()">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Rented"> Rented</option>
+                                        <option value="Own">Own</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 col-md-3 col-form-label" *ngIf="rentTypeHide">
+                                    <label>If Rented specify?</label>
+                                    <select name="" class="form-control" formControlName="rentType">
+                                        <option value="undefined" disabled>--Select--</option>
+                                        <option value="Private"> Private</option>
+                                        <option value="Government">Government</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-4 col-md-3 col-form-label">
+                                    <label>Storage/Warehouse Capacity(Qtls)</label>
+                                    <input type="number" class="form-control" formControlName="storageCapacity"
+                                        placeholder="Enter storage capacity" maxlength="10" pattern="[0-9]{1,10}"
+                                        (input)="NoStorageWarehouse($event)" numbersOnly required />
+                                    <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        minlength="1" maxlength="8" class="form-control"
+                                        [min]="lowerLimittg" [max]="upperLimittg" [(ngModel)]="selectedNumbert" (ngModelChange)="onStorageWarehouse($event)" /> -->
+                                </div>
+                                <div class="col-sm-4 col-md-3 col-form-label">
+                                    <label>Storage/Warehouse Utilization(Qtls)</label>
+                                    <input type="number" class="form-control" formControlName="storageUtility"
+                                        placeholder="Enter storage utilization" maxlength="10" pattern="[0-9]{1,10}"
+                                        (input)="NoStorageWarehouseUtilize($event)" numbersOnly required />
+                                    <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        minlength="1" maxlength="8" class="form-control" 
+                                        [min]="lowLimittg" [max]="upLimittg" [(ngModel)]="selectNumbert" (ngModelChange)="onStorageUtilization($event)"/> -->
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label">
+                                    <div class="mt-4">
+                                        <button Button type="button" class="btn btn-primary text-white"
+                                            (click)="addStorageDetails()"><strong>{{storageBtnVal}}</strong></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bg-light" *ngIf="fpoData?.storageDetails?.length >0">
+                            <table class="table table-bordered table-hover text-center">
+                                <tr class="border-1">
+                                    <th scope="col">Storage/Warehouse Type</th>
+                                    <th scope="col">Commodity storage type</th>
+                                    <th scope="col">Ownership Type</th>
+                                    <th scope="col">Rented specify</th>
+                                    <th scope="col">Storage/Warehouse Capacity(Qtls)</th>
+                                    <th scope="col">Storage/Warehouse Utilization (Qtls)</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let x of fpoData?.storageDetails">
+                                        <td>{{x.storageType}}</td>
+                                        <td>{{x.commodityType}}</td>
+                                        <td>{{x.ownership}}</td>
+                                        <td>{{x.rentType}}</td>
+                                        <td>{{x.storageCapacity}}</td>
+                                        <td>{{x.storageUtility}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-warning" (click)="editStorageDetails(x)"><i
+                                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-danger text-white"
+                                                (click)="deleteStorageDetails(x)"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-light row">
+            <form [formGroup]="InfrastructureDetailForm">
+                <div class="col-md-12">
+
+                    <div class="fpoName"><b>Processing Infrastructure <span class="asteric-mark">*</span> :</b></div>
+                </div>
+                <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label for="">FPO have processing Infrastructure?<span class="asteric-mark">*</span>
+                            </label>
+                            <select class="form-control" formControlName='haveProcessingInfrestructure'
+                                (change)='processingInfra()'>
+                                <option value="" selected>--Select--</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div><br><br>
+                    </div>
+                    <!-- <div class="col-md-12" *ngIf="procInfraMentionShow"> -->
+
+                    <div class="row bg-light">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <label>Machine Name <span class="asteric-mark">*</span> </label>
+                                <input type="text" class="form-control" formControlName="machineName"
+                                    placeholder="Enter Machine Name" />
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <label>Ownership Type <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="ownership">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Self owned by FPO">Self owned by FPO</option>
+                                    <option value="Private one(on lease)">Private one(on lease)</option>
+                                    <option value="Government(on lease)">Government(on lease)</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <label>Capacity Utilization per Day (Qlts) <span class="asteric-mark">*</span> </label>
+                                <input type="number" class="form-control" formControlName="Capacity"
+                                    placeholder="Enter Capacity in Qlts" maxlength="10" pattern="[0-9]{1,10}"
+                                    (input)="NoCapacityUtilize($event)" numbersOnly required />
+                                <!-- [min]="lowerLimiting" [max]="upperLimiting" [(ngModel)]="selectedNumberig" (ngModelChange)="onCapacityUtilization($event)"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    placeholder="" /> -->
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <label>Utility of Machine(Duration when its used) <span class="asteric-mark">*</span>
+                                </label>
+                                <select class="form-control" formControlName="utility">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Throughtout the year without break">Throughtout the year without
+                                        break
+                                    </option>
+                                    <option value="Pick seasons only(4-6 months)">Pick seasons only(4-6 months)
+                                    </option>
+                                    <option value="As and when needed">As and when needed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <label>Age of the Machine (How old is the machine) <span class="asteric-mark">*</span>
+                                </label>
+                                <input type="number" class="form-control" formControlName="Age"
+                                    placeholder="Enter Age of Machine" maxlength="10" pattern="[0-9]{1,10}"
+                                    (input)="NoOfMachineAge($event)" numbersOnly required />
+                                <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    minlength="1" maxlength="3"
+                                    [min]="lowLimiting" [max]="upLimiting" [(ngModel)]="selectNumbering" (ngModelChange)="onAgeMachine($event)"  /> -->
+                            </div>
+                            <div class="col-sm-4 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <label>Ph. no. of Infrastructure supplier <span class="asteric-mark">*</span> </label>
+                                <input type="number" class="form-control" formControlName="contactSupplier"
+                                    placeholder="Enter phone number"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    minlength="10" maxlength="10" required />
+                                <!-- [min]="lowerLimit" [max]="upperLimit" [(ngModel)]="selectedNumber" (ngModelChange)="onNumberChange($event)"  -->
+                                <div *ngIf="InfrastructureDetailForm.controls.contactSupplier.errors?.pattern"
+                                    class="alerterr">
+                                    * Invalid Mobile No. Format
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <label>Packing/Branding done by FPO <span class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName="packing">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 col-md-3 col-form-label" *ngIf="procInfraMentionShow">
+                                <div class="mt-4">
+                                    <button Button type="button" class="btn btn-primary text-white"
+                                        (click)="addInfrastructureDetails()"><strong>{{InfraVal}}</strong></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row bg-light" *ngIf="infraStructureListArray?.length >0">
+                        <table class="table table-bordered table-hover text-center">
+                            <tr class="border-1">
+                                <th scope="col">Machine Name</th>
+                                <th scope="col">Ownership Type</th>
+                                <th scope="col">Capacity Utilization</th>
+                                <th scope="col">Utility of Machine</th>
+                                <th scope="col">Age of Machine</th>
+                                <th scope="col">Contact of supplier</th>
+                                <th scope="col">Packing/Branding</th>
+                                <th scope="col" class="text-center">Edit</th>
+                                <th scope="col" class="text-center">Delete</th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let x of infraStructureListArray">
+                                    <td>{{x.machineName}}</td>
+                                    <td>{{x.ownership}}</td>
+                                    <td>{{x.Capacity}}</td>
+                                    <td>{{x.utility}}</td>
+                                    <td>{{x.Age}}</td>
+                                    <td>{{x.contactSupplier}}</td>
+                                    <td>{{x.packing}}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-warning" (click)="editInfrastructureDetails(x)"><i
+                                                class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-danger text-white"
+                                            (click)="deleteInfrastructureDetails(x)"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- </div> -->
+
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="bg-light row">
+        <form [formGroup]="qualityControlDetailForm">
+
+            <div class="col-md-12">
+                <div class="fpoName"><b>Quality control <span class="asteric-mark">*</span> :</b></div>
+            </div>
+            <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label for="">FPO have access to Assaying Facility?<span class="asteric-mark">*</span> </label>
+                        <select class="form-control" formControlName='haveAssayingFacility' (change)='qualityControl()'>
+                            <option value="" selected>--Select--</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div><br><br>
+                </div>
+                <!-- <div class="col-md-12" *ngIf="qualityControlShow"> -->
+                <div class="row bg-light">
+                    <div class="row">
+
+                        <div class="col-sm-2 col-md-3 col-form-label" *ngIf="qualityControlShow">
+                            <label>Type of assaying facility <span class="asteric-mark">*</span> </label>
+                            <select class="form-control" formControlName="assaying">
+                                <option value="" selected>--Select--</option>
+                                <option value="Owned">Owned</option>
+                                <option value="Private Service provider">Private Service provider</option>
+                                <option value="APMC">APMC</option>
+                                <option value="Buyer owned">Buyer owned</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-md-3 col-form-label" *ngIf="qualityControlShow">
+                            <label>Location of assaying facility <span class="asteric-mark">*</span> </label>
+                            <select class="form-control" formControlName="location">
+                                <option value="" selected>--Select--</option>
+                                <option value="Village level">Village level</option>
+                                <option value="Block level">Block level</option>
+                                <option value="District level">District level</option>
+                                <option value="At all level">At all level</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 col-md-3 col-form-label" *ngIf="qualityControlShow">
+                            <div class="mt-4">
+                                <button Button type="button" class="btn btn-primary text-white"
+                                    (click)="addQualityControlDetails()"><strong>{{QualityVal}}</strong></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row bg-light" *ngIf="qualityControlShow">
+                    <div class="row bg-light" *ngIf="qualityControlListArray?.length >0">
+                        <table class="table table-bordered table-hover text-center">
+                            <tr class="border-1">
+                                <th scope="col">FPO have access to Assaying Facility</th>
+                                <th scope="col">Type of assaying facility</th>
+                                <th scope="col">Location of Assaying Facility</th>
+                                <th scope="col" class="text-center">Edit</th>
+                                <th scope="col" class="text-center">Delete</th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let x of qualityControlListArray">
+                                    <td>{{x.haveAssayingFacility}}</td>
+                                    <td>{{x.assaying}}</td>
+                                    <td>{{x.location}}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-warning" (click)="editQualityControlDetails(x)"><i
+                                                class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-danger text-white"
+                                            (click)="deleteQualityControlDetails(x)"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <!-- </form> -->
+            </div>
+
+
+            <!-- </div> -->
+
+            <!-- </div> -->
+
+            <div class="bg-light row">
+                <form [formGroup]="collectionCenterForm">
+
+                    <div class="col-md-12">
+                        <div class="fpoName"><b>Aggregation/Collection centre <span class="asteric-mark">*</span> :</b>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label for="">FPO have access to Aggregation/Collection centre?<span
+                                        class="asteric-mark">*</span> </label>
+                                <select class="form-control" formControlName='haveCollectionCenter'
+                                    (change)='collectionCenter()'>
+                                    <option value="" selected>--Select--</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div><br><br>
+                        </div>
+                        <!-- <div class="col-md-12" *ngIf="qualityControlShow"> -->
+                        <div class="row bg-light">
+                            <div class="row">
+
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf="collectionCenterShow">
+                                    <label>Type of Aggregation/ Collection centre <span class="asteric-mark">*</span>
+                                    </label>
+                                    <select class="form-control" formControlName="collectionType">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Owned">Owned</option>
+                                        <option value="Rented">Rented</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 col-md-3 col-form-label" *ngIf="collectionCenterShow">
+                                    <label>Location of assaying facility <span class="asteric-mark">*</span> </label>
+                                    <select class="form-control" formControlName="locationOfAssaying">
+                                        <option value="" selected>--Select--</option>
+                                        <option value="Village level">Village level</option>
+                                        <option value="Block level">Block level</option>
+                                        <option value="District level">District level</option>
+                                        <option value="At all level">At all level</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 col-md-3 col-form-label" *ngIf="collectionCenterShow">
+                                    <div class="mt-4">
+                                        <button Button type="button" class="btn btn-primary text-white"
+                                            (click)="addCollectionCenterDetails()"><strong>{{CollectionVal}}</strong></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row bg-light" *ngIf="collectionCenterShow">
+                            <div class="row bg-light" *ngIf="aggrigationListArray?.length >0">
+                                <table class="table table-bordered table-hover text-center">
+                                    <tr class="border-1">
+                                        <th scope="col">FPO have access to Aggregation/Collection centre</th>
+                                        <th scope="col">Type of Aggregation/ Collection centre</th>
+                                        <th scope="col">Location of assaying facility</th>
+                                        <th scope="col" class="text-center">Edit</th>
+                                        <th scope="col" class="text-center">Delete</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr *ngFor="let x of aggrigationListArray">
+                                            <td>{{x.haveCollectionCenter}}</td>
+                                            <td>{{x.collectionType}}</td>
+                                            <td>{{x.locationOfAssaying}}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-warning"
+                                                    (click)="editCollectionCenterDetails(x)"><i class="fa fa-pencil"
+                                                        aria-hidden="true"></i></button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-danger text-white"
+                                                    (click)="deleteCollectionCenterDetails(x)"><i class="fa fa-trash"
+                                                        aria-hidden="true"></i></button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        <!-- </form> -->
+                        <!-- </div> -->
+
+
+                        <!-- </div> -->
+
+                    </div>
+
+                    <div class="bg-light row">
+                        <div class="col-md-12">
+                            <div class="fpoName"><b>Common facility centre <span class="asteric-mark">*</span> :</b>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #e2eae8 !important; padding: 2%;">
+                            <div class="col-md-12">
+                                <form [formGroup]="CommonFascilityDetailForm">
+                                    <div class="col-md-3">
+                                        <label for="">FPO have access to common facility centre?<span
+                                                class="asteric-mark">*</span> </label>
+                                        <select class="form-control" formControlName='haveAccessToFacilityCenter'
+                                            (change)='FacilityCenter()'>
+                                            <option value="" selected>--Select--</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div><br><br>
+                                    <!-- </div> -->
+                                    <!-- <div class="col-md-12" *ngIf="qualityControlShow"> -->
+                                    <div class="row bg-light">
+                                        <div class="row">
+
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="facilityOwnedAgency">
+                                                <label> Type of Common Facility Centre<span
+                                                        class="asteric-mark">*</span> </label>
+                                                <select class="form-control" formControlName="facilityType"
+                                                    (change)='FPOOwnedByAgency()'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="FPO owned">FPO owned</option>
+                                                    <option value="OwnedByOtherAgency">Owned by other agency</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="facilityCenterShow">
+                                                <label>FPO want to open a common facility centre<span
+                                                        class="asteric-mark">*</span> </label>
+                                                <select class="form-control" formControlName="wantToOpenFacility"
+                                                    (change)='FPOWantComfacilityCenter()'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="openFacilityCenter">
+                                                <label>FPO have land available for opening a common facility
+                                                    centre<span class="asteric-mark">*</span> </label>
+                                                <select class="form-control" formControlName="landAvailable"
+                                                    (change)='landStatus()'>
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="landShow">
+                                                <label>Status of land<span class="asteric-mark">*</span> </label>
+                                                <select class="form-control" formControlName="landStatus">
+                                                    <option value="" selected>--Select--</option>
+                                                    <option value="Owned">Owned</option>
+                                                    <option value="Leased">Leased</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 col-md-3 col-form-label" *ngIf="landShow">
+                                                <label for="dob">Upload Land registry/ Lease agreement (JPEG/
+                                                    PDF)only<span class="asteric-mark">*</span> :</label>
+                                                <input type="file" class="form-control" formControlName='uploadLand'
+                                                    (change)="businessPlanFileFetch($event)" id="file"
+                                                    accept="application/pdf">
+                                            </div>
+                                            <div class="col-sm-4 col-md-3 col-form-label" *ngIf="facilityOwnedAgency">
+                                                <div class="mt-4">
+                                                    <button Button type="button" class="btn btn-primary text-white"
+                                                        (click)="addFacilityCenterDetails()"><strong>{{CfcVal}}</strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row bg-light">
+                                        <div class="row bg-light" *ngIf="facilityCenterListArray?.length >0">
+                                            <table class="table table-bordered table-hover text-center">
+                                                <tr class="border-1">
+                                                    <th scope="col">FPO have access to common facility centre</th>
+                                                    <th scope="col">Type of Common Facility Centre</th>
+                                                    <th scope="col">FPO want to open a common facility center</th>
+                                                    <th scope="col">Have land available</th>
+                                                    <th scope="col">Status of land</th>
+                                                    <th scope="col">Upload Land document</th>
+                                                    <th scope="col" class="text-center">Edit</th>
+                                                    <th scope="col" class="text-center">Delete</th>
+                                                </tr>
+                                                <tbody>
+                                                    <tr *ngFor="let x of facilityCenterListArray">
+                                                        <td>{{x.haveAccessToFacilityCenter}}</td>
+                                                        <td>{{x.facilityType}}</td>
+                                                        <td>{{x.wantToOpenFacility}}</td>
+                                                        <td>{{x.landAvailable}}</td>
+                                                        <td>{{x.landStatus}}</td>
+                                                        <td>{{x.uploadLand}}</td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-warning"
+                                                                (click)="editFacilityCenterDetails(x)"><i
+                                                                    class="fa fa-pencil"
+                                                                    aria-hidden="true"></i></button>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-danger text-white"
+                                                                (click)="deleteFacilityCenterDetails(x)"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></button>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="bg-light row">
+                        <div style="width: 100%;float: right;">
+                            <button class="btn btn-success float-right" mat-raised-button type="submit"
+                                (click)="businessExtraDetails()">Update</button>
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <!-- <div class="bg-light row">
+            <form class="boxMargin" [formGroup]="totalBusinessDone">
+                <div class=" row">
+
+                    <div class="col-md-4">
+                        <label for="">Total business done in 2019-2020(In Rs.)</label><br>
+                        <input type="number" name="" class="form-control" formControlName='tbd1920'>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="">Total business done in 2018-2019(In Rs.)</label><br>
+                        <input type="number" name="" class="form-control" formControlName='tbd1819'>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="">Total business done in 2017-2018(In Rs.)</label><br>
+                        <input type="number" name="" class="form-control" formControlName='tbd1718'>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="">Do you have any marketing tie ups ?</label><br>
+                        <select name="" class="form-control" formControlName='haveMarketingTieup'
+                            (change)='marktngTieUpShow()'>
+                            <option value="undefined" disabled>--Select--</option>
+                            <option value="Yes" [selected]='totalBusinessDone.value.haveMarketingTieup=="Yes"'>Yes
+                            </option>
+                            <option value="No" [selected]='totalBusinessDone.value.haveMarketingTieup=="No"'>No
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4" *ngIf='showMrktngTieupDiv'>
+                        <label for="">Please mention details of marketing tie ups:</label><br>
+                        <input type="text" name="" class="form-control" formControlName='marketingTieupDetails'>
+                    </div>
+                </div>
+
+                <button class="btn btn-success pull-right" mat-raised-button
+                    (click)='totalBusinessDoneSubmit()'>Update</button>
+
+
+            </form>
+        </div> -->
+
+                    <!-- </div> -->
+                    <!-- </div> -->
+
+
+                    <!-- ========================================================Update button Modal start =====================================================-->
+
+                    <div class="modal fade" id="update" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document1">
+                            <div class="modal-content">
+                                <div class="modal-header deleteheader bg-info">
+                                    <h3 class="modal-title" id="ModalLabel" style="color: white;">Update FPO profile
+                                        data</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="deleteModal">
+                                            <p>Are you sure to update ?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                        (click)="businessActivityUpdate()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- ========================================================Update button Modal end =====================================================-->
+
+
+                    <!-- ================================Crop table update============================================= -->
+                    <!-- <div class="modal fade" id="updateCrop" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h3 class="modal-title" id="ModalLabel" style="color: white;">Update Details</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf='cropDataForModalShow'>
+
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label>Year</label>
+                        <select class="form-control" #year>
+                            <option value="" disabled selected>--Select--</option>
+                            <option value="{{years}}">{{years}}</option>
+                            <option value="{{years-1}}">{{years-1}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4"><b> Season <sup>*</sup> </b> </label><br>
+                        <select name="" class="form-control" #season>
+                            <option value="undefined" disabled>--Select--</option>
+                            <option value="Rabi" [selected]='cropDataForModal.cropType=="Rabi"'>Rabi</option>
+                            <option value="Kharif" [selected]='cropDataForModal.cropType=="Kharif"'>Kharif
+                            </option>
+                            <option value="Zaid" [selected]='cropDataForModal.cropType=="Zaid"'>Zaid</option>
+                            <option value="Others" [selected]='cropDataForModal.cropType=="Others"'>Others
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Produce Type</label>
+                        <select class="form-control" #cropType>
+                            <option value="" disabled selected>--Select--</option>
+                            <option value="Crop">Crop/Commodity</option>
+                            <option value="Seed">Seed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Crop/Commodity Catagory</label>
+                        <select class="form-control" #cropCatagory (change)='getCropAccToCatagory(cropCatagory.value)'>
+                            <option value="" disabled selected>--Select--</option>
+                            <option value="{{cat.cropCatagory}}" *ngFor='let cat of cropCatData'>
+                                {{cat.cropCatagory}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4"><b> Sub-Catagory <sup>*</sup> </b> </label><br>
+                        <select class="form-control" #cropName (change)='loadVariety(cropName.value)'>
+                            <option value="undefined" disabled>--Select--</option>
+                            <option [selected]='cropDataForModal.cropName==crop.Crop_Name'
+                                *ngFor='let crop of cropTypes'>
+                                {{crop.Crop_Name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4"><b> Variety <sup></sup> </b> </label><br>
+                        <select class="form-control" #variety>
+                            <option value="undefined" selected disabled>--Select--</option>
+                            <option *ngFor='let variety of varietyData'
+                                [selected]='cropDataForModal.variety===variety.Variety_Name'>
+                                {{variety.Variety_Name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4"><b> Area of production(In acres) <sup>*</sup> </b> </label><br>
+                        <input type="number" class="form-control" #productionArea
+                            value="{{cropDataForModal.productionArea}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4"><b> Production volume(in qtls.) <sup>*</sup> </b> </label><br>
+                        <input type="number" class="form-control" #quantity value="{{cropDataForModal.quantity}}">
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4"><b> Sowing Date <sup>*</sup> </b> </label><br>
+                        <input type="date" class="form-control" #Sowing value="{{cropDataForModal.Sowing}}">
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4"><b> Harvesting Date <sup>*</sup> </b> </label><br>
+                        <input type="date" class="form-control" #Harvesting value="{{cropDataForModal.Harvesting}}">
+
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label for="inputEmail4"><b> Sales Value(INR) <sup>*</sup> </b> </label><br>
+                        <input type="number" class="form-control" #transctionAmount
+                            value="{{cropDataForModal.transctionAmount}}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                            (click)="cropDetailsUpdate(cropDataForModal._id,year.value,season.value,cropCatagory.value,cropName.value,cropType.value,variety.value,Sowing.value,Harvesting.value,productionArea.value,quantity.value,transctionAmount.value)">Update</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->

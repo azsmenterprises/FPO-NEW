@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from uxdt.nic.in/wp-content/uploads/form-templates/login_form_4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2021 11:21:13 GMT -->
+<head>
+	<title>Login Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="js/jquery-3.5.1.slim.min.js"></script>
+<!--===============================================================================================-->	
+</head>
+<body>
+	<form action="https://uxdt.nic.in/wp-content/uploads/form-templates/login_form_4/index.html" class="login-form" autocomplete="OFF">
+		<h1>User Login</h1>
+		<div class="inputb">
+			<label for="email">Email</label>
+			<input class="forminput" type="text" id="email">
+			<span data-placeholder-1="Email" data-placeholder-2="Email:"></span>
+		</div>
+		<div class="inputb">
+			<label for="password">Password</label>
+			<input class="forminput hide-pwd" type="password" id="password">
+			<span data-placeholder-1="Password" data-placeholder-2="Password:"></span>
+		</div>
+		<br> <br> <br>
+		<input type="submit" class="loginbtn" value="Login">
+		<div class="bottom-text">
+			<span class="forgotpwd">Forgot <a href="#">Password</a>?</span><br>
+			<!-- <span class="signup">Don't have an account? <a href="#">Sign up</a></span> -->
+		</div>
+	</form>
+	<script>
+		$(".inputb input").on("focus", function() {
+			$(this).addClass("focus");
+		});
+
+		$(".inputb input").on("blur", function() {
+			if($(this).val() == "") {
+				$(this).removeClass("focus");
+			}
+		});
+	</script>
+</body>
+<!-- Mirrored from uxdt.nic.in/wp-content/uploads/form-templates/login_form_4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2021 11:21:13 GMT -->
+</html>

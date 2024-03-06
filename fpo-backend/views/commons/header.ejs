@@ -1,0 +1,362 @@
+<header>
+   <div class="region region-header-top">
+      <div id="block-cmf-content-header-region-block" class="block block-cmf-content first last odd">
+         <noscript class="no_scr">"JavaScript is a standard programming language that is included to provide
+            interactive features, Kindly enable Javascript in your browser. For details visit help page"
+         </noscript>
+         <div class="wrapper common-wrapper">
+            <div class="container common-container four_content top-header">
+               <div class="common-left clearfix">
+                  <ul>
+                     <li class="gov-india"><span class="responsive_go_hindi" lang="hi"><a target="_blank"
+                              href="https://india.gov.in/hi"
+                              title="भारत सरकार ( बाहरी वेबसाइट जो एक नई विंडो में खुलती है)">ଓଡ଼ିଶା ସରକାର</a></span>
+                     </li>
+                     <li class="ministry"><span class="li_eng responsive_go_eng"><a target="_blank"
+                              href="https://india.gov.in/"
+                              title="Government of india,External Link that opens in a new window">Government of
+                              Odisha</a></span></li>
+                  </ul>
+               </div>
+               <div class="common-right clearfix">
+                  <ul id="header-nav">
+                     <li class="ico-skip cf"><a href=" http://localhost:3000/fpoFilter" title="">Skip to main content</a>
+                     </li>
+                     <li class="ico-site-search cf">
+                        <a href="javascript:void(0);" id="toggleSearch" title="Site Search">
+                           <img class="top" src="assets/images/ico-site-search.png" alt="Site Search" /></a>
+                        <div class="search-drop both-search">
+                           <div class="google-find">
+                              <form method="get" action="https://www.google.com/search" target="_blank">
+                                 <label for="search_key_g" class="notdisplay">Search</label>
+                                 <input type="text" name="q" value="" id="search_key_g" />
+                                 <input type="submit" value="Search" class="submit" />
+                                 <div class="">
+                                    <input type="radio" name="sitesearch" value="" id="the_web" />
+                                    <label for="the_web">The Web</label>
+                                    <input type="radio" name="sitesearch" value="india.gov.in" checked
+                                       id="the_domain" /> <label for="the_domain"> INDIA.GOV.IN</label>
+                                 </div>
+                              </form>
+                           </div>
+                           <div class="find">
+                              <form name="searchForm">
+                                 <label for="search_key" class="notdisplay">Search</label>
+                                 <input type="text" name="search_key" id="search_key" onKeyUp="autoComplete()"
+                                    autocomplete="off" required />
+                                 <input type="submit" value="Search" class="bttn-search" />
+                              </form>
+                              <div id="auto_suggesion"></div>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="ico-accessibility cf">
+                        <a href="javascript:void(0);" id="toggleAccessibility" title="Accessibility Dropdown">
+                           <img class="top" src="assets/images/ico-accessibility.png" alt="Accessibility Dropdown" />
+                        </a>
+                        <ul style="visibility: hidden;">
+                           <li> <a onClick="set_font_size('&#39',increase,'&#39')" title="Increase font size"
+                                 href="javascript:void(0);">A<sup>+</sup>
+                              </a>
+                           </li>
+                           <li> <a onClick="set_font_size()" title="Reset font size"
+                                 href="javascript:void(0);">A<sup>&nbsp;</sup></a> </li>
+                           <li> <a onClick="set_font_size('&#39',decrease,'&#39')" title="Decrease font size"
+                                 href="javascript:void(0);">A<sup>-</sup></a> </li>
+                           <li> <a href="javascript:void(0);" class="high-contrast dark" title="High Contrast">A</a>
+                           </li>
+                           <li> <a href="javascript:void(0);" class="high-contrast light" title="Normal Contrast"
+                                 style="display: none;">A</a> </li>
+                        </ul>
+                     </li>
+                     <li class="ico-social cf">
+                        <a href="javascript:void(0);" id="toggleSocial" title="Social Medias">
+                           <img class="top" src="assets/images/ico-social.png" alt="Social Medias" /></a>
+                        <ul>
+                           <!-- <li><a target="_blank" title="External Link that opens in a new window"
+                                 href="https://www.facebook.com/"><img alt="Facebook Page"
+                                    src="assets/images/ico-facebook.png"></a></li> -->
+                           <li><a target="_blank" title="External Link that opens in a new window"
+                                 href="https://twitter.com/PSFPO_Odisha"><img alt="Twitter Page"
+                                    src="assets/images/ico-twitter.png"></a></li>
+                           <li><a target="_blank" title="External Link that opens in a new window"
+                                 href="https://www.linkedin.com/in/psfpo-odisha-366928223/"><img alt="youtube Page"
+                                    src="assets/images/ico-LinkedIn.png"></a></li>
+                        </ul>
+                     </li>
+                     <li class="ico-sitemap cf"><a href="#" title="Sitemap">
+                           <img class="top" src="assets/images/ico-sitemap.png" alt="Sitemap" /></a>
+                     </li>
+                     <li class="hindi cmf_lan d-hide">
+                        <label class="de-lag">
+                           <span style="display: none;">Language</span>
+                           <select title="Select Language" ng-change="odia()" ng-model="language">
+                              <option value="">Language</option>
+                              <option value="English">English</option>
+                              <option value="Odia">ଓଡ଼ିଆ</option>
+                          </select>
+                        </label>
+                     </li>
+                     <li class="hindi cmf_lan m-hide">
+                        <a href="javascript:;" title="Select Language">Language</a>
+                        <ul>
+                           <li><a target="_blank" href="#" lang="hi" class="alink"
+                                 title="Click here for हिन्दी version.">हिन्दी</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <p id="scroll" style="display: none;"><span></span></p>
+   </div>
+   <!--Top-Header Section end-->
+   <section class="wrapper header-wrapper">
+      <div class="container common-container four_content  header-container">
+         <p class="logo">
+            <a href="home.html" title="Home" rel="home" class="header__logo" id="logo">
+               <img class="national_emblem" src="assets/images/new-logo.jpg" alt="Handshake symbol">
+               <!-- <em><span style="font-size: 90% ;">FPO Smart Connect</span>
+                  <span style="font-size: 70% ;">FPO Smart Connect</span>
+               </em> -->
+            </a>
+         </p>
+         <div class="header-right clearfix">
+            <div class="right-content clearfix">
+               <div class="float-element">
+                  <div style="float: left;max-width: 400px;text-align: right;margin-top: 10px;">
+                     <!-- <div style="margin-top: 5px;">
+                           <em>
+                           <span style="font-weight: 900;font-size: 90%;">
+                              କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ
+                              ଓଡ଼ିଶା ସରକାର 
+                           </span>
+                        </em>
+                        </div> -->
+                     <div style="margin-top: 5px;">
+                        <em>
+                           <span style="font-size: 70%;font-weight: bold;margin-right: 2px;">
+                              କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର <br>
+                              Department of Agriculture & Farmers' Empowerment, Government of Odisha
+                           </span>
+                        </em>
+                     </div>
+                  </div>
+                  <div style="float: right;">
+                     <a class="" target="_blank" href="https://swachhbharat.mygov.in/"
+                        title="Department of Agriculture & Farmers' Empowerment Government of Odisha">
+
+                        <img src="assets/images/logo1.png" style="height: 55px;" alt="Farmers' Empowerment"></a>
+                  </div>
+                  <!-- <a class="sw-logo" target="_blank" href="https://swachhbharat.mygov.in/" title="Swachh Bharat, External link that open in a new windows"><img src="assets/images/Naveen_Patnaik.png" alt="Swachh Bharat"></a> -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!--/.header-wrapper-->
+   <section class="wrapper megamenu-wraper" id="navbar">
+      <div class="container common-container four_content">
+         <p class="showhide"><em></em><em></em><em></em></p>
+         <nav class="main-menu clearfix" id="main_menu">
+            <ul class="nav-menu">
+               <li class="nav-item"> <a href="https://fpoodisha.nic.in" class="home"><i class="fa fa-home"></i></a>
+               </li>
+               <li class="nav-item"> <a href=" http://localhost:3000/topbarmenu?id=00T1">About FPO</a>
+                  <!-- <div class="sub-nav">
+                     <ul class="sub-nav-group">
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T1">About FPO </a></li>
+                        <!-- <li><a href=" http://localhost:3000/topbarmenu?id=00T2">Odisha 2018 Policy</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T3">CSS Formation and Promotion of 10,000
+                              FPOs Scheme </a></li> -->
+                        <!-- <li><a href=" http://localhost:3000/topbarmenu?id=00T4">Message from Shri Naveen Pattanaik,
+                              Chief Minister, Govt. of Odisha</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T5">Message from Dr. Arun Kumar Sahoo,
+                              Minister, Govt. of Odisha</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T6">Message from Shri Raj Kumar Sharma,
+                              Agriculture Production Commissioner, Govt. of
+                              Odisha</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T7">Message from Shri Suresh Kumar
+                              Vashishth, Commissioner cum Secretary, Govt. of Odisha</a></li> 
+                     </ul>
+                  </div> -->
+               </li>
+               <!-- <li class="nav-item"> <a href=" http://localhost:3000/topbarmenu">Schemes</a> -->
+                  <li class="nav-item"> <a href=" http://localhost:3000/#schemes">Schemes</a>
+                  <!-- <div class="sub-nav">
+                     <ul class="sub-nav-group">
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T16">Matching Equity Grant Scheme </a>
+                        </li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T7">Credit Guarantee Facility</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T18">Venture Capital Assistance Scheme</a>
+                        </li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T19">Paramparagat Krishi Vikas Yojana
+                              (PKVY)</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T20">Mission for Integrated Development
+                              (MIDH)</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T21">Operation Green</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T22">Pradhan Mantri Formalization of Micro
+                              Food Processing Enterprise Scheme (PMFME)</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T23">MukhyaMantri Krushi Udyog Yojana
+                              (MKUY)</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T24">RKVY – RAFTAAR - Remunerative
+                              Approaches for Agriculture and Allied sector
+                              Rejuvenation</a></li>
+                        <li><a href=" http://localhost:3000/topbarmenu?id=00T24">Warehouse Infrastructure Fund</a>
+                        </li>
+                     </ul>
+                  </div> -->
+               </li>
+
+
+               <li class="nav-item"> <a href="">Enrolment</a>
+                  <div class="sub-nav">
+                     <ul class="sub-nav-group">
+                       <li>
+                          <a href=" http://localhost:3000/#fpoReg">FPO</a>
+                       </li>
+                        <!-- <li>
+                           <a href=" http://localhost:3000/#fig">FIG</a>
+                        </li> -->
+                        <li class="nav-item">
+                           <a href=" http://localhost:3000/#target2">Farmer</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href=" http://localhost:3000/#trader">Trader</a>
+                       </li> 
+                        <li class="nav-item">
+                           <a href=" http://localhost:3000/#consumerGroup">Consumer Group</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                           <a href=" http://localhost:3000/#consumerRegistration">Consumer</a>
+                        </li> -->
+                       
+                     </ul>
+                  </div>
+               </li>
+               <!-- <li class="nav-item"> <a href="/resources">Resources</a> -->
+                  <!-- <div class="sub-nav">
+                     <ul class="sub-nav-group">
+                        <li>
+                           <a href=" http://localhost:3000/topbarmenu?id=00T8">Govt of. Odisha Agriculture Policy</a>
+                        </li>
+                        <li class="nav-item">
+                           <a href=" http://localhost:3000/topbarmenu?id=00T2">Govt. of Odisha Policy for FPOs</a>
+                        </li>
+                        <li class="nav-item">
+                           <a href=" http://localhost:3000/topbarmenu?id=00T3"> CSS Formation and Promotion of 10,000
+                              FPO scheme, Govt. of India</a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="">SFAC FPO Guidelines</a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="">Manuals</a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="">Training Videos</a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="">Case Studies</a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="">Others</a>
+                        </li>
+                     </ul>
+                  </div> -->
+               <!-- </li> -->
+               <li class="nav-item"> <a href="">Resources</a>
+                  <div class="sub-nav">
+                     <ul class="sub-nav-group">
+                       <li>
+                        <li class="nav-item">
+                           <a href="/resources">Scheme Guidelines</a>
+                       </li>
+                        
+                        <li class="nav-item">
+                           <!-- <a href="/resources">Knowledge Material</a> -->
+                           <a href="/knowledgeM">Knowledge Material</a>
+                        </li>
+                       
+                     </ul>
+                  </div>
+               </li>
+
+               <li class="nav-item"><a href="/FAQ">FAQ </a></li>
+               <li class="nav-item"><a href="/feedback">Feedback </a>
+               </li>
+               <li class="nav-item"><a href=" http://localhost:3000/#flexCarousel">Important Links</a></li>
+               <li class="nav-item"><a href="/userLogin">Login</a></li>
+               <!-- <li class="nav-item"><a href="">Contact Us </a> -->
+
+               <!-- <li class="nav-item"><a href=" http://localhost:3000/fpoFilter">Search FPO</a></li>-->
+               <li class="nav-item"> <a href="">Search</a>
+                 <div class="sub-nav">
+                    <ul class="sub-nav-group">
+                      <li>
+                       <li class="nav-item"><a href=" http://localhost:3000/fpoFilter">Farmer Producer Organizations</a>
+                      </li>
+                       
+                       <li class="nav-item">
+                          <a href=" http://localhost:3000/trader">Traders</a>
+                       </li>
+                      
+                    </ul>
+                 </div>
+              </li>
+               <li class="nav-item"><a href=" http://localhost:3000/#mapLocate">Locate on Map</a></li>
+
+               <!-- <li class="nav-item"><a href="inner.html">Stories</a>
+                   <div class="sub-nav">
+                     <ul class="sub-nav-group">
+                       <li><a href="inner.html">Publications</a></li>
+                       <li><a href="inner.html">Reports</a></li>
+                       <li><a href="inner.html">Office Orders</a></li>
+                       <li><a href="inner.html">Policies</a></li>
+                       <li><a href="inner.html">Budget</a></li>
+                       <li><a href="inner.html">Citizen Charter</a></li>
+                       <li><a href="inner.html">Major Achievements</a></li>
+                     </ul>
+                   </div>
+                 </li> -->
+
+
+               <!-- <li class="nav-item"><a href="inner.html">Grievance</a></li> -->
+
+               <!-- <li class="nav-item">
+                   <a href="inner.html">Parliament Q & A</a>
+                   <div class="sub-nav col-1">
+                      <ul class="sub-nav-group ">
+                         <li><a href="inner.html">Lok Sabha</a></li>
+                         <li><a href="inner.html">Rajya Sabha</a></li>
+                      </ul>
+                   </div>
+                 </li> -->
+
+               <!-- <li class="nav-item"><a href="inner.html">Important Links</a></li>          -->
+            </ul>
+         </nav>
+         <nav class="main-menu clearfix" id="t_menu">
+            <ul class="nav-menu clearfix">
+            </ul>
+         </nav>
+      </div>
+   </section>
+
+   <!--============================marquee start=======================-->
+   <div id="breaking-news-container">
+      <div id="breaking-news-colour" class="slideup animated" style="font-style: italic;">
+         <marquee width="100%" direction="left" height="100px" style="padding-top: 2px;">
+            <i style="color: white;">Odisha FPO conclave 2021 was organized on 18th Dec 2021 by Department of Agriculture & Farmers' Empowerment.          </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i style="color: white;">“State Level workshop on Formation and Promotion of FPOs”, on 21st July 2022, Organized by Department of Agriculture and Farmer’s Empowerment.</i>
+           
+         </marquee>
+      </div>
+      <span class="breaking-news-title delay-animated slidein" style="font-weight: bold;">
+         // BREAKING //
+      </span>
+   </div>
+   <!--============================marquee end=======================-->
+
+</header>

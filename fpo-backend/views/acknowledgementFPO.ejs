@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SUGAM, Beneficiary Facing Portal,F&amp;ARD Department, Govt. of Odisha</title>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $(document).ready(function(){
+        postData();
+    });
+	function postData()
+	{
+		$('form').submit();
+	}
+  </script>
+</head>
+<body>
+  <form method="post" action="https://sugam.odisha.gov.in/admin/integration/getReferenceNo">
+	<input type="hidden" id="RESULT_CODE" name="RESULT_CODE"/>
+	<input type="hidden" id="ENC_TOKEN" name="ENC_TOKEN" value="<%=ENC_TOKEN%>"/>
+	<input type="hidden" id="RESULT" name="RESULT" value="<%=RESULT%>"/>
+	<input type="button" value="Post Data" onclick="postData();">
+  </form>
+  <script>
+	function postData()
+	{
+		$('form').submit();
+	}
+  </script>
+</body>
+</html>

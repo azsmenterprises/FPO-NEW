@@ -1,0 +1,405 @@
+<div id="content">
+    <div class="container-fluid">
+        <div class="col-lg-12 mb-6">
+            <div class="card mb-4">
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary">CBBO WISE FPO MIS</h5>
+                </div>
+                <div class="card-body">
+                        <div class="card-body table-card mat-elevation-z8">
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <select class="form-control" type="text" name="text" [(ngModel)]="searchText4.year"
+                                        placeholder="Search by year" required>
+                                        <option value="" selected disabled>Search by year</option>
+                                        <option>2023-2024</option>
+                                        <option>2024-2025</option>
+                                        <option>2025-2026</option>
+                                        <option>2026-2027</option>
+                                        <option>2027-2028</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input class="form-control" type="search" name="search"
+                                        [(ngModel)]="searchText5.timeSlot" placeholder="Search by Target Time Slot">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input class="form-control" type="search" name="search"
+                                        [(ngModel)]="searchText6.cbboName" placeholder="Search by CBBO Name">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input class="form-control" type="search" name="search"
+                                        [(ngModel)]="searchText7.fpo" placeholder="Search by FPO">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <button class="btn btn-primary float-right" (click)="exportAsXLSX()">Print
+                                        Excel</button>
+                                </div>
+                            </div>
+                        </div><br><br>
+                        <div class="card-body table-card mat-elevation-z8 col-md-12 col-sm-12 table-responsive">
+                            <table border="1" align="center"
+                                class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                                <thead class="bg-light">
+                                    <tr class="border-1">
+                                        <td>Sl.</td>
+                                        <td>Target Time Slot</td>
+                                        <td>Financial Year</td>
+                                        <td>CBBO Name</td>
+                                        <td>FPO Name</td>
+                                        <td>Mobile No</td>
+                                        <td>Mail Id</td>
+                                        <td>Date of published</td>
+                                        <!-- <td>CIN</td> -->
+                                        <td>Date of Regd.</td>
+                                        <!-- <td>Delete</td>
+                                    <td>Edit</td> -->
+                                        <td>View</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let details of allData | filterBy:searchText4 | filterBy:searchText5 | filterBy:searchText6 | filterBy:searchText7  index as i;">
+                                        <td>{{i+1}}</td>
+                                        <td>{{details.year}}</td>
+                                        <td>{{details.timeSlot}}</td>
+                                        <td>{{details.cbboName}}</td>
+                                        <td>{{details.fpo}}</td>
+                                        <td>{{details.MobileNo}}</td>
+                                        <td>{{details.email}}</td>
+                                        <td>{{details.insertionDate | date:'dd-MM-yyyy,HH:mm'}}</td>
+                                        <!-- <td>{{details.cin}}</td> -->
+                                        <td>{{details.dateofIncorporation}}</td>
+                                        <!-- <td>
+                                    <button class="btn btn-outline-danger" ><i class="fa fa-trash"
+                                            aria-hidden="true"></i></button>
+                                </td> -->
+                                        <!-- <td>
+                                    <button class="btn btn-outline-warning" data-toggle="modal" data-target="#editMenuModal"
+                                        data-backdrop="static" data-keyboard="false" ><i
+                                            class="fa fa-pencil" aria-hidden="true"></i></button>
+                                </td> -->
+                                        <td>
+                                            <button class="btn btn-outline-warning" data-toggle="modal"
+                                                (click)="viewDetails(details)" data-target="#viewMenuModal"
+                                                data-backdrop="static" data-keyboard="false">
+                                                <i class="fa fa-eye" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 15,20]" [length]="pagelength"
+                        showFirstLastButtons></mat-paginator> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="modal fade" id="editMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">Update CBBO Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="updateForm">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4"><b>Financial Year <sup>*</sup> </b> </label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <select class="form-control" formControlName='year'>
+                                <option value="">--Select--</option>
+                                <option value="2020-2021">2020-2021</option>
+                                <option value="2021-2022">2021-2022</option>
+                                <option value="2022-2023">2022-2023</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">IA Name:</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='iaName'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState"> Select FPO :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" formControlName='fpo'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState">Mobile No :<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Sequence"
+                                formControlName='MobileNo'>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="updateList()">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="modal fade" id="viewMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel- modal-lg"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg"
+        style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">View CBBO Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Financial Year</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.year}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Accountant Appointed</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.AccountedAppointed}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>IA Name</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.iaName}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>AGM Conducted</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.AgmConducted}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>FPO Name</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.fpo}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Annual Business Turnover</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.AnnualBusinessTurnoverinInr}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>CIN No</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.cin}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Auditor Appointed</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.AuditorAppointed}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Email Id</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.email}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Bank Account Opened</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.BankAccountOpened}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Date of Registration</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.dateofIncorporation}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Baseline Study Report Submitted</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.BaselineStudyReportSubmitted}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Business Plan Formulated</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.BusinessPlanFormulated}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>CEO Appointed</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.CeoAppointed}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>EquityGrant Availed</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.EquityGrantAvailed}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>GST Licence Applied</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.GstLicenceApplied}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Minimum Women BOD</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.Min1WomenBod}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Mobile No</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.MobileNo}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>No of BOD</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.NoOfBod}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>No of Farmer Mobilized</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.NoOfFarmerMobilized}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>No of Farmer Mobilized as Shareholder</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.NoOfFarmerMobilizedAsShareholders}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>No of MOU signed</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.NoOfMouSignedVendorRegistration}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Registration on ENAM</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.RegistrationOnEnam}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>ShareCapital Mobilized</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.ShareCapitalMobilizedInInr}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>CBBO Name</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.cbboName}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Commencement of Businessfield with MCA</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.commencementOfBusinessfieldWithMca}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>FPO filled RoC</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.fpoFilledroc}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>FPO trading through E-NAM</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.fpotradingThroughenum}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Received Loan from Bank</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        :&nbsp;&nbsp;{{viewData.receivedloanFrombank}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Statutory Audit</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                        :&nbsp;&nbsp;{{viewData.statutoryAudit}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

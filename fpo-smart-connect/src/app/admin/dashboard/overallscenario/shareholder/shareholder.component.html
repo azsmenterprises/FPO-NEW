@@ -1,0 +1,150 @@
+<style>
+    .btn {
+        background-color: DodgerBlue;
+        border: none;
+        color: rgb(10, 10, 10);
+        padding: 4px 4px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /* Darker background on mouse-over */
+    .btn:hover {
+        background-color: RoyalBlue;
+        border: 1px solid #888;
+        background-color: #ddd;
+    }
+</style>
+<div class="container-fluid">
+    <form [formGroup]="shareholderForm">
+        <div style="background: #a5edd5;border-radius: 10px 10px 10px 10px;margin: 4px 0 19px 0;">
+            <h1 style="text-align: center;">Overall Scenario : 10,000 CSS</h1>
+        </div>
+        <div style="background: #a5edd5;border-radius: 10px 10px 10px 10px;margin: 4px 0 19px 0;">
+            <h1 style="text-align: center;">Stakeholder Mobilized</h1>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-2">
+                <label for="inputEmail4">SELECT YEAR: </label>
+    
+                <select class="form-control" formControlName="year" (change)="getholderbyyear()">
+                    <option value="CUMULATIVE" selected>CUMULATIVE TILL DATE</option>
+                    <option value="2020-2021" >2020-2021</option>
+                    <option value="2021-2022" >2021-2022</option>
+                    <option value="2022-2023" >2022-2023</option>
+                    <option value="2023-2024" >2023-2024</option>
+                    <option value="2024-2025" >2024-2025</option>
+                    <option value="2025-2026" >2025-2026</option>
+                    <option value="2026-2027" >2026-2027</option>
+                    <option value="2027-2028" >2027-2028</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+            </div>
+             <div class="form-group col-md-2">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputEmail4"> SELECT AGENCY: </label>
+    
+                <select class="form-control" formControlName="iaName" (change)="getholderbyIa()">
+                    <option value="ALL" >ALL</option>
+                    <option value='FDRVC'>FDRVC</option>
+                    <option value='NABARD'>NABARD</option>
+                    <option value='NAFED'>NAFED</option>
+                    <option value='NCDC'>NCDC</option>
+                    <option value='SFAC'>SFAC</option>
+                </select>
+    
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputEmail4">SELECT BY VALUE: </label>
+                <select class="form-control" formControlName="byvalue" (change)="getholderaverage()">
+                    <option value='TOTAL'>TOTAL</option>
+                    <option value='AVERAGE'>AVERAGE PER FPO</option>
+                </select>
+            </div>
+    
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card bar-chart-example">
+                    <div class="card-body" style="min-height: 477px;max-height: 324px; margin-right:10px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-control"
+                                    style="background-color: #a5edd5;text-align: center;">FINANCIAL YEAR:
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" [value]="shareholderForm.value.year" readonly>
+    
+                            </div>
+                        </div><br><br>
+                        <div class="card bar-chart-example">
+                            <div class="card-head"><br><br>
+                                <div class="col-auto">
+                                    <i class="fa fa-users" aria-hidden="true" style="font-size: xxx-large;color: #4e73df;"></i>
+                                </div>
+                                <div class="card-body" style="padding-bottom: 0px;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" *ngFor="let y of getshareHolderData">
+                                              <span *ngIf="shareHolder">{{y.total}}</span>  
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" *ngFor="let x of getshareHolderyearwiseData">
+                                                <span>{{x.total}}</span>  
+                                              </div><br><br><br>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                shareholder mobilized</div><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bar-chart-example">
+                    <div class="card-body" style="min-height: 477px;max-height: 324px; margin-right:10px;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="inputEmail4" class="form-control"
+                                style="background-color: #a5edd5;text-align: center;">AGENCY: </label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" [value]="shareholderForm.value.iaName" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputEmail4" class="form-control"
+                                style="background-color: #a5edd5;text-align: center;">BY VALUE: </label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" [value]="shareholderForm.value.byvalue" readonly>
+    
+                            </div>
+                        </div>
+                        <div class="">
+                            <canvas [hidden]="!fdc" id="canvasDoughnut6" style="margin: 10px 10px 2px 0"></canvas>
+                            <canvas  [hidden]="!nbd" id="canvasDoughnut7" style="margin: 10px 10px 2px 0"></canvas>
+                            <canvas  [hidden]="!nfd" id="canvasDoughnut8" style="margin: 10px 10px 2px 0"></canvas>
+                            <canvas  [hidden]="!ncdc" id="canvasDoughnut9" style="margin: 10px 10px 2px 0"></canvas>
+                            <canvas  [hidden]="!sfc" id="canvasDoughnut10" style="margin: 10px 10px 2px 0"></canvas>
+                            <canvas  [hidden]="!chartAll" id="canvasDoughnut11" style="margin: 10px 10px 2px 0"></canvas>
+                            <canvas [hidden]="!chartAvg"  id="canvasDoughnut12" style="margin: 10px 10px 2px 0"></canvas>
+                            <br><br>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                                style="text-align:center">
+                                agency wise - no. of shareholder mobilized  </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

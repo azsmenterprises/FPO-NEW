@@ -1,0 +1,432 @@
+<div class="container-fluid">
+    <div class="mybox">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Membership & Shareholder Details</label>
+                </strong>
+            </span>
+        </div>
+        <br>
+        <form [formGroup]="fpoDetails">
+            <div class="bg-light">
+                <div class="row bg-light">
+                    <div class="fpoName">
+                        Membership details 
+                    </div>
+                </div>
+
+
+                <div class="tableBox row">
+                    <div class="col-md-3 mb">
+                        <td>Financial Year <span class="asteric-mark">*</span> :</td>
+                        <select class="form-control" formControlName='year'>
+                            <option value="" selected>--Select--</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                        </select>
+                    </div>
+                    <table class="table table-bordered table-striped myTable" id="myTable">
+                        <thead>
+
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Total</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="membershipDetailsTbl">
+                            <tr>
+                                <td>Number of Members(including Shareholder & Non-Shareholders) <span
+                                        class="asteric-mark">*</span> :</td>
+                                <td><input type="number" class="form-control" formControlName='noOfMaleFarmerMember'
+                                        (keyup)='totalNoOfFarmer()' minlength="1" maxlength="10"
+                                [min]="lowerLimit" [max]="upperLimit" [(ngModel)]="selectedNumber" (ngModelChange)="onNumberChange($event)"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required>
+                                </td>
+                                <td><input type="number" class="form-control" formControlName='noOfFemaleFarmerMember'
+                                        (keyup)='totalNoOfFarmer()' minlength="1" maxlength="10"
+                                        [min]="lowLimit" [max]="upLimit" [(ngModel)]="selectNumber" (ngModelChange)="onNumberChanged($event)"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required></td>
+                                <!-- formControlName='noOfFarmerMember' -->
+                                <td>{{fpoDetails.value.noOfFarmerMember}}</td>
+                            </tr>
+                            <tr>
+                                <td>Number of SC/ST members<span
+                                    class="asteric-mark">*</span> :</td>
+                                <td colspan="3"><input type="number" class="form-control"
+                                        formControlName='noOfScStFarmerMember' minlength="1" maxlength="10"
+                                        [min]="lowerLimits" [max]="upperLimits" [(ngModel)]="selectedNumbers" (ngModelChange)="onNumChange($event)"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required></td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Small/Marginal farmer members</td>
+                                <td colspan="3"><input type="number" class="form-control"
+                                        formControlName='noOfSmallOrMarginalFarmer' minlength="1" maxlength="4"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required></td>
+                            </tr> -->
+                            <tr>
+                                <td> Number of  Small/Marginal Farmer Members<span class="asteric-mark">*</span> :</td>
+                                <td><input type="number" class="form-control" formControlName='noOfMaleFarmerMember1'
+                                        (keyup)='totalNoOfFarmer1()' minlength="1" maxlength="10"
+                                        [min]="lowerLimite" [max]="upperLimite" [(ngModel)]="selectedNumbere" (ngModelChange)="onNumberFarmChange($event)"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required>
+                                </td>
+                                <td><input type="number" class="form-control" formControlName='noOfFemaleFarmerMember1'
+                                        (keyup)='totalNoOfFarmer1()' minlength="1" maxlength="10"
+                                        [min]="lowLimite" [max]="upLimite" [(ngModel)]="selectNumbere" (ngModelChange)="onNumbFarmChange($event)"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required></td>
+                                <td>{{fpoDetails.value.noOfFarmerMember1}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Number of shareholder members <span class="asteric-mark">*</span> :</td>
+                                <td colspan="3"><input type="number" class="form-control"
+                                        formControlName='NoOfFarmerMobilizedAsShareholders' minlength="1" maxlength="4"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required></td>
+                            </tr> -->
+
+                            <tr>
+                                <td>Number of Shareholder Members<span class="asteric-mark">*</span> :</td>
+                                <td><input type="number" class="form-control" formControlName='noOfMaleFarmerMember2'
+                                        (keyup)='totalNoOfFarmer2()' minlength="1" maxlength="10"
+                                        [min]="lowerLimited" [max]="upperLimited" [(ngModel)]="selectedNumbered" (ngModelChange)="onNumberMembChange($event)"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required>
+                                </td>
+                                <td><input type="number" class="form-control" formControlName='noOfFemaleFarmerMember2'
+                                        (keyup)='totalNoOfFarmer2()' minlength="1" maxlength="10"
+                                        [min]="lowLimited" [max]="upLimited" [(ngModel)]="selectNumbered" (ngModelChange)="onNumbMembChange($event)"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        required></td>
+                                <td>{{fpoDetails.value.noOfFarmerMember2}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <br><br>
+                <div class="row extraData">
+
+                    <div class="col-md-4 col-form-label">
+                        <label>Number of FIG Under FPO :</label>
+                        <input type="number" class="form-control" formControlName='numberOfFigures'
+                         placeholder="Enter no. of fig" maxlength="9" pattern="[0-9]{1,9}" (input)="onNumFigChange($event)" numbersOnly required/>
+
+                        <!-- [min]="lowrLimited" [max]="uppLimited" [(ngModel)]="selectdNumbered" (ngModelChange)="onNumFigChange($event)"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> -->
+                    </div>
+                    <div class="col-md-4 col-form-label">
+                        <label>Number of FIG Actively Engaged <span class="asteric-mark">*</span>:</label>
+                        <input type="number" class="form-control" formControlName='numberOfFiguresActivelyEngaged'
+                        placeholder="Enter no. of fig Actively Engaged" maxlength="9" pattern="[0-9]{1,9}" (input)="onNumFigActive($event)" numbersOnly required/>
+                        <!-- [min]="lowrLimit" [max]="uppLimit" [(ngModel)]="selectdNumber" (ngModelChange)="onNumFigActChange($event)"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> -->
+                    </div>
+
+
+                    <div class="col-md-4 col-form-label">
+                        <label>Authorised Capital(In INR):</label>
+                        <input type="number" class="form-control" formControlName='shareCapitalRaisedAmount'
+                        placeholder="Enter no. of Authorised Capital" maxlength="9" pattern="[0-9]{1,9}" (input)="onNoAuthorised($event)" numbersOnly required/>
+                        <!-- [min]="lowerLimitn" [max]="upperLimitn" [(ngModel)]="selectNumbern" (ngModelChange)="onAuthCapitalChange($event)"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> -->
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <label>Upload MOA document ( Pdf format only )</label><br>
+                        <input type="file" accept="application/pdf" (change)='imageDetailsFetch2($event.target)'
+                            class="form-control" formControlName='moaDoc'>
+                    </div> -->
+
+                    <div class="col-md-4 col-form-label">
+                        <label>Shared/Paid Up Capital Raised Till Date(In INR) <span class="asteric-mark">*</span>
+                            :</label>
+                        <input type="number" class="form-control" formControlName='paidUpCapitalAmount' 
+                        placeholder="Enter Shared/Paid Up Capital Raised" maxlength="9" pattern="[0-9]{1,9}" (input)="onCapitalRaisedTillDate($event)" numbersOnly required/>
+                            <!-- [min]="lowLimitn" [max]="upLimitn" [(ngModel)]="selectdNumbern" (ngModelChange)="onPaidUpCapitalChange($event)"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" -->
+                            
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <label>Upload AOA document ( Pdf format only )</label><br>
+                        <input type="file" accept="application/pdf" (change)='imageDetailsFetch3($event.target)'
+                            class="form-control" formControlName='aoaDoc'>
+                    </div> -->
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label for="dob">Upload AOA File(Pdf only):</label>
+                        <input type="file" class="form-control" (change)="AOAFileFetch($event)" id="file"
+                            accept="application/pdf">
+                    </div>
+                    <div class="col-sm-2 col-md-1 col-form-label">
+                        <div class="mt-4">
+                            <a href="{{AOAFilePath}}" download target="_blank" class="btn btn-primary"
+                                style="width:40px" data-toggle="tooltip" title="View AOA document">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-2 col-md-3 col-form-label">
+                        <label for="dob">Upload MOA File(Pdf only):</label>
+                        <input type="file" class="form-control" (change)="MOAFileFetch($event)" id="file"
+                            accept="application/pdf">
+                    </div>
+                    <div class="col-sm-2 col-md-1 col-form-label">
+                        <div class="mt-4">
+                            <a href="{{MOAFilePath}}" download target="_blank" class="btn btn-primary"
+                                style="width:40px" data-toggle="tooltip" title="View MOA document">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-form-label">
+                        <label>FPO issue share certificates to FPO members <span class="asteric-mark">*</span> :</label>
+                        <select class="form-control" formControlName='shareCertificateIssueStatus'
+                            (change)="certificate()">
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 col-form-label" *ngIf='issueCertificate'>
+                        <label>No. of Shares Issued</label>
+                        <input type="number" class="form-control" formControlName='totalshareCertificates'
+                        placeholder="Enter No. of Shares Issued" maxlength="9" pattern="[0-9]{1,9}" (input)="noOfShares($event)" numbersOnly required/>
+                    </div>
+
+
+                    <div class="col-md-4 col-form-label">
+                        <label>FPO issues Dividends/Patronage Bonus to FPO members<span class="asteric-mark">*</span> :</label>
+                        <select class="form-control" formControlName='fpoIssueDividends' (change)="dividends()">
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 col-form-label" *ngIf='shareIssued'>
+                        <label>No. of Times Dividends/ Patronage Bonus Issued</label>
+                        <input type="number" class="form-control" formControlName='totalFpoIssueDividends'
+                        placeholder="Enter No. of Times Dividends/ Patronage Bonus" maxlength="9" pattern="[0-9]{1,9}" (input)="NoTimesDividends($event)" numbersOnly required/>
+                         <!-- [min]="lowerLimitz" [max]="upperLimitz" [(ngModel)]="selectedNumberz" (ngModelChange)="NoDividendPatronageBonus($event)"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> -->
+                    </div>
+
+
+                    <div class="col-md-4 col-form-label">
+                        <label> FPO extends loan to FPO members<span class="asteric-mark">*</span> :</label>
+                        <select class="form-control" formControlName='fpoExtendLoan' (change)="extendLoans()">
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <!-- <div class="col-md-4 col-form-label" *ngIf='fpoExtendLoan'>
+                        <label>Rate of Loan Repayment <b>(in %)</b></label>
+                        <input type="number" class="form-control" formControlName='rateOfLoan' > 
+                    </div> -->
+                    <div class="col-md-4 col-form-label" *ngIf='fpoExtendLoan'>
+                        <label>Rate of Loan Repayment <b>(in %)</b></label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" formControlName='rateOfLoan'
+                            placeholder="Enter Rate of Loan Repayment" maxlength="10" pattern="[0-9]{1,10}" (input)="NoRateLoanRepaymen($event)" numbersOnly required/>
+                            <!-- [min]="lowerLimitiz" [max]="upperLimitiz" [(ngModel)]="selectedNumberiz" (ngModelChange)="NoLoanRepayment($event)"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">  -->
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <!-- <button class="btn btn-success pull-right" mat-raised-button data-dismiss="modal" data-toggle="modal"
+                    data-target="#update">Update> -->
+                <!--<button [disabled]='fpoDetails.invalid' class="btn btn-success pull-right" mat-raised-button data-dismiss="modal" data-toggle="modal"
+                  data-target="#update">Update</button>-->
+
+                <!--<button  class="btn btn-primary addMoreBtn pull-right" (click)='membersDetailsSubmit()'>Update-->
+                <!-- </button> -->
+
+                <div class="row bg-light">
+                    <div class="form-group col-md-12">
+                        <button class="float-right btn btn-success" mat-raised-button data-dismiss="modal"
+                            data-toggle="modal" data-target="#myModal">Update</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<div class="row bg-light">
+                <div class="row bg-light">
+                    <div class="fpoName">
+                        Farmers Interest Group
+                    </div>
+                </div>
+                <div *ngIf='fpoData?.groupDetails?.length==0||!fpoData||!fpoData?.groupDetails' style="width: 100%;text-align: center;">
+                    <p>No data</p>
+                </div>
+                <div class="tableBox" *ngIf='fpoData?.groupDetails?.length>0'>
+                    <table class="table table-bordered table-striped myTable" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Sl. No</th>
+                                <th>Name of the Group</th>
+                                <th>Type of Group</th>
+                                <th>No. of members</th>
+                                <th>Gram Panchayat</th>
+                                <th>Village</th>
+                                <th>Share Capital raised</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let groupDetail of fpoData.groupDetails;let i=index;">
+                                <td>{{i+1}}</td>
+                                <td><input class="form-control" type="text" #groupName value="{{groupDetail.groupName}}">
+                                </td>
+                                <td>
+                                    <select name="" id="" class="form-control" #typeOfGroup>
+                                        <option value="undefined">--Select--</option>
+                                        <option value="FIG" [selected]='groupDetail.typeOfGroup=="FIG"'>FIG</option>
+                                        <option value="SHG" [selected]='groupDetail.typeOfGroup=="SHG"'>SHG</option>
+                                        <option value="JLG" [selected]='groupDetail.typeOfGroup=="JLG"'>JLG</option>
+                                        <option value="PG" [selected]='groupDetail.typeOfGroup=="PG"'>PG</option>
+                                        <option value="Other" [selected]='groupDetail.typeOfGroup=="Other"'>Other
+                                        </option>
+                                    </select>
+                                </td>
+                                <td><input class="form-control" type="text" #noOfMembers
+                                        value="{{groupDetail.noOfMembers}}">
+                                </td>
+                                <td><input class="form-control" type="text" #gramPanchyat
+                                        value="{{groupDetail.gramPanchyat}}">
+                                </td>
+                                <td><input class="form-control" type="text" #village value="{{groupDetail.village}}">
+                                </td>
+                                <td><input class="form-control" type="text" #shareCapitalRaised
+                                        value="{{groupDetail.shareCapitalRaised}}">
+                                </td>
+                                <td><button class="btn btn-success brdDirBtn"
+                                        (click)="groupDetailsUpdate(groupDetail.groupName,groupName.value,typeOfGroup.value,noOfMembers.value,gramPanchyat.value,village.value,shareCapitalRaised.value)">Update</button>
+                                    <button class="btn btn-danger" style="float: right;" (click)='deleteField3(i)'
+                                        *ngIf='groupDetail.delete'>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                *ngIf='fpoData?.groupDetails?.length>0' 
+                <button  class="btn btn-primary addMoreBtn pull-right" (click)='AddFields3()'>Add
+                </button>
+
+            </div>-->
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================Update button Modal start =====================================================-->
+
+
+<!--<div class="modal fade" id="update" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h3 class="modal-title" id="ModalLabel" style="color: white;">Update FPO profile data</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="deleteModal">
+                        <p>Are you sure to update ?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="membersDetailsSubmit()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- ========================================================Update button Modal End =====================================================-->
+<!-- <div class="modal fade" id="update" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h3 class="modal-title" id="ModalLabel" style="color: white;">Update FPO profile data</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="deleteModal">
+                        <p>Are you sure to update ?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="membersDetailsSubmit()">Update</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div id="myModal" class="modal fade" role="dialog" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h3 class="modal-title" id="ModalLabel" style="color: white;">Update Members Data</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="deleteModal">
+                        <p>Are You Sure You Want To Update ?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="membersDetailsSubmit()">Update</button>
+            </div>
+        </div>
+
+    </div>
+</div>

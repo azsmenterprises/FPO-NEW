@@ -1,0 +1,705 @@
+<div id="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 mb-6">
+                <div class="card-header py-2">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align:center">SET FPO OPERATIONAL TARGETS
+                    </h5>
+                </div>
+                <div class="card-body table-card mat-elevation-z8">
+                    <form [formGroup]="targetForm">
+                        <div class="row">
+                            <div class="form-group col-md-1">
+                                <label for="inputEmail4">FINANCIAL YEAR: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <!-- <select class="form-control" formControlName='finyear' (change)="getYearwiseData()"> -->
+                                <select class="form-control" formControlName='finyear' (change)="loadFpo()">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="2023-2024" enabled>2023-2024</option>
+                                    <option value="2024-2025" enabled>2024-2025</option>
+                                    <option value="2025-2026" enabled>2025-2026</option>
+                                    <option value="2026-2027" enabled>2026-2027</option>
+                                    <option value="2027-2028" enabled>2027-2028</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="inputEmail4"> CATEGORY OF FPOs: </label>
+                                <label for="" style="font-size: 10px;color:red">&nbsp;&nbsp;*Based on age of
+                                    registration</label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" (change)="onChange()" formControlName="typesOffpo">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value='3month'>
+                                        < 3 month</option>
+                                    <option value='11month'>3-11 month</option>
+                                    <option value='1year'>1 year & above</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="inputEmail4">NO OF FPO IN CATEGORY: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" id="inputEmail4" formControlName='achievements'
+                                    readonly>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="inputEmail4"> TARGET TIME SLOT: </label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select class="form-control" (change)="selectTimeSlot()" formControlName="timeSlot">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="April-Sept">April-Sept</option>
+                                    <option value="Oct-March">Oct-March</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Governance and
+                                    Compliance :</h6>
+                            </div>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table border="1" align="center"
+                                class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                                <thead class="bg-light">
+                                    <tr class="border-1">
+                                        <th rowspan="3" style="text-align:center">
+                                            <h6><b>Performance Indicator</b></h6>
+                                        </th>
+                                        <th rowspan="3" style="text-align:center">
+                                            <h6><b>Present Status</b></h6>
+                                        </th>
+                                        <th colspan="2" style="text-align:center">
+                                            <h6><b>Action Plan : Allocated Target</b></h6>
+                                        </th>
+
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="text-align:center">
+                                            <h6><b>Target Time Slot </b></h6>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th style="text-align:center">
+                                            <h6><b>April-Sept</b></h6>
+                                        </th>
+                                        <th style="text-align:center">
+                                            <h6><b>Oct-March</b></h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Average no. of shareholders mobilized</td>
+                                        <td><input type="number" class="form-control"
+                                                formControlName="presentstatusofAvgshareholdermobilized"
+                                                style="text-align:center" readonly></td>
+                                        <td><input type="number" class="form-control"
+                                                formControlName="janjunpresentstatusofAvgshareholdermobilized"
+                                                style="text-align:center" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpresentstatusofAvgshareholdermobilized.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 200
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpresentstatusofAvgshareholdermobilized.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control"
+                                                formControlName="juldecpresentstatusofAvgshareholdermobilized"
+                                                style="text-align:center" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpresentstatusofAvgshareholdermobilized.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 200
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpresentstatusofAvgshareholdermobilized.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs appointed CEOs</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpoappointedceo" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpoappointedceo" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoappointedceo.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoappointedceo.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpoappointedceo" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoappointedceo.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoappointedceo.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs appointed Accountant</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpoappointedaccountant" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpoappointedaccountant" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoappointedaccountant.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoappointedaccountant.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpoappointedaccountant" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoappointedaccountant.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoappointedaccountant.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs appointed Auditors</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpoappointedauditor" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpoappointedauditor" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoappointedauditor.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoappointedauditor.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpoappointedauditor" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoappointedauditor.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoappointedauditor.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs obtained Commencement of Business</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpoobtainedcommencementofbusiness"
+                                                readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpoobtainedcommencementofbusiness"
+                                                minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoobtainedcommencementofbusiness.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoobtainedcommencementofbusiness.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpoobtainedcommencementofbusiness"
+                                                minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoobtainedcommencementofbusiness.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoobtainedcommencementofbusiness.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOS obtained GST license</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpoobtainedgstlicense" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpoobtainedgstlicense" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoobtainedgstlicense.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpoobtainedgstlicense.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpoobtainedgstlicense" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoobtainedgstlicense.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpoobtainedgstlicense.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs completed Statutory Audit</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpocompletedstatutoryaudit" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpocompletedstatutoryaudit"
+                                                minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpocompletedstatutoryaudit.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpocompletedstatutoryaudit.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpocompletedstatutoryaudit"
+                                                minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpocompletedstatutoryaudit.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpocompletedstatutoryaudit.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs completed AGM</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpocompletedagm" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpocompletedagm" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpocompletedagm.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpocompletedagm.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpocompletedagm" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpocompletedagm.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpocompletedagm.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs filed RoC</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="percentageOffpofilledroc" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunpercentageOffpofilledroc" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpofilledroc.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunpercentageOffpofilledroc.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecpercentageOffpofilledroc" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpofilledroc.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecpercentageOffpofilledroc.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><br>
+                        <div class="row">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Business
+                                    Activities :</h6>
+                            </div>
+                        </div><br>
+                        <div style="overflow-x:auto;">
+                            <table border="1" align="center"
+                                class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                                <thead class="bg-light">
+                                    <tr class="border-1">
+                                        <th rowspan="3" style="text-align:center">
+                                            <h6><b>Performance Indicator</b></h6>
+                                        </th>
+                                        <th rowspan="3" style="text-align:center">
+                                            <h6><b>Present Status</b></h6>
+                                        </th>
+                                        <th colspan="2" style="text-align:center">
+                                            <h6><b>Action Plan : Allocated Target</b></h6>
+                                        </th>
+
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="text-align:center">
+                                            <h6><b>Target Time Slot :</b></h6>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th style="text-align:center">
+                                            <h6><b>April-Sept</b></h6>
+                                        </th>
+                                        <th style="text-align:center">
+                                            <h6><b>Oct-March</b></h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>% of FPO having average turnover of 50 Lakh and above</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="avgturnoverOf50" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunavgturnoverOf50" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunavgturnoverOf50.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunavgturnoverOf50.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecavgturnoverOf50" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecavgturnoverOf50.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecavgturnoverOf50.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of Signed MoU/ contract/ vendor registration</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="signedmouRegistration" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunsignedmouRegistration" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunsignedmouRegistration.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunsignedmouRegistration.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecsignedmouRegistration" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecsignedmouRegistration.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecsignedmouRegistration.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPO registered on e-NAM</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="registeredOnenum" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunregisteredOnenum" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunregisteredOnenum.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunregisteredOnenum.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecregisteredOnenum" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecregisteredOnenum.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecregisteredOnenum.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPO trading through e-NAM</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="tradingthroughEnum" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjuntradingthroughEnum" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjuntradingthroughEnum.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjuntradingthroughEnum.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldectradingthroughEnum" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldectradingthroughEnum.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldectradingthroughEnum.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPO having updated 3-5 Business plan</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="havingBusinessplan" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunhavingBusinessplan" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunhavingBusinessplan.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunhavingBusinessplan.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldechavingBusinessplan" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldechavingBusinessplan.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldechavingBusinessplan.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><br>
+                        <div class="row">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary" style="text-align:center">Access to
+                                    Finance :</h6>
+                            </div>
+                        </div><br>
+                        <div style="overflow-x:auto;">
+                            <table border="1" align="center"
+                                class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                                <thead class="bg-light">
+                                    <tr class="border-1">
+                                        <th rowspan="3" style="text-align:center">
+                                            <h6><b>Performance Indicator</b></h6>
+                                        </th>
+                                        <th rowspan="3" style="text-align:center">
+                                            <h6><b>Present Status</b></h6>
+                                        </th>
+                                        <th colspan="2" style="text-align:center">
+                                            <h6><b>Action Plan : Allocated Target</b></h6>
+                                        </th>
+
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="text-align:center">
+                                            <h6><b>Target Time Slot :</b></h6>
+                                        </th>
+                                    </tr>
+                                    <tr>
+
+                                        <th style="text-align:center">
+                                            <h6><b>April-Sept</b></h6>
+                                        </th>
+                                        <th style="text-align:center">
+                                            <h6><b>Oct-March</b></h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Average share capital amount for FPOs</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="averagesharecapitalAmount" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunaveragesharecapitalAmount" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunaveragesharecapitalAmount.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunaveragesharecapitalAmount.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecaveragesharecapitalAmount" minlength="1"
+                                                maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecaveragesharecapitalAmount.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecaveragesharecapitalAmount.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% of FPOs availed equity grant</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="equitygrantavailed" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunequitygrantavailed" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunequitygrantavailed.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunequitygrantavailed.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecequitygrantavailed" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecequitygrantavailed.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecequitygrantavailed.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>% FPOs received loan from Banks and Financial Institutions</td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="loanfrombank" readonly></td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="janjunloanfrombank" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.janjunloanfrombank.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.janjunloanfrombank.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                        <td><input type="number" class="form-control" style="text-align:center"
+                                                formControlName="juldecloanfrombank" minlength="1" maxlength="5"
+                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            <div *ngIf="targetForm.controls.juldecloanfrombank.errors?.max"
+                                                class="alerterr">
+                                                * Maximum upto 100
+                                            </div>
+                                            <div *ngIf="targetForm.controls.juldecloanfrombank.errors?.min"
+                                                class="alerterr">
+                                                * Minimum 0 required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table><br>
+                            <div>
+                                <button type="button" class="btn btn-success" (click)="submit()">SAVE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

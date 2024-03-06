@@ -1,0 +1,360 @@
+.mybox {
+  /* border: solid #40c886; */
+  border-radius: 10px;
+  background-color: white;
+  /* background-color: ghostwhite; */
+  margin-bottom: 3em;
+}
+
+.row {
+  margin-left: 0;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+}
+
+.officeHead p {
+  margin-top: 7%;
+  font-size: x-large;
+}
+
+.fpoName {
+  margin-left: 2%;
+  font-size: large;
+  /* margin-bottom: 10px */
+}
+
+.deleteModal {
+  text-align: center;
+  width: 100%;
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.btn-success {
+  float: right !important;
+  margin-bottom: 2%;
+  background: #54b754;
+  color: white;
+  margin-top: 2%;
+  margin-right: 3%;
+  text-align: center !important;
+}
+/* .btn-primary{
+  margin-top: 46px;
+  display: block;
+} */
+
+.membershipDetailsTbl tr td input {
+  text-align: center;
+}
+
+.membershipDetailsTbl tr td {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.col-md-4 {
+  margin-bottom: 2%;
+}
+
+input[type=radio] {
+  width: 22px;
+  height: 22px;
+  margin: 1%;
+  margin-left: 5%;
+  margin-right: 6%;
+}
+
+.radioDiv {
+  margin-left: 7%;
+}
+
+.radioButtonText {
+  font-size: larger;
+}
+
+.imageSpace {
+  height: 152px;
+  width: 293px;
+}
+
+.imageSpace img {
+  height: 110%;
+  width: 165%;
+}
+
+.left {
+  zoom: 1.2;
+}
+
+.subBox {
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.mybox-header {
+  background-color: #40c886;
+  /* background-color: cadetblue; */
+  height: 35px;
+  text-align: center;
+  font: initial;
+  /* color: black; */
+  color: white;
+}
+
+.col-md-5 label {
+  font-weight: 500;
+}
+
+.quesHead p {
+  text-align: center;
+  font-size: larger;
+}
+
+.otpDiv {
+  text-align: right;
+}
+
+/* .col-md-1 span{
+  content: "\002B";
+  cursor: pointer;
+  font-size: xxx-large;
+  color: green;
+} */
+
+.plus {
+  --t: 2px;
+  /* Thickness */
+  --l: 40px;
+  /* size of the symbol */
+  --s: 10px;
+  /* space around the symbol */
+  --c1: #fff;
+  /* Plus color*/
+  --c2: #000;
+  /* background color*/
+  margin-top: 14px;
+
+  display: inline-block;
+  width: var(--l);
+  height: var(--l);
+  padding: var(--s);
+  box-sizing: border-box;
+  /*Remove this if you don't want space to be included in the size*/
+
+  background:
+    linear-gradient(var(--c1), var(--c1)) content-box,
+    linear-gradient(var(--c1), var(--c1)) content-box,
+    var(--c2);
+  background-position: center;
+  background-size: 100% var(--t), var(--t) 100%;
+  background-repeat: no-repeat;
+}
+
+.radius {
+  border-radius: 50%;
+}
+
+.otpSubDiv {
+  display: inline-flex;
+  width: 100%;
+}
+
+.otpSubDiv .col-md-7 {
+  font-size: x-large;
+}
+
+.otpSubDiv .col-md-7 .otpInput {
+  font-size: large;
+}
+
+.sendOtpBtn {
+  text-align: left;
+}
+
+.clickHead p {
+  text-align: center;
+  font-size: larger;
+}
+
+.mybox-header label {
+  margin-top: 5px;
+  font-size: 22px;
+}
+
+.mybox-inner-header {
+  background-color: cadetblue;
+  /* background-color: #0a5a5d; */
+  height: 33px;
+  text-align: center;
+  font: initial;
+  color: black;
+  /* color: white; */
+}
+
+.additionalFld {
+  height: 100px;
+}
+
+
+
+.cropVarietyTable {
+  outline: 2px solid blue;
+  margin-left: 1%;
+  overflow-y: scroll;
+  min-height: 30% !important;
+  overflow-x: auto;
+  min-width: 48% !important;
+}
+
+.closeButton svg {
+  font-size: xx-large;
+  cursor: pointer;
+}
+
+.closeBtn {
+  background: #536990;
+  color: white;
+}
+
+.modal-content {
+  background: white;
+  box-shadow: 6px 5px 23px 1px;
+}
+
+.additionalFld button {
+  margin-top: 15%;
+  margin-left: 26%;
+}
+
+.mybox-inner-header label {
+  margin-top: 5px;
+  font-size: 17px;
+}
+
+.mybox-inner-header .input-group-prepend {
+  height: 30px;
+}
+
+.mybox-inner-header input {
+  height: 30px;
+}
+
+.round {
+  border-radius: 20px !important;
+}
+
+.mybox-inner-header h5 {
+  text-align: center;
+  margin-top: 5px;
+  font: inherit;
+  font-size: 17px;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.modal-header {
+  background: #8590ce;
+}
+
+.bg-light {
+  background-color: #eff1f3 !important;
+  width: 100%;
+  padding: 13px
+}
+
+.inner-box {
+  margin-top: 15px;
+  margin-bottom: 17px;
+}
+
+.table {
+  color: black;
+}
+
+/* .col-md-3{
+  font-size: 1.1rem;
+  margin: 0.20rem;
+  text-align: right;
+  } */
+/* .col-md-3 input[type=checkbox]{
+  width: 22px;
+  height: 22px;
+  margin: 1%;
+  margin-left: 5%;
+  margin-right: 6%;
+}*/
+/* .col-md-4 input[type=checkbox]{
+  width: 22px;
+  height: 22px;
+  margin: 1%;
+  margin-left: 5%;
+  margin-right: 6%;
+}
+.col-md-4{
+  font-size: 1.3rem;
+  margin: 0.50rem;
+  text-align: left;
+  flex: 6 0 33.333333%;
+    max-width: 83.333333%;
+  }  */
+
+.checkbox input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin: 1%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.checkbox {
+  font-size: 1.3rem;
+  margin: 0.50rem;
+  text-align: left;
+  flex: 6 0 33.333333%;
+  max-width: 83.333333%;
+}
+
+.label {
+  /* margin-bottom: 5%; */
+  height: 70px !important;
+}
+
+/* Responsive layout - when the screen is less than 1080px wide, make the two columns stack on top of each other instead of next to each other */
+/* @media screen and (max-width: 1280px) {
+  .col-md-4{
+    width:50px
+  }
+  .col-md-3{
+    width:50px
+  }
+} */
+@media (min-width: 1730px) {
+  label {
+    font-size: .9rem;
+    height: 30px;
+    margin-bottom: 0px;
+  }
+
+  .btn-primary {
+    margin-top: 30px;
+    display: block;
+  }
+}
+
+@media (max-width: 1730px) { 
+  label {
+    font-size: .9rem;
+    height: 46px;
+    margin-bottom: 0px;
+  }
+  .btn-primary {
+    margin-top: 46px;
+    display: block;
+  }
+}

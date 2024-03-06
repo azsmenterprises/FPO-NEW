@@ -1,0 +1,118 @@
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"> Sold products</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <!-- <div class="card shadow mb-4"> -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-white"> Sale details</h6>
+                </div>
+                <div class="card-body table-card mat-elevation-z8" [hidden]='dataSource?.data.length!=0'>
+                    
+                    <div style="text-align: center;padding: 28px;">No sale records</div>
+                </div>
+                <div class="card-body table-card mat-elevation-z8" [hidden]='dataSource?.data.length==0'>
+                    <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+                        <ng-container matColumnDef="slNo">
+                            <th mat-header-cell *matHeaderCellDef>Sl No. </th>
+                            <!-- <td mat-cell *matCellDef="let i=index"> {{i+1}} </td> -->
+                            <td mat-cell *matCellDef="let element; let i = index;">
+                                {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }}
+                            </td>
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="SaleTo">
+                            <th mat-header-cell *matHeaderCellDef> Sale To </th>
+                            <td mat-cell *matCellDef="let element">{{element.saleTo}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="MobileNo">
+                            <th mat-header-cell *matHeaderCellDef> Mobile </th>
+                            <td mat-cell *matCellDef="let element"> {{element.mobileNo}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Quantity">
+                            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                            <td mat-cell *matCellDef="let element"> {{element.saleQuantity}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="AmountCollected">
+                            <th mat-header-cell *matHeaderCellDef> Amount Collected </th>
+                            <td mat-cell *matCellDef="let element">{{element.amountCollected}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Date">
+                            <th mat-header-cell *matHeaderCellDef> Date </th>
+                            <td mat-cell *matCellDef="let element">{{element.saleDate|date:'dd-MM-yyyy'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Crop">
+                            <th mat-header-cell *matHeaderCellDef> Crop </th>
+                            <td mat-cell *matCellDef="let element">{{element.cropName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Variety">
+                            <th mat-header-cell *matHeaderCellDef> Variety </th>
+                            <td mat-cell *matCellDef="let element">{{element.varietyName}} </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell *matCellDef="let element;let i = index">
+                                <button class="btn btn-primary" style="margin-right: 7px;" data-toggle="modal" 
+                                data-target="#approveConsumer" (click)='getCSIndexToApprove(i,"approve")'>Approve</button>
+                                <button class="btn btn-danger" data-toggle="modal" 
+                                data-target="#rejectModal" (click)='getCSIndexToApprove(i,"reject")'>Reject</button>
+                            </td>
+                        </ng-container> -->
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    </table>
+                    <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 15,20]" [length]="pagelength"
+                        showFirstLastButtons ></mat-paginator>
+
+                </div>
+
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="approveConsumer" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="ModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure to approve this consumer ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)='approveOrRejectConsumer()'>Approve</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+

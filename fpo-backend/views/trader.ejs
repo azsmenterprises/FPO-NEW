@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from uxdtnic.in/wp-content/uploads/templates/template5/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2021 11:45:33 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" href="assets/images/new-logo.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <title>FPO Smart Connect</title>
+    <!-- Custom styles for this template -->
+    <!-- <link href="assets/js/gmap.js" type="text/javascript" media="all"> -->
+    <link href="assets/css/base.css" rel="stylesheet" media="all">
+    <link href="assets/css/base-responsive.css" rel="stylesheet" media="all">
+    <link href="assets/css/grid1.css" rel="stylesheet" media="all">
+    <link href="assets/css/font.css" rel="stylesheet" media="all">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="assets/css/flexslider.css" rel="stylesheet" media="all">
+    <link href="assets/css/megamenu.css" rel="stylesheet" media="all" />
+    <link href="assets/css/print.css" rel="stylesheet" media="print" />
+    <link rel="stylesheet" href="assets/css/slider.css">
+    <!-- Theme styles for this template -->
+    <link href="assets/css/megamenu.css" rel="stylesheet" media="all" />
+    <link href="theme/css/site.css" rel="stylesheet" media="all">
+    <link href="theme/css/site-responsive.css" rel="stylesheet" media="all">
+    <link href="theme/css/ma5gallery.css" rel="stylesheet" type="text/css">
+    <link href="theme/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link rel="stylesheet" href="assets/css/tableStyle.css" media="all" type="text/scss">
+    <link rel="stylesheet" href="assets/css/flaticon.css" media="all" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/js/aos-master/aos-master/dist/aos.css" />
+
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+
+
+    <link rel="stylesheet" href="assets/css/style1.css"> <!-- odisha Map heading style -->
+
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/aos-master/aos-master/dist/aos.js"></script>
+    <script src="assets/js/modernizr.js"></script>
+    <script src="assets/js/js-sha512.js"></script>
+
+
+
+    <!--odisha Map heading effect -->
+    <script src="assets/js/chart.js"></script>
+
+    <noscript>
+        <link href="theme/css/no-js.css" type="text/css" rel="stylesheet">
+    </noscript>
+
+    <!-- range slider -->
+    <style>
+        [slider] {
+            width: 200px;
+            position: relative;
+            height: 5px;
+            margin: 41px 0 10px 13px;
+        }
+
+        [slider]>div {
+            position: absolute;
+            left: 13px;
+            right: 15px;
+            height: 5px;
+        }
+
+        [slider]>div>[inverse-left] {
+            position: absolute;
+            left: 0;
+            height: 5px;
+            border-radius: 10px;
+            background-color: #CCC;
+            margin: 0 7px;
+        }
+
+        [slider]>div>[inverse-right] {
+            position: absolute;
+            right: 0;
+            height: 5px;
+            border-radius: 10px;
+            background-color: #CCC;
+            margin: 0 7px;
+        }
+
+
+        [slider]>div>[range] {
+            position: absolute;
+            left: 0;
+            height: 5px;
+            border-radius: 14px;
+            background-color: #d02128;
+        }
+
+        [slider]>div>[thumb] {
+            position: absolute;
+            top: -7px;
+            z-index: 2;
+            height: 20px;
+            width: 20px;
+            text-align: left;
+            margin-left: -11px;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+            background-color: #FFF;
+            border-radius: 50%;
+            outline: none;
+        }
+
+        [slider]>input[type=range] {
+            position: absolute;
+            pointer-events: none;
+            -webkit-appearance: none;
+            z-index: 3;
+            height: 14px;
+            top: -2px;
+            width: 100%;
+            opacity: 0;
+            left: -5px;
+        }
+
+        div[slider]>input[type=range]:focus::-webkit-slider-runnable-track {
+            background: transparent;
+            border: transparent;
+        }
+
+        div[slider]>input[type=range]:focus {
+            outline: none;
+        }
+
+        div[slider]>input[type=range]::-webkit-slider-thumb {
+            pointer-events: all;
+            width: 28px;
+            height: 28px;
+            border-radius: 0px;
+            border: 0 none;
+            background: red;
+            -webkit-appearance: none;
+        }
+
+        div[slider]>input[type=range]::-ms-fill-lower {
+            background: transparent;
+            border: 0 none;
+        }
+
+        div[slider]>input[type=range]::-ms-fill-upper {
+            background: transparent;
+            border: 0 none;
+        }
+
+        div[slider]>input[type=range]::-ms-tooltip {
+            display: none;
+        }
+
+        [slider]>div>[sign] {
+            opacity: 1;
+            position: absolute;
+            margin-left: -16px;
+            top: -39px;
+            z-index: 3;
+            background-color: #d02128;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 28px;
+            -webkit-border-radius: 28px;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        [slider]>div>[sign]:after {
+            position: absolute;
+            content: '';
+            left: 0;
+            border-radius: 16px;
+            top: 19px;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top-width: 16px;
+            border-top-style: solid;
+            border-top-color: #d02128;
+        }
+
+        [slider]>div>[sign]>span {
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 28px;
+        }
+
+        [slider]:hover>div>[sign] {
+            opacity: 1;
+        }
+    </style>
+
+    <!-- odisha map script tag -->
+    <style>
+        .names {
+            fill: none;
+            stroke: #fff;
+            stroke-linejoin: round;
+        }
+
+        /* Tooltip CSS */
+
+        .d3-tip {
+            line-height: 1.5;
+            font-weight: 400;
+            font-family: "avenir next", Arial, sans-serif;
+            padding: 6px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #FFA500;
+            border-radius: 1px;
+            pointer-events: none;
+        }
+
+        /* Creates a small triangle extender for the tooltip */
+
+        .d3-tip:after {
+            box-sizing: border-box;
+            display: inline;
+            font-size: 8px;
+            width: 100%;
+            line-height: 1.5;
+            color: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Northward tooltips */
+
+        .d3-tip.n:after {
+            content: "\25BC";
+            margin: -1px 0 0 0;
+            top: 100%;
+            left: 0;
+            text-align: center;
+        }
+
+        /* Eastward tooltips */
+
+        .d3-tip.e:after {
+            content: "\25C0";
+            margin: -4px 0 0 0;
+            top: 50%;
+            left: -8px;
+        }
+
+        /* Southward tooltips */
+
+        .d3-tip.s:after {
+            content: "\25B2";
+            margin: 0 0 1px 0;
+            top: -8px;
+            left: 0;
+            text-align: center;
+        }
+
+        /* Westward tooltips */
+
+        .d3-tip.w:after {
+            content: "\25B6";
+            margin: -4px 0 0 -1px;
+            top: 50%;
+            left: 100%;
+        }
+
+        /*    text{
+           pointer-events:none;
+         }*/
+
+        .details {
+            color: white;
+        }
+
+        #stateList {
+            position: absolute;
+            left: calc((100% - 20px)/2);
+            padding: 5px 15px;
+            border-radius: 8px;
+        }
+
+        .megamenu-wraper {
+            z-index: 9999;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .sticky+.content {
+            padding-top: 60px;
+        }
+
+        /* ==================Table style css start======================== */
+        * {
+            font-family: sans-serif;
+            /* Change your font family */
+        }
+
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            /* min-width: 400px; */
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
+            border-radius: 7px;
+            /* box-shadow: 7px 3px 21px white; */
+        }
+
+        .content-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+
+        }
+
+        .content-table thead tr th {
+            background: #005fa4;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+        /* .content-table:hover {
+         animation: shake 0.5s;
+         animation-iteration-count: 1;
+      }
+
+      @keyframes shake {
+         0% {
+            transform: translate(1px, 1px) rotate(0deg);
+         }
+
+         10% {
+            transform: translate(-1px, -2px) rotate(-1deg);
+         }
+
+         20% {
+            transform: translate(-3px, 0px) rotate(1deg);
+         }
+
+         30% {
+            transform: translate(3px, 2px) rotate(0deg);
+         }
+
+         40% {
+            transform: translate(1px, -1px) rotate(1deg);
+         }
+
+         50% {
+            transform: translate(-1px, 2px) rotate(-1deg);
+         }
+
+         60% {
+            transform: translate(-3px, 1px) rotate(0deg);
+         }
+
+         70% {
+            transform: translate(3px, 1px) rotate(-1deg);
+         }
+
+         80% {
+            transform: translate(-1px, -1px) rotate(1deg);
+         }
+
+         90% {
+            transform: translate(1px, 2px) rotate(0deg);
+         }
+
+         100% {
+            transform: translate(1px, -2px) rotate(-1deg);
+         }
+      } */
+
+        /* ==================Table style css end======================== */
+
+        /* =====================================Fpo Profile style start=================================== */
+
+        .emp-profile {
+            /* padding: 2%; */
+            padding: 0;
+            margin-top: 1%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+        }
+
+        .fpo-profile {
+            /* padding: 2%; */
+            padding: 0;
+            margin-bottom: -1%;
+            /* border-radius: 0.5rem; */
+            background-color: #e7e2e2;
+            ;
+        }
+
+        #min-qty {
+            float: left;
+            margin-left: 12px;
+            width: 94px;
+        }
+
+        #max-qty {
+            width: 94px;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .profile-section {
+                display: initial !important;
+            }
+
+            .col-md-5 {
+                max-width: 100%;
+            }
+
+            .col-md-7 {
+                max-width: 100%;
+            }
+
+            .cards-section {
+                display: flex;
+                margin-top: 4rem;
+            }
+        }
+
+        .profile-img {
+            text-align: center;
+        }
+
+        .profile-img img {
+            border-radius: 50%;
+            height: 20vh;
+            width: 20vh;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -20%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+
+        .profile-img .file input {
+            position: absolute;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            /* border: 1px solid #ddd; */
+            padding: 5px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            /* background-color: #0bb9c1; */
+            background-color: #0bc186;
+            color: white;
+        }
+
+        .profile-head h5 {
+            color: #333;
+        }
+
+        .profile-head {
+            float: left;
+            font-size: x-large;
+            font-weight: bold;
+
+
+        }
+
+        .profile-head h6 {
+            color: #0062cc;
+        }
+
+        /* .profile-edit-btn {
+            border: none;
+            border-radius: 1.5rem;
+            width: 70%;
+            padding: 2%;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+        } */
+
+        .profile-work {
+            margin-right: -37px;
+            margin-left: -15px;
+            height: 449px;
+            background: white;
+            margin-bottom: 20px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .submit-button {
+            margin-top: 31px;
+            /* margin: 7px; */
+            width: 200px;
+            background-color: rgb(197, 24, 18);
+            border: none;
+            color: white;
+            padding: 11px 11px;
+            cursor: pointer;
+            border-radius: 9px;
+            text-align: center;
+        }
+
+        #district {
+            width: 200px;
+            float: left;
+            margin-left: 10px;
+        }
+
+        #block {
+            width: 200px;
+            float: left;
+            margin-left: 10px;
+        }
+
+        .rangeslider {
+            font-size: 8px;
+            margin-right: 12px;
+        }
+
+        .rangeslider h4 {
+            text-align: left;
+            margin-left: 11px;
+            font-size: 12px;
+        }
+
+        h2 {
+            text-align: center;
+            background: green;
+            color: white;
+            padding: 6px 0px 6px 0px;
+            margin-top: 1px;
+            font-size: 20px;
+            font-family: 'Roboto';
+            width: 207px;
+        }
+
+        a .profile-box {
+            background-color: #fff;
+            box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            /* text-align: center; */
+            height: 184px;
+            width: 148px;
+        }
+
+        a .profile-box:hover {
+            background-color: #f5f5f5;
+            box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            /* text-align: center; */
+            -ms-transform: scale(0.9);
+            /* IE 9 */
+            -webkit-transform: scale(0.9);
+            /* Safari 3-8 */
+            transform: scale(1.1);
+            transition: 1s ease;
+        }
+
+        .profile-box img {
+            margin-bottom: 13px;
+            width: 149px;
+            height: 115px;
+            padding: 13px;
+            margin-top: -10px;
+            padding-bottom: 0px;
+            /* outline: auto; */
+        }
+
+        .detailsDiv {
+            padding: 0.8rem;
+            padding-top: 0;
+        }
+
+        @media screen and(min-width:600) {
+            .img-container {
+                margin-top: -4px;
+                width: 1013px;
+                background: white;
+                margin-left: 15px;
+                height: 413px;
+                overflow-x: scroll;
+            }
+        }
+
+        .sideCard {
+            padding: 0;
+        }
+
+        .mt {
+            margin-top: 2rem;
+        }
+
+        .about-txt {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            padding: 6px;
+            background-color: #8937ff;
+            border-radius: 4px;
+        }
+
+        .largeCard {
+            background: #54468e;
+            border-radius: 5px;
+            box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+            text-align: center;
+            min-height: 97%;
+            padding-top: 19%;
+            color: white;
+        }
+
+        .dashboard-row {
+            background: #3476d8;
+            padding: 0.7rem;
+            color: white;
+        }
+
+        .mbCard {
+            margin-top: 11px;
+        }
+
+        .buttom-cards {
+            /* text-align: center; */
+            background: white;
+            /* padding: 1.0rem; */
+            color: black;
+            /* font-size: 3rem; */
+            /* font-weight: bold; */
+            cursor: auto;
+            min-height: 210px;
+            max-height: 210px;
+            cursor: pointer;
+        }
+
+        .buttom-cards p {
+            font-size: 11px;
+            margin-top: 2px;
+            margin-left: -8px;
+        }
+
+        .buttom-cards h3 {
+            font-size: 9px;
+            margin-top: -5px;
+            font-weight: bold;
+            margin-left: -10px;
+        }
+
+        .connect-button {
+            margin-top: 4px;
+            background-color: rgb(39, 134, 15);
+            border: none;
+            color: white;
+            padding: 6px 11px;
+            font-size: 7px;
+            cursor: pointer;
+            border-radius: 5px;
+            float: right;
+            margin-top: -3px;
+            margin-right: 1px;
+        }
+
+        .crpcat {
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        h4 {
+            margin-bottom: 5px;
+        }
+
+        .about-txt-2 {
+            /* background: #1f33c5; */
+            background: #0bc186;
+            cursor: auto;
+        }
+
+        .left-block {
+            font-size: 14px;
+        }
+
+        .socialBtns {
+            border-radius: 50px;
+            height: 35px;
+            width: 100%;
+            /* float: right; */
+            display: flex;
+            /* margin-right: 40%; */
+            padding-left: 19%;
+        }
+
+        @media only screen and(max-width:700px) {
+            .socialBtns {
+                display: initial !important;
+            }
+
+            .headFlex {
+                display: initial !important;
+            }
+        }
+
+        .socialBtns img {
+            margin-right: 10px;
+        }
+
+        /* ================================Share button =============================*/
+        .c-share {
+            position: relative;
+            width: 2.4375em;
+            height: 3.4375em;
+        }
+
+        .c-share__input {
+            display: none;
+        }
+
+        .c-share__input:checked~.c-share__toggler .c-share__icon {
+            transition: 0s;
+            width: 0;
+            height: 0;
+            color: #639eff;
+        }
+
+        .c-share__input:checked~.c-share__toggler .c-share__icon::before {
+            transform: rotate(-45deg);
+        }
+
+        .c-share__input:checked~.c-share__toggler .c-share__icon::after {
+            transform: rotate(45deg);
+        }
+
+        .c-share__input:checked~.c-share_options {
+            width: 11.0625em;
+            height: 7.5em;
+            border-radius: 0.3125em;
+        }
+
+        .c-share__input:checked~.c-share_options::before,
+        .c-share__input:checked~.c-share_options li {
+            transition: 0.3s 0.15s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .c-share__toggler,
+        .c-share_options {
+            position: absolute;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f2f2f2;
+        }
+
+        .c-share__toggler {
+            /* cursor: pointer; */
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .c-share__icon {
+            position: relative;
+            left: -0.3125em;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            color: #029dfc;
+            background-color: currentColor;
+            box-shadow: 0.625em -0.625em, 0.625em 0.625em;
+            transition: 0.1s 0.05s;
+        }
+
+        .c-share__icon::before,
+        .c-share__icon::after {
+            content: "";
+            position: absolute;
+            width: 1em;
+            height: 0.125em;
+            background-color: currentColor;
+            transition: 0.1s;
+        }
+
+        .c-share__icon::before {
+            top: 0.1875em;
+            left: 0.1875em;
+            transform-origin: bottom left;
+            transform: rotate(45deg);
+        }
+
+        .c-share__icon::after {
+            top: -0.125em;
+            left: 0.03125em;
+            transform-origin: center;
+            transform: rotate(-45deg);
+        }
+
+        .c-share_options {
+            list-style: none;
+            margin: 0;
+            padding: 1.0625em 1.25em;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: 0.2s;
+            box-shadow: 0 0.125em 0.125em rgba(0, 0, 0, 0.3);
+        }
+
+        .c-share_options::before {
+            content: attr(data-title);
+            display: block;
+            margin-bottom: 1.25em;
+            font-weight: 700;
+        }
+
+        .c-share_options li {
+            font-size: 0.875em;
+            color: #464646;
+            cursor: pointer;
+        }
+
+        .c-share_options li:not(:last-child) {
+            margin-bottom: 0.75em;
+        }
+
+        .c-share_options::before,
+        .c-share_options li {
+            opacity: 0;
+            transform: translateY(0.625em);
+            transition: 0s;
+        }
+
+
+        .headFlex {
+            display: flex;
+        }
+
+        .canvasjs-chart-canvas {
+            max-height: 219px;
+            min-width: 100%;
+        }
+
+        .carousel-box {
+            background-color: white;
+            box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+            color: #000;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            margin: 0px 2px;
+            border: 1px solid #ccc;
+            height: 114px;
+        }
+
+        .carousel-box img {
+            height: 65px;
+        }
+
+        .carousel-item {
+            margin-bottom: 7px;
+        }
+
+        .buttom-cards span {
+            font-size: larger;
+        }
+
+        .cropCat label {
+            max-width: 178px;
+        }
+
+        /* =====================================Fpo Profile style end=================================== */
+    </style>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-56543729-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- <link href="./wheelnav.js - spinning ever_files/css" rel="stylesheet" type="text/css"> -->
+
+    <!-- utube video -->
+    <style>
+        @media screen and (max-width: 450px) {
+            .utVdo {
+                width: 330px !important;
+                height: 200px !important;
+            }
+
+            .circleWheel {
+                width: 330px !important;
+                height: 200px !important;
+            }
+
+            /* .wheelGraph {
+            width: 350px !important;
+            height: 350px !important;
+         }
+
+         .containerWdth {
+            margin: 0px !important;
+            padding: 0px !important;
+            height: 350px !important;
+            padding-top: 5px !important;
+         } */
+        }
+    </style>
+
+    <!-- Extra css start-->
+    <style>
+        .filter-dropdown {
+            width: 87%;
+            margin-left: 14px;
+        }
+
+        @media screen and (max-width:670px) {
+            .profile-work h2 {
+                margin-bottom: 12px !important;
+            }
+        }
+
+        .cards-section .cards {
+            max-width: 160px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body ng-app="myapp1" ng-controller="ctrl1">
+    <div id="loaderDiv"
+        style=" position: fixed;width: 100%;height: 100vh; z-index: 111111111; background: black;opacity: 0.9;">
+        <center><img src="/assets/css/garden-loader.gif" style="margin-top: 8%;" /></center>
+    </div>
+    <div id="fb-root"></div>
+
+       <%- include('./commons/header.ejs') -%>
+
+
+    <div class="container-fluid fpo-profile">
+        <form method="post">
+
+            <div class="row profile-section">
+                <div class="col-md-2 col-sm-12 col-12 ">
+
+                    <div class="col-md-12">
+                        <div class="profile-work">
+                            <h2>FILTERS</h2>
+                            <div class="left-block" id="customers">
+                                <form>
+                                    <br>
+                                    <select name="cars1" class="form-control filter-dropdown" ng-model="State" ng-change="loadAvailableDistrcits()">
+                                        <option value="" disabled selected hidden>STATE</option>
+                                        <option ng-repeat="b in StateList" value="{{b.traderState}}">{{b.traderState}}</option>
+                                    </select>
+                                    <br>
+                                    <select name="cars" class="form-control filter-dropdown" ng-model="District"
+                                        ng-change="loadAvailableCrop()">
+                                        <option value="" disabled selected hidden>DISTRICT</option>
+                                        <option ng-repeat="i in DistrictList" value="{{i.districtName}}">{{i.districtName}}
+                                        </option>
+                                    </select>
+                                   <br>
+                                    <select name="cars2" class="form-control filter-dropdown" ng-model="Crop_Name"
+                                    ng-change="searchTrader()">
+                                    <option value="" disabled selected hidden>CROP</option>
+                                    <option ng-repeat="i in CropList" value="{{i.Crop_Name}}">{{i.Crop_Name}}
+                                    </option>
+                                </select>
+                                    <br>
+
+                                   
+                        
+                                    <!-- <input class="submit-button" ng-click='searchTrader()' value="Search"><br> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div><br>
+                   
+
+                </div>
+                <div class="col-md-10 col-sm-12 col-12" style="margin-bottom: 2%;overflow-y: scroll;">
+
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3">
+                            <div class="filterDropdown">
+                                <!-- <label for="">Sort by</label> -->
+                                <!-- <select class="form-control" ng-model='sortTrader' ng-change='loadTraderWithSort()'>
+                                    <option value="" disabled selected>--Sort by--</option>
+                                    <option value="name">Name</option>
+                                </select> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="filterDropdown">
+                                <!-- <label for="">Search FPO</label> -->
+                                <input type="text" class="form-control" placeholder="Enter Trader name to search" ng-model='searchtraderName' ng-keyup='searchTraderFromSearchBar()'>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="img-container">
+                        <!-- <div class="title">
+                            <h3>hii</h3>
+                        </div> -->
+                        <div class="row cards-section">
+                            <!-- ng-repeat='x in allFpos' -->
+                            <div class="col-md-2 col-4 cards" ng-repeat='x in allTrader'>
+                                <!--<a ng-click='redirectToTraderProfile(x)'>-->
+                                    <div class="profile-box" >
+                                        <!-- <p>{{x.FPOData.block}},</p> -->
+                                        <div class="buttom-cards"style="overflow: auto; height:90px;">
+                                            <!--<button class="connect-button"><i class="fa fa-link"></i></button>-->
+
+                                            <img src="assets/images/dommyUser.png" alt="">
+                                            <div class="detailsDiv" >
+                                                <h3>{{x.traderName}}</h3>
+                                                
+                                                <p>MOBILE NO:{{x.cgMobNo}}</p>
+                                                <p>DISTRICT:{{x.districtName}}</p>
+                                                <p>STATE:{{x.traderState}}</p>
+                                                <p>CROP DEALT WITH:{{x.Crop_Name}}</p>
+                                            <!--<p>TURNOVER:&nbsp; RS.{{x.Crop_Name}}</p>-->
+                                            </div>
+                                        </div>
+                                        <!-- <div class="buttom-cards">
+                                            <button class="connect-button"><i class="fa fa-link"></i></button>
+
+                                            <img src="assets/images/dommyUser.png" alt="">
+                                            <div class="detailsDiv">
+                                                <h3>SAHARADIA FARMERS PRODUCER COMPANY LIMITED</h3>
+                                                <p>SADAR, PURI</p>
+                                                <p>FARMERS INVOLVED:5</p>
+                                                <p>TURNOVER:&nbsp; RS.0.2Lac</p>
+                                            </div>
+                                        </div> -->
+
+
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <%- include('./commons/footer.ejs') -%>
+    <script src="assets/js/jquery-2.1.1.min.js"></script>
+    <script src="assets/js/jquery-accessibleMegaMenu.js"></script>
+    <script src="assets/js/framework.js"></script>
+    <script src="assets/js/jquery.flexslider.js"></script>
+    <script src="assets/js/font-size.js"></script>
+    <script src="assets/js/swithcer.js"></script>
+    <script src="theme/js/ma5gallery.js"></script>
+    <script src="assets/js/megamenu.js"></script>
+    <script src="theme/js/easyResponsiveTabs.js"></script>
+    <script src="theme/js/custom.js"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
+    <!-- <script src="assets/js/script.js"></script> -->
+
+    <script>
+        //   ===========================================Count Css ======================================
+        const counters = document.querySelectorAll('.counter');//get all the counters
+        const speed = 400; // The lower the faster
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                // Lower inc to slow and higher to slow
+                const inc = ~~(target / speed);
+
+                // Check if target is reached
+                if (count < target) {
+                    // Add inc to count and output in counter
+                    counter.innerText = count + inc;
+                    // Call function every ms
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+
+
+    </script>
+    <script>
+        var loader = document.getElementById("loaderDiv");
+        loader.style.display = "block";
+
+        // fpo update function
+        function updates() {
+            var xhttp = new XMLHttpRequest();
+            var myobj, i = "";
+            var x = ""
+            var y = ''
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    loader.style.display = "none";//when it gets data from db loader will be off
+                    myobj = JSON.parse(this.responseText);
+                    for (i in myobj) {
+                        y += myobj[i].link;
+                        // x += `<li><div class="date"><span>${new Date(myobj[i].fromDAte).getDate()}</span><em>${new Date(myobj[i].fromDAte).getMonth()} ${new Date(myobj[i].fromDAte).getFullYear()}</em></div><div class="list-content" ><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li><br><br><br>`;
+                        // ${myobj[i].url} PUT IN IMG TAG
+                        x += `<li style="max-height: 100px;"><div class="date" style= "font-color:green;"><img style= "border-radius:5px; height:50px; width:80px;" src="theme/images/fpoUpdatesImg.jpeg"></div> <span  style="font-weight:bold;color:green"><em>${new Date(myobj[i].fromDAte).getDate()}</em> / <em>${new Date(myobj[i].fromDAte).getMonth()}<em> / </em>${new Date(myobj[i].fromDAte).getFullYear()}</em></span> <em><div class="list-content"><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></em></li><br><br>`;
+
+                    }
+                    // document.getElementById("fpoUpdate").innerHTML = x;
+                }
+            };
+            xhttp.open("GET", "http://localhost:3000/landRoute/titleEdit");
+            xhttp.send();
+        }
+        updates();
+
+        // circular notification 
+        function tenderList() {
+
+            var xhttp = new XMLHttpRequest();
+            var myobj, i = "";
+            var x = ''
+            var y = ''
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myobj = JSON.parse(this.responseText);
+                    for (i in myobj) {
+                        // y +='<>'+ myobj[i].pageId +"</>";
+                        y += myobj[i].link;
+                        // x += '<li>' + '<div class="date"><span>03</span><em>10 2020</em></div>' + ' <div class="list-content" >' + myobj[i].text + '</div>' + "</li>";
+                        x += `<li><div class="date"><span>${new Date(myobj[i].fromDAte).getDate()}</span><em>${new Date(myobj[i].fromDAte).getMonth()} ${new Date(myobj[i].fromDAte).getFullYear()}</em></div><div class="list-content" ><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+                        // x += `<li><div class="date"><img src="${myobj[i].url}"></div><div class="list-content" ><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+
+                    }
+
+                    // x += '</li>';
+                    // document.getElementById("tenderData").innerHTML = x;
+                    // document.getElementById("tenderData").href = y;
+                }
+            };
+            xhttp.open("GET", "http://localhost:3000/landRoute/titleEdit1");
+            xhttp.send();
+        }
+        tenderList();
+
+        //   refDoc
+        function refDoc() {
+
+            var xhttp = new XMLHttpRequest();
+            var myobj, i = "";
+            var x = ""
+            var y = ""
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myobj = JSON.parse(this.responseText);
+                    for (i in myobj) {
+                        y += myobj[i].link;
+
+
+                        // x += '<li>' + '<div class="list-content">' + myobj[i].text + '</div>' + '</li>';
+                        x += `<li><div class="list-content"><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+
+                        // ////////console.log(x)
+                    }
+
+                    // x += '</a>';
+                    // document.getElementById("refDoc").innerHTML = x;
+                    // document.getElementById("refDoc").href = y;
+
+                }
+            };
+            xhttp.open("GET", "http://localhost:3000/landRoute/titleEdit2");
+            xhttp.send();
+        }
+        refDoc();
+
+        // agriServices
+        function agriServices() {
+            var xhttp = new XMLHttpRequest();
+            var myobj, i = "";
+            var x = ' '
+            var y = ''
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myobj = JSON.parse(this.responseText);
+                    for (i in myobj) {
+                        y += myobj[i].link;
+                        // x += '<li>' + '<div class="list-content"></div>' + myobj[i].text + '</li>';
+                        x += `<li><div class="list-content"><a href="${myobj[i].link}" target="_blank">${myobj[i].text}</a></div></li>`;
+                    }
+                    // x += '</li>';
+                    // document.getElementById("agriServices").innerHTML = x;
+                    // document.getElementById("agriServices").href = y;
+                }
+            };
+            xhttp.open("GET", "http://localhost:3000/landRoute/titleEdit3");
+            xhttp.send();
+        }
+        agriServices();
+
+      //fpolocation
+
+    </script>
+
+    <script>
+        ; (function () {
+
+            function emit(target, name) {
+                var event
+                if (document.createEvent) {
+                    event = document.createEvent("HTMLEvents");
+                    event.initEvent(name, true, true);
+                } else {
+                    event = document.createEventObject();
+                    event.eventType = name;
+                }
+
+                event.eventName = name;
+
+                if (document.createEvent) {
+                    target.dispatchEvent(event);
+                } else {
+                    target.fireEvent("on" + event.eventType, event);
+                }
+            }
+
+            var outputsSelector = "input[type=number][source],select[source]";
+
+            function onChange(e) {
+                var outputs = document.querySelectorAll(outputsSelector)
+                for (var index = 0; index < outputs.length; index++) {
+                    var item = outputs[index]
+                    var source = document.querySelector(item.getAttribute('source'));
+                    if (source) {
+                        if (item === e.target) {
+                            source.value = item.value
+                            emit(source, 'input')
+                            emit(source, 'change')
+                        }
+
+                        if (source === e.target) {
+                            item.value = source.value
+                        }
+                    }
+                }
+            }
+
+            document.addEventListener('change', onChange)
+            document.addEventListener('input', onChange)
+        }());
+    </script>
+
+    <!-- ======================================particle js start========================================== -->
+
+    <script src="assets/js/particles.js-master/particles.js"></script>
+    <script src="assets/js/particles.js-master/demo/js/app.js"></script>
+
+    <!-- ======================================particle js end========================================== -->
+    <!-- ======================================Fetch Districts,block,gp,village start==================================== -->
+    <script src="/controller/trader.js"></script>
+    <!-- ======================================Fetch Districts,block,gp,village end==================================== -->
+    <!-- ============================AOS Animation==================================== -->
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+
+</html>

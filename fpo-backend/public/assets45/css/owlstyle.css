@@ -1,0 +1,78 @@
+
+
+.slider {
+    max-width: 1150px;
+    /* overflow: hidden; */
+    display: flex;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    left: 40px;
+}
+
+.slider .card {
+    background: rgb(233 218 218 / 41%);
+    flex: 1;
+    margin: 0px 10px;
+    height: 140px;
+    width: 213px;
+    box-shadow: 0px 0px 7px 0px #514646;;
+}
+
+.slider .card .img {
+    height: 156px;
+    width: 100%;
+}
+
+.slider .card .img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.slider .card .content {
+    padding: 10px 20px;
+
+}
+
+.card .content .title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card .content .btn{
+    display: block;
+    float: right;
+    margin: -46px;
+    margin-right: -14px;
+}
+
+.card .content .btn button{
+    background: darkgreen;
+    color: white;
+    transition: 0.2s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card .content .btn button:hover{
+    transform: scale(0.9);
+}
+
+.owl-stage .owl-item {
+    width: 218.333px;
+}
+.owl-stage .active{
+    width: 218.333px;
+}
+.owl-stage .cloned{
+    width: 218.333px;
+}
+.owl-stage{
+    width: 5000px !important;
+}
+
+p{
+    margin: 0px;
+}
+
+.owl-carousel .owl-stage-outer{position:relative;overflow:visible;}

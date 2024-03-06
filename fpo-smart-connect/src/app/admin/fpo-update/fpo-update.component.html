@@ -1,0 +1,230 @@
+<!-- Main Content -->
+<div id="content">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"> Update Info</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+        
+        <div class="row">
+
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Add Schedule Details</h6>
+                    </div>
+                    <div class="card-body table-card mat-elevation-z8">
+                        <!-- <div class="text-center">
+                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                        src="img/undraw_posting_photo.svg" alt="">
+                                </div> -->
+                        <form [formGroup]="addForm" (ngSubmit)="Submit()">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4"> <b> Text <sup>*</sup> </b> </label>
+                                    <input type="text" class="form-control" id="inputEmail4"
+                                        placeholder="Enter Your Schedule" formControlName='text'>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Link <b><sup>*</sup>:</b></label>
+                                    <input type="text" class="form-control" id="inputPassword4" placeholder="Url"
+                                        formControlName='url'>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="form-group col-md-3">
+                                    <label for="inputState"> Schedule From<b> <sup>*</sup> :</b> </label>
+                                    <input type="date" class="form-control" id="inputPassword4"
+                                        placeholder="Enter Sequence" formControlName='fromdate'>
+
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="inputState">Schedule To <sup>*</sup> :</label>
+                                    <input type="date" class="form-control" id="inputPassword4"
+                                        placeholder="Enter Sequence" formControlName='todate'>
+
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Info Type <b><sup>*</sup>:</b></label>
+                                    <!-- <input type="text" class="form-control" id="inputPassword4" placeholder="Info Type"
+                                        formControlName='infoType'> -->
+                                        <select class="form-control" formControlName='type'>
+                                            <option value="" disabled>--Select--</option>
+                                            <option value="{{info.code}}" *ngFor='let info of infoType'>{{info.name}}</option>
+                                        </select>
+                                </div>
+
+                            </div>
+                            <button type="submit" [disabled]='!addForm.valid' class="btn btn-primary">ADD</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-12 mb-6">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Schedule Details</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class='scroll'>
+                            <table border="1" align="center" class=" overflow-y: scroll;"
+                                class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                                <thead class="bg-light">
+                                    <tr class="border-1">
+                                        <td>Sl.</td>
+                                        <td>Text</td>
+                                        <td>Link</td>
+                                        <td>Type</td>
+                                        <td>From Date</td>
+                                        <td>To Date</td>
+                                        <td>Delete</td>
+                                        <td>Edit</td>
+                                    </tr>
+                                </thead>
+                                <tr *ngFor="let x of menuList index as i ">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ x.text }}</td>
+                                    <td>{{ x.url }}</td>
+                                    <td>{{x.type}}</td>
+                                    <td>{{ x.fromdate | date:'dd-MM-yyyy' }}</td>
+                                    <td>{{ x.todate | date:'dd-MM-yyyy' }}</td>
+
+
+                                    <!-- <td>
+                                        <button align="center" class="btn btn-outline-danger" (click)="delete(x.userId)"><i class="fas fa-trash"></i></button>
+    
+                                    </td> -->
+                                    <td>
+                                        <button class="btn btn-outline-danger" type="submit" data-toggle="modal"
+                                            data-target="#deletesupplierModal" data-backdrop="static"
+                                            data-keyboard="false" (click)="viewMenuDetails(x);"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-warning" data-toggle="modal"
+                                            data-target="#editMenuModal" data-backdrop="static" data-keyboard="false"
+                                            (click)="viewEditDetails(x)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<div class="modal fade" id="deletesupplierModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-danger">
+                <h5 class="modal-title" id="ModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure want to delete this Menu Details ?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="delete(details.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editMenuModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-info">
+                <h5 class="modal-title" id="ModalLabel" style="color: white;">Update Marquee Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="updateForm">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputEmail4"><b> Text <sup>*</sup> </b> </label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Your Schedule"
+                                formControlName='text'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">Link -</label>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Url"
+                                formControlName='url'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState"> Schedule From<b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="date" class="form-control" id="inputPassword4" placeholder="Enter Sequence"
+                                formControlName='fromdate'>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="inputState">Schedule To <b> <sup>*</sup> :</b></label>
+
+                        </div>
+                        <div class="form-group col-md-8">
+                            <input type="date" class="form-control" id="inputPassword4" placeholder="Enter Sequence"
+                                formControlName='todate'>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="updateMarquee(details.id)">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

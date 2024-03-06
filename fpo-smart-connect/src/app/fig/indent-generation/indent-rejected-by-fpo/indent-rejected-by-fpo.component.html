@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Rejected Demands</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12 mb-6">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Rejected Demand Details</h6>
+                </div>
+                <div class="card-body">
+
+                    <div style="text-align: center;" *ngIf='rejecteddata.length==0'>
+                        <p>No Data</p>
+                    </div>
+                    <div class=' table-responsive' *ngIf='rejecteddata.length!=0'>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="bg-light">
+                                <tr class="border-1">
+                                    <td>Sl.</td>
+                                    <td>FPO</td>
+                                    <td>Farmer</td>
+                                    <td>Item Type</td>
+                                    <td>technical Name</td>
+                                    <td>Brand Name</td>
+                                    <td>Quantity</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let x of rejecteddata; let i=index'>
+                                    <td>{{i+1}}</td>
+                                    <td>{{x.fpo.fpoName}}</td>
+                                    <td *ngIf='x.farmer!="Self"'>{{x.farmer?x.farmer.farmerName:'NA'}}</td>
+                                    <td *ngIf='x.farmer=="Self"'>{{x.farmer}}</td>
+                                    <td>{{x.itemType}}</td>
+                                    <td>{{x.technicalName}}</td>
+                                    <td>{{x.brandName}}</td>
+                                    <td>{{x.quantity}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

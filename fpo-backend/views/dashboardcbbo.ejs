@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FPO ODISHA</title>
+    <!-- <link rel="icon" href="assets/img/new-logo.jpg"> -->
+    <link rel="icon" href="../img/new-logo.jpg">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="assets/images/new-logo.jpg">
+    <link href="assets27/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets27/css/owl.carousel.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets27/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--Photo Gallery-->
+    <link rel="stylesheet" href="assets27/css/jquery.fancybox.min.css" media="screen">
+    <!--AOS Animation-->
+    <link rel="stylesheet" href="assets27/css/aos.css" />
+    <link href="assets27/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+        integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<!-- <body id="FontAccessibility"> -->
+
+<body ng-app="myapp" ng-controller="ctrl" id="FontAccessibility">
+    <div class="right-box" style="width: 100%;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="heading-1" style="text-align: center;">Performance Progress of CBBO</h2>
+                    <div class="filter-1 row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>PERFORMANCE PROGRESS PARAMETER</label>
+                                    <select class="form-control" ng-model="performanceAuthority">
+                                        <option value="governance">Governance & Compliance</option>
+                                        <option value="business">Business Activities</option>
+                                        <option value="finance">Access to Finance</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>FINANCIAL YEAR</label>
+                                    <select class="form-control" ng-change="showYear()" ng-model="selectyear">
+                                        <option value="2023-2024">2023-2024</option>
+                                        <option value="2022-2023">2022-2023</option>
+                                        <option value="2021-2022">2021-2022</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>TYPE OF FPO</label>
+                                    <select class="form-control" ng-change="showYear()" ng-model="selectTypes">
+                                        <option value="3month">< 3Month </option>
+                                        <option value="11month">3-11Month</option>
+                                        <option value="1year">1year&above</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>TARGET TIMESLOT</label>
+                                    <select class="form-control" ng-change="showYear()" ng-model="selectSlots">
+                                        <option value="April-Sept">April-Sept</option>
+                                        <option value="Oct-March">Oct-March</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>CBBO Name</label>
+                                    <select class="form-control" ng-model="selectCbbo" ng-change="getCbboAchievement()">
+                                        <option value="" disabled>--Select--</option>
+                                        <option [ng-Value]="x" ng-repeat="x in getCbbo">{{x.cbboName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row" >
+                        <div class="col-md-12" ng-show="performanceAuthority =='governance'">
+                            <h2 class="heading-1" style="text-align: center;">Governance & Compliance</h2>
+                        </div>
+                        <div class="col-md-12" ng-show="performanceAuthority =='governance'">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chat-box-1">
+                                        <div style="margin-top: 1px; text-align: center;"><h4>{{cbboName}}</h4></div>
+                                        <div class="gauge"></div>
+                                        <div class="row">
+                                            <ul class="chart-info row clr">
+                                                <div class="col-md-3 clr1"><li>Good</li></div>
+                                                <div class="col-md-4 clr2"><li>Avg</li></div>
+                                                <div class="col-md-3 clr3"><li>Poor</li></div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="right-tablr table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Indicator</th>
+                                                    <th scope="col">Target</th>
+                                                    <th scope="col">Achievment</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Average no. of shareholders mobilized</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{getCbboTargetList.janjunpresentstatusofAvgshareholdermobilized}}
+                                                    </td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{getCbboTargetList.juldecpresentstatusofAvgshareholdermobilized}}
+                                                    </td>
+                                                    <td>{{percentageofcommencementbusiness}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>% of FPOs Appointed CEOs</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{getCbboTargetList.janjunpercentageOffpoappointedceo + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{getCbboTargetList.juldecpercentageOffpoappointedceo +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <!-- <tr ng-repeat="x in getCbboTargetList">
+                                                    <td>% of FPOs Appointed Accountants</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunpercentageOffpoappointedaccountant + "%"}}
+                                                    </td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecpercentageOffpoappointedaccountant +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month'">
+                                                    <td>% of FPOs Appointed Auditors</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunpercentageOffpoappointedauditor + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecpercentageOffpoappointedauditor +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month'">
+                                                    <td>% of FPOs obtained Commencement of Business</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunpercentageOffpoobtainedcommencementofbusiness
+                                                        + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecpercentageOffpoobtainedcommencementofbusiness
+                                                        +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month'">
+                                                    <td>% of FPOS obtained GST license</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunpercentageOffpoobtainedgstlicense + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecpercentageOffpoobtainedgstlicense +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+                                                    <td>% of FPOS completed Statutory Audit</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunpercentageOffpocompletedstatutoryaudit + "%"}}
+                                                    </td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecpercentageOffpocompletedstatutoryaudit +"%"}}
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month'">
+                                                    <td>% of FPOS completed AGM</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunpercentageOffpocompletedagm + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecpercentageOffpocompletedagm +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+                                                    <td>% of FPOS filed RoC</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunpercentageOffpofilledroc + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecpercentageOffpofilledroc +"%"}}</td>
+                                                    <td></td>
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <svg width="0" height="0" version="1.1" class="gradient-mask"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="gradientGauge">
+                                        <stop class="color-red" offset="10%" />
+                                        <stop class="color-yellow" offset="50%" />
+                                        <stop class="color-green" offset="100%" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="col-md-12" ng-show="performanceAuthority =='business'">
+                            <h2 class="heading-1" style="text-align: center;">Business Activity</h2>
+                        </div>
+                        <div class="col-md-12" ng-show="performanceAuthority =='business'">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chat-box-1">
+                                        <div style="margin-top: 1px; text-align: center;"><h4">{{getRefNoofIa}}</h4></div>
+                                        <div class="gauge5"></div>
+                                        <div class="row">
+                                            <ul class="chart-info row clr" >
+                                                <div class="col-md-3 clr1"><li>Good</li></div>
+                                                <div class="col-md-4 clr2" ><li>Average</li></div>
+                                                <div class="col-md-3 clr3"><li>Poor</li></div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="right-tablr table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Indicator</th>
+                                                    <th scope="col">Target</th>
+                                                    <th scope="col">Achievment</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month' || x.typesOffpo == '11month'">
+                                                    <td>% of FPOs having average turnover of 50 Lakh and above
+                                                    </td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">{{x.janjunavgturnoverOf50
+                                                        + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">{{x.juldecavgturnoverOf50
+                                                        +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList">
+                                                    <td>% of FPOs Signed MoU/Contract/Vendor registration</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunsignedmouRegistration + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecsignedmouRegistration +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList">
+                                                    <td>% of FPOs Registered on e-NAM</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">{{x.janjunregisteredOnenum
+                                                        + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">{{x.juldecregisteredOnenum
+                                                        +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList"
+                                                    ng-hide="x.typesOffpo == '3month'">
+                                                    <td>% of FPOs trading through on e-NAM</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjuntradingthroughEnum + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldectradingthroughEnum +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList">
+                                                    <td>% of FPOs having updated 3-5 years Businessplan</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunhavingBusinessplan + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldechavingBusinessplan +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <svg width="0" height="0" version="1.1" class="gradient-mask"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="gradientGauge5">
+                                        <stop class="color-red" offset="10%" />
+                                        <stop class="color-yellow" offset="50%" />
+                                        <stop class="color-green" offset="100%" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="col-md-12" ng-show="performanceAuthority =='finance'">
+                            <h2 class="heading-1" style="text-align: center;">Access to Finance</h2>
+                        </div>
+                        <div class="col-md-12" ng-show="performanceAuthority =='finance'">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chat-box-1">
+                                        <div style="margin-top: 1px; text-align: center;"><h4">{{getRefNoofIa}}</h4></div>
+                                        <div class="gauge10"></div>
+                                        <div class="row">
+                                            <ul class="chart-info row clr" >
+                                                <div class="col-md-3 clr1"><li>Good</li></div>
+                                                <div class="col-md-4 clr2" ><li>Average</li></div>
+                                                <div class="col-md-3 clr3"><li>Poor</li></div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="right-tablr table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Indicator</th>
+                                                    <th scope="col">Target</th>
+                                                    <th scope="col">Achievment</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="x in getCbboTargetList">
+                                                    <td>Average share capital amount for FPOs</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunaveragesharecapitalAmount}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecaveragesharecapitalAmount}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList">
+                                                    <td>% of FPOs availed equity grant</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">
+                                                        {{x.janjunequitygrantavailed + "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">
+                                                        {{x.juldecequitygrantavailed +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr ng-repeat="x in getCbboTargetList">
+                                                    <td>% of FPOs Received loan from banks and Financial
+                                                        Institutions</td>
+                                                    <td ng-if="selectSlots=='April-Sept'"
+                                                        [attr.rowspan]="'April-Sept'">{{x.janjunloanfrombank +
+                                                        "%"}}</td>
+                                                    <td ng-if="selectSlots=='Oct-March'"
+                                                        [attr.rowspan]="'Oct-March'">{{x.juldecloanfrombank
+                                                        +"%"}}</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <svg width="0" height="0" version="1.1" class="gradient-mask"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="gradientGauge10">
+                                        <stop class="color-red" offset="10%" />
+                                        <stop class="color-yellow" offset="50%" />
+                                        <stop class="color-green" offset="100%" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-12" ng-If="notFound">
+                        <h2 class="heading-1" style="text-align: center;"> No Data Available</h2>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Font Accessibility-->
+    <script src="assets27/js/jquery-2.2.1.min.js"></script>
+    <script src="assets27/js/jquery.font-accessibility.min.js"></script>
+    <!--<script src="js/jquery.min.js"></script>-->
+    <script src="assets27/js/bootstrap.min.js"></script>
+    <script src="assets27/js/owl.carousel.min.js"></script>
+    <!--Meter Chart Start-->
+    <script src='assets27/js/dx.all.js'></script>
+    <!--AOS Animation-->
+    <script src="assets27/js/aos.js"></script>
+    <!-- <script src="assets27/js/custom.js"></script> -->
+
+    <!--Maping-->
+    <script src="/controller/dashboardCbbo.js"></script>
+
+</body>
+
+</html>

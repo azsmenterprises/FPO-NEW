@@ -1,0 +1,233 @@
+<div class="container-fluid">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><strong style="color: blue;">Home</strong>/ Members Corner/Register New Member</li>
+    </ol>
+
+    <div class="mybox">
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Add Members</label>
+                </strong>
+            </span>
+        </div>
+        <br>
+        <div class="container row">
+            <div class="col-md-12">
+                <label>Enter the farmer I’d of the farmer for membership registration:</label>
+                <div class="row">
+                    <div class="col-md-5">
+                        <input type="text" #farmerId class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-success btn-primary"
+                            (click)='searchFarmer(farmerId.value)'>Search</button>
+                    </div>
+                    <div class="col-md-4 clickHead">
+                        <p>Don't have a farmer Id ? <a href="http://agrisnetodisha.ori.nic.in/stock/farmer/FarmerInquiry.aspx" style="color: blue;">(Click Here)</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="loader"> 
+          <div ng-show="loadingData" class="spinner-border text-info"></div>
+        </div> -->
+        <br>
+        <br>
+    </div>
+
+    <div class="mybox" *ngIf='fetchedFarmerData && farmerDetailsTableShow'>
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Farmer Details</label>
+                </strong>
+            </span>
+        </div>
+
+        <div>
+            <!-- ALL DATA TABLE START -->
+            <div *ngIf='!fetchedFarmerData' style="text-align: center;">
+                <br>
+                No record found
+            </div>
+            <div *ngIf='fetchedFarmerData'>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="orderListTable">
+                        <caption></caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Father/Husband name</th>
+                                <th scope="col">Relation</th>
+                                <th scope="col">ID Type</th>
+                                <th scope="col">ID Num</th>
+                                <th scope="col">Mobile Number</th>
+                                <!-- <th scope="col">Email Id</th> -->
+                                <th scope="col">District</th>
+                                <th scope="col">Block</th>
+                                <th scope="col">Gram Panchyat</th>
+                                <th scope="col">Village</th>
+                                <th scope="col" style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ fetchedFarmerData?.VCHFARMERNAME }}</td>
+                                <td>{{ fetchedFarmerData?.VCHFATHERNAME}}</td>
+                                <td>{{ fetchedFarmerData?.RELATION }} </td>
+                                <td>{{fetchedFarmerData?.CHFARMERTYPE}}</td>
+                                <td>{{ fetchedFarmerData?.INTFARMERID}}</td>
+                                <td>{{hiddenMob}}</td>
+                                <!-- <td>{{fetchedFarmerData.EmailId}}</td> -->
+                                <td>{{fetchedFarmerDataAddress?.district}}</td>
+                                <td>{{fetchedFarmerDataAddress?.block}}</td>
+                                <td>{{fetchedFarmerDataAddress?.gp}}</td>
+                                <td>{{fetchedFarmerDataAddress?.village}}</td>
+                                <td style="width: 13%;">
+                                    <div class="row">
+                                        <!-- <div class="col-md-6">
+                                            <button class="btn btn-outline-info round" data-toggle="modal"
+                                                data-target="#viewDetails">
+                                                <i class="fas fa-edit"></i> </button>
+                                        </div> -->
+                                        <div class="col-md-12">
+                                            <button class="btn btn-outline-info round" data-toggle="collapse"
+                                                href="#collapse1">Verify Farmer</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-body panel-collapse collapse otpDiv" id='collapse1'>
+                <div class="otpSubDiv row">
+                    <div class="col-md-12">
+                        <p>Click on the send OTP button to get OTP on the registered Mobile No:{{hiddenMob}}</p>
+                    </div>
+                    <div class="col-md-4 sendOtpBtn" style="position: relative;left: 80px;">
+                        <button class="btn btn-outline-info round" (click)='sendOtp()'>Send OTP</button>
+                    </div>
+                </div>
+                <br><br>
+                <div class="otpSubDiv row" *ngIf='otpSent'>
+                    <div class="col-md-7">
+                        <input type="text" class="otpInput" #otpValue placeholder="Enter OTP">
+                    </div>
+                    <div class="col-md-4 sendOtpBtn">
+                        <button class="btn btn-outline-info round" (click)='confirmOtp(otpValue.value)'>Confirm</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+
+
+    <!-- *ngIf='confirmStatus' -->
+    <div class="mybox" *ngIf='confirmStatus'>
+        <div class="mybox-header">
+            <span>
+                <strong>
+                    <label>Additional Information</label>
+                </strong>
+            </span>
+        </div>
+        <br>
+        <div class="container row">
+            <div class="col-md-2 additionalFld">
+                <label for="">Bank Name:</label><br>
+                <select class="form-control" [(ngModel)]='bankName'>
+                    <option value="" disabled selected>--Select--</option>
+                    <option value="{{name._id}}" *ngFor='let name of bankNames'>{{name._id}}</option>
+                </select>
+                <!-- <input type="text" class="form-control" [(ngModel)]='bankName'> -->
+            </div>
+            <div class="col-md-2 additionalFld">
+                <label for="">Account Number:</label><br>
+                <input type="text" class="form-control" [(ngModel)]='bankAccNo'>
+            </div>
+            <div class="col-md-2 additionalFld">
+                <label for="">IFSC Code:</label><br>
+                <input type="text" class="form-control" [(ngModel)]='ifscCode'>
+            </div>
+            <div class="col-md-3 additionalFld">
+                <label for="">Alternate Mobile No:</label><br>
+                <input type="text" class="form-control" [(ngModel)]='altMobNo'>
+            </div>
+            <div class="col-md-3 additionalFld">
+                <label for="">Area on hold(In hectares):</label><br>
+                <input type="text" class="form-control" [(ngModel)]='areaOnHold'>
+            </div>
+            <div class="col-md-3 additionalFld">
+                <label for="">Crop:</label><br>
+                <!-- <input type="text" class="form-control" [(ngModel)]='crop'> -->
+                <select class="form-control" [(ngModel)]='crop' (change)='loadVariety()'>
+                    <option value="undefined" disabled selected>--Select--</option>
+                    <option [ngValue]="crop" *ngFor='let crop of cropData'>{{crop.Crop_Name}}</option>
+                </select>
+            </div>
+            <div class="col-md-3 additionalFld">
+                <label for="">Variety:</label><br>
+                <!-- <input type="text" class="form-control" [(ngModel)]='variety'> -->
+                <select class="form-control" [(ngModel)]='variety'>
+                    <option value='undefined' disabled>--Select--</option>
+                    <option value="{{variety.Variety_Name}}" *ngFor='let variety of varietyData'>
+                        {{variety.Variety_Name}}</option>
+                </select>
+            </div>
+            <div class="col-md-1 additionalFld">
+                <label for=""></label><br>
+                <div class="plus radius" style="--l:35px;--t:3px;--c2:green" (click)='cropVarietyArrayPush()'></div>
+            </div>
+
+
+            <div class="col-md-1 additionalFld">
+                <label for=""></label><br>
+                <button type="submit" class="btn btn-success btn-primary" (click)='finalSubmit()'>Submit</button>
+            </div>
+
+            <div class="col-md-3 cropVarietyTable">
+                <!-- Selected crop variety added table -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="orderListTable">
+                        <caption></caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Crop</th>
+                                <th scope="col">Variety</th>
+                                <th scope="col">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr *ngIf='cropVarietySelected.length==0' colspan='3'>No Data</tr> -->
+                            <p *ngIf='cropVarietySelected.length==0'>No Data</p>
+                            <tr *ngFor='let data of cropVarietySelected'>
+                                <td>{{data.crop}}</td>
+                                <td>{{data.variety}}</td>
+                                <td class="closeButton">
+                                    <p (click)='removeCropFromArray(data.crop,data.variety)'><i class="fa fa-times-circle" aria-hidden="true"></i></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="loader"> 
+          <div ng-show="loadingData" class="spinner-border text-info"></div>
+        </div> -->
+        <br>
+        <br>
+
+
+    </div>
+
+</div>

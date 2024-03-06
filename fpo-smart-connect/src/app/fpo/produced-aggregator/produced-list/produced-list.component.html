@@ -1,0 +1,168 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Aggregation Action Record </h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-6">
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Search By</h6>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]='producedApproveForm'>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="year">Type <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="type">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="Crop">Crop</option>
+                                    <option value="Seed">Seed</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="year">Year <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="year">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="{{year}}">{{year}}</option>
+                                    <option value="{{year-1}}">{{year-1}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="year">Season <b><sup>*</sup>:</b></label>
+                                <select class="form-control" id="year" formControlName="season">
+                                    <option value="" disabled>--Select--</option>
+                                    <option value="Rabi">Rabi</option>
+                                    <option value="Kharif">Kharif</option>
+                                    <option value="Zaid">Zaid</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button (click)="approvedProduced()" class="btn btn-primary"
+                                    [disabled]='producedApproveForm.invalid' style="margin-top: 15%;">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-lg-12 mb-6" *ngIf='figIndentList'>
+            <!-- Illustrations -->
+            <div class="card shadow">
+                <!-- <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Indent Details</h6>
+                </div> -->
+                <div class="card-body">
+                    <!-- <div> -->
+                    <table class="table mb-0 table-responsive-md table-bordered table-striped table-sms ">
+                        <thead class="bg-light">
+                            <tr class="border-1">
+                                <td>Sl.</td>
+                                <!-- <td>FIG Name</td> -->
+                                <td for="year">Category</td>
+                                <td for="">Crop</td>
+                                <td>Variety</td>
+                                <td for="">Quantity(In Qntl)</td>
+                                <td>Action</td>
+                                <!-- <td>View</td> -->
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let x of figIndentList; index as i ">
+                                <td>{{ i + 1 }}</td>
+                                <!-- <td>{{ x.figName}}</td> -->
+                                <td>{{ x._id.cropCatagory}}</td>
+                                <td>{{ x._id.cropName}}</td>
+                                <td>{{ x._id.varietyName}}</td>
+                                <td>{{x.quantity}}</td>
+                                <td><button class="btn btn-primary" (click)='openDialog(x)'>Sales Record </button> &nbsp;&nbsp;
+                                    <button class="btn btn-primary" (click)='getAddToGodownData(x)'  data-toggle='modal' data-target='#addToGodown'>Add to godown</button>
+                                </td>
+                                <!-- <td><button class="viewbtn">View Details</button></td> -->
+                                <!-- <td><button class="aprvbtn" >Approve</button></td> -->
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- </div> -->
+
+                </div>
+
+                <!-- <div >
+                    <table mat-table [dataSource]="figIndentList1" class="mat-elevation-z8">
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> No. </th>
+                            <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="Category">
+                            <th mat-header-cell *matHeaderCellDef> Category </th>
+                            <td mat-cell *matCellDef="let element"> {{element._id.cropCatagory}} </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="Crop">
+                            <th mat-header-cell *matHeaderCellDef> Crop </th>
+                            <td mat-cell *matCellDef="let element"> {{element._id.cropName}} </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="Variety">
+                            <th mat-header-cell *matHeaderCellDef> Variety </th>
+                            <td mat-cell *matCellDef="let element"> {{element._id.varietyName}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Quantity">
+                            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell > <button class="btn btn-primary">Sale</button> </td>
+                          </ng-container>
+                        
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addToGodown" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document1">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="ModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="">Select Godown</label>
+                        <select class="form-control" [(ngModel)]='selectedGodown'>
+                            <option value="" disabled selected>--Select--</option>
+                            <option [ngValue]='godown' *ngFor='let godown of allGodowns'>{{godown.godownName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='addToGodown()'>Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

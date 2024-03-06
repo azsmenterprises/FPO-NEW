@@ -1,0 +1,207 @@
+<!-- <mat-card>Simple card</mat-card> -->
+<div class="container-fluid">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><strong style="color: blue;">Home</strong>/External Services/e-Licensing
+        </li>
+    </ol>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card style="min-height: 66vh">
+                <div style="text-align: center;color: #33b35a">
+                    <strong>
+                        <label style="font-size: 2rem;">e-Licensing Links</label>
+                        <hr>
+                    </strong>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" *ngIf='showRegButton' style="text-align: center">
+                        <button mat-raised-button (click)='openRegisterConfirmationModal()'>
+                            Register in e-Licensing
+                        </button>
+                        <br><br><br>
+                        <p><i><b>Note:-</b></i>
+                            Registering in e-Licensing will automatically register and create your user id and password
+                            in e-Licensing portal. <br>
+                            Aadhar number is mandatory to register in e-licensing system.
+                        </p>
+                    </div>
+                    <div class="col-md-6" style="text-align: center">
+                        <button mat-raised-button (click)='openLoginConfirmationModal()'>
+                            Login to e-Licensing
+                        </button>
+                        <br><br><br>
+                        <p><i><b>Note:-</b></i>
+                            Above button is an one click login button
+                            for e-Licensing portal.                           
+                        </p>
+                    </div>
+                </div>
+                <div class="row">                 
+                    <div class="col-md-12" style="text-align:center">
+                              <img src="../../../../assets/img/e-Licensing.jpeg" alt="image">                      
+                       </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<modal #registerModal>
+    <modal-header>
+        <h1>Update profile details</h1>
+    </modal-header>
+
+    <modal-content>
+        <mat-card class="mat-elevation-z5">
+            <div class="row">
+                <div class="col-md-5">
+                    Name:<b>{{fpoData?.name}}</b>
+                </div>
+                <div class="col-md-3">
+                    District:<b>{{fpoData?.district}}</b>
+                </div>
+                <div class="col-md-4">
+                    Block:<b>{{fpoData?.block}}</b>
+                </div>
+            </div>
+        </mat-card><br>
+        <form [formGroup]='updateFormForElicensing'>
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Email</label>
+                    <input class="form-control" formControlName='fpoMailId'>
+                    <mat-error *ngIf='updateFormForElicensing.controls.fpoMailId?.errors?.required'>Email is required
+                    </mat-error>
+                    <mat-error *ngIf='updateFormForElicensing.controls.fpoMailId?.errors?.email'>Email is not valid
+                    </mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Aadhar No.</label>
+                    <input class='form-control' formControlName='aadhar'>
+                    <mat-error *ngIf='updateFormForElicensing.controls.aadhar?.errors?.required'>Aadhar number is
+                        required</mat-error>
+                    <mat-error
+                        *ngIf='updateFormForElicensing.controls.aadhar?.errors?.maxlength || updateFormForElicensing.controls.aadhar?.errors?.minlength'>
+                        Aadhar number should be of 12 digit</mat-error>
+                </div>
+                <div class="col-md-4">
+                    <label>Gender</label>
+                    <select class='form-control' formControlName='gender'>
+                        <option value="" disabled selected>--Select--</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <mat-error *ngIf='updateFormForElicensing.controls.gender?.errors?.required'>Gender is required
+                    </mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Phone No.</label>
+                    <input class='form-control' formControlName='fpoContactNo'>
+                    <mat-error *ngIf='updateFormForElicensing.controls.fpoContactNo?.errors?.required'>Mobile number is
+                        required</mat-error>
+                    <mat-error
+                        *ngIf='updateFormForElicensing.controls.fpoContactNo?.errors?.maxlength || updateFormForElicensing.controls.fpoContactNo?.errors?.minlength'>
+                        Mobile number should be of 10 digit
+                    </mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>District</label>
+                  
+                    <select  class='form-control' [ngModel]="selectedDist" formControlName='district' (change)='loadBlock()'>
+                        <option disabled selected>--Select--</option>
+                        <!-- <option [ngValue]="selectedDist" selected disabled>{{district}}</option> -->
+                        <option [ngValue]="dist.districtCode" *ngFor='let dist of districtList'>{{dist.districtName}}</option>
+                    </select>
+                    <mat-error *ngIf='updateFormForElicensing.controls.district?.errors?.required'>District is required
+                    </mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Block</label>
+                    <select class='form-control' [ngModel]="selectedBlock"  formControlName='block' (change)='loadGP()'>
+                        <option value="selectedBlock" disabled selected>--Select--</option>
+                        <option [ngValue]="block.blockCode" *ngFor='let block of allBlocks'>{{block.blockName}}</option>
+                    </select>
+                    <mat-error *ngIf='updateFormForElicensing.controls.block?.errors?.required'>Block is required
+                    </mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Grampanchyat</label>
+                    <select class='form-control' formControlName='gramPanchayat' (change)='loadVillage()'>
+                        <option value="" disabled>--Select--</option>
+                        <option [ngValue]="gramPanchayat.gpName" *ngFor='let gramPanchayat of gramPanchayats'>
+                            {{gramPanchayat.gpName}}</option>
+                    </select>
+                    <mat-error *ngIf='updateFormForElicensing.controls.gramPanchayat?.errors?.required'>Grampanchyat is
+                        required</mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Village</label>
+                    <select class='form-control' formControlName='village'>
+                        <option value="" disabled selected>--Select--</option>
+                        <option [ngValue]="village.villageName" *ngFor='let village of villages'>{{village.villageName}}</option>
+                    </select>
+                    <mat-error *ngIf='updateFormForElicensing.controls.village?.errors?.required'>Village is required
+                    </mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Pin</label>
+                    <input class='form-control' formControlName='pincode'>
+                    <mat-error *ngIf='updateFormForElicensing.controls.pincode?.errors?.required'>Pin is required
+                    </mat-error>
+                    <mat-error
+                        *ngIf='updateFormForElicensing.controls.pincode?.errors?.maxlength || updateFormForElicensing.controls.pincode?.errors?.minlength'>
+                        Pincode should be of 6 digit
+                    </mat-error>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Landmark</label>
+                    <textarea class='form-control' formControlName='address'></textarea>
+                    <mat-error *ngIf='updateFormForElicensing.controls.address?.errors?.required'>Landmark is required
+                    </mat-error>
+
+                </div>
+            </div>
+        </form>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="submitFormForElicensing()"
+            [disabled]='updateFormForElicensing.invalid'>Update and Register</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="closeModal()">close</button>
+    </modal-footer>
+</modal>
+
+<modal #confirmRegister>
+    <modal-header>
+        <h4>Confirmation</h4>
+    </modal-header>
+    <modal-content>
+        <h2>Are you sure to register ?</h2>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="registerToElicensing()">Proceed</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="closeModal()">close</button>
+    </modal-footer>
+</modal>
+
+<modal #confirmLogin>
+    <modal-header>
+        <h4>Confirmation</h4>
+    </modal-header>
+    <modal-content>
+        <h2>Are you sure to login in e-Licensing system ?</h2>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="loginToElicensing()">Proceed</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="closeModal()">close</button>
+    </modal-footer>
+</modal>

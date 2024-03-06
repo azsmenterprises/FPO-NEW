@@ -1,0 +1,284 @@
+<div class="top-1">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-10 ps-0">
+              <div class="top-1-left">
+                  <h4>ANNOUNCEMENT</h4>
+                  <marquee behavior="" direction="" onmouseover="this.stop();" onmouseout="this.start();">
+                      <a href="#"><span><img src="./assets/assetsNew/images/icons/new.png" alt=""></span>Odisha FPO
+                          conclave 2021 was
+                          organized
+                          on 18th Dec 2021 by Department
+                          of Agriculture & Farmers' Empowerment.
+                      </a><a href="#"><span><img src="./assets/assetsNew/images/icons/new.png" alt=""></span>“State Level
+                          workshop on
+                          Formation
+                          and Promotion of FPOs”,
+                          on 21st July 2022, Organized by Department of Agriculture and Farmer’s Empowerment.
+                      </a>
+                  </marquee>
+              </div>
+          </div>
+          <div class="col-md-2">
+              <div class="top-1-right">
+                  <div class="top-right-1">
+                      <ul>
+                          <li>
+                              <a href="#"><i class="fa-solid fa-arrow-turn-down"></i></a>
+                          </li>
+                          <li>
+                              <div class="font-resizer">
+                                  <a href="#"><i class="fa-solid fa-t"></i> <i class="fa-solid fa-t"></i></a>
+                              </div>
+                          </li>
+                          <li>
+                              <a class="site-map">
+                                  <i class="fa-solid fa-sitemap"></i>
+                              </a>
+                          </li>
+                          <li>
+                              <div class="font-size-changer">
+                                  <a href="#">English<i class="fa-solid fa-sort-down"></i></a>
+                              </div>
+                          </li>
+                          <li>
+                              <a href="/userLogin" class="top-login-btn">Login</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="top-2">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="logo-wrapper">
+                  <div class="logo">
+                      <a href="#"><img src="./assets/assetsNew/images/logo.png" alt="" title=""></a>
+                  </div>
+                  <div class="logo-2">
+                      <a href="#"><img src="./assets/assetsNew/images/logo2.png" alt="" title="">
+                          <div class="logo-caption">
+                              <h5>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</h5>
+                              <h5>Department of Agriculture & Farmers' Empowerment</h5>
+                              <h6> Government of Odisha</h6>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+
+              <div class="top-2-right">
+                  <div class="cm-con">
+                      <div class="logo2-text">
+                          <h4>Shri Naveen Patnaik</h4>
+                          <h6>Honable Chief Minister</h6>
+                      </div>
+                      <figure><img src="./assets/assetsNew/images/cm.png" alt="Naveen Patnaik"></figure>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="top-3">
+  <div class="container">
+      <div class="col-md-12">
+          <div class="top-2-wrapper">
+              <div class="menu-con">
+                  <nav id="navigation1" class="navigation">
+                      <div class="nav-header">
+                          <div class="nav-toggle"></div>
+                      </div>
+                      <div class="nav-menus-wrapper">
+                          <ul class="nav-menu align-to-right">
+                              <li>
+                                  <a href="http://localhost:3000/ "><i class="fa-solid fa-house"></i></a>
+                              </li>
+                              <li>
+                                  <a href="http://localhost:3000/ ">HOME</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div id="popup-overlay"></div>
+<section class="inner-page-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-breadcrumb">
+          <h3>LOGIN</h3>
+          <ul>
+            <li><a href="http://localhost:3000/ "><i class="fa-solid fa-house"></i></a></li>
+            <li><a href="http://localhost:3000/ ">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto mainBack" style="margin-top: 0rem;">
+  <marquee behavior="" direction=""></marquee>
+  <div class="card card0 border-0">
+      <div class="row d-flex" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;">
+          <div class="col-lg-6 mr" style="padding-left: 0px;padding-top: 0px;">
+              <div class="card1 pb-5">
+                  <!-- <div class="row"> <img src="assets/newTemplate/img/new-logo.jpg" class="logo"> </div> -->
+                  <!-- <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="assets/newTemplate/img/loginImg.jpg" class="image"> </div> -->
+              </div>
+          </div>
+          <div class="col-lg-6 ml">
+              <div *ngIf='userTypeForDisplay'
+                  style="color: white;text-align: center;font-size: x-large;padding: 11px;background: cadetblue;">
+                  <span>User Type: <b>{{userTypeForDisplay|uppercase}}</b></span>
+              </div>
+
+              <div class="card2 card border-0  " style="height: 350px; padding: 35px;">
+                  <form [formGroup]='loginForm' (ngSubmit)='onSubmit()'>
+
+                      <div class="row px-3">
+                          <label class="mb-1">
+                              <h6 class="mb-0 text-sm">User Id:</h6>
+                          </label> <input class="mb-4" type="text" placeholder="Enter a valid user id"
+                              formControlName='userid'>
+                      </div>
+                      <div class="row px-3 mb-4"> <label class="mb-1">
+                              <h6 class="mb-0 text-sm">Password:</h6>
+                          </label> <input type="password" name="password" id="password" placeholder="Enter password"
+                              formControlName='password'>
+                      </div>
+                      <div class="row px-3 mb-4">
+                          <div class="custom-control custom-checkbox custom-control-inline">
+                              <!-- <span> -->
+                              <input type="checkbox" id="view" style="cursor: pointer;" class="custom-control-input"
+                                  (click)="showPassword()">&nbsp;
+                              <label class="custom-control-label text-sm" style="left:8px" for="view"> Show Password</label>
+                              <!-- </span> -->
+                          </div>
+                          <!-- <div class="col-sm-5 col-md-5 col-lg-5">
+                              <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1"
+                                      type="checkbox" name="chk" class="custom-control-input"> <label for="chk1"
+                                      class="custom-control-label text-sm">Remember me</label> </div>
+                          </div> -->
+
+                          <!-- <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a> -->
+                      </div>
+                      <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Login</button>
+                              <!-- [disabled]='loginForm.invalid'>Login</button> -->
+                      </div>
+
+                  </form>
+                  <!-- <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <a class="text-danger ">Register</a></small> </div> -->
+              </div>
+          </div>
+      </div>
+
+     
+  </div>
+</div>
+<footer>
+<div class="footer-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="footer-box-1">
+          <h4>Important Links</h4>
+          <ul>
+            <li><a href="https://agri.odisha.gov.in/">Department of Agriculture & Farmers' Empowerment</a></li>
+            <li> <a href="https://odihort.nic.in/">Directorate of Horticulture</a></li>
+            <li> <a href="https://osamb.odisha.gov.in/">Odisha State Agricultural Marketing Board</a></li>
+            <li> <a href="https://sugam.odisha.gov.in/website/home">Go Sugam - Government Of Odisha</a></li>
+            <li> <a href="https://safal.odisha.gov.in/website/home">SAFAL - Government Of Odisha </a></li>
+            <li> <a href="https://www.cooperation.gov.in/">Ministry of Cooperation</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="footer-box-1">
+          <h4>Quick Links</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <ul>
+                <li><a href="/fpo1"> ABOUT PSFPO</a></li>
+                <li><a href="/#enrolment"> ENROLMENT</a></li>
+                <li><a href="http://localhost:3000/fpofilterNew">SEARCH</a></li>
+                <li><a href="/#scheme">SCHEMES</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="footer-address-wrapper">
+          <h4>Contact Info</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="footer-address">
+                <li>
+                  <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <h6>Address</h6>
+                  <p> Directorate of Horticulture,
+                    <br>Department of Agriculture & Farmers' Empowerment,
+                    <br> Krushi Bhawan,Gopabandhu Marg
+                    <br>Near State Guest House,Bhubaneswar
+                  </p>
+                </li>
+                <li>
+                  <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                  <h6>Phone</h6>
+                  <p>0674-2391831,+91-9853901065</p>
+                </li>
+                <!-- <li>
+                  <div class="contact-icon"><i class="fa-solid fa-fax"></i></div>
+                  <h6>Fax</h6>
+                  <p>0361-2301099</p>
+                </li> -->
+                <li>
+                  <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+                  <h6>Email</h6>
+                  <p>supportdho.od&#64;nic.in,PSFPO2.0&#64;gamil.com</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div class="footer-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.621423729931!2d85.82546287469474!3d20.27452961325695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7afa115f1ff%3A0x7ffe22b3bebac455!2sKrushi%20Bhavan!5e0!3m2!1sen!2sin!4v1704206584747!5m2!1sen!2sin"
+                  width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p>Disclaimer:The information contained in this website is for general information purposes only and is
+          provided by Department of Agriculture & Farmers' Empowerment,Odisha. While we
+          endeavour to keep the information up to date and correct, we make no
+          representations or warranties of any kind, express or implied, about the completeness, accuracy,
+          reliability, suitability or availability with respect to the website or the information, products,
+          services, or related graphics contained on the website for any purpose. Any reliance you place on such
+          information is therefore strictly at your own risk</p>
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+
+
+<!-- 
+</body>
+</html> -->

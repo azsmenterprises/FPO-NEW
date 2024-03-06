@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/aos-master/aos-master/dist/aos.js"></script>
+<script src="assets/js/modernizr.js"></script>
+<script src="assets/js/js-sha512.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Department of Agriculture & Farmers' Empowerment</title>
+  <link rel="stylesheet" href="assetsNew/css/style.css">
+  <link rel="icon" href="assets/images/new-logo.jpg">
+</head>
+
+<body ng-app="myapp" ng-controller="ctrl1">
+    <div id="fb-root"></div>
+    
+    <header>
+      <div class="top-1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 ps-0">
+              <div class="top-1-left">
+                <h4>ANNOUNCEMENT</h4>
+                <marquee behavior="" direction="" onmouseover="this.stop();" onmouseout="this.start();">
+                  <a href="#"><span><img src="assetsNew/images/icons/new.png" alt=""></span>Odisha FPO conclave was
+                    organized
+                    on 9th February 2024 by Department
+                    of Agriculture & Farmers' Empowerment.
+                  </a><a href="#"><span><img src="assetsNew/images/icons/new.png" alt=""></span>“State Level workshop on
+                    Formation
+                    and Promotion of FPOs”,
+                    on 21st July 2022, Organized by Department of Agriculture and Farmer’s Empowerment.
+                  </a>
+                </marquee>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="top-1-right">
+                <div class="top-right-1">
+                  <ul>
+                    <li>
+                      <a href="#" id="scrollToBottom"><i class="fa-solid fa-arrow-turn-down"></i></a>
+                  </li>
+                    <li>
+                      <div class="font-resizer">
+                        <a href="#" id="normal"><i ></i> A</a>
+                        <a href="#" id="increase"><i ></i> A+</a>
+                        <a href="#" id="decrease"><i ></i> A-</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="site-map">
+                        <i class="fa-solid fa-sitemap"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="font-size-changer">
+                        <a href="#">English<i class="fa-solid fa-sort-down"></i></a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="/userLogin" class="top-login-btn">Login</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="top-2">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="logo-wrapper">
+                <div class="logo">
+                  <a href="#"><img src="assetsNew/images/logo.png" alt="" title=""></a>
+                </div>
+                <div class="logo-2">
+                  <a href="#"><img src="assetsNew/images/logo2.png" alt="" title="">
+                    <div class="logo-caption">
+                      <h5>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</h5>
+                      <h5>Department of Agriculture & Farmers' Empowerment</h5>
+                      <h6> Government of Odisha</h6>
+                    </div>
+                  </a>
+                </div>
+              </div>
+  
+              <div class="top-2-right">
+                <div class="cm-con">
+                  <div class="logo2-text">
+                    <h4>Shri Naveen Patnaik</h4>
+                    <h6>Honable Chief Minister</h6>
+                  </div>
+                  <figure><img src="assetsNew/images/cm.png" alt="Naveen Patnaik"></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="top-3">
+        <div class="container">
+          <div class="col-md-12">
+            <div class="top-2-wrapper">
+              <div class="menu-con">
+                <nav id="navigation1" class="navigation">
+                  <div class="nav-header">
+                    <div class="nav-toggle"></div>
+                  </div>
+                  <div class="nav-menus-wrapper">
+                    <ul class="nav-menu align-to-right">
+                      <li>
+                        <a href="http://localhost:3000/"><i class="fa-solid fa-house"></i></a>
+                      </li>
+                      <li>
+                        <a href="http://localhost:3000/">HOME</a>
+                      <li>
+                        <a href="#">ABOUT PSFPO</a>
+                        <ul class="nav-dropdown">
+                          <li><a href="http://localhost:3000/fpo1">PSFPO 1.0</a></li>
+                          <li><a href="http://localhost:3000/fpo2">PSFPO 2.0</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">ENROLMENT</a>
+                        <ul class="nav-dropdown">
+                          <li><a href="/#enrolment">FPO ENROLMENT</a></li>
+                          <li ><a href="/#enrolment" >TRADER ENROLMENT</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">SEARCH</a>
+                        <ul class="nav-dropdown">
+                          <li><a href="http://localhost:3000/fpofilterNew">FPO </a></li>
+                          <li><a href="http://localhost:3000/traderNew">TRADER </a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="/#scheme">SCHEMES</a>
+                      </li>
+                      <li>
+                        <a href="#">RESOURCES</a>
+                        <ul class="nav-dropdown">
+                          <li><a href="http://localhost:3000/schemeGuidelinesNew">Scheme Guidelines </a></li>
+                          <li><a href="http://localhost:3000/knowledgeMaterialNew">Knowledge Material </a></li>
+                        </ul>
+                      </li>
+                      <!-- <li>
+                        <a href="#" onclick="showPopup()">CENTER OF EXCELLENCE-OUAT</a>
+                      </li> -->
+                      <li>
+                        <a href="http://localhost:3000/faqNew">FAQ</a>
+                      </li>
+                      <li>
+                        <a href="http://localhost:3000/grievance">GRIEVANCE</a>
+                      </li>
+                      <li>
+                        <a href="/userLogin">LOGIN</a>
+                      </li>
+  
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="popup-overlay"></div>
+      <div id="popup" class="pop-up">
+        <p>Coming soon......</p>
+        <button onclick="closePopup()">Close</button>
+      </div>
+  
+    </header>
+  <section class="inner-page-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-breadcrumb">
+            <h3>TRADER</h3>
+            <!-- <ul>
+              <li><a href="http://localhost:3000/new"><i class="fa-solid fa-house"></i></a></li>
+              <li><a href="http://localhost:3000/new">Trader</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="fpo-page-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="fpo-left-box">
+            <h4>FILTERS</h4>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <select name="cars1" class="form-control filter-dropdown" ng-model="State"
+                ng-change="loadAvailableDistrcits()">
+                <option value="" disabled selected hidden>STATE</option>
+                <option ng-repeat="b in StateList" value="{{b.traderValue}}">{{b.traderState}}</option>
+              </select>
+              <select name="cars" class="form-control filter-dropdown" ng-model="District" ng-change="searchTrader()">
+                <option value="" disabled selected hidden>DISTRICT</option>
+                <option ng-repeat="i in DistrictList" value="{{i.districtName}}">{{i.districtName}}
+                </option>
+              </select>
+              <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne">                  
+                  </div>
+                </div>
+                <div class="accordion-item">
+                 
+                </div>
+              
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="btn-group-1">
+                <a href="http://localhost:3000/new#enrolment" class="btn btn-success"><i
+                    class="fa-solid fa-registered"></i> Enroll Now</a>
+                <a class="btn  btn-warning" ng-click="downloadTraderList()"><i class="fa-regular fa-file-excel"></i>
+                  Export
+                  to Excel</a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="filterDropdown">
+                <!-- <label for="">Search FPO</label> -->
+                <input type="text" class="form-control" placeholder="Enter Trader name to search"
+                  ng-model='searchtraderName' ng-keyup='searchTraderFromSearchBar()'>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-3" ng-repeat='x in allTrader'>
+              <div class="district-box">
+                <figure>
+                  <img src="assetsNew/images/nopic.png" alt="">
+                </figure>
+                <div class="district-box-content">
+                  <h4>{{x.traderName}}</h4>
+                  <h5>MOBILE NO:{{x.cgMobNo}}</h5>
+                  <h5>DISTRICT:{{x.districtName}}</h5>
+                  <h5>STATE:{{x.traderState}}</h5>
+                  <h5>CROP DEALT WITH:{{x.Crop_Name}}</h5>
+                </div>
+              </div>
+              
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="footer-box-1">
+              <h4>Important Links</h4>
+              <ul>
+                <li><a href="https://agri.odisha.gov.in/">Department of Agriculture & Farmers' Empowerment</a></li>
+                <li> <a href="https://odihort.nic.in/">Directorate of Horticulture</a></li>
+                <li> <a href="https://osamb.odisha.gov.in/">Odisha State Agricultural Marketing Board</a></li>
+                <li> <a href="https://sugam.odisha.gov.in/website/home">Go Sugam - Government Of Odisha</a></li>
+                <li> <a href="https://safal.odisha.gov.in/website/home">SAFAL - Government Of Odisha </a></li>
+                <li> <a href="https://www.cooperation.gov.in/">Ministry of Cooperation</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="footer-box-1">
+              <h4>Quick Links</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li><a href="/fpo1"> ABOUT PSFPO</a></li>
+                    <li><a href="/#enrolment"> ENROLMENT</a></li>
+                    <li><a href="http://localhost:3000/fpofilterNew">SEARCH</a></li>
+                    <li><a href="/#scheme">SCHEMES</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="footer-address-wrapper">
+              <h4>Contact Info</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="footer-address">
+                    <li>
+                      <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                      <h6>Address</h6>
+                      <p> Directorate of Horticulture,
+                        <br>Department of Agriculture & Farmers' Empowerment,
+                        <br> Krushi Bhawan,Gopabandhu Marg
+                        <br>Near State Guest House,Bhubaneswar
+                      </p>
+                    </li>
+                    <li>
+                      <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                      <h6>Phone</h6>
+                      <p>0674-2391831,+91-9853901065</p>
+                    </li>
+                    <!-- <li>
+                      <div class="contact-icon"><i class="fa-solid fa-fax"></i></div>
+                      <h6>Fax</h6>
+                      <p>0361-2301099</p>
+                    </li> -->
+                    <li>
+                      <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+                      <h6>Email</h6>
+                      <p>supportdho.od@nic.in,PSFPO2.0@gamil.com</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <div class="footer-map">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.621423729931!2d85.82546287469474!3d20.27452961325695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7afa115f1ff%3A0x7ffe22b3bebac455!2sKrushi%20Bhavan!5e0!3m2!1sen!2sin!4v1704206584747!5m2!1sen!2sin"
+                      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Disclaimer:The information contained in this website is for general information purposes only and is
+              provided by Department of Agriculture & Farmers' Empowerment,Odisha. While we
+              endeavour to keep the information up to date and correct, we make no
+              representations or warranties of any kind, express or implied, about the completeness, accuracy,
+              reliability, suitability or availability with respect to the website or the information, products,
+              services, or related graphics contained on the website for any purpose. Any reliance you place on such
+              information is therefore strictly at your own risk</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Modal -->
+  <div class="modal fade district-details-modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="staticBackdropLabel">Pirshat Farmer Producer Company Limited</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3">
+              <figure>
+                <img src="assetsNew/images/nopic.png" alt="">
+              </figure>
+            </div>
+            <div class="col-md-9">
+              <div class="district-box-content">
+                <div class="district-box-content-wrapper">
+                  <h5>Location:<strong>Mayurbhanj</strong></h5>
+                  <h5>Farmers Involved: <strong>430</strong></h5>
+                  <h5>Turnover: <strong>R.S.</strong> </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+      class="fas fa-chevron-up"></i></a>
+  <script src="assetsNew/js/jquery.min.js"></script>
+  <script src="assetsNew/js/dist_chart.min.js"></script>
+  <script src="assetsNew/js/bootstrap.bundle.min.js"></script>
+  <script src="assetsNew/js/aos.js"></script>
+  <script src="assetsNew/js/owl.carousel.min.js"></script>
+  <script src="assetsNew/js/nav-menu.js"></script>
+  <script src="assetsNew/js/jquery.fancybox.min.js"></script>
+  <script src="assetsNew/js/custom.js"></script>
+  <script src="/controller/traderNew.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+  <script src="/services/excelService.js"></script>
+  <!-- <script>
+    function showPopup() {
+      document.getElementById('popup-overlay').style.display = 'block';
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popup-overlay').style.display = 'none';
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script> -->
+   <script>
+    document.getElementById("scrollToBottom").addEventListener("click", function() {
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+</script>
+<script>
+  document.getElementById('normal').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.body.style.fontSize = '15px'; 
+  });
+
+  document.getElementById('increase').addEventListener('click', function(e) {
+    e.preventDefault();
+    var currentFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
+    document.body.style.fontSize = (currentFontSize + 2) + 'px';
+  });
+
+  document.getElementById('decrease').addEventListener('click', function(e) {
+    e.preventDefault();
+    var currentFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
+    document.body.style.fontSize = (currentFontSize - 2) + 'px';
+  });
+</script>
+
+
+</body>
+
+</html>
